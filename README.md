@@ -15,6 +15,7 @@
   - Framer Motion
 
 - Backend
+  
   Mongodb (if database handling is required)
 
 ## Members
