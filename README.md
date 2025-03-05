@@ -6,7 +6,9 @@
 
 ## Tech Stack
 - Frontend
+  
   base: NEXT.JS
+  
   complementary:
   - Shadcn
   - CSS animations
