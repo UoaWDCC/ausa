@@ -4,6 +4,8 @@ name: Fly Deploy Staging
 
 on:
   push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
@@ -35,10 +37,10 @@ jobs:
             https://api.github.com/repos/${{ github.repository }}/deployments \
             -d '{
               "ref": "${{ github.sha }}",
-              "environment": "Fly Staging",
+              "environment": "Staging",
               "required_contexts": [],
               "auto_merge": false,
-              "description": "Deploying frontend and backend to Staging"
+              "description": "Deploying AUSA app to staging"
             }')
           echo "deployment_id=$(echo $response | jq -r '.id')" >> $GITHUB_OUTPUT
         env:
