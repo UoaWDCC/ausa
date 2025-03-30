@@ -34,7 +34,7 @@ jobs:
               "environment": "Production",
               "required_contexts": [],
               "auto_merge": false,
-              "description": "Deploying frontend and backend to Staging"
+              "description": "Deploying AUSA app to production"
             }')
           echo "deployment_id=$(echo $response | jq -r '.id')" >> $GITHUB_OUTPUT
         env:
