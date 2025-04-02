@@ -5,17 +5,18 @@
 ## Tasks
 
 ## Tech Stack
-- Frontend
+  base:
+  **frontend framework**
+  > NEXT.js + Yamada UI
+
+  **backend framework**
+  > TSOA + Firebase (firestore)
   
-  base: NEXT.JS
+  **language**
+  > Typescript + CSS
   
   complementary:
-  - Shadcn
-  - CSS animations
+  - TailwindCSS
   - Framer Motion
-
-- Backend
-  
-  Mongodb (if database handling is required)
 
 ## Members
