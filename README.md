@@ -4,7 +4,7 @@ Project initiated by WDCC in 2025.
 
 ## About ❤️
 
-Student wellbeing and mental health is extremely important to AUSA. Whether you're struggling financially, looking to book for a campus care appointment, or just wanting to find a better way to navigate through the UoA official website... there's something for every student AUSA's new web app for you!
+Student wellbeing and mental health is extremely important to AUSA. Whether you're struggling financially, looking to book for a campus care appointment, or just wanting to find a better way to navigate through the UoA official website... there's something for every student in AUSA's new web app!
 
 AUSA's pre-existing website has A LOT of information that is not properly organised, so students become overwhelmed and confused when accessing this web app. The design has made some of the buttons hard to distinguish, and walls of text may not be needed. Below are what we hope to accomplish in order of priority:
 ## Requirements ✏️
