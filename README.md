@@ -1,4 +1,4 @@
-# AUSA Wellbeing App
+# AUSA Wellbeing Web App
 
 Project initiated by WDCC in 2025.
 
