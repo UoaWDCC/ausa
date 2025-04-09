@@ -8,7 +8,6 @@ Student wellbeing and mental health is extremely important to AUSA. Whether you'
 
 ## Requirements
 
-## Tasks
 
 ## Tech Stack
   base:
