@@ -9,8 +9,11 @@ Student wellbeing and mental health is extremely important to AUSA. Whether you'
 ## Requirements ✏️
 ### Installing Node.js
 
+To access our project, please install `Node.js`. Then ensure you are on the same directory as the `README.md` file, and run the following command:
 
-## Requirements
+```bash
+nvm install
+```
 
 ## Tech Stack 📚
   **Our frontend framework will use:**
@@ -35,7 +38,7 @@ Student wellbeing and mental health is extremely important to AUSA. Whether you'
 | Gavin                    | Developer       |
 | Logan                    | Developer       |
 | Luna                     | Designer        |
-| Vincent                  | Developer       || Vincent                  | Developer       |
+| Vincent                  | Developer       |
 
 ## Our Plan 📋
 
