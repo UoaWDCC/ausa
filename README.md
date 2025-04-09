@@ -24,4 +24,17 @@ Student wellbeing and mental health is extremely important to AUSA. Whether you'
   - TailwindCSS
   - Framer Motion
 
-## Members
+## Contributors
+
+| Name                     | Role            |
+| ------------------------ | --------------- |
+| Becky Cheng              | Project Manager |
+| Ray                      | Tech Lead       |
+| Ajith                    | Developer       |
+| AM Zapata                | Developer       |
+| Ashlee                   | Developer       |
+| Eve                      | Developer       |
+| Gavin                    | Developer       |
+| Logan                    | Developer       |
+| Luna                     | Designer        |
+| Vincent                  | Developer       |
