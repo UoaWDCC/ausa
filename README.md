@@ -1,4 +1,3 @@
-# AUSA Wellbeing app
 
 ## Requirements
 
