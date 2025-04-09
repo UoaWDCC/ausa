@@ -19,19 +19,14 @@ AUSA's pre-existing website has A LOT of information that is not properly organi
 
 
 ## Tech Stack
-  base:
-  **frontend framework**
-  > NEXT.js + Yamada UI
+  **Our frontend framework will use:**
+  > Next.js + TailwindCSS
 
-  **backend framework**
+  **Our backend framework will use:**
   > TSOA + Firebase (firestore)
   
-  **language**
+  **The coding languages used are:**
   > Typescript + CSS
-  
-  complementary:
-  - TailwindCSS
-  - Framer Motion
 
 ## Contributors
 
