@@ -2,7 +2,7 @@
 
 Project initiated by WDCC in 2025.
 
-## About
+## About ❤️
 
 Student wellbeing and mental health is extremely important to AUSA. Whether you're struggling financially, looking to book for a campus care appointment, or just wanting to find a better way to navigate through the UoA official website... there's something for every student AUSA's new web app for you!
 
@@ -17,8 +17,7 @@ AUSA's pre-existing website has A LOT of information that is not properly organi
 
 ## Requirements
 
-
-## Tech Stack
+## Tech Stack 📚
   **Our frontend framework will use:**
   > Next.js + TailwindCSS
 
@@ -28,7 +27,7 @@ AUSA's pre-existing website has A LOT of information that is not properly organi
   **The coding languages used are:**
   > Typescript + CSS
 
-## Contributors
+## Contributors ⭐
 
 | Name                     | Role            |
 | ------------------------ | --------------- |
@@ -41,4 +40,6 @@ AUSA's pre-existing website has A LOT of information that is not properly organi
 | Gavin                    | Developer       |
 | Logan                    | Developer       |
 | Luna                     | Designer        |
-| Vincent                  | Developer       |
+| Vincent                  | Developer       || Vincent                  | Developer       |
+
+## Our Plan 📋
