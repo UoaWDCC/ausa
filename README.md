@@ -23,22 +23,24 @@ nvm install
   > TSOA + Firebase (firestore)
   
   **The coding languages used are:**
-  > Typescript + CSS
+  > Typescript 
+  
+  > CSS
 
 ## Contributors ⭐
 
-| Name                     | Role            |
-| ------------------------ | --------------- |
-| Becky Cheng              | Project Manager |
-| Ray                      | Tech Lead       |
-| Ajith                    | Developer       |
-| AM Zapata                | Developer       |
-| Ashlee                   | Developer       |
-| Eve                      | Developer       |
-| Gavin                    | Developer       |
-| Logan                    | Developer       |
-| Luna                     | Designer        |
-| Vincent                  | Developer       |
+| Name                     | Role            | Github       |
+| ------------------------ | --------------- | ------------ |
+| Becky Cheng              | Project Manager | BavenBip     |
+| Ray Zhao                 | Tech Lead       | zlrkw11      |
+| Luna Eliasson            | Designer        | lunaluna023  |
+| Ajith Penmatsa           | Developer       | Ajith05105   |
+| AM Zapata                | Developer       | fishchiatrist|
+| Ashlee Shum              | Developer       | ashoomky     |
+| Eve Lee                  | Developer       | eve0827      |
+| Gavin Ding               | Developer       | Gavinzld     |
+| Logan Bellingham         | Developer       | ganznz       |
+| Vincent Walker           | Developer       | basicallycommits|
 
 ## Our Plan 📋
 
