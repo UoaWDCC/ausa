@@ -24,23 +24,23 @@ nvm install
   
   **The coding languages used are:**
   > Typescript 
-  
+
   > CSS
 
 ## Contributors ⭐
 
 | Name                     | Role            | Github       |
 | ------------------------ | --------------- | ------------ |
-| Becky Cheng              | Project Manager | BavenBip     |
-| Ray Zhao                 | Tech Lead       | zlrkw11      |
-| Luna Eliasson            | Designer        | lunaluna023  |
-| Ajith Penmatsa           | Developer       | Ajith05105   |
-| AM Zapata                | Developer       | fishchiatrist|
-| Ashlee Shum              | Developer       | ashoomky     |
-| Eve Lee                  | Developer       | eve0827      |
-| Gavin Ding               | Developer       | Gavinzld     |
-| Logan Bellingham         | Developer       | ganznz       |
-| Vincent Walker           | Developer       | basicallycommits|
+| Becky Cheng              | Project Manager | [BavenBip](https://github.com/BavenBip)     |
+| Ray Zhao                 | Tech Lead       | [zlrkw11](https://github.com/zlrkw11)      |
+| Luna Eliasson            | Designer        | [lunaluna023](https://github.com/lunaluna023)  |
+| Ajith Penmatsa           | Developer       | [Ajith05105](https://github.com/Ajith05105)   |
+| AM Zapata                | Developer       | [fishchiatrist](https://github.com/fishchiatrist)|
+| Ashlee Shum              | Developer       | [ashoomky](https://github.com/ashoomky)|
+| Eve Lee                  | Developer       | [eve0827](https://github.com/eve0827)      |
+| Gavin Ding               | Developer       | [Gavinzld](https://github.com/Gavinzld)     |
+| Logan Bellingham         | Developer       | [ganznz](https://github.com/ganznz)       |
+| Vincent Walker           | Developer       | [basicallycommits](https://github.com/basicallycommits)|
 
 ## Our Plan 📋
 
