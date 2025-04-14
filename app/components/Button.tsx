@@ -24,5 +24,5 @@ function MyButton() {
     </div>
   )
 }
-export default MyButton;
+export default  MyButton;
 
