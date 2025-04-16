@@ -8,5 +8,3 @@ const Home = () => {
   )
 }
 export default Home
-
-var i = 0
