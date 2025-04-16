@@ -78,7 +78,7 @@ jobs:
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Check formatting
-        run: npm run prettier:ci
+        run: npm run prettier
 
   lint:
     needs: [check_changes, setup]
