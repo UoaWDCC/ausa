@@ -34,6 +34,7 @@ nvm install
 | Becky Cheng              | Project Manager | [BavenBip](https://github.com/BavenBip)     |
 | Ray Zhao                 | Tech Lead       | [zlrkw11](https://github.com/zlrkw11)      |
 | Luna Eliasson            | Designer        | [lunaluna023](https://github.com/lunaluna023)  |
+| Dennis Hu                | Developer       | [midnightcuberx](https://github.com/midnightcuberx) |
 | Ajith Penmatsa           | Developer       | [Ajith05105](https://github.com/Ajith05105)   |
 | AM Zapata                | Developer       | [fishchiatrist](https://github.com/fishchiatrist)|
 | Ashlee Shum              | Developer       | [ashoomky](https://github.com/ashoomky)|
