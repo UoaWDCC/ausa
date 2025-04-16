@@ -3,7 +3,7 @@ const Home = () => {
   return (
     <div className="font-sans">
       Whereas disregard and contempt for
-      <NavButton href="google.com" label="TEST" />
+      <NavButton link="google.com" title="TEST" />
     </div>
   )
 }
