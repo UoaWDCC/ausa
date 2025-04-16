@@ -3,12 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "prettier": "prettier . --write",
-    "prettier:ci": "prettier . --check"
+    "dev": "npx next dev",
+    "build": "npx next build",
+    "start": "npx next start",
+    "lint": "npx next lint",
+    "prettier": "npx prettier . --write",
+    "prettier:ci": "npx prettier . --check"
   },
   "dependencies": {
     "@next/eslint-plugin-next": "^15.3.0",
