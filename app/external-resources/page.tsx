@@ -1,8 +1,10 @@
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from 'lucide-react'
+import ExternalLinkCard from '../components/ExternalLinkCard'
+import sampleImage from '../assets/images/sample.jpg'
 
 const ExternalResources = () => {
   return (
-    <div >
+    <div>
       <div className="  text-center pt-30 space-y-2">
         <h1 className="font-bold text-2xl">
           NAVIGATING THROUGH <br /> EXTERNAL RESOURCES
@@ -10,11 +12,55 @@ const ExternalResources = () => {
         <h2>
           insert description of the purpose <br /> of this page etc..
         </h2>
-        <button className="border border-black bg-black text-white px-4 py-2 rounded opacity-80 hover:opacity-100 transition duration-300 ease-in-out">
+        <button className="cursor-pointer border border-black bg-black text-white px-4 py-2 rounded opacity-80 hover:opacity-100 transition duration-300 ease-in-out">
           Explore now <ChevronDown className="inline-block" />
-        </button>
+        </button> 
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10  p-20">
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 1"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 2"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 3"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 4"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 5"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 6"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 7"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 8"
+          description="some some some smoe"
+        />
+
       </div>
     </div>
-  );
-};
-export default ExternalResources;
+  )
+}
+export default ExternalResources
