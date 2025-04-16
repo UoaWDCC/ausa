@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 :root {
   --background: #ffffff;
@@ -6,7 +6,7 @@
 }
 
 @theme {
-  --font-inter: "Inter", sans-serif;
+  --font-inter: 'Inter', sans-serif;
 }
 
 @theme inline {

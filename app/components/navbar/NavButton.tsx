@@ -1,7 +1,7 @@
-import Link, { type LinkProps } from "next/link";
+import Link, { type LinkProps } from 'next/link'
 
 interface NavButtonProps extends LinkProps {
-  label: string;
+  label: string
 }
 
 const NavButton = ({ href, label, ...props }: NavButtonProps) => {
@@ -14,7 +14,7 @@ const NavButton = ({ href, label, ...props }: NavButtonProps) => {
     >
       <h1 className="text-2xl font-bold">{label}</h1>
     </Link>
-  );
-};
+  )
+}
 
-export default NavButton;
+export default NavButton
