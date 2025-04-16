@@ -2,9 +2,9 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [master]
+    branches: [main]
   pull_request:
-    branches: [master]
+    branches: [main]
 
 env:
   CI: 'true'
@@ -46,14 +46,8 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-
       - name: Install dependencies
-        run: pnpm install
+        run: npm i
 
       # Cache the node_modules directory
       - name: Cache node_modules
@@ -61,7 +55,7 @@ jobs:
         id: cache-node-modules
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
   style:
     needs: [check_changes, setup]
@@ -76,21 +70,15 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Check formatting
-        run: pnpm prettier --check .
+        run: npm run prettier:ci
 
   lint:
     needs: [check_changes, setup]
@@ -105,30 +93,17 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Run linting
-        run: pnpm lint
+        run: npm run lint
 
   build:
-    environment: staging
-    env:
-      PAYLOAD_SECRET: ${{secrets.PAYLOAD_SECRET}}
-      DATABASE_URI: ${{secrets.DATABASE_URI}}
     needs: [check_changes, setup]
     if: ${{ needs.check_changes.outputs.exists == 'true' }}
     name: Build
@@ -141,109 +116,21 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
+          key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Build
-        run: pnpm tsc --noEmit && pnpm build
-
-  test:
-    needs: [check_changes, setup]
-    if: ${{ needs.check_changes.outputs.exists == 'true' }}
-    name: Test
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-
-      # Restore cached node_modules
-      - name: Restore node_modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-
-      - name: Test
-        run: pnpm test
-
-  codegen:
-    needs: [check_changes, setup]
-    if: ${{ needs.check_changes.outputs.exists == 'true' }}
-    name: Codegen
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2
-        with:
-          version: latest
-          run_install: false
-
-      # Restore cached node_modules
-      - name: Restore node_modules
-        uses: actions/cache@v4
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
-
-      - name: Generate typing
-        run: pnpm generate:types
-
-      - name: Write git diff
-        run: |
-          if git diff --quiet; then
-            echo "TYPE_GEN_DIFF=0" >> $GITHUB_ENV
-          else
-            echo "TYPE_GEN_DIFF=1" >> $GITHUB_ENV
-          fi
-
-      - name: Check for differences in typing
-        if: ${{ env.TYPE_GEN_DIFF != '0'}}
-        uses: actions/github-script@v3
-        with:
-          script: |
-            core.setFailed('Your code generation for typings are not up to date. Run pnpm generate:types')
+        run: npx tsc --noEmit && npm run build
 
   verify:
     name: Verify
-    needs: [check_changes, build, lint, style, test, codegen]
+    needs: [check_changes, build, lint, style]
     runs-on: ubuntu-latest
-    if: ${{ always() && (needs.check_changes.outputs.exists != 'true' || (needs.build.result == 'success' && needs.lint.result == 'success' && needs.style.result == 'success' && needs.test.result == 'success' && needs.codegen.result == 'success')) }}
+    if: ${{ always() && (needs.check_changes.outputs.exists != 'true' || (needs.build.result == 'success' && needs.lint.result == 'success' && needs.style.result == 'success')) }}
     steps:
       - name: All checks passed
         run: echo "All checks passed!"

@@ -29,5 +29,10 @@
     "tailwindcss": "^4",
     "typescript": "^5",
     "typescript-eslint": "^8.30.1"
-  }
+  },
+  "engines": {
+    "node": ">=22",
+    "npm": "^11"
+  },
+  "packageManager": "npm@11.3.0+sha512.96eb611483f49c55f7fa74df61b588de9e213f80a256728e6798ddc67176c7b07e4a1cfc7de8922422cbce02543714367037536955221fa451b0c4fefaf20c66"
 }
