@@ -8,9 +8,9 @@ type Props = {
 
 const ExternalLinkCard = ({ ExternalLinkImage, title, description }: Props) => {
   return (
-    <div className="w-64 rounded-md w-full h-full overflow-hidden bg-white shadow-[5px_5px_5px_hsla(0,0%,0%,0.1)] border border-[#CCCCCC]">
+    <div className="w-full max-w-xs rounded-md overflow-hidden bg-white shadow-[5px_5px_5px_hsla(0,0%,0%,0.1)] border border-[#CCCCCC]">
       <Image
-        className="w-100 h-70 object-cover"
+        className="relative w-full aspect-[4/3]"
         src={ExternalLinkImage}
         alt={title}
       />
