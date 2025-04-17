@@ -5,19 +5,18 @@ import sampleImage from '../assets/images/sample.jpg'
 const ExternalResources = () => {
   return (
     <div>
-      <div className="  text-center pt-30 space-y-2">
+      <div className="space-y-2 flex flex-col ml-20 gap-4 p-2 mt-4">
         <h1 className="font-bold text-2xl">
           NAVIGATING THROUGH <br /> EXTERNAL RESOURCES
         </h1>
-        <h2>
+        <h2 className="mr-auto">
           insert description of the purpose <br /> of this page etc..
         </h2>
-        <button className="cursor-pointer border border-black bg-black text-white px-4 py-2 rounded opacity-80 hover:opacity-100 transition duration-300 ease-in-out">
+        <button className="w-[200px] cursor-pointer border border-black bg-black text-white px-4 py-2 rounded opacity-80 hover:opacity-100 transition duration-300 ease-in-out">
           Explore now <ChevronDown className="inline-block" />
-        </button> 
+        </button>
       </div>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10  p-20">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10 p-10 pl-20">
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
           title="card 1"
@@ -58,7 +57,6 @@ const ExternalResources = () => {
           title="card 8"
           description="some some some smoe"
         />
-
       </div>
     </div>
   )
