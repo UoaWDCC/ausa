@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+// import search_icon from '../../assets/icons/search_icon.svg'
 import search_icon from '../../assets/icons/search_icon.svg'
 import profile_icon from '../../assets/icons/profile_icon.svg'
 import logo from '../../assets/icons/logo.svg'
