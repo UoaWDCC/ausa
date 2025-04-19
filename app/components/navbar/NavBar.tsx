@@ -2,7 +2,7 @@
 import NavButton from "./NavButton";
 import { useState } from "react";
 import search_icon from "../../assets/icons/search_icon.svg";
-import person_icon from "../../assets/icons/person_icon.svg";
+import profile_icon from "../../assets/icons/profile_icon.svg";
 import logo from "../../assets/icons/logo.svg";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -25,42 +25,43 @@ const Navbar = () => {
 
             <nav className="p-4 bg-white justify-center flex relative">
                 {/* Desktop Navbar*/}
-                <div className="hidden sm:flex items-center gap-4 justify-between w-full border-2 border-gray-300 rounded-md p-2">
+                <div className="hidden min-w-[915px] md:flex items-center gap-2 justify-between w-full border-2 border-gray-300 rounded-md p-2">
                     {/* <NavButton href="google.com" label="STUDENT EXPERIENCE" />
                     <NavButton href="google.com" label="STUDENT VOICE" /> */}
-                    <Button className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 md:px-3 lg:px-[50px] px-1 duration-75 hover:translate-x-4 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                        something
-                    </Button>
-                    <Button className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 md:px-3 px-1 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                        something
-                    </Button>
                     <Image src={logo} width={120} height={120} alt="logo" />{" "}
-                    <Button className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 md:px-3 px-1 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                        something
+                    <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 duration-75 hover:translate-x-4 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                        STUDENT EXPERIENCE
                     </Button>
-                    <Button className="inline-flex items-center gap-2 rounded-md bg-gray-700 py-1.5 md:px-3 px-1 text-sm/6 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
-                        something
+                    <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                        STUDENT VOICE
+                    </Button>
+                    <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                        YOUR AUSA
+                    </Button>
+                    <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+                        STUDENT SUPPORT
                     </Button>
                     {/* <NavButton href="google.com" label="YOUR AUSA" />
                     <NavButton href="google.com" label="STUDENT SUPPORT" /> */}
-                    <div className="flex gap-4 sm:flex-shrink-0">
+                    <div className="flex lg:gap-8 gap-4 sm:flex-shrink-0 justify-center md:ml-4">
                         <Link href="/">
                             <Image
+                                className=""
                                 src={search_icon}
-                                width={30}
-                                height={30}
+                                width={25}
+                                height={25}
                                 alt="search icon"
                             />
                         </Link>
                         <Link href="/">
-                            <Image src={person_icon} width={30} height={30} alt="person icon" />
+                            <Image className="" src={profile_icon} width={25} height={25} alt="person icon" />
                         </Link>
                     </div>
                 </div>
 
 
                 {/* Mobile Navbar*/}
-                <div className="flex sm:hidden w-full items-center justify-between">
+                <div className="flex md:hidden w-full items-center justify-between">
                     <button className="cursor-pointer" onClick={handleToggle}>
                         {open ? <X /> : <Menu />}
                     </button>
