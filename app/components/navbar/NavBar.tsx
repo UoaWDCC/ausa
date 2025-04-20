@@ -33,10 +33,11 @@ const Navbar = () => {
           <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
             YOUR AUSA
           </Button>
-          <Button 
+          <Button
             as={Link}
             href="/faq"
-            className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+            className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white"
+          >
             STUDENT SUPPORT
           </Button>
           {/* <NavButton href="google.com" label="YOUR AUSA" />

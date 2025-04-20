@@ -8,9 +8,7 @@ const FAQ = () => {
         <h1 className="text-6xl text-black">FAQs</h1>
       </div>
       <div className="py-10 flex justify-center">
-        <p className="text-3xl font-RK text-black">
-          Anything you want to know from us?
-        </p>
+        <p className="text-3xl font-RK text-black">Anything you want to know from us?</p>
       </div>
     </div>
   )
