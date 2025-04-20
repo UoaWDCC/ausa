@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* <NavButton href="google.com" label="STUDENT EXPERIENCE" />
                     <NavButton href="google.com" label="STUDENT VOICE" /> */}
           <Image src={logo} width={120} height={120} alt="logo" />{' '}
-          <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 duration-75 hover:translate-x-4 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
+          <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
             STUDENT EXPERIENCE
           </Button>
           <Button className="inline-flex justify-center items-center gap-2 rounded-md bg-gray-700 text-nowrap text-xs lg:text-base md:w-[160px] lg:w-[310px] p-2 font-semibold text-white shadow-inner shadow-white/10 focus:outline-none data-[hover]:bg-gray-600 data-[open]:bg-gray-700 data-[focus]:outline-1 data-[focus]:outline-white">
