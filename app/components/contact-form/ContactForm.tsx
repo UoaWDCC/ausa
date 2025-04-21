@@ -13,7 +13,7 @@ const ContactForm = () => {
     )
   }
   return (
-    <div className="bg-white rounded-[32px] p-5 text-black w-[455px] drop-shadow-sm">
+    <div className="bg-white rounded-[32px] p-5 text-black w-[300px] md:w-[500px] lg:w-full drop-shadow-sm">
       <form onSubmit={sendEmail} className="flex flex-col gap-4">
         <label className="flex flex-col font-bold">
           Full Name
@@ -50,7 +50,7 @@ const ContactForm = () => {
         </label>
         <button
           type="submit"
-          className="ml-auto py-2 px-4 w-35 text-xl rounded-full text-left bg-[#D9D9D9] font-bold"
+          className="ml-auto py-2 px-4 w-35 text-xl rounded-full text-left bg-[#D9D9D9] font-bold flex justify-center"
         >
           Submit
         </button>
