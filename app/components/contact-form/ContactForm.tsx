@@ -13,7 +13,7 @@ const ContactForm = () => {
     )
   }
   return (
-    <div className="bg-white rounded-[32px] p-5 text-black w-[300px] md:w-[500px] lg:w-full drop-shadow-sm">
+    <div className="bg-white rounded-[32px] p-5 text-black w-[300px] md:w-[700px] shadow-md lg:w-full drop-shadow-sm">
       <form onSubmit={sendEmail} className="flex flex-col gap-4">
         <label className="flex flex-col font-bold">
           Full Name
