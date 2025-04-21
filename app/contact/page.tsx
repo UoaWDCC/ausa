@@ -6,9 +6,9 @@ const Contact = () => {
     <div className="font-RG">
       <Navbar /> {/* this is here temporarily */}
       <div className="bg-white font-RK flex flex-col items-center justify-center">
-        <div className="bg-[#D9D9D9] ">
-          <div className="flex flex-col items-center justify-center min-h-screen bg-[#ffffff] px-4">
-            <div className="flex flex-col w-[310px] md:w-[800px] justify-center items-center lg:w-full md:flex-row bg-[#D9D9D9] rounded-[32px] p-8 gap-10">
+        <div className="bg-[#D9D9D9]">
+          <div className="flex flex-col items-center justify-center min-h-screen bg-[#ffffff]">
+            <div className="flex flex-col mt-8 w-[340px] md:w-[800px] justify-center items-center lg:w-[1500px] bg-[#D9D9D9] py-12 rounded-xl p-8 gap-10">
               <div className="flex flex-col justify-between">
                 <div>
                   <p className="text-xl mb-2">Submit an enquiry we’re here to help</p>
