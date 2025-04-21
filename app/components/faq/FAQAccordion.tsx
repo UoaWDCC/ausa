@@ -23,10 +23,10 @@ const FAQAccordion = ({ items }: FaqAccordionProps) => {
                 open ? 'bg-black text-white' : 'hover:bg-gray-100 text-gray-800'
               }`}
             >
-              <DisclosureButton className="gap-x-4 flex font-RK text-xl justify-between w-full p-4 text-left font-medium">
+              <DisclosureButton className="gap-4 flex font-RK text-xl justify-between w-full p-4 text-left font-medium">
                 <span>{item.question}</span>
                 <ChevronDownIcon
-                  className={`h-6 w-6 bg-gray-300 rounded-full transition-transform duration-300 ${
+                  className={`h-6 min-w-6 bg-gray-300 rounded-full transition-transform duration-300 ${
                     open ? 'rotate-180 text-black' : 'text-white'
                   }`}
                 />
