@@ -44,7 +44,9 @@ const FAQ = () => {
       </div>
       <div className="m-4">
         <div className="py-10 flex justify-center">
-          <p className="text-3xl font-RK text-black">Anything you want to know from us?</p>
+          <p className="text-3xl font-RK font-semibold text-gray-600">
+            Anything you want to know from us?
+          </p>
         </div>
         <FAQAccordion items={FAQItems} />
       </div>
