@@ -14,7 +14,7 @@ type FaqAccordionProps = {
 
 const FAQAccordion = ({ items }: FaqAccordionProps) => {
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4">
+    <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
       {items.map((item, index) => (
         <Disclosure key={index}>
           {({ open }) => (
