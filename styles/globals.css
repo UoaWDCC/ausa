@@ -30,3 +30,21 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+@keyframes infinite-scrolling{
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+  0% {
+    transform: translateX(0);
+  }
+}
+.animate-infinite-scrolling {
+  animation: infinite-scrolling 10s linear infinite;
+}
+.group:hover .animate-infinite-scrolling {
+  animation-play-state: paused;
+}
