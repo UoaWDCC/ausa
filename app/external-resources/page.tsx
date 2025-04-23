@@ -1,10 +1,16 @@
+'use client'
 import { ChevronDown } from 'lucide-react'
 import ExternalLinkCard from '../components/ExternalLinkCard'
 import sampleImage from '../assets/images/sample.jpg'
+import { motion } from 'motion/react'
 
 const ExternalResources = () => {
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, y: -50 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="flex flex-col items-center m-4 justify-center "
+    >
       <div className="space-y-2 flex flex-col ml-20 gap-4 p-2 mt-4">
         <h1 className="font-bold text-2xl">
           NAVIGATING THROUGH <br /> EXTERNAL RESOURCES
@@ -58,7 +64,7 @@ const ExternalResources = () => {
           description="some some some smoe"
         />
       </div>
-    </div>
+    </motion.div>
   )
 }
 export default ExternalResources
