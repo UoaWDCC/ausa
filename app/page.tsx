@@ -1,9 +1,4 @@
-import Navbar from './components/navbar/NavBar'
 const Home = () => {
-  return (
-    <div className="font-RG">
-      <Navbar />
-    </div>
-  )
+  return <div className="font-RG"></div>
 }
 export default Home
