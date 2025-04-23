@@ -1,8 +1,8 @@
-import Image from "next/image";
+import Image from 'next/image'
 import image from './assets/icons/logo.svg'
 
 type CardProps = {
-  src: string;
+  src: string
 }
 
 const Card = ({ src }: CardProps) => {
@@ -19,17 +19,13 @@ const RectangleCard = () => {
   )
 }
 
-const RectangleCard = () => {
-  return (
-    <div className="border-2 border-gray-500 w-[100px] lg:w-[300px]">rectangle card component</div>
-  )
-}
-
 const Home = () => {
   return (
-    <div className="font-sans flex flex-col items-center justify-center">
-      <div className="border border-gray-800 h-[500px] w-[400px] flex flex-col items-center justify-center lg:w-[1200px] md:w-[800px] m-4 p-4 gap-4">
-        <div className="justify-center gap-4 m-4 p4">
+    <div className="w-[500px] sm:w-[650px] md:w-[800px] lg:w-[1100px] xl:w-[1300px] mx-auto px-4 font-sans flex flex-col justify-center items-center">
+      <div className="w-full mx-auto border border-gray-800 flex flex-col items-center justify-center m-4 p-4 gap-4">
+        {/* Rectangles */}
+        <div className="border border-gray-800 w-full p-2">
+          section 1
           <RectangleCard />
           <RectangleCard />
           <RectangleCard />
@@ -54,9 +50,7 @@ const Home = () => {
         </div>
 
         {/* Texts */}
-        <div className="border border-black-800 w-full p-4">
-          hi
-        </div>
+        <div className="border border-black-800 w-full p-4">hi</div>
       </div>
     </div>
   )
