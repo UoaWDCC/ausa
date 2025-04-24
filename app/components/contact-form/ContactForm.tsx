@@ -2,6 +2,8 @@
 
 import emailjs from '@emailjs/browser'
 
+import DropdownInput from '../dropdown-input/DropdownInput'
+
 const ContactForm = () => {
   const sendEmail = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -32,12 +34,15 @@ const ContactForm = () => {
           />
         </label>
         <label className="flex flex-col font-bold">
-          {/* this input should be a dropdown menu -- need component */}
           Type of Enquiry
-          <input
-            type="text"
-            placeholder="Dropdown menu"
-            className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1"
+          <DropdownInput
+            options={[
+              'Membership & Recruitment',
+              'Events',
+              'Collaboration & Partnerships',
+              'Wellbeing',
+            ]}
+            placeholder="Select enquiry type"
           />
         </label>
         <label className="flex flex-col font-bold">
