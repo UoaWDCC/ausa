@@ -1,9 +1,8 @@
-import NavButton from './components/navbar/NavButton'
+import Navbar from './components/navbar/NavBar'
 const Home = () => {
   return (
-    <div className="font-sans">
-      Whereas disregard and contempt for
-      <NavButton link="google.com" title="TEST" />
+    <div className="font-RG">
+      <Navbar />
     </div>
   )
 }

@@ -12,10 +12,15 @@
     "vsc-setup": "code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code install-extension bradlc.vscode-tailwindcss"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.2",
     "@next/eslint-plugin-next": "^15.3.0",
+<<<<<<< HEAD
     "framer-motion": "^12.9.1",
     "lucide-react": "^0.488.0",
     "motion": "^12.7.4",
+=======
+    "lucide-react": "^0.501.0",
+>>>>>>> main
     "next": "^15.3.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"

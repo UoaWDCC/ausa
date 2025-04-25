@@ -6,16 +6,54 @@
 }
 
 @theme {
-  --font-inter: 'Inter', sans-serif;
+  --font-ReservoirGrunge: 'ReservoirGrunge', sans-serif;
+  --font-EingrantchMono: 'EingrantchMono', sans-serif;
+  --font-Inter: 'inter', sans-serif;
+  --font-ReemKufi: 'ReemKufi', sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-inter);
+  --font-RG: var(--font-ReservoirGrunge);
+  --font-I: var(--font-Inter);
+  --font-EM: var(--font-EingrantchMono);
+  --font-RK: var(--font-ReemKufi);
 }
 
 .font-sans {
   font-family: var(--font-inter);
 }
 
+<<<<<<< HEAD
+=======
+@font-face {
+  font-family: 'ReservoirGrunge';
+  font-weight: 400;
+  src: url('../app/assets/fonts/ReservoirGrunge/RESEGRG_.TTF') format('truetype');
+}
+
+@font-face {
+  font-family: 'EingrantchMono';
+  font-weight: 400;
+  src: url('../app/assets/fonts/EingrantchMono/EingrantchMono-Medium.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'ReemKufi';
+  font-weight: 400;
+  src: url('../app/assets/fonts/ReemKufi/ReemKufi-Regular.ttf') format('truetype');
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+>>>>>>> main
