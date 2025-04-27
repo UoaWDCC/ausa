@@ -45,3 +45,6 @@ body {
 .group:hover .animate-infinite-scrolling {
   animation-play-state: paused;
 }
+.animate-infinite-scrolling2 {
+  animation: infinite-scrolling 20s linear infinite;
+}

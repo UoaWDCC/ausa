@@ -27,17 +27,32 @@ const Home = () => {
         {/* <div className="border border-gray-600 rounded-md w-[200px] h-[200px] mt-4 hover:bg-black hover:-translate-y-4 hover:translate-x-4 duration-300"></div> */}
         {/* <div className="grid lg:grid-cols-4 gap-4 grid-cols-2 md:grid-cols-3 place-items: center"> */}
         <div className="group flex overflow-hidden gap-[0.5rem] w-full mx-auto">
-          <div className="transition-transform flex flex-none w-full gap-4 pr-2 animate-infinite-scrolling">
-            <Card src={image}/>
-            <Card src={image}/>
-            <Card src={image}/>
-            <Card src={image}/>
+          <div className="transition-transform flex flex-none w-full gap-2 animate-infinite-scrolling">
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
           </div>
-          <div className="transition-transform flex flex-none w-full gap-4 pr-2 animate-infinite-scrolling">
-            <Card src={image}/>
-            <Card src={image}/>
-            <Card src={image}/>
-            <Card src={image}/>
+          <div className="transition-transform flex flex-none w-full gap-2 animate-infinite-scrolling">
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+          </div>
+        </div>
+
+        <div className="group flex overflow-hidden gap-[0.5rem] w-full mx-auto">
+          <div className="transition-transform flex flex-none w-full gap-2 animate-infinite-scrolling2">
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+          </div>
+          <div className="transition-transform flex flex-none w-full gap-2 animate-infinite-scrolling2">
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
+            <Card src={image} alt="ausa"/>
           </div>
         </div>
 
