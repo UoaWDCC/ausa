@@ -55,7 +55,7 @@ const ContactForm = () => {
         </label>
         <button
           type="submit"
-          className="ml-auto py-2 px-4 w-35 text-xl rounded-full text-left bg-[#D9D9D9] font-bold flex justify-center"
+          className="ml-auto py-2 px-4 w-35 text-xl rounded-full text-left bg-[#D9D9D9] font-bold flex justify-center hover:outline hover:outline-black hover:outline-2"
         >
           Submit
         </button>
