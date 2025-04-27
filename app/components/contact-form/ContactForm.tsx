@@ -8,10 +8,10 @@ const ContactForm = () => {
   const sendEmail = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     emailjs.sendForm(
-      'service_r8v8vhv', //service_id
-      'template_72vhxtq', // template_id
+      'service_vo27jod', //service_id
+      'template_q845yhw', // template_id
       e.target,
-      'tRl_tRUBfRLeko-rI', // public_key
+      'DPs78eLGecvnCMXH1', // public_key
     )
   }
   return (
@@ -21,16 +21,18 @@ const ContactForm = () => {
           Full Name
           <input
             type="text"
+            name="name"
             placeholder="Ray Zhao 🥵🥵🥵🥵😩"
-            className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1 hover:outline hover:outline-black hover:outline-2"
+            className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1 hover:outline-black hover:outline-2"
           />
         </label>
         <label className="flex flex-col font-bold">
           Email
           <input
             type="text"
+            name="email_from"
             placeholder="example@mail.com"
-            className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1 hover:outline hover:outline-black hover:outline-2"
+            className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1 hover:outline-black hover:outline-2"
           />
         </label>
         <label className="flex flex-col font-bold">
@@ -48,9 +50,10 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Message
           <textarea
+            name="message"
             rows={6}
             placeholder="Write enquiry here"
-            className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1 hover:outline hover:outline-black hover:outline-2"
+            className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1 hover:outline-black hover:outline-2"
           />
         </label>
         <button
