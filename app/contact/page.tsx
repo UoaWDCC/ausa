@@ -4,7 +4,7 @@ const Contact = () => {
     <div className="font-RG">
       <div className="bg-white font-RK xl:p-10">
         <div className="flex flex-col items-center min-h-screen bg-[#ffffff]">
-          <div className="flex flex-col mt-8 w-[90%] md:w-[95%] md:justify-center items-center xl:flex-row lg:max-w-[1500px] bg-[#D9D9D9] p-8 xl:p-15 rounded-[55px] gap-10">
+          <div className="flex flex-col mt-8 w-[90%] md:w-[95%] md:justify-center items-center xl:flex-row lg:max-w-[1500px] xl:min-h-[900px] xl:max-w-[1800px] bg-[#D9D9D9] p-8 xl:p-15 rounded-[55px] gap-10">
             <div className="flex flex-col items-center xl:items-start gap-5 xl:gap-25 text-center xl:text-left">
               <div>
                 {/* only show this text on wide-screen displays */}
