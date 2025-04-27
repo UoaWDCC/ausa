@@ -40,7 +40,7 @@ body {
   }
 }
 .animate-infinite-scrolling {
-  animation: infinite-scrolling 10s linear infinite;
+  animation: infinite-scrolling 30s linear infinite;
 }
 .group:hover .animate-infinite-scrolling {
   animation-play-state: paused;
