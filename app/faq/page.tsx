@@ -1,4 +1,3 @@
-import Navbar from '../components/navbar/NavBar'
 import FAQAccordion from '../components/faq/FAQAccordion'
 
 const FAQItems = [
@@ -37,8 +36,6 @@ const FAQItems = [
 const FAQ = () => {
   return (
     <div className="font-RG bg-white min-h-screen flex flex-col">
-      <Navbar />
-
       <div className="w-full bg-gray-300 py-28 flex justify-center">
         <h1 className="text-6xl text-black">FAQs</h1>
       </div>

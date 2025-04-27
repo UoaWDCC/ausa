@@ -8,7 +8,7 @@ type FaqAccordionProps = {
 
 const FAQAccordion = ({ items }: FaqAccordionProps) => {
   return (
-    <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="w-full max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       {items.map((item, index) => (
         <FAQItem key={index} item={item} />
       ))}
