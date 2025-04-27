@@ -1,10 +1,14 @@
 'use client'
 
 import emailjs from '@emailjs/browser'
-
+import { useState } from 'react'
 import DropdownInput from '../dropdown-input/DropdownInput'
 
 const ContactForm = () => {
+  const [clicked, setClicked] = useState(false)
+  const handleClick = () => {
+    setClicked(true)
+  }
   const sendEmail = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     emailjs.sendForm(
@@ -57,8 +61,10 @@ const ContactForm = () => {
           />
         </label>
         <button
+          onClick={handleClick}
           type="submit"
-          className="ml-auto py-2 px-4 w-35 text-xl rounded-full text-left bg-[#D9D9D9] font-bold flex justify-center hover:outline hover:outline-black hover:outline-2"
+          disabled={clicked}
+          className={`ml-auto py-2 px-4 w-35 text-xl rounded-full text-left  ${clicked ? 'bg-gray-200 text-gray-300 cursor-not-allowed' : 'bg-[#D9D9D9] hover:outline-2'} font-bold flex justify-center hover:outline-black`}
         >
           Submit
         </button>
