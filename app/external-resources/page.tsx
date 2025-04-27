@@ -2,7 +2,6 @@
 import {useRef} from 'react'
 import { ChevronDown } from 'lucide-react'
 import ExternalLinkCard from './ExternalLinkCard'
-import Navbar from '../components/navbar/NavBar'
 import sampleImage from '../assets/images/sample.jpg'
 import { motion } from 'framer-motion'
   
@@ -10,7 +9,7 @@ const ExternalResources = () => {
   const cardsRef = useRef<HTMLDivElement | null>(null); 
   return (
     <>
-    <Navbar/>
+ 
     <motion.div
       initial={{ opacity: 0, y: -50 }}
       animate={{ opacity: 1, y: 0 }}
