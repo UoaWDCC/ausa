@@ -18,6 +18,7 @@ const ContactForm = () => {
     e.preventDefault()
     if (!formData.name || !formData.email_from || !formData.message) {
       alert('Please fill in all fields before submitting!')
+      setClicked(false)
       return
     }
     emailjs
