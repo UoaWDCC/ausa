@@ -2,7 +2,7 @@
   "name": "project_ausa",
   "version": "0.1.0",
   "private": true,
-  "workspaces":[
+  "workspaces": [
     "client",
     "server"
   ],
@@ -16,6 +16,7 @@
     "vsc-setup": "code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code install-extension bradlc.vscode-tailwindcss"
   },
   "dependencies": {
+    "jest": "^29.7.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

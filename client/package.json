@@ -7,15 +7,16 @@
     "@emailjs/browser": "^4.4.1",
     "@headlessui/react": "^2.2.2",
     "@next/eslint-plugin-next": "^15.3.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
     "lucide-react": "^0.501.0",
     "next": "^15.3.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
     "@tailwindcss/postcss": "^4",
     "tailwindcss": "^4"
   }
