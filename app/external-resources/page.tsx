@@ -43,43 +43,23 @@ const ExternalResources = () => {
       <div ref = {wellRef}className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10 p-10 pl-20">
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
-          title="card 1"
-          description="some some some smoe"
+          title="Student Emergency Fund"
+          description="University of Auckland is able to help students if, due to an expected event, face financial difficulties which threaten their studies."
         />
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
-          title="card 2"
-          description="some some some smoe"
+          title="Emergency Needs Grant"
+          description="StudyLink may be able to provide up to $200 for urgent things like food, bedding, or medical costs"
         />
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
-          title="card 3"
-          description="some some some smoe"
+          title="Food Banks"
+          description="Work and Income, StudyLink, or the Citizens Advice Bureau can help you find a local food bank. WINZ or StudyLink can help provide a letter to prove your eligibility if necessary."
         />
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
-          title="card 4"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 5"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 6"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 7"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 8"
-          description="some some some smoe"
+          title="Queerspace"
+          description="A safe space for queer students on campus (but we're not exclusionary! non-queer students are welcome)."
         />
       </div>
       <h1 className="font-bold text-2xl">
