@@ -1,4 +1,5 @@
 import FAQAccordion from '../components/faq/FAQAccordion'
+import FAQButton from '../components/faq/FAQButton'
 
 const FAQItems = [
   {
@@ -46,6 +47,12 @@ const FAQ = () => {
           </p>
         </div>
         <FAQAccordion items={FAQItems} />
+        <div className="pt-10 flex justify-center">
+          <p className="text-3xl font-RK font-semibold text-gray-600">
+            Didn't find the answer you were looking for?
+          </p>
+        </div>
+        <FAQButton />
       </div>
     </div>
   )
