@@ -19,7 +19,7 @@ const ExternalResources = () => {
       
       <div className=" flex flex-col h-screen justify-center px-20 max-w-xl space-y-4">
         <h1 className="font-bold text-2xl">
-          NAVIGATING THROUGH <br /> EXTERNAL RESOURCES
+          EXTERNAL RESOURCES
         </h1>
         <h2>
           insert description of the purpose <br /> of this page etc..
