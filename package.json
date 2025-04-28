@@ -2,6 +2,10 @@
   "name": "project_ausa",
   "version": "0.1.0",
   "private": true,
+  "workspaces":[
+    "client",
+    "server"
+  ],
   "scripts": {
     "dev": "npx next dev",
     "build": "npx next build",
@@ -36,7 +40,7 @@
   },
   "engines": {
     "node": ">=22",
-    "npm": "^10"
+    "yarn": ">=1.22.0"
   },
-  "packageManager": "npm@11.3.0+sha512.96eb611483f49c55f7fa74df61b588de9e213f80a256728e6798ddc67176c7b07e4a1cfc7de8922422cbce02543714367037536955221fa451b0c4fefaf20c66"
+  "packageManager": "yarn@1.22.22+sha1.ac34549e6aa8e7ead463a7407e1c7390f61a6610"
 }
