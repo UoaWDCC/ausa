@@ -37,6 +37,7 @@ const ExternalResources = () => {
           Class Reps <ChevronDown className="inline-block" />
         </button>
       </div>
+
       <h1 className="font-bold text-2xl">
           Student Wellfare
         </h1>
@@ -62,6 +63,7 @@ const ExternalResources = () => {
           description="A safe space for queer students on campus (but we're not exclusionary! non-queer students are welcome)."
         />
       </div>
+
       <h1 className="font-bold text-2xl">
           Student Experience
         </h1>
@@ -107,6 +109,7 @@ const ExternalResources = () => {
           description="some some some smoe"
         />
       </div>
+      
       <h1 className="font-bold text-2xl">
           Class Reps
         </h1>
