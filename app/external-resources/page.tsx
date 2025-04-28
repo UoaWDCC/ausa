@@ -22,9 +22,19 @@ const ExternalResources = () => {
           EXTERNAL RESOURCES
         </h1>
         <button onClick = {() => {
-          cardsRef.current?.scrollIntoView({behavior:'smooth'})
+          wellRef.current?.scrollIntoView({behavior:'smooth'})
         }} className="w-[200px] cursor-pointer border border-black bg-black text-white px-4 py-2 rounded opacity-80 hover:opacity-100 transition duration-300 ease-in-out">
-          Explore now <ChevronDown className="inline-block" />
+          Student Wellfare <ChevronDown className="inline-block" />
+        </button>
+        <button onClick = {() => {
+          expRef.current?.scrollIntoView({behavior:'smooth'})
+        }} className="w-[200px] cursor-pointer border border-black bg-black text-white px-4 py-2 rounded opacity-80 hover:opacity-100 transition duration-300 ease-in-out">
+          Student Experience <ChevronDown className="inline-block" />
+        </button>
+        <button onClick = {() => {
+          repRef.current?.scrollIntoView({behavior:'smooth'})
+        }} className="w-[200px] cursor-pointer border border-black bg-black text-white px-4 py-2 rounded opacity-80 hover:opacity-100 transition duration-300 ease-in-out">
+          Class Reps <ChevronDown className="inline-block" />
         </button>
       </div>
       <div ref = {cardsRef}className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10 p-10 pl-20">
