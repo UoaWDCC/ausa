@@ -6,7 +6,9 @@ import sampleImage from '../assets/images/sample.jpg'
 import { motion } from 'framer-motion'
   
 const ExternalResources = () => {
-  const cardsRef = useRef<HTMLDivElement | null>(null); 
+  const wellRef = useRef<HTMLDivElement | null>(null);
+  const expRef = useRef<HTMLDivElement | null>(null); 
+  const repRef = useRef<HTMLDivElement | null>(null); 
   return (
     <>
  
