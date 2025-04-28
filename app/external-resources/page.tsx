@@ -82,6 +82,9 @@ const ExternalResources = () => {
           description="some some some smoe"
         />
       </div>
+      <h1 className="font-bold text-2xl">
+          Student Experience
+        </h1>
       <div ref = {expRef}className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10 p-10 pl-20">
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
