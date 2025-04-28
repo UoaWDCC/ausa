@@ -1,0 +1,26 @@
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "target": "es6",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "baseUrl": "src",
+    "lib": ["ES2021"],
+    "strict": true,
+    "esModuleInterop": true,
+    "strictNullChecks": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": ["jest"],
+    "experimentalDecorators": true,
+    "moduleResolution": "Node",
+    "resolveJsonModule": true
+  },
+  "include": [
+    "tooling/**/*",
+    "src/**/*",
+    "src/business-layer/security/Firebase.ts",
+    "src/data-layer/adapters/EmulatorConfig.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
