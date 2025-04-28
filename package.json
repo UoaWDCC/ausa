@@ -12,6 +12,7 @@
     "vsc-setup": "code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code install-extension bradlc.vscode-tailwindcss"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@headlessui/react": "^2.2.2",
     "@next/eslint-plugin-next": "^15.3.0",
     "lucide-react": "^0.501.0",
