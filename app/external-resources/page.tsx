@@ -88,26 +88,6 @@ const ExternalResources = () => {
           title="card 4"
           description="some some some smoe"
         />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 5"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 6"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 7"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 8"
-          description="some some some smoe"
-        />
       </div>
       
       <h1 className="font-bold text-2xl">
@@ -132,26 +112,6 @@ const ExternalResources = () => {
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
           title="card 4"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 5"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 6"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 7"
-          description="some some some smoe"
-        />
-        <ExternalLinkCard
-          ExternalLinkImage={sampleImage}
-          title="card 8"
           description="some some some smoe"
         />
       </div>
