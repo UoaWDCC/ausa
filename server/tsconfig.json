@@ -17,10 +17,7 @@
     "resolveJsonModule": true
   },
   "include": [
-    "tooling/**/*",
-    "src/**/*",
-    "src/business-layer/security/Firebase.ts",
-    "src/data-layer/adapters/EmulatorConfig.ts"
+    "src/**/*"
   ],
   "exclude": ["node_modules", "dist"]
 }

@@ -3,10 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "concurrently \"yarn nodemon -e ts,js --exec \" \"yarn tsoa spec-and-routes\"",
+    "nodemon": "nodemon",
+    "build": "tsc -p ./tsconfig.json && tsc-alias && yarn copy-templates",
+    "serve": "node --es-module-specifier-resolution=node dist/index.js"
+  },
   "dependencies": {
+    "@tsoa/runtime": "^6.6.0",
     "cors": "^2.8.5",
     "express": "^5.1.0",
     "helmet": "^8.1.0",
+    "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "tsoa": "^6.6.0"
   },
@@ -15,6 +23,9 @@
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.2",
     "@types/swagger-ui-express": "^4.1.8",
+    "concurrently": "^9.1.2",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
 }

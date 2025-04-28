@@ -1,17 +1,11 @@
 import 'dotenv/config'
 import express, { Express, Request, Response } from 'express'
 import cors from 'cors'
-import swaggerUi from 'swagger-ui-express'
 import { RegisterRoutes } from 'middleware/__generated__/routes'
 import helmet from 'helmet'
 
-let spec: swaggerUi.JsonObject | undefined
-let generatedHtml: string | undefined
-const importSwaggerJson = async () => {
-  if (!process.env.DEV) {
-    spec = await import('middleware/__generated__/swagger.json')
-  }
-}
+import * as swaggerJson from './middleware/__generated__/swagger.json'
+import * as swaggerUI from 'swagger-ui-express'
 
 const app: Express = express()
 
@@ -19,18 +13,8 @@ app.use(helmet())
 app.use(express.json())
 app.use(cors())
 
-app.use('/api-docs', swaggerUi.serve, async (_req: Request, res: Response) => {
-  if (process.env.DEV) {
-    return res.send(swaggerUi.generateHTML(await import('middleware/__generated__/swagger.json')))
-  } else {
-    // Prod
-    if (!spec) {
-      await importSwaggerJson()
-      generatedHtml = swaggerUi.generateHTML(spec)
-    }
-    return res.send(generatedHtml)
-  }
-})
+app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerJson))
+
 app.get('/', (req: Request, res: Response) => {
   res.send('AUSA backend server is up!')
 })
