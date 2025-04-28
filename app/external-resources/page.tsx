@@ -38,6 +38,90 @@ const ExternalResources = () => {
         </button>
       </div>
       <div ref = {cardsRef}className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10 p-10 pl-20">
+      <div ref = {wellRef}className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10 p-10 pl-20">
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 1"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 2"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 3"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 4"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 5"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 6"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 7"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 8"
+          description="some some some smoe"
+        />
+      </div>
+      <div ref = {expRef}className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-y-10 gap-x-10 p-10 pl-20">
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 1"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 2"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 3"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 4"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 5"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 6"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 7"
+          description="some some some smoe"
+        />
+        <ExternalLinkCard
+          ExternalLinkImage={sampleImage}
+          title="card 8"
+          description="some some some smoe"
+        />
+      </div>
         <ExternalLinkCard
           ExternalLinkImage={sampleImage}
           title="card 1"
