@@ -136,7 +136,7 @@ jobs:
           key: node-modules-${{ hashFiles('package-lock.json') }}
 
       - name: Build
-        run: tsc --noEmit && npm run build
+        run: yarn build
 
   verify:
     name: Verify
