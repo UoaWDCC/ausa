@@ -29,6 +29,13 @@ const eslintConfig = [
         },
       ],
     },
+    "ignores": [
+      "dist",
+      "out",
+      "node_modules",
+      "*.d.ts",
+      "build"
+    ]
   },
 ]
 
