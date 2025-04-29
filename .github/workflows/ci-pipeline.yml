@@ -84,7 +84,11 @@ jobs:
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
-          path: .yarn
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Check formatting
@@ -110,7 +114,11 @@ jobs:
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
-          path: .yarn
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Run linting
@@ -136,8 +144,11 @@ jobs:
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
-          path: .yarn
-          key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Generate typing
         run: yarn workspace server tsoa spec-and-routes
@@ -177,7 +188,11 @@ jobs:
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
-          path: .yarn
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Build
