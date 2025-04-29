@@ -8,8 +8,7 @@
     "standard",
     "prettier",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended",
-    "plugin:@tanstack/eslint-plugin-query/recommended"
+    "plugin:react/recommended"
   ],
   "plugins": ["@typescript-eslint"],
   "env": {
