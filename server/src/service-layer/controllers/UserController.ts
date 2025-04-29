@@ -30,6 +30,5 @@ export class UsersController extends Controller {
   ): Promise<void> {
     this.setStatus(201) // set return status 201
     new UserDataService().create(requestBody)
-    return
   }
 }
