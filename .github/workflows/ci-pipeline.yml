@@ -48,7 +48,7 @@ jobs:
 
       - name: Install yarn
         run: corepack enable yarn
-      
+
       - name: Install deps
         run: yarn
 
@@ -58,7 +58,7 @@ jobs:
         id: cache-node-modules
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
   style:
     needs: [check_changes, setup]
@@ -75,13 +75,13 @@ jobs:
 
       - name: Install yarn
         run: corepack enable yarn
-      
+
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Check formatting
         run: yarn prettier:ci
@@ -101,13 +101,13 @@ jobs:
 
       - name: Install yarn
         run: corepack enable yarn
-      
+
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Run linting
         run: yarn lint-all
@@ -133,7 +133,7 @@ jobs:
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Build
         run: yarn build
