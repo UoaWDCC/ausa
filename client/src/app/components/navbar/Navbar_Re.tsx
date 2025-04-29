@@ -13,7 +13,7 @@ const NavbarRe = () => {
         <Link href="/" className="">
           <div>AUSA LOGO</div>
         </Link>
-        {/* Desktop Navbar*/}
+        {/* Desktop Navbar */}
         <div className="ml-auto hidden items-center md:flex md:gap-8 lg:gap-12">
           <Link
             href="/"
@@ -46,7 +46,7 @@ const NavbarRe = () => {
           </button>
         </div>
       </div>
-      {/* Mobile Navbar*/}
+      {/* Mobile Navbar */}
 
       {/* Slide-in Drawer Menu */}
       <div

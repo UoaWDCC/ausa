@@ -23,10 +23,13 @@ const ContactForm = () => {
     }
     emailjs
       .sendForm(
-        'service_vo27jod', //service_id
-        'template_q845yhw', // template_id
+        // service_id
+        'service_vo27jod',
+        // template_id
+        'template_q845yhw',
         e.target,
-        'DPs78eLGecvnCMXH1', // public_key
+        // public_key
+        'DPs78eLGecvnCMXH1',
       )
       .then(() => {
         setFormData({

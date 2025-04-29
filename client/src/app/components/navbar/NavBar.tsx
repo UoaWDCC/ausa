@@ -24,7 +24,7 @@ const Navbar = () => {
       )}
 
       <nav className="relative flex justify-center bg-white p-4">
-        {/* Desktop Navbar*/}
+        {/* Desktop Navbar */}
         <div className="hidden w-full min-w-[915px] items-center justify-between gap-2 rounded-md border-2 border-gray-300 p-2 md:flex">
           {/* <NavButton href="google.com" label="STUDENT EXPERIENCE" />
                     <NavButton href="google.com" label="STUDENT VOICE" /> */}
@@ -65,7 +65,7 @@ const Navbar = () => {
           </div>
         </div>
 
-        {/* Mobile Navbar*/}
+        {/* Mobile Navbar */}
         <div className="flex w-full items-center justify-between md:hidden">
           <button className="cursor-pointer" onClick={handleToggle}>
             {open ? <X /> : <Menu />}

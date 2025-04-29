@@ -19,7 +19,7 @@ const NavigationBar = () => {
           onClick={handleToggle}
         />
       )}
-      {/*logo */}
+      {/* logo */}
       <div className="mx-auto flex max-w-7xl justify-between">
         <div className="">
           <Image
@@ -72,7 +72,7 @@ const NavigationBar = () => {
           </div>
         </div>
 
-        {/* Mobile Navbar*/}
+        {/* Mobile Navbar */}
         <div className="flex items-center justify-between md:hidden">
           <button className="cursor-pointer" onClick={handleToggle}>
             {open ? <X /> : <Menu />}
