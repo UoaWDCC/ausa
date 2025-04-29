@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "private": true,
-  "type": "module",
   "scripts": {
     "start": "concurrently \"yarn nodemon -e ts,js --exec \" \"yarn tsoa spec-and-routes\"",
     "nodemon": "nodemon",

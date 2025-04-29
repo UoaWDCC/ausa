@@ -1,8 +1,8 @@
 import 'dotenv/config'
-import express, { Express, Request, Response } from 'express'
 import cors from 'cors'
-import { RegisterRoutes } from 'middleware/__generated__/routes'
 import helmet from 'helmet'
+import express, { Express, Request, Response } from 'express'
+import { RegisterRoutes } from 'middleware/__generated__/routes'
 
 import * as swaggerJson from './middleware/__generated__/swagger.json'
 import * as swaggerUI from 'swagger-ui-express'
@@ -15,7 +15,7 @@ app.use(cors())
 
 app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerJson))
 
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (_req: Request, res: Response) => {
   res.send('AUSA backend server is up!')
 })
 
