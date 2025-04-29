@@ -46,16 +46,23 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
-      - name: Install dependencies
-        run: npm i
+      - name: Install yarn
+        run: corepack enable yarn
+
+      - name: Install deps
+        run: yarn
 
       # Cache the node_modules directory
       - name: Cache node_modules
         uses: actions/cache@v4
         id: cache-node-modules
         with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
   style:
     needs: [check_changes, setup]
@@ -70,15 +77,22 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
+      - name: Install yarn
+        run: corepack enable yarn
+
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Check formatting
-        run: npm run prettier:ci
+        run: yarn prettier:ci
 
   lint:
     needs: [check_changes, setup]
@@ -93,15 +107,67 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
+      - name: Install yarn
+        run: corepack enable yarn
+
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Run linting
-        run: npm run lint
+        run: yarn lint-all
+
+  codegen:
+    needs: [check_changes, setup]
+    if: ${{ needs.check_changes.outputs.exists == 'true' }}
+    name: Codegen
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      # Restore cached node_modules
+      - name: Restore node_modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Generate typing
+        run: yarn workspace server tsoa spec-and-routes
+
+      - name: Write git diff
+        run: |
+          if git diff --quiet; then
+            echo "TYPE_GEN_DIFF=0" >> $GITHUB_ENV
+          else
+            echo "TYPE_GEN_DIFF=1" >> $GITHUB_ENV
+          fi
+
+      - name: Check for differences in typing
+        if: ${{ env.TYPE_GEN_DIFF != '0'}}
+        uses: actions/github-script@v3
+        with:
+          script: |
+            core.setFailed('Your code generation for the server is not up to date. Run yarn workspace server tsoa spec-and-routes')
 
   build:
     needs: [check_changes, setup]
@@ -116,19 +182,26 @@ jobs:
         with:
           node-version-file: '.nvmrc'
 
+      - name: Install yarn
+        run: corepack enable yarn
+
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
         with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('package-lock.json') }}
+          path: |
+            .yarn/cache
+            node_modules
+            server/node_modules
+            client/node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Build
-        run: tsc --noEmit && npm run build
+        run: yarn build
 
   verify:
     name: Verify
-    needs: [check_changes, build, lint, style]
+    needs: [check_changes, build, lint, style, codegen]
     runs-on: ubuntu-latest
     if: ${{ always() && (needs.check_changes.outputs.exists != 'true' || (needs.build.result == 'success' && needs.lint.result == 'success' && needs.style.result == 'success')) }}
     steps:
