@@ -60,6 +60,8 @@ jobs:
           path: |
             .yarn/cache
             node_modules
+            server/node_modules
+            client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
   style:
