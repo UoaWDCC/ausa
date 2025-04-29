@@ -53,3 +53,8 @@ AUSA's pre-existing website has A LOT of information that is not properly organi
 - Add an External Links page to allow students to easily navigate between different UoA services
 - Add a Booking System that allows students to book a Campus Care appointment through AUSA services
 - Implement a "buddy system" that allows friending and messaging functionality
+
+## local testing 
+```yarn dev-client```bash
+
+```yarn dev-server```bash

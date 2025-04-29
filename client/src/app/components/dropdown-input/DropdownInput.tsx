@@ -19,22 +19,24 @@ const DropdownInput = ({ options, ...props }: IDropdownInput) => {
     <div className="relative">
       <div
         onClick={toggleDropdown}
-        className="bg-[#E2E2E2] placeholder-[#9D9D9D] rounded-lg p-2 mt-1 cursor-pointer"
+        className="mt-1 cursor-pointer rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D]"
       >
         <span className={selectedOption ? 'font-bold' : 'font-light'}>
           {selectedOption || { ...props }.placeholder}
         </span>
       </div>
       {isOpen && (
-        <div className="absolute bg-[#E2E2E2] rounded-lg mt-1 w-full shadow-lg">
+        <div className="absolute mt-1 w-full rounded-lg bg-[#E2E2E2] shadow-lg">
           {options.map((option) => (
             <div
               key={option}
               onClick={() => handleOptionClick(option)}
-              className="p-2 hover:bg-[#9D9D9D] hover:rounded-lg font-light flex justify-between items-center"
+              className="flex items-center justify-between p-2 font-light hover:rounded-lg hover:bg-[#9D9D9D]"
             >
               {option}
-              {selectedOption === option && <Check className="text-[#9D9D9D]" />}
+              {selectedOption === option && (
+                <Check className="text-[#9D9D9D]" />
+              )}
             </div>
           ))}
         </div>

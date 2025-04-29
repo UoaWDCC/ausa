@@ -1,0 +1,9 @@
+{
+  "exec": "ts-node -r tsconfig-paths/register ./src/index.ts",
+  "watch": ["src"],
+  "ignore": ["src/routes/__generated__/*"],
+  "events": {
+    "crash": "yarn tsoa spec-and-routes"
+  },
+  "ext": "ts"
+}

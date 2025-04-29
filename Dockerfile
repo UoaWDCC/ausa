@@ -1,48 +1,28 @@
-# syntax = docker/dockerfile:1
+# To use this Dockerfile, you have to set `output: 'standalone'` in your next.config.mjs file.
+# From https://github.com/vercel/next.js/blob/canary/examples/with-docker/Dockerfile
 
-# Adjust NODE_VERSION as desired
-ARG NODE_VERSION=22.14.0
-FROM node:${NODE_VERSION}-slim AS base
+FROM node:22.14.0-slim AS base
 
-LABEL fly_launch_runtime="Next.js"
-
-# Next.js app lives here
+# Stage 1: Install dependencies
+FROM base AS deps
 WORKDIR /app
+COPY --link package.json yarn.lock .yarnrc.yml tsconfig.json ./
+COPY --link ./server ./server
+RUN corepack enable yarn && yarn workspaces focus server
 
-# Set production environment
-ENV NODE_ENV="production"
+# Stage 2: Build the application
+FROM base AS builder
+WORKDIR /app
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=install /app /app
+RUN corepack enable yarn && yarn workspace server build
 
-
-# Throw-away build stage to reduce size of final image
-FROM base AS build
-
-# Install packages needed to build node modules
-RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential node-gyp pkg-config python-is-python3
-
-# Install node modules
-COPY package-lock.json package.json ./
-RUN npm ci --include=dev
-
-# Copy application code
-COPY . .
-
-# Build application
-RUN npx next build --experimental-build-mode compile
-
-# Remove development dependencies
-RUN npm prune --omit=dev
-
-
-# Final stage for app image
-FROM base
-
-# Copy built application
+# Stage 3: Production server
+FROM base AS runner
+WORKDIR /app
 COPY --from=build /app /app
-
-# Entrypoint sets up the container.
-ENTRYPOINT [ "/app/docker-entrypoint.js" ]
+ENV NODE_ENV=production
 
 # Start the server by default, this can be overwritten at runtime
-EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+EXPOSE 8000
+CMD [ "yarn", "workspace", "server", "serve" ]
