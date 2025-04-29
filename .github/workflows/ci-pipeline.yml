@@ -136,7 +136,7 @@ jobs:
           key: node-modules-${{ hashFiles('pnpm-lock.yaml') }}
 
       - name: Generate typing
-        run: pnpm generate:types
+        run: yarn workspace server tsoa spec-and-routes
 
       - name: Write git diff
         run: |
