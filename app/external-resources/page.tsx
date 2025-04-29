@@ -12,7 +12,7 @@ const ExternalResources = () => {
   return (
     <>
       <motion.div initial={{ opacity: 0, y: -50 }} animate={{ opacity: 1, y: 0 }}>
-        <div className=" flex flex-col h-screen justify-center px-20 max-w-xl space-y-4">
+        <div className="flex flex-col h-screen justify-center px-20 max-w-xl space-y-4">
           <h1 className="font-bold text-2xl">EXTERNAL RESOURCES</h1>
           <button
             onClick={() => {
@@ -101,23 +101,33 @@ const ExternalResources = () => {
         >
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 1"
-            description="some some some smoe"
+            title="What Are Class Reps?"
+            description="An introduction to what class reps do, and why they're important!"
           />
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 2"
-            description="some some some smoe"
+            title="Class Rep Resources"
+            description="Guides, documents, and presentations to help you be the best class rep you can be."
           />
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 3"
-            description="some some some smoe"
+            title="Class Rep FAQs"
+            description="Some commonly asked questions about the Class Rep role."
           />
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 4"
-            description="some some some smoe"
+            title="Find Your Class Rep"
+            description="Not sure who your class rep is? Enter your course code and find out now!"
+          />
+          <ExternalLinkCard
+            ExternalLinkImage={sampleImage}
+            title="Enquire About Class Reps"
+            description="Submit an enquiry about class reps to our representatives."
+          />
+          <ExternalLinkCard
+            ExternalLinkImage={sampleImage}
+            title="AUSA's Class Rep Knowledge Repository"
+            description="Stores the SSCC/FSSCC Minutes, and eVoice Diary Reports"
           />
         </div>
       </motion.div>
