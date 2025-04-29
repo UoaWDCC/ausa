@@ -66,8 +66,20 @@ const Home = () => {
         </div>
 
         {/* Texts */}
-        <div className="border border-black-800 w-full p-4">
-          hi
+        <div className="border border-black-800 w-full p-4 flex m-2 p-20">
+          <div className="border border-black-800 w-[700px] h-[500px] justify-center text-xl text-center align-middle m-2 py-60">
+            YOUR AUSA
+          </div>
+          <div className="border border-black-800 w-[100%] h-[500px] justify-center break-keep m-2 p-20">
+            Te Rōpū Kahikatea - Auckland University Students’ Association was formed in 1891.
+
+            Since then, AUSA has been committed to representing and advocating for students at the University of Auckland, as well as running awesome events, and providing a range of support services. AUSA is run by students for students.We’re here to help you to get on with why you’re really at University, and are committed to providing you with the best student experience. AUSA is a voluntary association. It is completely free to join. AUSA services and events are available to all students at the University of Auckland regardless of their membership status with AUSA.
+            We are run by a student executive of elected representatives. You can find us at AUSA House, 4 Alfred Street (opposite the main library). All our staff and student executive are based in this building.
+
+            AUSA does three key things: Student Support, Student Voice, and Student Experience.
+          </div>
+
+
         </div>
       </div>
     </div>
