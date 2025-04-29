@@ -11,7 +11,7 @@ const NavigationBar = () => {
   const handleToggle = () => setOpen(!open)
 
   return (
-    <nav className="h-[70px] w-full bg-white p-6 shadow-md">
+    <nav className="font-Inter h-[70px] w-full bg-white p-6 shadow-md">
       {/* Overlay when menu is open */}
       {open && (
         <div
@@ -32,21 +32,21 @@ const NavigationBar = () => {
         </div>
 
         {/* navbar links */}
-        <div className="hidden translate-y-2 text-gray-700 md:flex md:gap-4 lg:gap-8">
-          <Link className="border-violet-500 pb-2 hover:border-b-6" href="/">
+        <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
+          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/">
             Homepage
           </Link>
-          <Link className="border-violet-500 pb-2 hover:border-b-6" href="/faq">
+          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/faq">
             FAQ
           </Link>
           <Link
-            className="border-violet-500 pb-2 hover:border-b-6"
+            className="border-gray-500 pb-4 hover:border-b-6"
             href="/external-resources"
           >
             External Resources
           </Link>
           <Link
-            className="border-violet-500 pb-2 hover:border-b-6"
+            className="border-gray-500 pb-4 hover:border-b-6"
             href="/contact"
           >
             Contact
@@ -99,25 +99,25 @@ const NavigationBar = () => {
         <nav className="font-size: 0.75rem; flex flex-col gap-4">
           <Link
             href="/"
-            className="border-violet-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
+            className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             STUDENT EXPERIENCE
           </Link>
           <Link
             href="/"
-            className="border-violet-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
+            className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             STUDENT VOICE
           </Link>
           <Link
             href="/"
-            className="border-violet-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
+            className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             YOUR AUSA
           </Link>
           <Link
             href="/"
-            className="border-violet-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
+            className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             STUDENT SUPPORT
           </Link>
