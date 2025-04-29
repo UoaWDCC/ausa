@@ -78,23 +78,28 @@ const ExternalResources = () => {
         >
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 1"
-            description="some some some smoe"
+            title="Find Me An AUSA Buddy!"
+            description="You will be matched with an existing student based on your shared interests or major, to offer a wide range of student support for you!"
           />
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 2"
-            description="some some some smoe"
+            title="Volunteer To Be An AUSA Buddy!"
+            description="For existing domestic or international students to get paired with a new international student to offer them support and guidance."
           />
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 3"
-            description="some some some smoe"
+            title="Events"
+            description="Explore AUSA's past and future events coming up."
           />
           <ExternalLinkCard
             ExternalLinkImage={sampleImage}
-            title="card 4"
-            description="some some some smoe"
+            title="Ubuntu Magazine"
+            description="AUSA's International Student magazine that celebrates the different cultures and traditions that we carry in our hearts and suitcases across the world."
+          />
+          <ExternalLinkCard
+            ExternalLinkImage={sampleImage}
+            title="Kate Magazine"
+            description="AUSA's annual feminist focused magazine that brings together submissions from University of Auckland students, staff and alumni."
           />
         </div>
 
