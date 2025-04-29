@@ -8,29 +8,35 @@ const NavbarRe = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
   return (
-    <nav className="w-full bg-white shadow-md fixed top-0 left-0 z-50 p-4">
-      <div className="max-w-7xl mx-auto py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 z-50 w-full bg-white p-4 shadow-md">
+      <div className="mx-auto flex max-w-7xl items-center justify-between py-4">
         <Link href="/" className="">
           <div>AUSA LOGO</div>
         </Link>
         {/* Desktop Navbar*/}
-        <div className="hidden md:flex items-center md:gap-8 lg:gap-12 ml-auto">
+        <div className="ml-auto hidden items-center md:flex md:gap-8 lg:gap-12">
           <Link
             href="/"
-            className="text-gray-700 dark:text-gray-300 hover:text-violet-500 transition"
+            className="text-gray-700 transition hover:text-violet-500 dark:text-gray-300"
           >
             Home
           </Link>
-          <Link href="/faq" className="text-gray-700 hover:text-violet-500 transition">
+          <Link
+            href="/faq"
+            className="text-gray-700 transition hover:text-violet-500"
+          >
             faqs
           </Link>
           <Link
             href="/external-resources"
-            className="text-gray-700  hover:text-violet-500 transition"
+            className="text-gray-700 transition hover:text-violet-500"
           >
             external links
           </Link>
-          <Link href="/contact" className="text-gray-700  hover:text-violet-500  transition">
+          <Link
+            href="/contact"
+            className="text-gray-700 transition hover:text-violet-500"
+          >
             contact
           </Link>
         </div>{' '}
@@ -44,30 +50,42 @@ const NavbarRe = () => {
 
       {/* Slide-in Drawer Menu */}
       <div
-        className={`fixed top-0 left-0 h-full w-3/4 max-w-xs shadow-md bg-white z-50 p-6 transform transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 shadow-md transition-transform duration-300 ease-in-out ${
           open ? 'translate-x-0' : '-translate-x-full'
         } flex flex-col`}
       >
         {/* Header with Logo and Close Button */}
-        <div className="flex justify-between items-center mb-8">
+        <div className="mb-8 flex items-center justify-between">
           <Image src={logo} width={100} height={100} alt="logo" />
           <button className="cursor-pointer" onClick={handleToggle}>
-            <X className="w-6 h-6" />
+            <X className="h-6 w-6" />
           </button>
         </div>
 
         {/* Nav Links */}
-        <nav className="flex flex-col gap-4 font-size: 0.75rem;">
-          <Link href="/" className="transition hover:translate-x-2 duration-300">
+        <nav className="font-size: 0.75rem; flex flex-col gap-4">
+          <Link
+            href="/"
+            className="transition duration-300 hover:translate-x-2"
+          >
             STUDENT EXPERIENCE
           </Link>
-          <Link href="/" className="transition hover:translate-x-2 duration-300">
+          <Link
+            href="/"
+            className="transition duration-300 hover:translate-x-2"
+          >
             STUDENT VOICE
           </Link>
-          <Link href="/" className="transition hover:translate-x-2 duration-300">
+          <Link
+            href="/"
+            className="transition duration-300 hover:translate-x-2"
+          >
             YOUR AUSA
           </Link>
-          <Link href="/" className="transition hover:translate-x-2 duration-300">
+          <Link
+            href="/"
+            className="transition duration-300 hover:translate-x-2"
+          >
             STUDENT SUPPORT
           </Link>
         </nav>
