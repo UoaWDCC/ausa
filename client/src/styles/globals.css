@@ -25,6 +25,21 @@
   font-family: var(--font-inter);
 }
 
+@theme {
+  --color-primary: #63ADF2;
+  --color-primary-dark: #3066BE;
+  --color-secondary: #C4E0F9;
+  --color-error: #FF0000;
+  --color-text-blue: #304D6D;
+  --color-success: #21897E;
+  --color-warning: #FF6700;
+  --color-accent: #3A7CA5;
+  --color-background: #EAF4FC;
+  --color-background-dark: #31393c;
+  --color-ghost-dark: #92B4F4;
+  --color-ghost-light: #C6D8FF;
+}
+
 @font-face {
   font-family: 'ReservoirGrunge';
   font-weight: 400;
