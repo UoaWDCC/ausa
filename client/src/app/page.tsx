@@ -58,7 +58,7 @@ const Home = () => {
         />{' '}
       </div>
       <TextBoxComponent
-        text="This is a text box component with an image as content"
+        text="Slam Dunk (stylized in all caps) is a Japanese sports manga series written and illustrated by Takehiko Inoue. It was serialized in Shueisha's shōnen manga magazine Weekly Shōnen Jump from October 1990 to June 1996, with the chapters collected into 31 tankōbon volumes. The story follows Hanamichi Sakuragi, a brash and impulsive high school student who joins a basketball team at Shōhoku High School, located in the Shōnan area of Japan."
         theme="secondary"
         border={true}
       >

@@ -29,12 +29,12 @@ const themes: Record<
 const TextBox = ({ text, theme, border, children }: TextBoxProps) => {
   const styles = themes[theme]
   const className = React.useMemo(() => {
-    return `${styles.bg} ${styles.text} ${border && `${styles.border} border-3`} px-4 py-2 rounded-md flex flex-col justify-center w-[10rem] md:w-[20rem]`
+    return `font-geist ${styles.bg} ${styles.text} ${border && `${styles.border} border-3`} p-2 rounded-md flex flex-col justify-center w-[10rem] md:w-[20rem] gap-2`
   }, [theme, border])
   return (
     <div className={className}>
+      <div>{children}</div>
       <p>{text}</p>
-      {children}
     </div>
   )
 }
