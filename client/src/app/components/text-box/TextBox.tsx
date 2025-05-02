@@ -14,7 +14,7 @@ const themes: Record<
   primary: {
     bg: 'bg-primary-dark',
     text: 'text-white',
-    border: 'border-secondary',
+    border: 'border-primary',
   },
   secondary: {
     bg: 'bg-background',

@@ -2,7 +2,7 @@ import TextBoxComponent from './components/text-box/TextBox'
 
 const Home = () => {
   return (
-    <div className="flex flex-col gap-2">
+    <div className="m-4 flex flex-col gap-2">
       <div className="flex gap-2">
         <TextBoxComponent
           text="hello this is a primary textbox component"
@@ -57,6 +57,20 @@ const Home = () => {
           border={false}
         />{' '}
       </div>
+      <TextBoxComponent
+        text="This is a text box component with an image as content"
+        theme="secondary"
+        border={true}
+      >
+        <div>
+          <img
+            src="https://p3-pc-sign.douyinpic.com/tos-cn-i-0813/1f6c173661544b9692ac336eb949aca2~tplv-dy-aweme-images:q75.webp?biz_tag=aweme_images&from=327834062&lk3s=138a59ce&s=PackSourceEnum_SEARCH&sc=image&se=false&x-expires=1748671200&x-signature=8jTLLNMUNG5yMzCrm94yvrpXQJ0%3D"
+            width={200}
+            height={200}
+            alt="slam dunk"
+          />
+        </div>
+      </TextBoxComponent>
     </div>
   )
 }
