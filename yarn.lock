@@ -4656,7 +4656,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"clsx@npm:^2.0.0":
+"clsx@npm:^2.0.0, clsx@npm:^2.1.1":
   version: 2.1.1
   resolution: "clsx@npm:2.1.1"
   checksum: 10c0/c4c8eb865f8c82baab07e71bfa8897c73454881c4f99d6bc81585aecd7c441746c1399d08363dc096c550cceaf97bd4ce1e8854e1771e9998d9f94c4fe075839
@@ -9073,6 +9073,7 @@ __metadata:
     "@types/node": "npm:^20"
     "@typescript-eslint/eslint-plugin": "npm:^7.1.0"
     "@typescript-eslint/parser": "npm:^7.1.0"
+    clsx: "npm:^2.1.1"
     dotenv: "npm:^16.5.0"
     eslint: "npm:^8.57.0"
     eslint-config-next: "npm:^14.2.4"
@@ -9089,6 +9090,7 @@ __metadata:
     jest: "npm:^29.7.0"
     prettier: "npm:3.5.3"
     prettier-plugin-tailwindcss: "npm:^0.6.11"
+    tailwind-merge: "npm:^3.2.0"
     ts-node: "npm:^10.9.2"
     typescript: "npm:^5"
     typescript-eslint: "npm:^8.30.1"
@@ -10327,6 +10329,13 @@ __metadata:
   version: 6.2.0
   resolution: "tabbable@npm:6.2.0"
   checksum: 10c0/ced8b38f05f2de62cd46836d77c2646c42b8c9713f5bd265daf0e78ff5ac73d3ba48a7ca45f348bafeef29b23da7187c72250742d37627883ef89cbd7fa76898
+  languageName: node
+  linkType: hard
+
+"tailwind-merge@npm:^3.2.0":
+  version: 3.2.0
+  resolution: "tailwind-merge@npm:3.2.0"
+  checksum: 10c0/294f6c2db0df74405bff126107107426c3126a70a1717d78e8d6811db65546c9bb3d61282bdb8d9fbded23f6bc8ec3e8e61031a4f53265f90b7f3dba558f88f4
   languageName: node
   linkType: hard
 

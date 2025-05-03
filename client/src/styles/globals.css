@@ -1,8 +1,24 @@
 @import 'tailwindcss';
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  :root {
+    --primary: 208 83% 67%;
+    --primary-dark: 219 60% 46%;
+    --secondary: 204 72% 88%;
+    --error: 0 100% 50%;
+    --text-blue: 211 39% 30%;
+    --success: 174 61% 34%;
+    --warning: 24 100% 50%;
+    --accent: 210 49% 44%;
+    --background: 205 66% 94%;
+    --background-dark: 204 10% 21%;
+    --ghost-dark: 219 82% 75%;
+    --ghost-light: 223 100% 88%;
+  }
+
+  /* .dark{
+
+} */
 }
 
 @theme {
@@ -28,19 +44,18 @@
 }
 
 @theme {
-  --color-primary: #63adf2;
-  --color-primary-dark: #3066be;
-  --color-secondary: #c4e0f9;
-  --color-error: #ff0000;
-  --color-text-blue: #304d6d;
-  --color-success: #21897e;
-  --color-warning: #ff6700;
-  --color-accent: #3a7ca5;
-  --color-background: #eaf4fc;
-  --color-background-dark: #31393c;
-  --color-ghost-dark: #92b4f4;
-  --color-ghost-light: #c6d8ff;
-  --color-common: #ebf2fa;
+  --color-primary: hsl(var(--primary));
+  --color-primary-dark: hsl(var(--primary-dark));
+  --color-secondary: hsl(var(--secondary));
+  --color-error: hsl(var(--error));
+  --color-text-blue: hsl(var(--text-blue));
+  --color-success: hsl(var(--success));
+  --color-warning: hsl(var(--warning));
+  --color-accent: hsl(var(--accent));
+  --color-background: hsl(var(--background));
+  --color-background-dark: hsl(var(--background-dark));
+  --color-ghost-dark: hsl(var(--ghost-dark));
+  --color-ghost-light: hsl(var(--ghost-light));
 }
 
 @font-face {
