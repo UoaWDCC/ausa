@@ -26,6 +26,7 @@
   --font-EingrantchMono: 'EingrantchMono', sans-serif;
   --font-Inter: 'inter', sans-serif;
   --font-ReemKufi: 'ReemKufi', sans-serif;
+  --font-Geist: 'geist', sans-serif;
 }
 
 @theme inline {
@@ -33,6 +34,7 @@
   --color-foreground: var(--foreground);
   --font-RG: var(--font-ReservoirGrunge);
   --font-I: var(--font-Inter);
+  --font-geist: var(--font-Geist);
   --font-EM: var(--font-EingrantchMono);
   --font-RK: var(--font-ReemKufi);
 }
