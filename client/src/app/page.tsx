@@ -1,4 +1,5 @@
 import ButtonComponent from './components/button/Button'
+import Input from './components/input/Input'
 const Home = () => {
   return (
     <div className="m-4 flex gap-2">
@@ -11,6 +12,7 @@ const Home = () => {
       <ButtonComponent theme="error" border={true} />
       <ButtonComponent theme="primary-out" border={true} />
       <ButtonComponent theme="secondary-out" border={true} />
+      <Input theme="primary" content="Content for input" />
     </div>
   )
 }
