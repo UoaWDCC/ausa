@@ -5,7 +5,7 @@ type InputProps = {
   theme: 'primary' | 'secondary' | 'ghost' | 'error' | 'success'
   disabled?: boolean
   size?: string
-  content?: string
+  content: string
 }
 
 const themes: Record<
@@ -13,7 +13,7 @@ const themes: Record<
   { bg: string; border: string; text: string }
 > = {
   primary: {
-    bg: 'bg-primary/20',
+    bg: 'bg-primary/10',
     text: 'text-primary',
     border: 'border-primary',
   },
@@ -42,13 +42,9 @@ const themes: Record<
 const Input: FC<InputProps> = ({ theme, content }: InputProps) => {
   const styles = themes[theme]
   const className = React.useMemo(() => {
-    return `font-geist p-2 rounded-md font-semibold ${styles.bg} ${styles.text} border-2 ${styles.border}`
+    return `font-geist p-2 rounded-md font-semibold ${styles.bg} ${styles.text} border-2 ${styles.border} focus:outline-none focus:ring-3 focus:ring-primary/20`
   }, [theme])
-  return (
-    <div className={className}>
-      {content ? <p>{content}</p> : <p>Input text here...</p>}
-    </div>
-  )
+  return <input className={className} placeholder={content} />
 }
 
 export default Input
