@@ -1,4 +1,11 @@
 import ButtonComponent from './components/button/Button'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/app/components/accordion/Accordion'
+
 const Home = () => {
   return (
     <div className="m-4 flex gap-2">
@@ -11,6 +18,14 @@ const Home = () => {
       <ButtonComponent theme="error" border={true} />
       <ButtonComponent theme="primary-out" border={true} />
       <ButtonComponent theme="secondary-out" border={true} />
+      <Accordion type="single" collapsible>
+        <AccordionItem value="item-1">
+          <AccordionTrigger>Is it accessible?</AccordionTrigger>
+          <AccordionContent>
+            Yes. It adheres to the WAI-ARIA design pattern.
+          </AccordionContent>
+        </AccordionItem>
+      </Accordion>
     </div>
   )
 }
