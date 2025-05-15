@@ -19,6 +19,7 @@
     "build": "yarn workspace client build && yarn workspace server build"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.2",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "jest": "^29.7.0",

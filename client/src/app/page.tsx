@@ -1,16 +1,9 @@
-import ButtonComponent from './components/button/Button'
 const Home = () => {
   return (
-    <div className="m-4 flex gap-2">
-      <ButtonComponent theme="primary" border={true} />
-      <ButtonComponent theme="primary" border={false} />
-      <ButtonComponent theme="secondary" border={true} />
-      <ButtonComponent theme="secondary" border={false} />
-      <ButtonComponent theme="warning" border={true} />
-      <ButtonComponent theme="ghost" border={true} />
-      <ButtonComponent theme="error" border={true} />
-      <ButtonComponent theme="primary-out" border={true} />
-      <ButtonComponent theme="secondary-out" border={true} />
+    <div className="m-4 flex flex-col gap-4">
+      <section id="intro" className="border p-4"></section>
+      <section id="grid" className="border p-4"></section>
+      <section id="quiz" className="border p-4"></section>
     </div>
   )
 }
