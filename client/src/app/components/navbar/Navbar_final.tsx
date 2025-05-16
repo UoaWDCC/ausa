@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import logo from '../../assets/icons/logo_2.svg'
+import logo from '../../assets/icons/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import search_icon from '../../assets/icons/search_icon.svg'
@@ -11,7 +11,7 @@ const NavigationBar = () => {
   const handleToggle = () => setOpen(!open)
 
   return (
-    <nav className="font-Inter h-[70px] w-full bg-white  shadow-md">
+    <nav className="font-Inter h-[70px] w-full bg-white shadow-md">
       {/* Overlay when menu is open */}
       {open && (
         <div
@@ -20,7 +20,7 @@ const NavigationBar = () => {
         />
       )}
       {/* logo */}
-      <div className="mx-auto mr-auto flex max-w-full relative ">
+      <div className="relative mx-auto mr-auto flex max-w-full">
         <div className="">
           <Image
             className="relative"
@@ -32,7 +32,7 @@ const NavigationBar = () => {
         </div>
 
         {/* navbar links */}
-        <div className="hidden text-gray-700 flex-row  items-center h-[90px] md:flex md:gap-4 lg:gap-8 ml-auto">
+        <div className="ml-auto hidden h-[90px] flex-row items-center text-gray-700 md:flex md:gap-4 lg:gap-8">
           <Link className="border-gray-500 pb-4 hover:border-b-6" href="/">
             Homepage
           </Link>
