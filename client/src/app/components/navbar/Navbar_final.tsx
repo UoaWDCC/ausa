@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Menu, X } from 'lucide-react'
-import logo from '../../assets/icons/logo_2.svg'
+import logo from '../../assets/icons/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import search_icon from '../../assets/icons/search_icon.svg'
