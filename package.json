@@ -19,10 +19,14 @@
     "build": "yarn workspace client build && yarn workspace server build"
   },
   "dependencies": {
+    "@radix-ui/react-accordion": "^1.2.10",
+    "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dotenv": "^16.5.0",
     "jest": "^29.7.0",
-    "tailwind-merge": "^3.2.0"
+    "lucide-react": "^0.507.0",
+    "tailwind-merge": "^3.2.0",
+    "tw-animate-css": "^1.2.9"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.2.0",

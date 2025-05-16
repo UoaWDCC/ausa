@@ -12,18 +12,26 @@ const themes: Record<
   { bg: string; text: string; border: string }
 > = {
   primary: {
-    bg: 'bg-primary-dark',
+    bg: 'bg-primary-dark/80',
     text: 'text-white',
     border: 'border-primary',
   },
   secondary: {
-    bg: 'bg-background',
+    bg: 'bg-background/60',
     text: 'text-text-blue',
     border: 'border-secondary',
   },
-  ghost: { bg: '', text: 'text-ghost-dark', border: 'border-ghost-light' },
-  warning: { bg: '', text: 'text-warning', border: 'border-warning' },
-  error: { bg: '', text: 'text-error', border: 'border-error' },
+  ghost: {
+    bg: 'bg-ghost-light/10',
+    text: 'text-ghost-dark',
+    border: 'border-ghost-light',
+  },
+  warning: {
+    bg: 'bg-warning/10',
+    text: 'text-warning',
+    border: 'border-warning',
+  },
+  error: { bg: 'bg-error/10', text: 'text-error', border: 'border-error' },
 }
 
 const TextBox = ({ text, theme, border, children }: TextBoxProps) => {
