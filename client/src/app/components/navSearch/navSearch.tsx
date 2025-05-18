@@ -19,13 +19,15 @@ const NavSearch: React.FC = () => {
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Search</DialogTitle>
+            <DialogTitle>
+              <div className="p-2"></div>
+            </DialogTitle>
             <DialogDescription>
               <Input placeholder={'What are you searching for?'} />
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="default">Search</Button>
+            <Button variant="secondary">Search</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

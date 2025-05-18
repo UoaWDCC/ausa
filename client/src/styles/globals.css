@@ -8,7 +8,7 @@
     --primary: 208 83% 67%;
     --primary-dark: 219 60% 46%;
     --secondary: 204 72% 88%;
-    --error: 0 100% 50%;
+    --error: 0 70% 35.3%;
     --text-blue: 211 39% 30%;
     --success: 174 61% 34%;
     --warning: 24 100% 50%;
@@ -150,7 +150,6 @@
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
   --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
   --muted-foreground: oklch(0.556 0 0);
