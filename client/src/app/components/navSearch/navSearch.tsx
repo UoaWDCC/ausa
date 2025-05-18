@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import { Button } from '../button/Button'
 import {
   Dialog,
   DialogContent,
@@ -25,7 +25,7 @@ const NavSearch: React.FC = () => {
             </DialogDescription>
           </DialogHeader>
           <DialogFooter>
-            <Button variant="outline">Search</Button>
+            <Button variant="default">Search</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
