@@ -1,3 +1,5 @@
+import { Button } from './components/button/Button'
+
 const Home = () => {
   return (
     <div className="bg-gray-100">
