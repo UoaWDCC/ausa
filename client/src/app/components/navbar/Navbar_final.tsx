@@ -53,9 +53,9 @@ const NavigationBar = () => {
 
         {/* navbar links */}
         <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
-          <NavLink href={"/"} text="HomePage"/>
-          <NavLink href={"/faq"} text="FAQ"/>
-          <NavLink href="external-resources" text="External Resources"/>
+          <NavLink href="/" text="HomePage"/>
+          <NavLink href="/faq" text="FAQ"/>
+          <NavLink href="/external-resources" text="External Resources"/>
           <NavLink href="/contact" text="Contact"/>
 
           <div className="hidden md:flex md:gap-4 lg:gap-8">
