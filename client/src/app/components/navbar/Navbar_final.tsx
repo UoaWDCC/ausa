@@ -1,19 +1,36 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import logo from '../../assets/icons/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
 import search_icon from '../../assets/icons/search_icon.svg'
 import profile_icon from '../../assets/icons/profile_icon.svg'
-import { IoSearchOutline } from 'react-icons/io5'
 import NavSearch from '../navSearch/navSearch'
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
+  const [hasScrolled, setHasScrolled] = useState(false)
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      if (window.scrollY > 0) {
+        setHasScrolled(true)
+      } else {
+        setHasScrolled(false)
+      }
+    }
+    window.addEventListener('scroll', scrollHandler)
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler)
+    }
+  }, [])
 
   return (
-    <nav className="font-Inter h-[70px] bg-white w-full p-6 fixed top-0 left-0">
+    <nav
+      className={`font-Inter h-[70px] ${hasScrolled ? 'bg-white opacity-90' : 'bg-white'} fixed top-0 left-0 w-full p-6`}
+    >
       {/* Overlay when menu is open */}
       {open && (
         <div
@@ -77,7 +94,7 @@ const NavigationBar = () => {
                 height={25}
                 alt="search icon"
                 className="cursor-pointer"
-                />
+              />
             </Link>
             <Link href="/">
               <Image
@@ -101,8 +118,9 @@ const NavigationBar = () => {
 
       {/* Slide-in Drawer Menu */}
       <div
-        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : '-translate-x-full'
-          } flex flex-col`}
+        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${
+          open ? 'translate-x-0' : '-translate-x-full'
+        } flex flex-col`}
       >
         {/* Header with Logo and Close Button */}
         <div className="mb-8 flex items-center justify-between">
