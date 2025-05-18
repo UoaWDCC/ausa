@@ -7,6 +7,8 @@ import Link from 'next/link'
 import search_icon from '../../assets/icons/search_icon.svg'
 import profile_icon from '../../assets/icons/profile_icon.svg'
 import { IoSearchOutline } from 'react-icons/io5'
+import { Input } from '@/components/ui/input'
+import NavSearch from '../navSearch/navSearch'
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
@@ -68,8 +70,9 @@ const NavigationBar = () => {
           </Link>
 
           <div className="hidden md:flex md:gap-4 lg:gap-8">
+            <NavSearch />
             <Link href="/">
-              <IoSearchOutline width={25} height={25} />
+              <IoSearchOutline />
             </Link>
             <Link href="/">
               <Image
