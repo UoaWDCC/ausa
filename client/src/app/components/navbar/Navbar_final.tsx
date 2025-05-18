@@ -14,7 +14,7 @@ const NavigationBar = () => {
   const handleToggle = () => setOpen(!open)
 
   return (
-    <nav className="font-Inter h-[70px] w-full bg-white p-6 shadow-md">
+    <nav className="font-Inter h-[70px] bg-white w-full p-6 fixed top-0 left-0">
       {/* Overlay when menu is open */}
       {open && (
         <div
@@ -96,9 +96,8 @@ const NavigationBar = () => {
 
       {/* Slide-in Drawer Menu */}
       <div
-        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${
-          open ? 'translate-x-0' : '-translate-x-full'
-        } flex flex-col`}
+        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : '-translate-x-full'
+          } flex flex-col`}
       >
         {/* Header with Logo and Close Button */}
         <div className="mb-8 flex items-center justify-between">
