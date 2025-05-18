@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import search_icon from '../../assets/icons/search_icon.svg'
 import profile_icon from '../../assets/icons/profile_icon.svg'
+import { IoSearchOutline } from 'react-icons/io5'
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
@@ -33,33 +34,42 @@ const NavigationBar = () => {
 
         {/* navbar links */}
         <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
-          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/">
-            Homepage
-          </Link>
-          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/faq">
-            FAQ
+          <Link
+            className="group transition-all duration-300 ease-in-out"
+            href="/"
+          >
+            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
+              Homepage
+            </span>
           </Link>
           <Link
-            className="border-gray-500 pb-4 hover:border-b-6"
+            className="group transition-all duration-300 ease-in-out"
+            href="/faq"
+          >
+            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
+              FAQ
+            </span>
+          </Link>
+          <Link
+            className="group transition-all duration-300 ease-in-out"
             href="/external-resources"
           >
-            External Resources
+            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
+              External Resources
+            </span>
           </Link>
           <Link
-            className="border-gray-500 pb-4 hover:border-b-6"
+            className="group transition-all duration-300 ease-in-out"
             href="/contact"
           >
-            Contact
+            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
+              Contact
+            </span>
           </Link>
 
           <div className="hidden md:flex md:gap-4 lg:gap-8">
             <Link href="/">
-              <Image
-                src={search_icon}
-                width={25}
-                height={25}
-                alt="search icon"
-              />
+              <IoSearchOutline width={25} height={25} />
             </Link>
             <Link href="/">
               <Image
