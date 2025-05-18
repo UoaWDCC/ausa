@@ -7,6 +7,7 @@ import Link from 'next/link'
 import search_icon from '../../assets/icons/search_icon.svg'
 import profile_icon from '../../assets/icons/profile_icon.svg'
 import NavSearch from '../navSearch/navSearch'
+import NavLink from '../navLink/navLink'
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
@@ -52,38 +53,10 @@ const NavigationBar = () => {
 
         {/* navbar links */}
         <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
-          <Link
-            className="group transition-all duration-300 ease-in-out"
-            href="/"
-          >
-            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
-              Homepage
-            </span>
-          </Link>
-          <Link
-            className="group transition-all duration-300 ease-in-out"
-            href="/faq"
-          >
-            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
-              FAQ
-            </span>
-          </Link>
-          <Link
-            className="group transition-all duration-300 ease-in-out"
-            href="/external-resources"
-          >
-            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
-              External Resources
-            </span>
-          </Link>
-          <Link
-            className="group transition-all duration-300 ease-in-out"
-            href="/contact"
-          >
-            <span className="bg-gradient-to-r from-gray-500 to-gray-500 bg-[length:0%_5px] bg-left-bottom bg-no-repeat pb-4 transition-all duration-500 ease-out group-hover:bg-[length:100%_5px]">
-              Contact
-            </span>
-          </Link>
+          <NavLink href={"/"} text="HomePage"/>
+          <NavLink href={"/faq"} text="FAQ"/>
+          <NavLink href="external-resources" text="External Resources"/>
+          <NavLink href="/contact" text="Contact"/>
 
           <div className="hidden md:flex md:gap-4 lg:gap-8">
             <NavSearch />
