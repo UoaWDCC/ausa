@@ -4,8 +4,8 @@ import { Menu, X } from 'lucide-react'
 import logo from '../../assets/icons/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import search_icon from '../../assets/icons/search_icon.svg'
-import profile_icon from '../../assets/icons/profile_icon.svg'
+// import search_icon from '../../assets/icons/search_icon.svg'
+// import profile_icon from '../../assets/icons/profile_icon.svg'
 import NavSearch from '../navSearch/navSearch'
 import NavLink from '../navLink/navLink'
 const NavigationBar = () => {
@@ -53,13 +53,13 @@ const NavigationBar = () => {
 
         {/* navbar links */}
         <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
-          <NavLink href="/" text="HomePage"/>
-          <NavLink href="/faq" text="FAQ"/>
-          <NavLink href="/external-resources" text="External Resources"/>
-          <NavLink href="/contact" text="Contact"/>
+          <NavSearch />
+          <NavLink href="/" text="Home" />
+          <NavLink href="/faq" text="FAQ" />
+          <NavLink href="/external-resources" text="External Resources" />
+          <NavLink href="/contact" text="Contact" />
 
-          <div className="hidden md:flex md:gap-4 lg:gap-8">
-            <NavSearch />
+          {/* <div className="hidden md:flex md:gap-4 lg:gap-8">
             <Link href="/">
               <Image
                 src={search_icon}
@@ -77,7 +77,7 @@ const NavigationBar = () => {
                 alt="profile icon"
               />
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Navbar */}
