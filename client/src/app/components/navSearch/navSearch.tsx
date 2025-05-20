@@ -19,29 +19,34 @@ interface pageInfo {
   title: string
   description: string
   href: string
+  keywords?: string[]
 }
 
 const NavSearch: React.FC = () => {
-  const pages = [
+  const pages: pageInfo[] = [
     {
       title: 'Home',
       description: 'Stuff about home',
       href: '/',
+      keywords: ['home', 'index'],
     },
     {
       title: 'FAQ',
       description: 'Stuff about FAQ',
       href: '/faq',
+      keywords: ['faq', 'questions'],
     },
     {
       title: 'External Resources',
       description: 'Stuff about External Resources',
       href: '/external-resources',
+      keywords: ['external', 'resources'],
     },
     {
       title: 'Contact',
       description: 'Stuff about Contact',
       href: '/contact',
+      keywords: ['contact', 'get in touch'],
     },
   ]
 
@@ -66,6 +71,7 @@ const NavSearch: React.FC = () => {
   const [searchValue, setSearchValue] = useState<string>('')
   const [searchResults, setSearchResults] = useState<pageInfo[]>(pages)
   const [open, setOpen] = useState(false)
+
   const handleToggle = () => setOpen(!open)
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,7 +80,11 @@ const NavSearch: React.FC = () => {
     const filteredResults = pages.filter(
       (page) =>
         page.title.toLowerCase().includes(value.toLowerCase()) ||
-        page.description.toLowerCase().includes(value.toLowerCase()),
+        page.description.toLowerCase().includes(value.toLowerCase()) ||
+        (page.keywords &&
+          page.keywords.some((keyword) =>
+            keyword.toLowerCase().includes(value.toLowerCase()),
+          )),
     )
     setSearchResults(filteredResults)
   }
