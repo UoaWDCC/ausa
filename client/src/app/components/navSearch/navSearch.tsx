@@ -13,10 +13,12 @@ import { Input } from '@/components/ui/input'
 import { MdOutlineSearch } from 'react-icons/md'
 import { NavSearchCard } from '../navSearchCard/navSearchCard'
 import React, { useState } from 'react'
+import { redirect } from 'next/navigation'
 
 interface pageInfo {
   title: string
   description: string
+  href: string
 }
 
 const NavSearch: React.FC = () => {
@@ -24,18 +26,22 @@ const NavSearch: React.FC = () => {
     {
       title: 'Home',
       description: 'Stuff about home',
+      href: '/',
     },
     {
       title: 'FAQ',
       description: 'Stuff about FAQ',
+      href: '/faq',
     },
     {
       title: 'External Resources',
       description: 'Stuff about External Resources',
+      href: '/external-resources',
     },
     {
       title: 'Contact',
       description: 'Stuff about Contact',
+      href: '/contact',
     },
   ]
 
@@ -80,12 +86,21 @@ const NavSearch: React.FC = () => {
           <DialogFooter>
             <div className="flex w-full flex-col gap-2">
               {searchResults.map((res) => (
-                <NavSearchCard
+                <button
                   key={res.title}
-                  title={res.title}
-                  description={res.description}
-                />
+                  onClick={() => {
+                    redirect(res.href)
+                  }}
+                >
+                  <NavSearchCard
+                    title={res.title}
+                    description={res.description}
+                  />
+                </button>
               ))}
+              {searchResults.length === 0 && (
+                <p className="text-sm"> No results found </p>
+              )}
             </div>
           </DialogFooter>
         </DialogContent>
