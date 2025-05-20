@@ -1,7 +1,7 @@
 const Home = () => {
   return (
     <div className="bg-gray-100">
-      <div className="p-10">
+      <div className="p-20">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi dapibus
           ultricies est, nec ultricies nisi. Praesent purus nibh, tincidunt sed

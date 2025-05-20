@@ -7,7 +7,7 @@ import Link from 'next/link'
 // import search_icon from '../../assets/icons/search_icon.svg'
 // import profile_icon from '../../assets/icons/profile_icon.svg'
 import NavSearch from '../navSearch/navSearch'
-import NavLink from '../navLink/navLink'
+import { NavLink } from '../navLink/navLink'
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
@@ -52,7 +52,7 @@ const NavigationBar = () => {
         </div>
 
         {/* navbar links */}
-        <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
+        <div className="hidden text-gray-700 md:flex md:flex-row md:gap-4 lg:gap-8">
           <NavSearch />
           <NavLink href="/" text="Home" />
           <NavLink href="/faq" text="FAQ" />
