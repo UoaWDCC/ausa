@@ -12,7 +12,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { MdOutlineSearch } from 'react-icons/md'
 import { NavSearchCard } from '../navSearchCard/navSearchCard'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { redirect } from 'next/navigation'
 
 interface pageInfo {
@@ -44,6 +44,24 @@ const NavSearch: React.FC = () => {
       href: '/contact',
     },
   ]
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setOpen(false)
+      }
+      if (event.ctrlKey && event.key === 'k') {
+        event.preventDefault()
+        setOpen(true)
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown)
+    }
+  })
 
   const [searchValue, setSearchValue] = useState<string>('')
   const [searchResults, setSearchResults] = useState<pageInfo[]>(pages)
