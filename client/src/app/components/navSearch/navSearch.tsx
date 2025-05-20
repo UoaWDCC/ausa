@@ -47,6 +47,8 @@ const NavSearch: React.FC = () => {
 
   const [searchValue, setSearchValue] = useState<string>('')
   const [searchResults, setSearchResults] = useState<pageInfo[]>(pages)
+  const [open, setOpen] = useState(false)
+  const handleToggle = () => setOpen(!open)
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
@@ -61,7 +63,7 @@ const NavSearch: React.FC = () => {
 
   return (
     <div>
-      <Dialog>
+      <Dialog open={open} onOpenChange={handleToggle}>
         <DialogTrigger>
           <Input className="text-md h-6 px-2" placeholder={'Search'} />
         </DialogTrigger>
@@ -89,6 +91,9 @@ const NavSearch: React.FC = () => {
                 <button
                   key={res.title}
                   onClick={() => {
+                    setSearchValue('')
+                    setSearchResults(pages)
+                    setOpen(false)
                     redirect(res.href)
                   }}
                 >
