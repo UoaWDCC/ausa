@@ -97,21 +97,21 @@
 @font-face {
   font-family: 'ReservoirGrunge';
   font-weight: 400;
-  src: url('../app/assets/fonts/ReservoirGrunge/RESEGRG_.TTF')
+  src: url('../assets/fonts/ReservoirGrunge/RESEGRG_.TTF')
     format('truetype');
 }
 
 @font-face {
   font-family: 'EingrantchMono';
   font-weight: 400;
-  src: url('../app/assets/fonts/EingrantchMono/EingrantchMono-Medium.ttf')
+  src: url('../assets/fonts/EingrantchMono/EingrantchMono-Medium.ttf')
     format('truetype');
 }
 
 @font-face {
   font-family: 'ReemKufi';
   font-weight: 400;
-  src: url('../app/assets/fonts/ReemKufi/ReemKufi-Regular.ttf')
+  src: url('../assets/fonts/ReemKufi/ReemKufi-Regular.ttf')
     format('truetype');
 }
 
