@@ -9,7 +9,7 @@ import sharp from 'sharp'
 
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { FAQs } from './collections/FAQ'
+import { Faq } from './collections/Faq'
 import { ExternalResources } from './collections/ExternalResources'
 
 const filename = fileURLToPath(import.meta.url)
@@ -22,7 +22,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, FAQs, ExternalResources],
+  collections: [Users, Media, Faq, ExternalResources],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -1,6 +1,6 @@
 import type { CollectionConfig } from 'payload'
 
-export const FAQs: CollectionConfig = {
+export const Faq: CollectionConfig = {
   slug: 'faq',
   fields: [
     {
