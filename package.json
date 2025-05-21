@@ -16,7 +16,8 @@
     "dev-server": "yarn workspace server start",
     "storybook": "yarn workspace client storybook",
     "vsc-setup": "code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code install-extension bradlc.vscode-tailwindcss",
-    "build": "yarn workspace client build && yarn workspace server build"
+    "build": "yarn workspace client build && yarn workspace server build",
+    "generate-types": "yarn workspace client generate-types"
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.10",
@@ -35,6 +36,7 @@
     "@types/node": "^20",
     "@typescript-eslint/eslint-plugin": "^7.1.0",
     "@typescript-eslint/parser": "^7.1.0",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-next": "^14.2.4",
     "eslint-config-prettier": "^9.1.0",

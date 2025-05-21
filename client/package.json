@@ -11,7 +11,8 @@
     "lint": "next lint",
     "test": "jest",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "generate-types": "cross-env NODE_OPTIONS=--no-deprecation payload generate:types"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
