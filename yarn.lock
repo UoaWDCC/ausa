@@ -13561,6 +13561,7 @@ __metadata:
     prettier: "npm:3.5.3"
     prettier-plugin-tailwindcss: "npm:^0.6.11"
     react-icons: "npm:^5.5.0"
+    sharp: "npm:^0.34.2"
     tailwind-merge: "npm:^3.2.0"
     ts-node: "npm:^10.9.2"
     tw-animate-css: "npm:^1.2.9"
