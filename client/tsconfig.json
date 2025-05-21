@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": false,
+    "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
@@ -26,7 +26,8 @@
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "public/*": ["./public/*"]
+      "public/*": ["./public/*"],
+      "@payload-config": ["./src/payload.config.ts"]
     },
     "types": ["jest", "node"],
     "target": "ES2017"

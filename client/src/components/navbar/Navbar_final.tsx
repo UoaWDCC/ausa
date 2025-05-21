@@ -1,17 +1,35 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import logo from '../../assets/icons/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import search_icon from '../../assets/icons/search_icon.svg'
-import profile_icon from '../../assets/icons/profile_icon.svg'
+import NavSearch from '../navSearch/navSearch'
+import { NavLink } from '../navLink/navLink'
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
+  const [hasScrolled, setHasScrolled] = useState(false)
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      if (window.scrollY > 0) {
+        setHasScrolled(true)
+      } else {
+        setHasScrolled(false)
+      }
+    }
+    window.addEventListener('scroll', scrollHandler)
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler)
+    }
+  }, [])
 
   return (
-    <nav className="font-Inter h-[70px] w-full bg-white p-6 shadow-md">
+    <nav
+      className={`font-Inter h-[70px] ${hasScrolled ? 'bg-white opacity-90' : 'bg-white'} fixed top-0 left-0 w-full p-6`}
+    >
       {/* Overlay when menu is open */}
       {open && (
         <div
@@ -32,33 +50,21 @@ const NavigationBar = () => {
         </div>
 
         {/* navbar links */}
-        <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
-          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/">
-            Homepage
-          </Link>
-          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/faq">
-            FAQ
-          </Link>
-          <Link
-            className="border-gray-500 pb-4 hover:border-b-6"
-            href="/external-resources"
-          >
-            External Resources
-          </Link>
-          <Link
-            className="border-gray-500 pb-4 hover:border-b-6"
-            href="/contact"
-          >
-            Contact
-          </Link>
+        <div className="hidden text-gray-700 md:flex md:flex-row md:gap-4 lg:gap-8">
+          <NavSearch />
+          <NavLink href="/" text="Home" />
+          <NavLink href="/faq" text="FAQ" />
+          <NavLink href="/external-resources" text="External Resources" />
+          <NavLink href="/contact" text="Contact" />
 
-          <div className="hidden md:flex md:gap-4 lg:gap-8">
+          {/* <div className="hidden md:flex md:gap-4 lg:gap-8">
             <Link href="/">
               <Image
                 src={search_icon}
                 width={25}
                 height={25}
                 alt="search icon"
+                className="cursor-pointer"
               />
             </Link>
             <Link href="/">
@@ -69,7 +75,7 @@ const NavigationBar = () => {
                 alt="profile icon"
               />
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Navbar */}
