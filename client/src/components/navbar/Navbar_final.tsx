@@ -4,8 +4,6 @@ import { Menu, X } from 'lucide-react'
 import logo from '../../assets/icons/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-// import search_icon from '../../assets/icons/search_icon.svg'
-// import profile_icon from '../../assets/icons/profile_icon.svg'
 import NavSearch from '../navSearch/navSearch'
 import { NavLink } from '../navLink/navLink'
 const NavigationBar = () => {
