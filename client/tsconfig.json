@@ -1,10 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
@@ -29,20 +25,11 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
-      "public/*": [
-        "./public/*"
-      ],
-      "@payload-config": [
-        "./src/payload.config.ts"
-      ]
+      "@/*": ["./src/*"],
+      "public/*": ["./public/*"],
+      "@payload-config": ["./src/payload.config.ts"]
     },
-    "types": [
-      "jest",
-      "node"
-    ],
+    "types": ["jest", "node"],
     "target": "ES2017"
   },
   "include": [
@@ -52,7 +39,5 @@
     "**/*.tsx",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

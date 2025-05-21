@@ -97,8 +97,7 @@
 @font-face {
   font-family: 'ReservoirGrunge';
   font-weight: 400;
-  src: url('../assets/fonts/ReservoirGrunge/RESEGRG_.TTF')
-    format('truetype');
+  src: url('../assets/fonts/ReservoirGrunge/RESEGRG_.TTF') format('truetype');
 }
 
 @font-face {
@@ -111,8 +110,7 @@
 @font-face {
   font-family: 'ReemKufi';
   font-weight: 400;
-  src: url('../assets/fonts/ReemKufi/ReemKufi-Regular.ttf')
-    format('truetype');
+  src: url('../assets/fonts/ReemKufi/ReemKufi-Regular.ttf') format('truetype');
 }
 
 @theme {
