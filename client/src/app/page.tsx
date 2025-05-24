@@ -48,7 +48,7 @@ const Home = () => {
             </Button>{' '}
           </div>{' '}
         </div>
-        <div id="slider-component" className="ml-auto flex">
+        <div id="slider-component" className="ml-auto hidden md:flex">
           <div className="h-full border border-black p-4">1</div>
           <div className="h-full border border-black p-4">2</div>
           <div className="h-full border border-black p-4">3</div>
