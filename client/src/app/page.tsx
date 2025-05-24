@@ -35,7 +35,7 @@ const Home = () => {
               Starts Here.
             </h1>
           </div>
-          <p className="mb-6 text-2xl text-black">
+          <p className="font-geist mb-6 text-xl text-neutral-500">
             Insert description text about something
           </p>
           <div>
