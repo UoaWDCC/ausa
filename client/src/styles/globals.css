@@ -116,3 +116,7 @@ body {
     height: 0;
   }
 }
+
+#resource {
+  border-radius: 8px;
+}
