@@ -24,7 +24,7 @@ const Home = () => {
         <Practice />
       </div>
 
-      <div className="relative z-10 pt-20 px-4">
+      <div className="relative z-10 pt-45 px-4">
         <Carousel>
           {/* Spaces next and previous button to top right */}
           <div className="mb-4 flex justify-end space-x-2">
