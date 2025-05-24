@@ -44,10 +44,15 @@ const Home = () => {
               className="rounded-partial cursor-pointer border-none bg-[#FEDEA5] px-6 py-6 text-black shadow-md hover:bg-[#FED280] hover:text-black"
             >
               Start Wellbeing Quiz
-            </Button>
+            </Button>{' '}
           </div>{' '}
         </div>
-        {/* <div id="slider-component">slider</div> */}
+        <div id="slider-component" className="ml-auto flex">
+          <div className="h-full border border-black p-4">1</div>
+          <div className="h-full border border-black p-4">2</div>
+          <div className="h-full border border-black p-4">3</div>
+          <div className="h-full border border-black p-4">4</div>
+        </div>
       </div>
     </div>
   )
