@@ -3,6 +3,12 @@ import Image from 'next/image'
 import { motion } from 'motion/react'
 import { Button } from './components/button/Button'
 import Icon1 from './assets/icons/_.svg'
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '../shadcn_components/ui/accordion'
 
 const Home = () => {
   return (
@@ -48,12 +54,49 @@ const Home = () => {
             </Button>{' '}
           </div>{' '}
         </div>
-        <div id="slider-component" className="ml-auto hidden md:flex">
+        <div id="slider-component" className="ml-auto hidden lg:flex">
           <div className="h-full border border-black p-4">1</div>
           <div className="h-full border border-black p-4">2</div>
           <div className="h-full border border-black p-4">3</div>
           <div className="h-full border border-black p-4">4</div>
         </div>
+      </div>
+      <div className="m-4 flex flex-col lg:hidden">
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="item-1">
+            <AccordionTrigger>Awareness</AccordionTrigger>
+            <AccordionContent>
+              Mental health is health. The first step to healing is
+              understanding. We believe in building awareness by opening
+              minds—breaking down the silence, one truth at a time.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-2">
+            <AccordionTrigger>Support</AccordionTrigger>
+            <AccordionContent>
+              You are not alone. Whether you're struggling, healing, or
+              growing—we're here. Support isn't just a word. It's a network of
+              real people, real stories, and real care.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-3">
+            <AccordionTrigger>Communication</AccordionTrigger>
+            <AccordionContent>
+              Talk. Share. Listen. Communication connects us—it turns pain into
+              empathy, and isolation into understanding. This is your safe space
+              to speak and be heard.
+            </AccordionContent>
+          </AccordionItem>{' '}
+          <AccordionItem value="item-4">
+            <AccordionTrigger>Self Care</AccordionTrigger>
+            <AccordionContent>
+              Take a breath. Log off for a while. Say no when you need to.
+              Self-care isn't selfish—it's survival, it's maintenance, it's
+              reclaiming your peace one day at a time.
+            </AccordionContent>
+          </AccordionItem>
+          <AccordionItem value="item-5"></AccordionItem>
+        </Accordion>
       </div>
     </div>
   )
