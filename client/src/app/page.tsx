@@ -1,10 +1,38 @@
 'use client'
 import Image from 'next/image'
-import { motion } from 'motion/react'
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react'
+
 import { Button } from './components/button/Button'
+import Card from './components/card/Card'
 import Icon1 from './assets/icons/_.svg'
 
 const Home = () => {
+  const cards = [
+    {
+      title: "Mental Health Support",
+      content: "Find the right resources to help you feel better.",
+      className: "bg-yellow-100 border-blue-300 w-full h-full",
+    },
+    {
+      title: "Academic Advice",
+      content: "Tips and services to keep your study on track.",
+      className: "bg-red-800 border-green-300 w-full h-full",
+    },
+    {
+      title: "Community",
+      content: "Connect with others, join events, find your people.",
+      className: "bg-green-100 border-yellow-300 w-full h-full",
+    },
+    {
+      title: "Emergency Help",
+      content: "Quick access to emergency contacts and procedures.",
+      className: "bg-blue-100 border-red-300 w-full h-full",
+    },
+  ];
+  const [activeIndex, setActiveIndex] = useState(0)
+  const current = cards[activeIndex]
+
   return (
     <div className="overflow-hidden bg-white">
       {/* Info Expanding Section */}
@@ -48,11 +76,29 @@ const Home = () => {
             </Button>{' '}
           </div>{' '}
         </div>
+        <AnimatePresence mode="wait">
+          <motion.div className="w-full"
+            key={activeIndex}
+            initial={{ opacity: 0, x: 0}}
+            animate={{ opacity: 2, x: 0 }}
+            exit={{ opacity: 0, x: -50 }}
+            transition={{ duration: 0.4 }}
+          >
+            <Card title={current.title} className={current.className} >
+              <p>
+                This is a custom styled card with blue background and border.
+              </p>
+            </Card>
+          </motion.div>
+        </AnimatePresence>
+        <div>
+
+        </div>
         <div id="slider-component" className="ml-auto flex">
-          <div className="h-full border border-black p-4">1</div>
-          <div className="h-full border border-black p-4">2</div>
-          <div className="h-full border border-black p-4">3</div>
-          <div className="h-full border border-black p-4">4</div>
+          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(0)}>1</div>
+          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(1)}>2</div>
+          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(2)}>3</div>
+          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(3)}>4</div>
         </div>
       </div>
     </div>
