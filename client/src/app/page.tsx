@@ -17,6 +17,7 @@ const Home = () => {
           <div className="items-center justify-center gap-8 font-semibold md:ml-8 md:flex">
             <div className="-translate-y-4">
               <motion.div
+                className="w-[80px]"
                 animate={{
                   scale: [1, 1.25, 1],
                   rotate: [0, 180, -180, 0],
