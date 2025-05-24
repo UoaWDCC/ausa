@@ -20,39 +20,41 @@ const Home = () => {
       <Button variant="link">Link</Button> */}
 
       {/* The parabola Background */}
-      <div>
+      <div className="absolute inset-0 z-0">
         <Practice />
       </div>
 
-      <Carousel>
-        {/* Spaces next and previous button to top right */}
-        <div className="mb-4 flex justify-end space-x-2">
-          <CarouselPrevious className="static translate-x-0 translate-y-0 rotate-0" />
-          <CarouselNext className="static translate-x-0 translate-y-0 rotate-0" />
-        </div>
+      <div className="relative z-10 pt-20 px-4">
+        <Carousel>
+          {/* Spaces next and previous button to top right */}
+          <div className="mb-4 flex justify-end space-x-2">
+            <CarouselPrevious className="static translate-x-0 translate-y-0 rotate-0" />
+            <CarouselNext className="static translate-x-0 translate-y-0 rotate-0" />
+          </div>
 
-        {/* Carousel content with responsive item sizes */}
-        <CarouselContent>
-          <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3">
-            <div className="h-64 bg-gray-200 pl-2 md:pl-4">Slide 1</div>
-          </CarouselItem>
-          <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3">
-            <div className="h-64 bg-gray-200 pl-2 md:pl-4">Slide 2</div>
-          </CarouselItem>
-          <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3">
-            <div className="h-64 bg-gray-200 pl-2 md:pl-4">Slide 3</div>
-          </CarouselItem>
-          <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3">
-            <div className="h-64 bg-gray-200 pl-2 md:pl-4">Slide 4</div>
-          </CarouselItem>
-          <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3">
-            <div className="h-64 bg-gray-200 pl-2 md:pl-4">Slide 5</div>
-          </CarouselItem>
-          <CarouselItem className="basis-full sm:basis-1/2 md:basis-1/3">
-            <div className="h-64 bg-gray-200 pl-2 md:pl-4">Slide 6</div>
-          </CarouselItem>
-        </CarouselContent>
-      </Carousel>
+          {/* Carousel content with responsive item sizes */}
+          <CarouselContent className="mb-10 -ml-2 md:-ml-4">
+            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4" id="resource">Slide 1</div>
+            </CarouselItem>
+            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4" id="resource">Slide 2</div>
+            </CarouselItem>
+            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4" id="resource">Slide 3</div>
+            </CarouselItem>
+            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4" id="resource">Slide 4</div>
+            </CarouselItem>
+            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4" id="resource">Slide 5</div>
+            </CarouselItem>
+            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4" id="resource">Slide 6</div>
+            </CarouselItem>
+          </CarouselContent>
+        </Carousel>
+      </div>
     </div>
   )
 }
