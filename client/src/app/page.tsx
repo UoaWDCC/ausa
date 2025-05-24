@@ -20,7 +20,7 @@ const Home = () => {
       <Button variant="link">Link</Button> */}
 
       {/* The parabola Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 flex items-center justify-center">
         <Practice />
       </div>
 
