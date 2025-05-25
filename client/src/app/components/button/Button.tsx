@@ -16,7 +16,7 @@ const buttonVariants = cva(
         secondary: 'bg-secondary text-primary hover:bg-secondary/80',
         ghost: 'text-ghost-dark hover:text-ghost-light',
         link: 'text-primary underline-offset-4 hover:underline',
-        quiz: 'bg-amber-200 text-black shadow-sm hover:bg-amber-100 text-xs text-shadow-xs',
+        quiz: 'bg-amber-200 text-black shadow-sm hover:bg-amber-100 text-xs text-shadow-xs cursor-pointer',
       },
       size: {
         default: 'h-10 px-4 py-2',

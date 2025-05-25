@@ -15,9 +15,9 @@ const QuizPortal = () => {
           Information text / stats etc.
         </p>
         <div>
-          <Button variant="quiz">
-            <Link href="/quiz">Start Wellbeing Quiz</Link>
-          </Button>
+          <Link href="/quiz">
+            <Button variant="quiz">Start Wellbeing Quiz</Button>
+          </Link>
         </div>
       </div>
     </div>
