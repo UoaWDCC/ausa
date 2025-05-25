@@ -49,9 +49,9 @@ const Footer = () => {
                 </div>
             </div>
             {/* last row */}
-            <div className="border-white border-t-1 flex col-span-3 p-12">
+            <div className="border-white border-t-1 flex flex-col col-span-3 p-12">
                 {/* logo image */}
-                <div className=" md:justify-end flex gap-10">
+                <div className="  gap-10 md:flex">
                     <div className="border-2 border-white p-2">
                         enter some logo
                         or image here
