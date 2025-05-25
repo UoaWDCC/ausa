@@ -102,13 +102,13 @@ const NavSearch: React.FC = () => {
             </DialogTitle>
             <DialogDescription>
               <div className="flex h-6 items-center space-x-2">
-                <div className="grid flex-1 gap-2">
-                  <Input
-                    placeholder="Search"
-                    value={searchValue}
-                    onChange={handleSearch}
-                  />
-                </div>
+                {/* <div className="grid flex-1 gap-2"> */}
+                <Input
+                  placeholder="Search"
+                  value={searchValue}
+                  onChange={handleSearch}
+                />
+                {/* </div> */}
                 <MdOutlineSearch className="size-2 h-6 w-6 cursor-pointer" />
               </div>
             </DialogDescription>

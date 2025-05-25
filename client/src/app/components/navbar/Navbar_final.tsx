@@ -10,6 +10,8 @@ import NavSearch from '../navSearch/navSearch'
 import { NavLink } from '../navLink/navLink'
 import { Menu as HeadlessMenu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Button } from '../button/Button'
+
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
@@ -32,7 +34,7 @@ const NavigationBar = () => {
 
   return (
     <nav
-      className={`font-Supreme h-[70px] ${hasScrolled ? 'bg-[#393980] opacity-90' : 'bg-[#393980]'} fixed top-0 left-0 w-full p-6`}
+      className={`font-Supreme h-[70px] ${hasScrolled ? 'bg-[#393980] opacity-90' : 'bg-[#393980]'} fixed top-0 left-0 w-full p-6 transition-opacity duration-300`}
     >
       {/* Overlay when menu is open */}
       {open && (
@@ -54,7 +56,7 @@ const NavigationBar = () => {
         </div>
 
         {/* navbar links */}
-        <div className="hidden text-white md:flex md:flex-row md:gap-4 lg:gap-8">
+        <div className="hidden text-white md:flex md:gap-4 lg:gap-8">
           <NavSearch />
           <NavLink href="/" text="Home" />
           <NavLink href="/" text="Support" />
@@ -62,6 +64,7 @@ const NavigationBar = () => {
           {/* <NavLink href="/contact" text="Contacts" /> */}
           {/* contacts drop down */}
           <HeadlessMenu as="div" className="relative inline-block text-left">
+
             <div>
               <MenuButton className="inline-flex w-full justify-center gap-x-1.5">
                 Contacts
@@ -111,6 +114,12 @@ const NavigationBar = () => {
               </div>
             </MenuItems>
           </HeadlessMenu>
+          <Button variant="default" className="h-[25px]">
+            Login
+          </Button>
+
+
+
 
           {/* <div className="hidden md:flex md:gap-4 lg:gap-8">
             <Link href="/">
