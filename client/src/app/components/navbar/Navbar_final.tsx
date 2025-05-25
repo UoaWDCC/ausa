@@ -8,6 +8,8 @@ import Link from 'next/link'
 // import profile_icon from '../../assets/icons/profile_icon.svg'
 import NavSearch from '../navSearch/navSearch'
 import { NavLink } from '../navLink/navLink'
+import { Menu as HeadlessMenu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
@@ -30,7 +32,7 @@ const NavigationBar = () => {
 
   return (
     <nav
-      className={`font-Inter h-[70px] ${hasScrolled ? 'bg-white opacity-90' : 'bg-white'} fixed top-0 left-0 w-full p-6`}
+      className={`font-Supreme h-[70px] ${hasScrolled ? 'bg-[#393980] opacity-90' : 'bg-[#393980]'} fixed top-0 left-0 w-full p-6`}
     >
       {/* Overlay when menu is open */}
       {open && (
@@ -52,12 +54,63 @@ const NavigationBar = () => {
         </div>
 
         {/* navbar links */}
-        <div className="hidden text-gray-700 md:flex md:flex-row md:gap-4 lg:gap-8">
+        <div className="hidden text-white md:flex md:flex-row md:gap-4 lg:gap-8">
           <NavSearch />
           <NavLink href="/" text="Home" />
-          <NavLink href="/faq" text="FAQ" />
-          <NavLink href="/external-resources" text="External Resources" />
-          <NavLink href="/contact" text="Contact" />
+          <NavLink href="/" text="Support" />
+          <NavLink href="/faq" text="FAQs" />
+          {/* <NavLink href="/contact" text="Contacts" /> */}
+          {/* contacts drop down */}
+          <HeadlessMenu as="div" className="relative inline-block text-left">
+            <div>
+              <MenuButton className="inline-flex w-full justify-center gap-x-1.5">
+                Contacts
+                <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
+              </MenuButton>
+            </div>
+
+            <MenuItems
+              transition
+              className="absolute right-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+            >
+              <div className="py-1">
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                  >
+                    placeholder text
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                  >
+                    placeholder text
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                  >
+                    placeholder text
+                  </a>
+                </MenuItem>
+                <form action="#" method="POST">
+                  <MenuItem>
+                    <button
+                      type="submit"
+                      className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                    >
+                      placeholder text
+                    </button>
+                  </MenuItem>
+                </form>
+              </div>
+            </MenuItems>
+          </HeadlessMenu>
 
           {/* <div className="hidden md:flex md:gap-4 lg:gap-8">
             <Link href="/">
@@ -91,9 +144,8 @@ const NavigationBar = () => {
 
       {/* Slide-in Drawer Menu */}
       <div
-        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${
-          open ? 'translate-x-0' : '-translate-x-full'
-        } flex flex-col`}
+        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : '-translate-x-full'
+          } flex flex-col`}
       >
         {/* Header with Logo and Close Button */}
         <div className="mb-8 flex items-center justify-between">

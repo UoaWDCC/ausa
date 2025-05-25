@@ -19,6 +19,7 @@
     "build": "yarn workspace client build && yarn workspace server build"
   },
   "dependencies": {
+    "@heroicons/react": "^2.2.0",
     "@radix-ui/react-accordion": "^1.2.10",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
