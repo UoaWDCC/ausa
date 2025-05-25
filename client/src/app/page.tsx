@@ -15,29 +15,12 @@ import {
 
 const Home = () => {
   const cards = [
-    {
-      title: "Mental Health Support",
-      content: "Find the right resources to help you feel better.",
-      className: "bg-yellow-100 border-blue-300 w-full h-full  hidden lg:block",
-    },
-    {
-      title: "Academic Advice",
-      content: "Tips and services to keep your study on track.",
-      className: "bg-red-800 border-green-300 w-full h-full  hidden lg:block",
-    },
-    {
-      title: "Community",
-      content: "Connect with others, join events, find your people.",
-      className: "bg-green-100 border-yellow-300 w-full h-full  hidden lg:block",
-    },
-    {
-      title: "Emergency Help",
-      content: "Quick access to emergency contacts and procedures.",
-      className: "bg-blue-100 border-red-300 w-full h-full  hidden lg:block",
-    },
+    { title: 'Card 1', style: "h-full bg-green-100" },
+    { title: 'Card 2', style: "h-full bg-red-100" },
+    { title: 'Card 3', style: "h-full bg-blue-100" },
+    { title: 'Card 4', style: "h-full bg-yellow-100" },
   ];
-  const [activeIndex, setActiveIndex] = useState(0)
-  const current = cards[activeIndex]
+
 
   return (
     <div className="overflow-hidden bg-white">
@@ -54,7 +37,7 @@ const Home = () => {
                 className="w-[80px]"
                 animate={{
                   scale: [1, 1.25, 1],
-                  rotate: [0, 180,-180, 0],
+                  rotate: [0, 180, -180, 0],
                 }}
                 transition={{
                   duration: 16,
@@ -82,31 +65,29 @@ const Home = () => {
             </Button>{' '}
           </div>{' '}
         </div>
-        <AnimatePresence mode="wait">
-          <motion.div className="w-full"
-            key={activeIndex}
-            initial={{ opacity: 0, x: 0}}
-            animate={{ opacity: 2, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Card title={current.title} className={current.className} >
-              <p>
-                This is a custom styled card with blue background and border.
-              </p>
-            </Card>
-          </motion.div>
-        </AnimatePresence>
-        <div>
+
+
+        <div className="relative  flex w-screen justify-end overflow-x-hidden">
+          {cards.map((card, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-[500px] right-0  h-full"
+              style={{
+                zIndex: (cards.length - i) * 10,
+                transform: `translateX(-${i * 100}px)`,
+              }}
+            >
+              <Card className={card.style}>
+                <p className="rotate-270 origin-bottom-left ml-5 mt-10">{card.title}</p></Card>
+            </motion.div>
+          ))}
+
 
         </div>
-        <div id="slider-component" className="ml-auto  hidden lg:flex">
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(0)}>1</div>
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(1)}>2</div>
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(2)}>3</div>
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(3)}>4</div>
-        </div>
+
+
       </div>
+
       <div className="m-4 flex flex-col lg:hidden">
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
