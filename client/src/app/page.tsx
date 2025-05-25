@@ -101,10 +101,10 @@ const Home = () => {
 
         </div>
         <div id="slider-component" className="ml-auto  hidden lg:flex">
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(0)}>1</div>
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(1)}>2</div>
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(2)}>3</div>
-          <div className="h-full border border-black p-4" onClick={() => setActiveIndex(3)}>4</div>
+          <div className="h-full border border-black cursor-pointer bg-yellow-100 p-4" onClick={() => setActiveIndex(0)}>1</div>
+          <div className="h-full border border-black cursor-pointer bg-red-800 p-4" onClick={() => setActiveIndex(1)}>2</div>
+          <div className="h-full border border-black cursor-pointer bg-green-100 p-4" onClick={() => setActiveIndex(2)}>3</div>
+          <div className="h-full border border-black cursor-pointer bg-blue-100 p-4" onClick={() => setActiveIndex(3)}>4</div>
         </div>
       </div>
       <div className="m-4 flex flex-col lg:hidden">
