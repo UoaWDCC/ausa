@@ -1,8 +1,8 @@
-export interface externalResource {
+export interface ExternalResource {
   title: string
   url: string
   description?: string
 }
 
-export type ExternalResourceUpdateParams = Partial<externalResource>
-export type ExternalResourceCreationParams = externalResource
+export type ExternalResourceUpdateParams = Partial<ExternalResource>
+export type ExternalResourceCreationParams = ExternalResource
