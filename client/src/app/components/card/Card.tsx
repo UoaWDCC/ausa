@@ -19,7 +19,7 @@ const Card: React.FC<CardProps> = ({ title, children, className }) => {
       className={`
         border 
         border-gray-200 
-        rounded-lg 
+        rounded-xl
         shadow-sm 
         p-4 
         ${className ?? ''}

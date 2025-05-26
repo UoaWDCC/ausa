@@ -14,30 +14,34 @@ import {
 } from '../shadcn_components/ui/accordion'
 
 const Home = () => {
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+
   const cards = [
-    {
-      title: "Mental Health Support",
-      content: "Find the right resources to help you feel better.",
-      className: "bg-yellow-100 border-blue-300 w-full h-full  hidden lg:block",
+    { 
+      title: 'Awareness', 
+      style: "h-full bg-green-100",
+      content: "Mental health is health. The first step to healing is understanding. We believe in building awareness by opening minds—breaking down the silence, one truth at a time."
     },
-    {
-      title: "Academic Advice",
-      content: "Tips and services to keep your study on track.",
-      className: "bg-red-800 border-green-300 w-full h-full  hidden lg:block",
+    { 
+      title: 'Support', 
+      style: "h-full bg-red-100",
+      content: "You are not alone. Whether you're struggling, healing, or growing—we're here. Support isn't just a word. It's a network of real people, real stories, and real care."
     },
-    {
-      title: "Community",
-      content: "Connect with others, join events, find your people.",
-      className: "bg-green-100 border-yellow-300 w-full h-full  hidden lg:block",
+    { 
+      title: 'Communication', 
+      style: "h-full bg-blue-100",
+      content: "Talk. Share. Listen. Communication connects us—it turns pain into empathy, and isolation into understanding. This is your safe space to speak and be heard."
     },
-    {
-      title: "Emergency Help",
-      content: "Quick access to emergency contacts and procedures.",
-      className: "bg-blue-100 border-red-300 w-full h-full  hidden lg:block",
+    { 
+      title: 'Self Care', 
+      style: "h-full bg-yellow-100",
+      content: "Take a breath. Log off for a while. Say no when you need to. Self-care isn't selfish—it's survival, it's maintenance, it's reclaiming your peace one day at a time."
     },
   ];
-  const [activeIndex, setActiveIndex] = useState(0)
-  const current = cards[activeIndex]
+
+  const handleCardClick = (index: number) => {
+    setExpandedIndex(expandedIndex === index ? null : index);
+  };
 
   return (
     <div className="overflow-hidden bg-white">
@@ -54,7 +58,7 @@ const Home = () => {
                 className="w-[80px]"
                 animate={{
                   scale: [1, 1.25, 1],
-                  rotate: [0, 180,-180, 0],
+                  rotate: [0, 180, -180, 0],
                 }}
                 transition={{
                   duration: 16,
@@ -82,31 +86,53 @@ const Home = () => {
             </Button>{' '}
           </div>{' '}
         </div>
-        <AnimatePresence mode="wait">
-          <motion.div className="w-full"
-            key={activeIndex}
-            initial={{ opacity: 0, x: 0}}
-            animate={{ opacity: 2, x: 0 }}
-            exit={{ opacity: 0, x: -50 }}
-            transition={{ duration: 0.4 }}
-          >
-            <Card title={current.title} className={current.className} >
-              <p>
-                This is a custom styled card with blue background and border.
-              </p>
-            </Card>
-          </motion.div>
-        </AnimatePresence>
-        <div>
+
+
+        <div className="relative  flex w-screen justify-end overflow-x-hidden">
+          {cards.map((card, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-[500px] right-0  h-full"
+              style={{
+                zIndex: expandedIndex === i ? 50 : (cards.length - i) * 10,
+              }}
+              animate={{
+                width: expandedIndex === i ? '1000px' : '200px',
+                right: `${(cards.length - 1 - i) * 100}px`,
+                transition: { duration: 0.3 }
+              }}
+              onClick={() => handleCardClick(i)}
+            >
+              <Card className={`${card.style} ${expandedIndex === i ? 'flex flex-col p-8' : 'h-full'}`}>
+                {expandedIndex === i ? (
+                  <>
+                    <div className="flex justify-between items-center mb-6">
+                      <h2 className="text-3xl font-bold">{card.title}</h2>
+                      <button 
+                        className="text-2xl font-bold"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setExpandedIndex(null);
+                        }}
+                      >
+                        ×
+                      </button>
+                    </div>
+                    <p className="text-lg">{card.content}</p>
+                  </>
+                ) : (
+                    <p className="rotate-270 origin-bottom-left ml-5 mt-15 font-semibold text-lg">{card.title}</p>
+                )}
+              </Card>
+            </motion.div>
+          ))}
+
 
         </div>
-        <div id="slider-component" className="ml-auto  hidden lg:flex">
-          <div className="h-full border border-black cursor-pointer bg-yellow-100 p-4" onClick={() => setActiveIndex(0)}>1</div>
-          <div className="h-full border border-black cursor-pointer bg-red-800 p-4" onClick={() => setActiveIndex(1)}>2</div>
-          <div className="h-full border border-black cursor-pointer bg-green-100 p-4" onClick={() => setActiveIndex(2)}>3</div>
-          <div className="h-full border border-black cursor-pointer bg-blue-100 p-4" onClick={() => setActiveIndex(3)}>4</div>
-        </div>
+
+
       </div>
+
       <div className="m-4 flex flex-col lg:hidden">
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
