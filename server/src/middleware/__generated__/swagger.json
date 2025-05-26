@@ -144,7 +144,7 @@
 			"FaqCreationParams": {
 				"$ref": "#/components/schemas/Omit_Faq.id_"
 			},
-			"Partial_Omit_Faq.id__": {
+			"Partial_FaqCreationParams_": {
 				"properties": {
 					"question": {
 						"type": "string"
@@ -157,7 +157,7 @@
 				"description": "Make all properties in T optional"
 			},
 			"FaqUpdateParams": {
-				"$ref": "#/components/schemas/Partial_Omit_Faq.id__"
+				"$ref": "#/components/schemas/Partial_FaqCreationParams_"
 			},
 			"ExternalResource": {
 				"properties": {
@@ -215,14 +215,34 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ExternalResourceCreationParams": {
-				"$ref": "#/components/schemas/ExternalResource"
-			},
-			"Partial_ExternalResource_": {
+			"Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
 				"properties": {
-					"id": {
+					"title": {
 						"type": "string"
 					},
+					"url": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"title",
+					"url"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"Omit_ExternalResource.id_": {
+				"$ref": "#/components/schemas/Pick_ExternalResource.Exclude_keyofExternalResource.id__",
+				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"ExternalResourceCreationParams": {
+				"$ref": "#/components/schemas/Omit_ExternalResource.id_"
+			},
+			"Partial_ExternalResourceCreationParams_": {
+				"properties": {
 					"title": {
 						"type": "string"
 					},
@@ -237,7 +257,7 @@
 				"description": "Make all properties in T optional"
 			},
 			"ExternalResourceUpdateParams": {
-				"$ref": "#/components/schemas/Partial_ExternalResource_"
+				"$ref": "#/components/schemas/Partial_ExternalResourceCreationParams_"
 			}
 		},
 		"securitySchemes": {

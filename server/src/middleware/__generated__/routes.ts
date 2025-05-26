@@ -83,14 +83,14 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"Omit_Faq.id_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Partial_Omit_Faq.id__": {
+    "Partial_FaqCreationParams_": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"question":{"dataType":"string"},"answer":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "FaqUpdateParams": {
         "dataType": "refAlias",
-        "type": {"ref":"Partial_Omit_Faq.id__","validators":{}},
+        "type": {"ref":"Partial_FaqCreationParams_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ExternalResource": {
@@ -124,19 +124,29 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ExternalResourceCreationParams": {
+    "Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
         "dataType": "refAlias",
-        "type": {"ref":"ExternalResource","validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"url":{"dataType":"string","required":true},"description":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Partial_ExternalResource_": {
+    "Omit_ExternalResource.id_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"title":{"dataType":"string"},"url":{"dataType":"string"},"description":{"dataType":"string"}},"validators":{}},
+        "type": {"ref":"Pick_ExternalResource.Exclude_keyofExternalResource.id__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ExternalResourceCreationParams": {
+        "dataType": "refAlias",
+        "type": {"ref":"Omit_ExternalResource.id_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_ExternalResourceCreationParams_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string"},"url":{"dataType":"string"},"description":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ExternalResourceUpdateParams": {
         "dataType": "refAlias",
-        "type": {"ref":"Partial_ExternalResource_","validators":{}},
+        "type": {"ref":"Partial_ExternalResourceCreationParams_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };

@@ -36,7 +36,9 @@ export default class ExternalResourceService {
   public async createExternalResource(
     newExternalResource: ExternalResourceCreationParams,
   ): Promise<ExternalResource> {
-    const res = await collections.externalResource.add(newExternalResource)
+    const res = await collections.externalResource.add({...newExternalResource, id: ''})
+    const resourceId = res.id
+    await res.update({ id: resourceId })
     return (await res.get()).data()
   }
 
