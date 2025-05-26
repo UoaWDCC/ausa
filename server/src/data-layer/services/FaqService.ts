@@ -10,9 +10,7 @@ export default class FaqService {
    * @returns the FAQ document
    */
   public async getFaq(id: string): Promise<Faq> {
-    const faq = await collections.faq
-      .doc(id)
-      .get()
+    const faq = await collections.faq.doc(id).get()
     return faq.data()
   }
 
@@ -22,8 +20,7 @@ export default class FaqService {
    *
    * */
   public async getAllFaqs(): Promise<Faq[]> {
-    const faqsSnapshot = await collections.faq
-      .get()
+    const faqsSnapshot = await collections.faq.get()
     return faqsSnapshot.docs.map((doc) => doc.data())
   }
 
@@ -33,8 +30,7 @@ export default class FaqService {
    * @returns the created FAQ document
    */
   public async createFaq(newFaq: FaqCreationParams): Promise<Faq> {
-    const faq = await collections.faq
-      .add(newFaq)
+    const faq = await collections.faq.add(newFaq)
     return (await faq.get()).data()
   }
 
@@ -49,9 +45,7 @@ export default class FaqService {
     id: string,
     partialFaq: FaqUpdateParams,
   ): Promise<WriteResult> {
-    return await collections.faq
-      .doc(id)
-      .update(partialFaq)
+    return await collections.faq.doc(id).update(partialFaq)
   }
 
   /**
@@ -60,8 +54,6 @@ export default class FaqService {
    * @returns the write result of the delete operation
    */
   public async deleteFaq(id: string): Promise<WriteResult> {
-    return await collections.faq
-      .doc(id)
-      .delete()
+    return await collections.faq.doc(id).delete()
   }
 }

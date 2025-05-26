@@ -1,5 +1,9 @@
 import { collections } from 'data-layer/firebase-collections'
-import { ExternalResource, ExternalResourceCreationParams, ExternalResourceUpdateParams } from 'data-layer/models/externalResource'
+import {
+  ExternalResource,
+  ExternalResourceCreationParams,
+  ExternalResourceUpdateParams,
+} from 'data-layer/models/externalResource'
 import { WriteResult } from 'firebase-admin/firestore'
 
 export default class ExternalResourceService {
@@ -10,9 +14,7 @@ export default class ExternalResourceService {
    * @returns the ExternalResource document
    */
   public async getExternalResource(id: string): Promise<ExternalResource> {
-    const res = await collections.externalResource
-      .doc(id)
-      .get()
+    const res = await collections.externalResource.doc(id).get()
     return res.data()
   }
 
@@ -22,8 +24,7 @@ export default class ExternalResourceService {
    *
    * */
   public async getAllExternalResources(): Promise<ExternalResource[]> {
-    const res = await collections.externalResource
-      .get()
+    const res = await collections.externalResource.get()
     return res.docs.map((doc) => doc.data())
   }
 
@@ -32,9 +33,10 @@ export default class ExternalResourceService {
    * @param newExternalResource - The ExternalResource document to create
    * @returns the created ExternalResource document
    */
-  public async createExternalResource(newExternalResource: ExternalResourceCreationParams): Promise<ExternalResource> {
-    const res = await collections.externalResource
-      .add(newExternalResource)
+  public async createExternalResource(
+    newExternalResource: ExternalResourceCreationParams,
+  ): Promise<ExternalResource> {
+    const res = await collections.externalResource.add(newExternalResource)
     return (await res.get()).data()
   }
 
@@ -60,8 +62,6 @@ export default class ExternalResourceService {
    * @returns the write result of the delete operation
    */
   public async deleteExternalResource(id: string): Promise<WriteResult> {
-    return await collections.externalResource
-      .doc(id)
-      .delete()
+    return await collections.externalResource.doc(id).delete()
   }
 }
