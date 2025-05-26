@@ -8,7 +8,12 @@ import Link from 'next/link'
 // import profile_icon from '../../assets/icons/profile_icon.svg'
 import NavSearch from '../navSearch/navSearch'
 import { NavLink } from '../navLink/navLink'
-import { Menu as HeadlessMenu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import {
+  Menu as HeadlessMenu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Button } from '../button/Button'
 
@@ -64,11 +69,13 @@ const NavigationBar = () => {
           {/* <NavLink href="/contact" text="Contacts" /> */}
           {/* contacts drop down */}
           <HeadlessMenu as="div" className="relative inline-block text-left">
-
             <div>
               <MenuButton className="inline-flex w-full justify-center gap-x-1.5">
                 Contacts
-                <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="-mr-1 size-5 text-gray-400"
+                />
               </MenuButton>
             </div>
 
@@ -118,9 +125,6 @@ const NavigationBar = () => {
             Login
           </Button>
 
-
-
-
           {/* <div className="hidden md:flex md:gap-4 lg:gap-8">
             <Link href="/">
               <Image
@@ -153,8 +157,9 @@ const NavigationBar = () => {
 
       {/* Slide-in Drawer Menu */}
       <div
-        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${open ? 'translate-x-0' : '-translate-x-full'
-          } flex flex-col`}
+        className={`fixed top-0 left-0 z-50 h-full w-3/4 max-w-xs transform bg-white p-6 transition-transform duration-300 ease-in-out ${
+          open ? 'translate-x-0' : '-translate-x-full'
+        } flex flex-col`}
       >
         {/* Header with Logo and Close Button */}
         <div className="mb-8 flex items-center justify-between">

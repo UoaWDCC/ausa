@@ -1,8 +1,6 @@
 const Footer = () => {
-    return
-    <div className="p-2 grid-rows-2 col-span-3">
-
-    </div>
+  return
+  ;<div className="col-span-3 grid-rows-2 p-2"></div>
 }
 
-export default Footer;
+export default Footer
