@@ -5,6 +5,10 @@ import type { TsoaRoute } from '@tsoa/runtime';
 import {  fetchMiddlewares, ExpressTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { UsersController } from './../../service-layer/controllers/UserController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { FaqController } from './../../service-layer/controllers/FaqController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { ExternalResourceController } from './../../service-layer/controllers/ExternalResourceController';
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
 
 
@@ -32,6 +36,107 @@ const models: TsoaRoute.Models = {
     "UserCreationParams": {
         "dataType": "refAlias",
         "type": {"ref":"Pick_User.email-or-name-or-phoneNumbers_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Faq": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "question": {"dataType":"string","required":true},
+            "answer": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetAllFaqsResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"dataType":"array","array":{"dataType":"refObject","ref":"Faq"}},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "FaqResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"ref":"Faq"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_Faq.Exclude_keyofFaq.id__": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"question":{"dataType":"string","required":true},"answer":{"dataType":"string","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Omit_Faq.id_": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_Faq.Exclude_keyofFaq.id__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "FaqCreationParams": {
+        "dataType": "refAlias",
+        "type": {"ref":"Omit_Faq.id_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_Omit_Faq.id__": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"question":{"dataType":"string"},"answer":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "FaqUpdateParams": {
+        "dataType": "refAlias",
+        "type": {"ref":"Partial_Omit_Faq.id__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ExternalResource": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "title": {"dataType":"string","required":true},
+            "url": {"dataType":"string","required":true},
+            "description": {"dataType":"string"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetAllExternalResourceResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"dataType":"array","array":{"dataType":"refObject","ref":"ExternalResource"}},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ExternalResourceResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"ref":"ExternalResource"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ExternalResourceCreationParams": {
+        "dataType": "refAlias",
+        "type": {"ref":"ExternalResource","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_ExternalResource_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"title":{"dataType":"string"},"url":{"dataType":"string"},"description":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ExternalResourceUpdateParams": {
+        "dataType": "refAlias",
+        "type": {"ref":"Partial_ExternalResource_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -106,6 +211,306 @@ export function RegisterRoutes(app: Router) {
                 next,
                 validatedArgs,
                 successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsFaqController_getAllFaqs: Record<string, TsoaRoute.ParameterSchema> = {
+        };
+        app.get('/faq',
+            ...(fetchMiddlewares<RequestHandler>(FaqController)),
+            ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.getAllFaqs)),
+
+            async function FaqController_getAllFaqs(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsFaqController_getAllFaqs, request, response });
+
+                const controller = new FaqController();
+
+              await templateService.apiHandler({
+                methodName: 'getAllFaqs',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsFaqController_getFaq: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.get('/faq/:id',
+            ...(fetchMiddlewares<RequestHandler>(FaqController)),
+            ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.getFaq)),
+
+            async function FaqController_getFaq(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsFaqController_getFaq, request, response });
+
+                const controller = new FaqController();
+
+              await templateService.apiHandler({
+                methodName: 'getFaq',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsFaqController_createFaq: Record<string, TsoaRoute.ParameterSchema> = {
+                newFaq: {"in":"body","name":"newFaq","required":true,"ref":"FaqCreationParams"},
+        };
+        app.post('/faq',
+            ...(fetchMiddlewares<RequestHandler>(FaqController)),
+            ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.createFaq)),
+
+            async function FaqController_createFaq(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsFaqController_createFaq, request, response });
+
+                const controller = new FaqController();
+
+              await templateService.apiHandler({
+                methodName: 'createFaq',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsFaqController_deleteFaq: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.delete('/faq/:id',
+            ...(fetchMiddlewares<RequestHandler>(FaqController)),
+            ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.deleteFaq)),
+
+            async function FaqController_deleteFaq(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsFaqController_deleteFaq, request, response });
+
+                const controller = new FaqController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteFaq',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsFaqController_updateFaq: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                partialFaq: {"in":"body","name":"partialFaq","required":true,"ref":"FaqUpdateParams"},
+        };
+        app.patch('/faq/:id',
+            ...(fetchMiddlewares<RequestHandler>(FaqController)),
+            ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.updateFaq)),
+
+            async function FaqController_updateFaq(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsFaqController_updateFaq, request, response });
+
+                const controller = new FaqController();
+
+              await templateService.apiHandler({
+                methodName: 'updateFaq',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_getAllExternalResources: Record<string, TsoaRoute.ParameterSchema> = {
+        };
+        app.get('/external-resource',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.getAllExternalResources)),
+
+            async function ExternalResourceController_getAllExternalResources(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_getAllExternalResources, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'getAllExternalResources',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_getExternalResource: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.get('/external-resource/:id',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.getExternalResource)),
+
+            async function ExternalResourceController_getExternalResource(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_getExternalResource, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'getExternalResource',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_createExternalResource: Record<string, TsoaRoute.ParameterSchema> = {
+                newExternalResource: {"in":"body","name":"newExternalResource","required":true,"ref":"ExternalResourceCreationParams"},
+        };
+        app.post('/external-resource',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.createExternalResource)),
+
+            async function ExternalResourceController_createExternalResource(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_createExternalResource, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'createExternalResource',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_deleteExternalResource: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.delete('/external-resource/:id',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.deleteExternalResource)),
+
+            async function ExternalResourceController_deleteExternalResource(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_deleteExternalResource, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteExternalResource',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_updateExternalResource: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                partialExternalResource: {"in":"body","name":"partialExternalResource","required":true,"ref":"ExternalResourceUpdateParams"},
+        };
+        app.patch('/external-resource/:id',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.updateExternalResource)),
+
+            async function ExternalResourceController_updateExternalResource(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_updateExternalResource, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'updateExternalResource',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
               });
             } catch (err) {
                 return next(err);

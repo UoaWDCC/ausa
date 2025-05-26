@@ -30,7 +30,9 @@ export default class FaqService {
    * @returns the created FAQ document
    */
   public async createFaq(newFaq: FaqCreationParams): Promise<Faq> {
-    const faq = await collections.faq.add(newFaq)
+    const faq = await collections.faq.add({ ...newFaq, id: '' })
+    const faqId = faq.id
+    await faq.update({ id: faqId })
     return (await faq.get()).data()
   }
 

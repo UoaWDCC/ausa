@@ -1,7 +1,8 @@
 export interface Faq {
+  id: string
   question: string
   answer: string
 }
 
-export type FaqUpdateParams = Partial<Faq>
-export type FaqCreationParams = Faq
+export type FaqCreationParams = Omit<Faq, 'id'>
+export type FaqUpdateParams = Partial<FaqCreationParams>
