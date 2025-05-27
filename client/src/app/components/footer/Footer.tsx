@@ -1,6 +1,12 @@
+import Image from 'next/image'
+import ausa from '../../assets/icons/ausa.svg'
+import facebook from '../../assets/icons/facebook.svg'
+import instagram from '../../assets/icons/instagram.svg'
+import linkedin from '../../assets/icons/linkedin.svg'
 const Footer = () => {
     return (
-        <div className="absolute bottom-0 p-10 bg-[#393980] w-full md:grid md:grid-cols-3 text-white flex flex-col gap-8">
+        // <div className="absolute bottom-0 p-10 bg-[#393980] w-full md:grid md:grid-cols-3 text-white flex flex-col gap-8">
+        <div className="p-10 bg-[#393980] w-full text-white flex flex-col gap-8 md:grid md:grid-cols-3">
             {/* col1 */}
             <div className=" md:justify-start flex ">
 
@@ -52,9 +58,8 @@ const Footer = () => {
             <div className="border-white border-t-1 flex flex-col col-span-3 p-12">
                 {/* logo image */}
                 <div className="  gap-10 md:flex lg:gap-30 justify-center">
-                    <div className="border-2 border-white p-2">
-                        enter some logo
-                        or image here
+                    <div className="">
+                        <Image src={ausa} alt="TK AUSA" className="h-28 w-28 mb-4 md:mb-0" />
                     </div>
                     {/* middle column, random information */}
                     <div className="flex flex-col gap-4">
@@ -70,14 +75,16 @@ const Footer = () => {
                     </div>
                     {/* icon links to socials (instagram, linkedin, facebook) */}
                     <div className="flex flex-col gap-3">
-                        <div className="flex flex-col border-2 border-white p-4">
-
+                        <div className="">
+                            <Image src={facebook} alt="Facebook" className="h-8 w-8 mb-4 md:mb-0" />
                         </div>
-                        <div className="border-2 border-white p-4">
 
+                        <div className="">
+                            <Image src={instagram} alt="Instagram" className="h-8 w-8 mb-4 md:mb-0" />
                         </div>
-                        <div className="border-2 border-white p-4">
 
+                        <div className="">
+                            <Image src={linkedin} alt="LinkedIn" className="h-8 w-8 mb-4 md:mb-0" />
                         </div>
                     </div>
 
