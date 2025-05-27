@@ -5,8 +5,7 @@ import instagram from '../../assets/icons/instagram.svg'
 import linkedin from '../../assets/icons/linkedin.svg'
 const Footer = () => {
     return (
-        // <div className="absolute bottom-0 p-10 bg-[#393980] w-full md:grid md:grid-cols-3 text-white flex flex-col gap-8">
-        <div className="p-10 bg-[#393980] w-full text-white flex flex-col gap-8 md:grid md:grid-cols-3">
+        <div className="p-10 bg-[#393980] w-full text-white flex flex-col gap-8 md:grid md:grid-cols-3 absolute bottom-0">
             {/* col1 */}
             <div className=" md:justify-start flex ">
 
