@@ -17,7 +17,6 @@
     "baseUrl": "src"
   },
   "routes": {
-    "routesDir": "src/middleware/__generated__",
-    "authenticationModule": "src/middleware/authentication.ts"
+    "routesDir": "src/middleware/__generated__"
   }
 }

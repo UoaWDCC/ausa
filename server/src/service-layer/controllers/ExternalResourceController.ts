@@ -18,7 +18,7 @@ import {
 import {
   ExternalResourceCreationParams,
   ExternalResourceUpdateParams,
-} from 'data-layer/models/externalResource'
+} from 'service-layer/request-models/ExternalResourceRequest'
 
 @Route('external-resource')
 export class ExternalResourceController extends Controller {

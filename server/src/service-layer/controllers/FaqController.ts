@@ -10,7 +10,7 @@ import {
   Route,
   SuccessResponse,
 } from 'tsoa'
-import { FaqCreationParams, FaqUpdateParams } from 'data-layer/models/Faq'
+import { FaqCreationParams, FaqUpdateParams } from 'service-layer/request-models/FaqRequest'
 import FaqService from 'data-layer/services/FaqService'
 import {
   FaqResponse,

@@ -1,5 +1,5 @@
 import { CommonResponse } from './CommonResponse'
-import { Faq } from 'data-layer/models/Faq'
+import { Faq } from 'types/types'
 
 export interface GetAllFaqsResponse extends CommonResponse {
   data?: Faq[]

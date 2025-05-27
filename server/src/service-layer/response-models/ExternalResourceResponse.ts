@@ -1,4 +1,4 @@
-import { ExternalResource } from 'data-layer/models/externalResource'
+import { ExternalResource } from "types/types"
 import { CommonResponse } from './CommonResponse'
 
 export interface GetAllExternalResourceResponse extends CommonResponse {
