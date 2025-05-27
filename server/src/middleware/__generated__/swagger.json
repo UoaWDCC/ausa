@@ -19,12 +19,24 @@
 					"id": {
 						"type": "string"
 					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
 					"role": {
 						"$ref": "#/components/schemas/UserRole"
 					}
 				},
 				"required": [
 					"id",
+					"firstName",
+					"lastName",
+					"email",
 					"role"
 				],
 				"type": "object",
@@ -65,11 +77,23 @@
 			},
 			"Pick_User.Exclude_keyofUser.id__": {
 				"properties": {
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
 					"role": {
 						"$ref": "#/components/schemas/UserRole"
 					}
 				},
 				"required": [
+					"firstName",
+					"lastName",
+					"email",
 					"role"
 				],
 				"type": "object",
@@ -79,12 +103,36 @@
 				"$ref": "#/components/schemas/Pick_User.Exclude_keyofUser.id__",
 				"description": "Construct a type with the properties of T except for those in type K."
 			},
-			"UserCreationParams": {
-				"$ref": "#/components/schemas/Omit_User.id_"
+			"AuthCreationParams": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/Omit_User.id_"
+					},
+					{
+						"properties": {
+							"password": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"password"
+						],
+						"type": "object"
+					}
+				]
 			},
 			"Partial_User_": {
 				"properties": {
 					"id": {
+						"type": "string"
+					},
+					"firstName": {
+						"type": "string"
+					},
+					"lastName": {
+						"type": "string"
+					},
+					"email": {
 						"type": "string"
 					},
 					"role": {
@@ -342,7 +390,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/UserCreationParams"
+								"$ref": "#/components/schemas/AuthCreationParams"
 							}
 						}
 					}

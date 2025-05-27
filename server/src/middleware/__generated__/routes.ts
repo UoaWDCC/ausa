@@ -25,6 +25,9 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
             "id": {"dataType":"string","required":true},
+            "firstName": {"dataType":"string","required":true},
+            "lastName": {"dataType":"string","required":true},
+            "email": {"dataType":"string","required":true},
             "role": {"ref":"UserRole","required":true},
         },
         "additionalProperties": false,
@@ -52,7 +55,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_User.Exclude_keyofUser.id__": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"role":{"ref":"UserRole","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"firstName":{"dataType":"string","required":true},"lastName":{"dataType":"string","required":true},"email":{"dataType":"string","required":true},"role":{"ref":"UserRole","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Omit_User.id_": {
@@ -60,14 +63,14 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"Pick_User.Exclude_keyofUser.id__","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "UserCreationParams": {
+    "AuthCreationParams": {
         "dataType": "refAlias",
-        "type": {"ref":"Omit_User.id_","validators":{}},
+        "type": {"dataType":"intersection","subSchemas":[{"ref":"Omit_User.id_"},{"dataType":"nestedObjectLiteral","nestedProperties":{"password":{"dataType":"string","required":true}}}],"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Partial_User_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"role":{"ref":"UserRole"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string"},"firstName":{"dataType":"string"},"lastName":{"dataType":"string"},"email":{"dataType":"string"},"role":{"ref":"UserRole"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UserUpdateParams": {
@@ -263,7 +266,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsUserController_createUser: Record<string, TsoaRoute.ParameterSchema> = {
-                newUser: {"in":"body","name":"newUser","required":true,"ref":"UserCreationParams"},
+                newUser: {"in":"body","name":"newUser","required":true,"ref":"AuthCreationParams"},
         };
         app.post('/user',
             ...(fetchMiddlewares<RequestHandler>(UserController)),
