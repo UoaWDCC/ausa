@@ -1,10 +1,5 @@
-export interface Faq {
-  question: string
-  answer: string
-}
+import { Faq } from '@server/data-layer/models/Faq'
+import { ExternalResource } from '@server/data-layer/models/externalResource'
 
-export interface externalResource {
-  title: string
-  url: string
-  description?: string
-}
+export type FaqType = Faq
+export type ExternalResourceType = ExternalResource

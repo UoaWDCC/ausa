@@ -38,7 +38,7 @@ export default class ExternalResourceService {
   ): Promise<ExternalResource> {
     const ref = collections.externalResource.doc()
     await ref.set({ ...newExternalResource, id: ref.id })
-    return {...newExternalResource, id: ref.id }
+    return { ...newExternalResource, id: ref.id }
   }
 
   /**

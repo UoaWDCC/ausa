@@ -14,8 +14,9 @@ import { MdOutlineSearch } from 'react-icons/md'
 import { NavSearchCard } from '../navSearchCard/navSearchCard'
 import React, { useEffect, useState } from 'react'
 import { redirect } from 'next/navigation'
+import { navSearchHandler } from '@/lib/navSearchHandler'
 
-interface pageInfo {
+export interface pageInfo {
   title: string
   description: string
   href: string
@@ -50,6 +51,15 @@ const NavSearch: React.FC = () => {
     },
   ]
 
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [searchResults, setSearchResults] = useState<pageInfo[]>(pages)
+  const [pagesData, setPagesData] = useState<pageInfo[]>(pages)
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    navSearchHandler(pages).then((data) => setPagesData(data))
+  }, [])
+
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
@@ -68,16 +78,13 @@ const NavSearch: React.FC = () => {
     }
   })
 
-  const [searchValue, setSearchValue] = useState<string>('')
-  const [searchResults, setSearchResults] = useState<pageInfo[]>(pages)
-  const [open, setOpen] = useState(false)
-
   const handleToggle = () => setOpen(!open)
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value
     setSearchValue(value)
-    const filteredResults = pages.filter(
+    // console.log(pagesData)
+    const filteredResults = pagesData.filter(
       (page) =>
         page.title.toLowerCase().includes(value.toLowerCase()) ||
         page.description.toLowerCase().includes(value.toLowerCase()) ||

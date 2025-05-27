@@ -5,5 +5,6 @@ export interface ExternalResource {
   description?: string
 }
 
-export type ExternalResourceCreationParams = Omit<ExternalResource, "id">
-export type ExternalResourceUpdateParams = Partial<ExternalResourceCreationParams>
+export type ExternalResourceCreationParams = Omit<ExternalResource, 'id'>
+export type ExternalResourceUpdateParams =
+  Partial<ExternalResourceCreationParams>
