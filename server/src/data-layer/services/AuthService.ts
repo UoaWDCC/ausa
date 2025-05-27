@@ -44,7 +44,7 @@ export default class AuthService {
       id: userCredential.uid,
     })
 
-    return { ...newUser, role: UserRole.USER, id: userCredential.uid }
+    return { firstName: newUser.firstName, lastName: newUser.lastName, email: newUser.email, role: UserRole.USER, id: userCredential.uid }
   }
 
   /**
