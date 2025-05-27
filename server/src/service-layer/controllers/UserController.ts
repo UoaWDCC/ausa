@@ -10,7 +10,7 @@ import {
   SuccessResponse,
 } from 'tsoa'
 import {
-  UserCreationParams,
+  // UserCreationParams,
   UserUpdateParams,
 } from 'service-layer/request-models/UserRequest'
 import UserService from 'data-layer/services/UserService'
@@ -18,6 +18,8 @@ import {
   UserResponse,
   GetAllUsersResponse,
 } from 'service-layer/response-models/UserResponse'
+import AuthService from 'data-layer/services/AuthService'
+import { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
 
 @Route('user')
 export class UserController extends Controller {
@@ -50,10 +52,10 @@ export class UserController extends Controller {
   @Post()
   @SuccessResponse('201', 'Created')
   public async createUser(
-    @Body() newUser: UserCreationParams,
+    @Body() newUser: AuthCreationParams,
   ): Promise<UserResponse> {
     try {
-      const createdUser = await new UserService().createUser(newUser)
+      const createdUser = await new AuthService().signUpUser(newUser)
       this.setStatus(201) // Created
       return { data: createdUser }
     } catch (error) {
@@ -70,7 +72,7 @@ export class UserController extends Controller {
         this.setStatus(404) // Not Found
         return
       }
-      await new UserService().deleteUser(id)
+      await new AuthService().deleteUser(id)
       this.setStatus(204) // No Content
     } catch (error) {
       this.setStatus(500) // Internal Server Error
