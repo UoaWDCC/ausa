@@ -1,4 +1,4 @@
-import { Button } from './components/button/Button'
+// import { Button } from './components/button/Button'
 
 import {
   Carousel,
@@ -21,10 +21,10 @@ const Home = () => {
 
       {/* The parabola Background */}
       <div className="absolute inset-0 z-0 flex items-center justify-center">
-        <Practice/>
+        <Practice />
       </div>
 
-      <div className="relative z-10 pt-45 px-4">
+      <div className="relative z-10 px-4 pt-45">
         <Carousel>
           {/* Spaces next and previous button to top right */}
           <div className="mb-4 flex justify-end space-x-2">
@@ -34,23 +34,35 @@ const Home = () => {
 
           {/* Carousel content with responsive item sizes */}
           <CarouselContent className="mb-10 -ml-2 md:-ml-4">
-            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4 rounded-[8px_8px_8px_8px] bg-gradient-to-b from-[#D9D9D9] to-[#8A99EE]">Slide 1</div>
+            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
+                Slide 1
+              </div>
             </CarouselItem>
-            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4 rounded-[8px_8px_8px_8px] bg-gradient-to-b from-[#D9D9D9] to-[#8A99EE]">Slide 2</div>
+            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
+                Slide 2
+              </div>
             </CarouselItem>
-            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4 rounded-[8px_8px_8px_8px] bg-gradient-to-b from-[#D9D9D9] to-[#8A99EE]">Slide 3</div>
+            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
+                Slide 3
+              </div>
             </CarouselItem>
-            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4 rounded-[8px_8px_8px_8px] bg-gradient-to-b from-[#D9D9D9] to-[#8A99EE]">Slide 4</div>
+            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
+                Slide 4
+              </div>
             </CarouselItem>
-            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4 rounded-[8px_8px_8px_8px] bg-gradient-to-b from-[#D9D9D9] to-[#8A99EE]">Slide 5</div>
+            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
+                Slide 5
+              </div>
             </CarouselItem>
-            <CarouselItem className="flex justify-center basis-full sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 bg-gray-200 pl-2 md:pl-4 rounded-[8px_8px_8px_8px] bg-gradient-to-b from-[#D9D9D9] to-[#8A99EE]">Slide 6</div>
+            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
+              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
+                Slide 6
+              </div>
             </CarouselItem>
           </CarouselContent>
         </Carousel>
