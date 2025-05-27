@@ -1,2 +1,4 @@
-import { User } from 'data-layer/models/User'
-export type UserCreationParams = Pick<User, 'email' | 'name' | 'phoneNumbers'>
+import { User } from "types/types"
+
+export type UserCreationParams = Omit<User, 'id'>
+export type UserUpdateParams = Partial<User>

@@ -26,15 +26,16 @@ export default class FaqService {
   }
 
   /**
-   * Creates a new FAQ document.
-   * @param newFaq - The FAQ document to create
-   * @returns the created FAQ document
+   * Creates a new Faq document.
+   * @param newFaq - The Faq document to create
+   * @returns the created ExternalResource document
    */
-  public async createFaq(newFaq: FaqCreationParams): Promise<Faq> {
-    const faq = await collections.faq.add({ ...newFaq, id: '' })
-    const faqId = faq.id
-    await faq.update({ id: faqId })
-    return (await faq.get()).data()
+  public async createFaq(
+    newFaq: FaqCreationParams,
+  ): Promise<Faq> {
+    const ref = collections.faq.doc()
+    await ref.set({ ...newFaq, id: ref.id })
+    return { ...newFaq, id: ref.id }
   }
 
   /**
