@@ -9,7 +9,10 @@ import {
   Route,
   SuccessResponse,
 } from 'tsoa'
-import { UserCreationParams, UserUpdateParams } from 'service-layer/request-models/UserRequest'
+import {
+  UserCreationParams,
+  UserUpdateParams,
+} from 'service-layer/request-models/UserRequest'
 import UserService from 'data-layer/services/UserService'
 import {
   UserResponse,

@@ -1,6 +1,9 @@
 import { collections } from 'data-layer/firebase-collections'
 import { User } from 'types/types'
-import { UserCreationParams, UserUpdateParams } from 'service-layer/request-models/UserRequest'
+import {
+  UserCreationParams,
+  UserUpdateParams,
+} from 'service-layer/request-models/UserRequest'
 import { WriteResult } from 'firebase-admin/firestore'
 
 export default class UserService {
@@ -30,14 +33,11 @@ export default class UserService {
    * @param newUser - The User document to create
    * @returns the created ExternalResource document
    */
-  public async createUser(
-    newUser: UserCreationParams,
-  ): Promise<User> {
+  public async createUser(newUser: UserCreationParams): Promise<User> {
     const ref = collections.user.doc()
     await ref.set({ ...newUser, id: ref.id })
     return { ...newUser, id: ref.id }
   }
-
 
   /**
    * Updates an existing User document.

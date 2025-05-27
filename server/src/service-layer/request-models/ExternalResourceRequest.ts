@@ -1,4 +1,4 @@
-import { ExternalResource } from "types/types"
+import { ExternalResource } from 'types/types'
 
 export type ExternalResourceCreationParams = Omit<ExternalResource, 'id'>
 export type ExternalResourceUpdateParams =

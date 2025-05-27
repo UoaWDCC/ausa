@@ -1,6 +1,9 @@
 import { collections } from 'data-layer/firebase-collections'
 import { Faq } from 'types/types'
-import { FaqCreationParams, FaqUpdateParams } from 'service-layer/request-models/FaqRequest'
+import {
+  FaqCreationParams,
+  FaqUpdateParams,
+} from 'service-layer/request-models/FaqRequest'
 import { WriteResult } from 'firebase-admin/firestore'
 
 export default class FaqService {
@@ -30,9 +33,7 @@ export default class FaqService {
    * @param newFaq - The Faq document to create
    * @returns the created ExternalResource document
    */
-  public async createFaq(
-    newFaq: FaqCreationParams,
-  ): Promise<Faq> {
+  public async createFaq(newFaq: FaqCreationParams): Promise<Faq> {
     const ref = collections.faq.doc()
     await ref.set({ ...newFaq, id: ref.id })
     return { ...newFaq, id: ref.id }
