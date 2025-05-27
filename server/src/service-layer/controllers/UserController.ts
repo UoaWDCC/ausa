@@ -20,6 +20,7 @@ import {
 } from 'service-layer/response-models/UserResponse'
 import AuthService from 'data-layer/services/AuthService'
 import { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
+import { FirebaseAuthError } from 'firebase-admin/auth'
 
 @Route('user')
 export class UserController extends Controller {
@@ -28,7 +29,8 @@ export class UserController extends Controller {
     try {
       const users = await new UserService().getAllUsers()
       return { data: users }
-    } catch {
+    } catch (error){
+      console.error('Error retrieving users:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve Users' }
     }
@@ -43,7 +45,8 @@ export class UserController extends Controller {
         return { error: 'User not found' }
       }
       return { data: user }
-    } catch {
+    } catch (error) {
+      console.error('Error retrieving user:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve User' }
     }
@@ -59,6 +62,10 @@ export class UserController extends Controller {
       this.setStatus(201) // Created
       return { data: createdUser }
     } catch (error) {
+      if (error instanceof FirebaseAuthError){
+        return { error: error.message }
+      }
+      console.error('Error creating user:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to create User' }
     }
@@ -75,6 +82,7 @@ export class UserController extends Controller {
       await new AuthService().deleteUser(id)
       this.setStatus(204) // No Content
     } catch (error) {
+      console.error('Error deleting user:', error)
       this.setStatus(500) // Internal Server Error
     }
   }
@@ -94,6 +102,7 @@ export class UserController extends Controller {
       await new UserService().updateUser(id, partialUser)
       return { data: await new UserService().getUser(id) }
     } catch (error) {
+      console.error('Error updating user:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to update User' }
     }

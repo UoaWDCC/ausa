@@ -27,7 +27,8 @@ export class ExternalResourceController extends Controller {
       const externalResources =
         await new ExternalResourceService().getAllExternalResources()
       return { data: externalResources }
-    } catch {
+    } catch (error){
+      console.error('Error retrieving external resources:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve External Resources' }
     }
@@ -44,7 +45,8 @@ export class ExternalResourceController extends Controller {
         return { error: 'External Resource not found' }
       }
       return { data: res }
-    } catch {
+    } catch (error){
+      console.error('Error retrieving external resource:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve External Resource' }
     }
@@ -63,6 +65,7 @@ export class ExternalResourceController extends Controller {
       this.setStatus(201) // Created
       return { data: createdExternalResource }
     } catch (error) {
+      console.error('Error creating external resource:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to create External Resource' }
     }
@@ -79,6 +82,7 @@ export class ExternalResourceController extends Controller {
       await new ExternalResourceService().deleteExternalResource(id)
       this.setStatus(204) // No Content
     } catch (error) {
+      console.error('Error deleting external resource:', error)
       this.setStatus(500) // Internal Server Error
     }
   }
@@ -103,6 +107,7 @@ export class ExternalResourceController extends Controller {
         data: await new ExternalResourceService().getExternalResource(id),
       }
     } catch (error) {
+      console.error('Error updating external resource:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to update External Resource' }
     }
