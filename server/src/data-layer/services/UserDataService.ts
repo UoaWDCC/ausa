@@ -1,4 +1,4 @@
-import { User } from 'data-layer/models/user'
+import { User } from 'data-layer/models/User'
 import { UserCreationParams } from 'service-layer/request-models/UserRequest'
 
 export default class UserDataService {

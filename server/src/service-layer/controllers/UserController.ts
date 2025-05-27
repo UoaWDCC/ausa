@@ -9,7 +9,7 @@ import {
   Route,
   SuccessResponse,
 } from 'tsoa'
-import { User } from 'data-layer/models/user'
+import { User } from 'data-layer/models/User'
 import UserDataService from 'data-layer/services/UserDataService'
 import { UserCreationParams } from 'service-layer/request-models/UserRequest'
 

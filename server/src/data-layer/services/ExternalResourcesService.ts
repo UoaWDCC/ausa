@@ -1,9 +1,6 @@
 import { collections } from 'data-layer/firebase-collections'
-import {
-  ExternalResource,
-  ExternalResourceCreationParams,
-  ExternalResourceUpdateParams,
-} from 'data-layer/models/externalResource'
+import { ExternalResource } from 'types/types'
+import { ExternalResourceCreationParams, ExternalResourceUpdateParams } from 'service-layer/request-models/ExternalResourceRequest'
 import { WriteResult } from 'firebase-admin/firestore'
 
 export default class ExternalResourceService {
