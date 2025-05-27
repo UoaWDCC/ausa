@@ -27,7 +27,7 @@ const firebaseAdminApp = initializeApp({
 export const db = getFirestore(firebaseAdminApp)
 
 export const adminAuth = getAuthAdmin(firebaseAdminApp)
-export const auth = getAuth(firebaseApp)
+export const authWeb = getAuth(firebaseApp)
 
 export const converter = <T>() => ({
   toFirestore: (data: T) => data,
