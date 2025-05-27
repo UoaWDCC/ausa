@@ -26,7 +26,8 @@ export class FaqController extends Controller {
     try {
       const faqs = await new FaqService().getAllFaqs()
       return { data: faqs }
-    } catch {
+    } catch (error){
+      console.error('Error retrieving FAQs:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve FAQs' }
     }
@@ -41,7 +42,8 @@ export class FaqController extends Controller {
         return { error: 'FAQ not found' }
       }
       return { data: faq }
-    } catch {
+    } catch (error){
+      console.error('Error retrieving FAQ:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve FAQ' }
     }
@@ -57,6 +59,7 @@ export class FaqController extends Controller {
       this.setStatus(201) // Created
       return { data: createdFaq }
     } catch (error) {
+      console.error('Error creating FAQ:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to create FAQ' }
     }
@@ -73,6 +76,7 @@ export class FaqController extends Controller {
       await new FaqService().deleteFaq(id)
       this.setStatus(204) // No Content
     } catch (error) {
+      console.error('Error deleting FAQ:', error)
       this.setStatus(500) // Internal Server Error
     }
   }
@@ -92,6 +96,7 @@ export class FaqController extends Controller {
       await new FaqService().updateFaq(id, partialFaq)
       return { data: await new FaqService().getFaq(id) }
     } catch (error) {
+      console.error('Error updating FAQ:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to update FAQ' }
     }
