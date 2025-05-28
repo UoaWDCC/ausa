@@ -68,47 +68,65 @@ const NavigationBar = () => {
             <div>
               <MenuButton className="inline-flex w-full justify-center gap-x-1.5">
                 Contacts
-                <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-gray-400" />
+                <ChevronDownIcon aria-hidden="true" className="-mr-1 size-5 text-white" />
               </MenuButton>
             </div>
 
             <MenuItems
               transition
-              className="absolute left-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+              className="absolute left-0 z-10 mt-2 w-56 origin-top-right bg-[#2d2d2d] shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in rounded-md"
             >
               <div className="py-1">
                 <MenuItem>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                    className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
                   >
-                    placeholder text
+                    <span
+                      className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
+                    >
+                      placeholder text
+                    </span>
+                  </a>
+                </MenuItem>
+
+
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
+                  >
+                    <span
+                      className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
+                    >
+                      placeholder text
+                    </span>
                   </a>
                 </MenuItem>
                 <MenuItem>
                   <a
                     href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                    className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
                   >
-                    placeholder text
-                  </a>
-                </MenuItem>
-                <MenuItem>
-                  <a
-                    href="#"
-                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
-                  >
-                    placeholder text
+                    <span
+                      className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
+                    >
+                      placeholder text
+                    </span>
                   </a>
                 </MenuItem>
                 <form action="#" method="POST">
                   <MenuItem>
-                    <button
-                      type="submit"
-                      className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                    <a
+                      href="#"
+                      className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
                     >
-                      placeholder text
-                    </button>
+                      <span
+                        className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
+                      >
+                        placeholder text
+                      </span>
+                    </a>
                   </MenuItem>
                 </form>
               </div>
@@ -192,7 +210,7 @@ const NavigationBar = () => {
           </Link>
         </nav>
       </div>
-    </nav>
+    </nav >
   )
 }
 export default NavigationBar
