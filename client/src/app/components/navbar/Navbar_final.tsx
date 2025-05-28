@@ -82,11 +82,7 @@ const NavigationBar = () => {
                     href="#"
                     className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
                   >
-                    <span
-                      className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
-                    >
-                      placeholder text
-                    </span>
+                    placeholder text
                   </a>
                 </MenuItem>
 
@@ -96,11 +92,8 @@ const NavigationBar = () => {
                     href="#"
                     className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
                   >
-                    <span
-                      className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
-                    >
-                      placeholder text
-                    </span>
+                    placeholder text
+
                   </a>
                 </MenuItem>
                 <MenuItem>
@@ -108,11 +101,7 @@ const NavigationBar = () => {
                     href="#"
                     className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
                   >
-                    <span
-                      className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
-                    >
-                      placeholder text
-                    </span>
+                    placeholder text
                   </a>
                 </MenuItem>
                 <form action="#" method="POST">
@@ -121,11 +110,7 @@ const NavigationBar = () => {
                       href="#"
                       className="group text-white text-sm block px-4 py-2 relative transition duration-300 hover:bg-gray-300 hover:text-gray-900"
                     >
-                      <span
-                        className="bg-gradient-to-r from-gray-700 to-gray-700 bg-[length:0%_2px] bg-left-bottom bg-no-repeat pb-1 transition-all duration-500 ease-out group-hover:bg-[length:100%_2px]"
-                      >
-                        placeholder text
-                      </span>
+                      placeholder text
                     </a>
                   </MenuItem>
                 </form>
