@@ -4,95 +4,72 @@ import facebook from '../../assets/icons/facebook.svg'
 import instagram from '../../assets/icons/instagram.svg'
 import linkedin from '../../assets/icons/linkedin.svg'
 const Footer = () => {
-    return (
-        <div className="p-10 bg-[#393980] w-full text-white flex flex-col gap-8 md:grid md:grid-cols-3 absolute bottom-0">
-            {/* col1 */}
-            <div className=" md:justify-start flex ">
+  return (
+    <div className="absolute bottom-0 flex w-full flex-col gap-8 bg-[#393980] p-10 text-white md:grid md:grid-cols-3">
+      {/* col1 */}
+      <div className="flex md:justify-start">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-2xl">About us</h1>
+          <h2>Student Council</h2>
+          <h2>AUSA website</h2>
+        </div>
+      </div>
+      {/* col2 */}
+      <div className="flex md:justify-center">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-2xl">Services</h1>
+          <h2>Advocacy</h2>
+          <h2>Buddy Program</h2>
+          <h2>Class Representatives</h2>
+          <h2>Health & Counselling</h2>
+        </div>
+      </div>
+      {/* col3 */}
+      <div className="flex md:justify-end">
+        <div className="flex flex-col gap-4">
+          <h1 className="text-2xl">Emergency help</h1>
+          <h2>Insert Emergency Contact Here</h2>
+        </div>
+      </div>
+      {/* last row */}
+      <div className="col-span-3 gap-4 border-t-1 border-white py-8 md:flex md:justify-between">
+        {/* logo image */}
 
-                <div className="flex-col flex gap-4">
-                    <h1 className="text-2xl ">
-                        About us
-                    </h1>
-                    <h2>
-                        Student Council
-                    </h2>
-                    <h2>
-                        AUSA website
-                    </h2>
-                </div>
+        <Image src={ausa} alt="TRK AUSA" className="h-24 w-24 rounded-md" />
 
-            </div>
-            {/* col2 */}
-            <div className=" md:justify-center flex">
-                <div className="flex-col flex gap-4  ">
-                    <h1 className="text-2xl ">
-                        Services
-                    </h1>
-                    <h2>
-                        Advocacy
-                    </h2>
-                    <h2>
-                        Buddy Program
-                    </h2>
-                    <h2>
-                        Class Representatives
-                    </h2>
-                    <h2>
-                        Health & Counselling
-                    </h2>
-                </div>
-            </div>
-            {/* col3 */}
-            <div className=" md:justify-end flex">
-                <div className="flex-col flex gap-4">
-                    <h1 className="text-2xl ">
-                        Emergency help
-                    </h1>
-                    <h2>
-                        Insert Emergency Contact Here
-                    </h2>
-                </div>
-            </div>
-            {/* last row */}
-            <div className="border-white border-t-1 flex flex-col col-span-3 p-12">
-                {/* logo image */}
-                <div className="  gap-10 md:flex lg:gap-30 justify-center">
-                    <div className="">
-                        <Image src={ausa} alt="TK AUSA" className="h-28 w-28 mb-4 md:mb-0" />
-                    </div>
-                    {/* middle column, random information */}
-                    <div className="flex flex-col gap-4">
-                        <div>
-                            © Te Rōpū Kahikatea - Auckland University Students’ Association 2025. All Rights Reserved.
-                        </div>
-                        <div className="">
-                            Visit Us: 4 Alfred Street, Auckland Central, Auckland 1010
-                        </div>
-                        <div className="">
-                            Phone: 09 309 0789
-                        </div>
-                    </div>
-                    {/* icon links to socials (instagram, linkedin, facebook) */}
-                    <div className="flex flex-col gap-3">
-                        <div className="">
-                            <Image src={facebook} alt="Facebook" className="h-8 w-8 mb-4 md:mb-0" />
-                        </div>
+        {/* middle column, random information */}
+        <div className="mt-4 flex flex-col gap-4 md:m-0">
+          <div>
+            © Te Rōpū Kahikatea - Auckland University Students’ Association
+            2025. All Rights Reserved.
+          </div>
+          <div className="">
+            Visit Us: 4 Alfred Street, Auckland Central, Auckland 1010
+          </div>
+          <div className="">Phone: 09 309 0789</div>
+        </div>
+        {/* icon links to socials (instagram, linkedin, facebook) */}
+        <div className="mt-4 flex flex-col gap-2 md:m-0">
+          <Image
+            src={facebook}
+            alt="Facebook"
+            className="mb-4 h-8 w-8 md:mb-0"
+          />
 
-                        <div className="">
-                            <Image src={instagram} alt="Instagram" className="h-8 w-8 mb-4 md:mb-0" />
-                        </div>
+          <Image
+            src={instagram}
+            alt="Instagram"
+            className="mb-4 h-8 w-8 md:mb-0"
+          />
 
-                        <div className="">
-                            <Image src={linkedin} alt="LinkedIn" className="h-8 w-8 mb-4 md:mb-0" />
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div >
-    )
-
+          <Image
+            src={linkedin}
+            alt="LinkedIn"
+            className="mb-4 h-8 w-8 md:mb-0"
+          />
+        </div>
+      </div>
+    </div>
+  )
 }
 export default Footer
