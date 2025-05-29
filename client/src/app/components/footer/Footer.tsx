@@ -49,7 +49,7 @@ const Footer = () => {
           <div className="">Phone: 09 309 0789</div>
         </div>
         {/* icon links to socials (instagram, linkedin, facebook) */}
-        <div className="mt-4 flex flex-col gap-2 md:m-0">
+        <div className="mt-4 flex flex-col gap-3 md:m-0">
           <Image
             src={facebook}
             alt="Facebook"
