@@ -116,3 +116,10 @@ body {
     height: 0;
   }
 }
+
+/* for titles and other headings */
+h1 {
+  font-weight: bold;
+  color: #ffffff;
+  /* margin-bottom: 1rem; */
+}
