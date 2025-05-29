@@ -55,13 +55,13 @@ const Footer = () => {
                 </div>
             </div>
             {/* last row */}
-            <div className="col-span-3 gap-4 border-t-1 border-white py-8 md:flex md:justify-between">
-                {/* logo image */}
-
-                <Image src={ausa} alt="TRK AUSA" className="h-24 w-24 rounded-md" />
+            <div className="col-span-3 gap-4 border-t-1 border-white py-8 grid md:grid-cols-3 grid-cols-2">
+                <div className="flex-shrink-0 mt-4 md:mt-0 md:h-40 md:w-40 h-[100px] w-[100px] hidden md:block ">
+                    <Image src={ausa} alt="TRK AUSA" className="rounded-md" />
+                </div>
 
                 {/* middle column, random information */}
-                <div className="mt-4 flex flex-col gap-4 md:m-0">
+                <div className="mt-4 flex flex-col gap-4 md:m-0 md:h-full ">
                     <div>
                         © Te Rōpū Kahikatea - Auckland University Students’ Association
                         2025. All Rights Reserved.
@@ -71,31 +71,39 @@ const Footer = () => {
                     </div>
                     <div className="">Phone: 09 309 0789</div>
                 </div>
+
+                {/* logo image */}
                 {/* icon links to socials (instagram, linkedin, facebook) */}
-                <div className="mt-4 flex flex-col gap-3 md:m-0">
-                    <Link href="#" className="">
-                        <Image
-                            src={facebook}
-                            alt="Facebook"
-                            className="mb-4 h-8 w-8 md:mb-0"
-                        />
-                    </Link>
+                <div className="mt-4 md:justify-end md:grid md:col-span-1 col-span-2 gap-3 md:m-0 justify-start flex flex-shrink-0 max-h-[160px]">
+                    <div className="mb-4 h-[40px] w-[40px] md:mb-0 flex-shrink-0">
+                        <Link href="#" className="">
+                            <Image
+                                src={facebook}
+                                alt="Facebook"
+                                className=""
+                            />
+                        </Link>
+                    </div>
 
-                    <Link href="#" className="">
-                        <Image
-                            src={instagram}
-                            alt="Instagram"
-                            className="mb-4 h-8 w-8 md:mb-0"
-                        />
-                    </Link>
+                    <div className="mb-4 h-[40px] w-[40px] md:mb-0 flex-shrink-0">
+                        <Link href="#" className="">
+                            <Image
+                                src={instagram}
+                                alt="Instagram"
+                                className="mb-4 h-[40px] w-[40px] md:mb-0"
+                            />
+                        </Link>
+                    </div>
 
-                    <Link href="#" className="">
-                        <Image
-                            src={linkedin}
-                            alt="LinkedIn"
-                            className="mb-4 h-8 w-8 md:mb-0"
-                        />
-                    </Link>
+                    <div className="mb-4 h-[40px] w-[40px] md:mb-0 flex-shrink-0">
+                        <Link href="#" className="">
+                            <Image
+                                src={linkedin}
+                                alt="LinkedIn"
+                                className="mb-4 h-[40px] w-[40px] md:mb-0"
+                            />
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>
