@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'motion/react'
+import { motion } from 'motion/react'
 
 import { Button } from './components/button/Button'
 import Card from './components/card/Card'
@@ -52,33 +52,33 @@ const Home = () => {
       {/* Info Expanding Section */}
       <div className="flex h-[58vh] flex-row bg-[#FAF7F2]">
         {/* Left side text and button */}
-        <div className="flex flex-col justify-center px-16">
-          <h1 className="font-geist mb-8 text-6xl font-semibold text-neutral-600">
+        <div className="v-[40vh] my-4 ml-8 flex flex-col justify-center gap-4">
+          <h1 className="font-geist mb-8 text-4xl text-neutral-600">
             Your Support
           </h1>{' '}
-          <div className="items-center justify-center gap-8 font-semibold md:ml-8 md:flex">
-            <div className="-translate-y-4">
-              <motion.div
-                className="w-[80px]"
-                animate={{
-                  scale: [1, 1.25, 1],
-                  rotate: [0, 180, -180, 0],
-                }}
-                transition={{
-                  duration: 16,
-                  repeat: Infinity,
-                  repeatType: 'mirror',
-                  ease: 'easeInOut',
-                }}
-              >
-                <Image src={Icon1} width={80} height={80} alt="Purple Icon" />
-              </motion.div>
-            </div>{' '}
-            <h1 className="font-geist mb-8 text-6xl text-neutral-600">
-              Starts Here.
-            </h1>
-          </div>
-          <p className="font-geist mb-6 text-xl text-neutral-500">
+          {/* <div className="items-center justify-center gap-8 font-semibold md:ml-8 md:flex"> */}
+          <div className="-translate-y-4">
+            <motion.div
+              className="w-[80px]"
+              animate={{
+                scale: [1, 1.25, 1],
+                rotate: [0, 180, -180, 0],
+              }}
+              transition={{
+                duration: 16,
+                repeat: Infinity,
+                repeatType: 'mirror',
+                ease: 'easeInOut',
+              }}
+            >
+              <Image src={Icon1} width={80} height={80} alt="Purple Icon" />
+            </motion.div>
+          </div>{' '}
+          <p className="font-geist text-5xl font-bold text-neutral-600">
+            Starts Here.
+          </p>{' '}
+          {/* </div> */}
+          <p className="font-geist my-4 text-xl text-neutral-500">
             Insert description text about something
           </p>
           <div>
@@ -91,7 +91,7 @@ const Home = () => {
           </div>{' '}
         </div>
 
-        <div className="relative hidden w-screen justify-end overflow-x-hidden lg:flex">
+        <div className="relative z-100 hidden w-screen justify-end overflow-x-hidden lg:flex">
           {cards.map((card, i) => (
             <motion.div
               key={i}
