@@ -1,6 +1,6 @@
 'use client'
 import Image from 'next/image'
-import { useState } from 'react';
+import { useState } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
 
 import { Button } from './components/button/Button'
@@ -14,34 +14,38 @@ import {
 } from '../shadcn_components/ui/accordion'
 
 const Home = () => {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null)
 
   const cards = [
-    { 
-      title: 'Awareness', 
-      style: "h-full bg-green-100",
-      content: "Mental health is health. The first step to healing is understanding. We believe in building awareness by opening minds—breaking down the silence, one truth at a time."
+    {
+      title: 'Awareness',
+      style: 'h-full bg-green-100',
+      content:
+        'Mental health is health. The first step to healing is understanding. We believe in building awareness by opening minds—breaking down the silence, one truth at a time.',
     },
-    { 
-      title: 'Support', 
-      style: "h-full bg-red-100",
-      content: "You are not alone. Whether you're struggling, healing, or growing—we're here. Support isn't just a word. It's a network of real people, real stories, and real care."
+    {
+      title: 'Support',
+      style: 'h-full bg-red-100',
+      content:
+        "You are not alone. Whether you're struggling, healing, or growing—we're here. Support isn't just a word. It's a network of real people, real stories, and real care.",
     },
-    { 
-      title: 'Communication', 
-      style: "h-full bg-blue-100",
-      content: "Talk. Share. Listen. Communication connects us—it turns pain into empathy, and isolation into understanding. This is your safe space to speak and be heard."
+    {
+      title: 'Communication',
+      style: 'h-full bg-blue-100',
+      content:
+        'Talk. Share. Listen. Communication connects us—it turns pain into empathy, and isolation into understanding. This is your safe space to speak and be heard.',
     },
-    { 
-      title: 'Self Care', 
-      style: "h-full bg-yellow-100",
-      content: "Take a breath. Log off for a while. Say no when you need to. Self-care isn't selfish—it's survival, it's maintenance, it's reclaiming your peace one day at a time."
+    {
+      title: 'Self Care',
+      style: 'h-full bg-yellow-100',
+      content:
+        "Take a breath. Log off for a while. Say no when you need to. Self-care isn't selfish—it's survival, it's maintenance, it's reclaiming your peace one day at a time.",
     },
-  ];
+  ]
 
   const handleCardClick = (index: number) => {
-    setExpandedIndex(expandedIndex === index ? null : index);
-  };
+    setExpandedIndex(expandedIndex === index ? null : index)
+  }
 
   return (
     <div className="overflow-hidden bg-white">
@@ -87,32 +91,33 @@ const Home = () => {
           </div>{' '}
         </div>
 
-
-        <div className="relative  flex w-screen justify-end overflow-x-hidden">
+        <div className="relative hidden w-screen justify-end overflow-x-hidden lg:flex">
           {cards.map((card, i) => (
             <motion.div
               key={i}
-              className="absolute w-[500px] right-0  h-full"
+              className="absolute right-0 h-full w-[500px]"
               style={{
                 zIndex: expandedIndex === i ? 50 : (cards.length - i) * 10,
               }}
               animate={{
                 width: expandedIndex === i ? '1000px' : '200px',
                 right: `${(cards.length - 1 - i) * 100}px`,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
               onClick={() => handleCardClick(i)}
             >
-              <Card className={`${card.style} ${expandedIndex === i ? 'flex flex-col p-8' : 'h-full'}`}>
+              <Card
+                className={`${card.style} ${expandedIndex === i ? 'flex flex-col p-8' : 'h-full'}`}
+              >
                 {expandedIndex === i ? (
                   <>
-                    <div className="flex justify-between items-center mb-6">
+                    <div className="mb-6 flex items-center justify-between">
                       <h2 className="text-3xl font-bold">{card.title}</h2>
-                      <button 
+                      <button
                         className="text-2xl font-bold"
                         onClick={(e) => {
-                          e.stopPropagation();
-                          setExpandedIndex(null);
+                          e.stopPropagation()
+                          setExpandedIndex(null)
                         }}
                       >
                         ×
@@ -121,16 +126,14 @@ const Home = () => {
                     <p className="text-lg">{card.content}</p>
                   </>
                 ) : (
-                    <p className="rotate-270 origin-bottom-left ml-5 mt-15 font-semibold text-lg">{card.title}</p>
+                  <p className="mt-15 ml-5 origin-bottom-left rotate-270 text-lg font-semibold">
+                    {card.title}
+                  </p>
                 )}
               </Card>
             </motion.div>
           ))}
-
-
         </div>
-
-
       </div>
 
       <div className="m-4 flex flex-col lg:hidden">
