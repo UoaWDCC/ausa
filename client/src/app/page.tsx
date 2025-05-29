@@ -100,7 +100,7 @@ const Home = () => {
                 zIndex: expandedIndex === i ? 50 : (cards.length - i) * 10,
               }}
               animate={{
-                width: expandedIndex === i ? '1000px' : '200px',
+                width: expandedIndex === i ? '60%' : '200px',
                 right: `${(cards.length - 1 - i) * 100}px`,
                 transition: { duration: 0.3 },
               }}
