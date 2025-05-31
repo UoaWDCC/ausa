@@ -34,35 +34,23 @@ const Home = () => {
 
           {/* Carousel content with responsive item sizes */}
           <CarouselContent className="mb-10 -ml-2 md:-ml-4">
-            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
-                Slide 1
-              </div>
+            <CarouselItem>
+            slide
             </CarouselItem>
-            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
-                Slide 2
-              </div>
+            <CarouselItem>
+            slider
             </CarouselItem>
-            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
-                Slide 3
-              </div>
+            <CarouselItem>
+            wack
             </CarouselItem>
-            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
-                Slide 4
-              </div>
+            <CarouselItem>
+            lesgoooo
             </CarouselItem>
-            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
-                Slide 5
-              </div>
+            <CarouselItem>
+            crazyyy
             </CarouselItem>
-            <CarouselItem className="flex basis-full justify-center sm:basis-1/2 md:basis-1/3">
-              <div className="h-64 w-100 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
-                Slide 6
-              </div>
+            <CarouselItem>
+            this is so cooked
             </CarouselItem>
           </CarouselContent>
         </Carousel>
