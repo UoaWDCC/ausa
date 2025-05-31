@@ -12,20 +12,15 @@ import Practice from './components/shapes/Parabola'
 
 const Home = () => {
   return (
-    <div>
-      {/* <Button>Button</Button>
-      <Button variant="destructive">Destructive</Button>
-      <Button variant="secondary">Secondary</Button>
-      <Button variant="outline">Outline</Button>
-      <Button variant="ghost">Ghost</Button>
-      <Button variant="link">Link</Button> */}
+    <div className="relative overflow-hidden">
 
       {/* The parabola Background */}
-      <div className="absolute inset-0 z-0 flex items-center justify-center">
-        <Practice />
-      </div>
-
-      <div className="relative z-10 px-4 pt-45">
+      <div className="">
+        <div className="absolute inset-0 z-0 bottom-0">
+          <Practice />
+        </div>
+        
+        <div className="relative z-10 px-4 pt-100">
         <Carousel>
           {/* Spaces next and previous button to top right */}
           <div className="mb-4 flex justify-end space-x-2">
@@ -63,6 +58,8 @@ const Home = () => {
           </CarouselContent>
         </Carousel>
       </div>
+      </div>
+
     </div>
   )
 }

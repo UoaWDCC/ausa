@@ -1,12 +1,12 @@
 const Practice = () => {
   return (
-    <div className="relative h-screen w-full overflow-hidden">
+    <div className="absolute inset-x-0 bottom-0 z-0 w-full h-full overflow-hidden">
       {/* Purple box at the bottom */}
-      <div className="absolute bottom-0 h-1/3 w-full bg-[#8A99EE]" />
+      {/* <div className="absolute bottom-0 h-1/3 w-full bg-[#8A99EE]" /> */}
 
       {/* Parabola shape above the box */}
       <svg
-        className="absolute bottom-1/3 h-2/3 w-full"
+        className="absolute bottom-0 h-full w-full"
         viewBox="0 0 1440 1066"
         preserveAspectRatio="none"
       >
