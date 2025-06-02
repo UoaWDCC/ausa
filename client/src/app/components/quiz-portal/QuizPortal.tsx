@@ -11,7 +11,7 @@ type CardProp = {
 
 const Card = ({ name, image, alt }: CardProp) => {
   return (
-    <div className="flex h-15 items-center justify-between rounded-sm border-2 border-[#a3a3a3]/50">
+    <div className="flex h-15 cursor-pointer items-center justify-between rounded-sm border-2 border-[#a3a3a3]/50 hover:bg-gray-50 hover:shadow-md">
       <div className="p-4">{name}</div>
       <div className="flex gap-2 p-4">
         <div>
@@ -31,7 +31,7 @@ const Card = ({ name, image, alt }: CardProp) => {
 
 const QuizPortal = () => {
   return (
-    <div className="font-MS container mx-auto max-w-7xl bg-[#F6F6F6] px-8 text-slate-800 sm:px-10 md:px-14 lg:px-20">
+    <div className="font-geist container mx-auto max-w-7xl px-8 text-slate-800 sm:px-10 md:px-14 lg:px-20">
       <h3 className="my-1 text-center text-xl font-bold sm:text-2xl md:my-2 md:text-3xl lg:my-4 lg:text-4xl">
         What Kind of Headspace are You In?
       </h3>
