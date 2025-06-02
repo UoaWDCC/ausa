@@ -20,7 +20,6 @@ import {
   ExternalResourceUpdateParams,
 } from 'service-layer/request-models/ExternalResourceRequest'
 
-@Security('jwt', ['admin'])
 @Route('external-resource')
 export class ExternalResourceController extends Controller {
   @Get()

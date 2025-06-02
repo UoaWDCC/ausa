@@ -20,7 +20,6 @@ import {
   GetAllFaqsResponse,
 } from 'service-layer/response-models/FaqResponse'
 
-@Security('jwt', ['admin'])
 @Route('faq')
 export class FaqController extends Controller {
   @Get()

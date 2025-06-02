@@ -2,7 +2,8 @@ import { pageInfo } from '@/app/components/navSearch/navSearch'
 import { ExternalResource, Faq } from '@/types/types'
 
 export async function navSearchHandler(pages: pageInfo[]): Promise<pageInfo[]> {
-  const res = await fetch('http://localhost:8000/faq', {
+  const url = process.env.BACKEND_URL || 'http://localhost:8000'
+  const res = await fetch(`${url}/faq`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -29,7 +30,7 @@ export async function navSearchHandler(pages: pageInfo[]): Promise<pageInfo[]> {
     }
   }
 
-  const res1 = await fetch('http://localhost:8000/external-resource', {
+  const res1 = await fetch(`${url}/external-resource`, {
     headers: {
       'Content-Type': 'application/json',
     },
