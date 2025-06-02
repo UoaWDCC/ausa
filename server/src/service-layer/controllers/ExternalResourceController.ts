@@ -27,7 +27,7 @@ export class ExternalResourceController extends Controller {
       const externalResources =
         await new ExternalResourceService().getAllExternalResources()
       return { data: externalResources }
-    } catch (error){
+    } catch (error) {
       console.error('Error retrieving external resources:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve External Resources' }
@@ -45,7 +45,7 @@ export class ExternalResourceController extends Controller {
         return { error: 'External Resource not found' }
       }
       return { data: res }
-    } catch (error){
+    } catch (error) {
       console.error('Error retrieving external resource:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve External Resource' }

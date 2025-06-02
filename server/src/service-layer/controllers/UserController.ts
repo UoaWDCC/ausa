@@ -29,7 +29,7 @@ export class UserController extends Controller {
     try {
       const users = await new UserService().getAllUsers()
       return { data: users }
-    } catch (error){
+    } catch (error) {
       console.error('Error retrieving users:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve Users' }
@@ -62,7 +62,8 @@ export class UserController extends Controller {
       this.setStatus(201) // Created
       return { data: createdUser }
     } catch (error) {
-      if (error instanceof FirebaseAuthError){
+      if (error instanceof FirebaseAuthError) {
+        this.setStatus(400) // Bad Request
         return { error: error.message }
       }
       console.error('Error creating user:', error)

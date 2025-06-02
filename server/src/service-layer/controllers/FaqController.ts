@@ -26,7 +26,7 @@ export class FaqController extends Controller {
     try {
       const faqs = await new FaqService().getAllFaqs()
       return { data: faqs }
-    } catch (error){
+    } catch (error) {
       console.error('Error retrieving FAQs:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve FAQs' }
@@ -42,7 +42,7 @@ export class FaqController extends Controller {
         return { error: 'FAQ not found' }
       }
       return { data: faq }
-    } catch (error){
+    } catch (error) {
       console.error('Error retrieving FAQ:', error)
       this.setStatus(500) // Internal Server Error
       return { error: 'Failed to retrieve FAQ' }
