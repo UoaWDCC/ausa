@@ -30,7 +30,6 @@
   --font-Inter: 'inter', sans-serif;
   --font-ReemKufi: 'ReemKufi', sans-serif;
   --font-Geist: 'geist', sans-serif;
-  --font-Montserrat: 'Montserrat', sans-serif;
 }
 
 @theme inline {
@@ -117,12 +116,6 @@
     format('truetype');
 }
 
-@font-face {
-  font-family: 'Montserrat';
-  font-weight: 400;
-  src: url('../app/assets/fonts/Montserrat/Montserrat-Regular.ttf')
-    format('truetype');
-}
 
 @theme {
   --animate-accordion-down: accordion-down 0.2s ease-out;
