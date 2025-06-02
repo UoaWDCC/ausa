@@ -12,13 +12,13 @@ export default class AuthService {
    * @returns the logged-in user
    */
   public async login(email: string, password: string): Promise<UserWithToken> {
-      const userCredential = await signInWithEmailAndPassword(
-        authWeb,
-        email,
-        password,
-      )
-      const user = await collections.user.doc(userCredential.user.uid).get()
-      return {...user.data(), token: await userCredential.user.getIdToken()}
+    const userCredential = await signInWithEmailAndPassword(
+      authWeb,
+      email,
+      password,
+    )
+    const user = await collections.user.doc(userCredential.user.uid).get()
+    return { ...user.data(), token: await userCredential.user.getIdToken() }
   }
 
   /**

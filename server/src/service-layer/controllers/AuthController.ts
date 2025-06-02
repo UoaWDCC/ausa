@@ -9,11 +9,12 @@ import {
 } from 'tsoa'
 
 import UserService from 'data-layer/services/UserService'
-import {
-  UserResponse,
-} from 'service-layer/response-models/UserResponse'
+import { UserResponse } from 'service-layer/response-models/UserResponse'
 import AuthService from 'data-layer/services/AuthService'
-import { AuthCreationParams, LoginCredentials } from 'service-layer/request-models/AuthRequest'
+import {
+  AuthCreationParams,
+  LoginCredentials,
+} from 'service-layer/request-models/AuthRequest'
 import { FirebaseAuthError } from 'firebase-admin/auth'
 import { UserRole } from 'types/types'
 import { FirebaseError } from 'firebase/app'
@@ -26,7 +27,10 @@ export class AuthController extends Controller {
     @Body() newUser: AuthCreationParams,
   ): Promise<UserResponse> {
     try {
-      const createdUser = await new AuthService().signUpUser({...newUser, role: UserRole.USER})
+      const createdUser = await new AuthService().signUpUser({
+        ...newUser,
+        role: UserRole.USER,
+      })
       this.setStatus(201) // Created
       return { data: createdUser }
     } catch (error) {
@@ -40,7 +44,7 @@ export class AuthController extends Controller {
     }
   }
 
-  @Post("login")
+  @Post('login')
   @SuccessResponse('200', 'Login Successful')
   public async login(
     @Body() credentials: LoginCredentials,
@@ -51,7 +55,7 @@ export class AuthController extends Controller {
         credentials.password,
       )
       this.setHeader('Authorization', `Bearer ${user.token}`)
-      return { data: {...user, token: undefined} }
+      return { data: { ...user, token: undefined } }
     } catch (error) {
       if (error instanceof FirebaseError) {
         this.setStatus(401) // Unauthorized
