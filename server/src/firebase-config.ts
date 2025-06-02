@@ -1,4 +1,4 @@
-import { applicationDefault, initializeApp } from 'firebase-admin/app'
+import * as firebaseAdmin from 'firebase-admin'
 import { initializeApp as initApp } from 'firebase/app'
 import { getAuth as getAuthAdmin } from 'firebase-admin/auth'
 import { getAuth } from 'firebase/auth'
@@ -17,11 +17,13 @@ const firebaseConfig = {
   measurementId: process.env.MEASUREMENT_ID,
 }
 
+const keys = JSON.parse(process.env.FIREBASE_JSON)
+
 // Initialize Firebase
 const firebaseApp = initApp(firebaseConfig)
 // Init firebase Admin
-const firebaseAdminApp = initializeApp({
-  credential: applicationDefault(),
+const firebaseAdminApp = firebaseAdmin.initializeApp({
+  credential: firebaseAdmin.credential.cert(keys),
 })
 
 export const db = getFirestore(firebaseAdminApp)
