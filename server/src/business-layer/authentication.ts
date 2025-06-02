@@ -25,7 +25,6 @@ export function expressAuthentication(
             reject(new Error('User not found'))
           }
           if (scopes.length > 0 && !scopes.includes(user.role)) {
-            console.log(scopes)
             reject(new Error('User does not have required role.'))
           }
           resolve(user)
