@@ -42,6 +42,21 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"UserWithToken": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/User"
+					},
+					{
+						"properties": {
+							"token": {
+								"type": "string"
+							}
+						},
+						"type": "object"
+					}
+				]
+			},
 			"GetAllUsersResponse": {
 				"properties": {
 					"error": {
@@ -52,7 +67,7 @@
 					},
 					"data": {
 						"items": {
-							"$ref": "#/components/schemas/User"
+							"$ref": "#/components/schemas/UserWithToken"
 						},
 						"type": "array"
 					}
@@ -69,7 +84,7 @@
 						"type": "string"
 					},
 					"data": {
-						"$ref": "#/components/schemas/User"
+						"$ref": "#/components/schemas/UserWithToken"
 					}
 				},
 				"type": "object",
@@ -381,7 +396,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": []
 			},
 			"post": {
@@ -398,7 +419,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
@@ -427,7 +454,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -446,7 +479,13 @@
 						"description": "No content"
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -472,7 +511,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -510,7 +555,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": []
 			},
 			"post": {
@@ -527,7 +578,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
@@ -556,7 +613,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -575,7 +638,13 @@
 						"description": "No content"
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -601,7 +670,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -639,7 +714,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": []
 			},
 			"post": {
@@ -656,7 +737,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
@@ -685,7 +772,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -704,7 +797,13 @@
 						"description": "No content"
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -730,7 +829,13 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -811,7 +916,7 @@
 				}
 			}
 		},
-		"/auth/{id}/forgot-password": {
+		"/auth/forgot-password": {
 			"patch": {
 				"operationId": "UpdatePassword",
 				"responses": {
@@ -819,17 +924,12 @@
 						"description": "No content"
 					}
 				},
-				"security": [],
-				"parameters": [
+				"security": [
 					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
+						"jwt": []
 					}
 				],
+				"parameters": [],
 				"requestBody": {
 					"required": true,
 					"content": {

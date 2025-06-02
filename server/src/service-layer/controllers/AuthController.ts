@@ -2,10 +2,11 @@ import {
   Body,
   Controller,
   Patch,
-  Path,
   Post,
   Route,
   SuccessResponse,
+  Security,
+  Request,
 } from 'tsoa'
 
 import UserService from 'data-layer/services/UserService'
@@ -67,12 +68,14 @@ export class AuthController extends Controller {
     }
   }
 
-  @Patch('{id}/forgot-password')
+  @Security('jwt')
+  @Patch('forgot-password')
   public async updatePassword(
-    @Path() id: string,
     @Body() partialUser: { password: string },
+    @Request() request: any, // This is to access the request object if needed
   ): Promise<void> {
     try {
+      const id = request.user.id
       const existingUser = await new UserService().getUser(id)
       if (!existingUser) {
         this.setStatus(404) // Not Found

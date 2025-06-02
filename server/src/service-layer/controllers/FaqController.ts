@@ -7,6 +7,7 @@ import {
   Path,
   Post,
   Route,
+  Security,
   SuccessResponse,
 } from 'tsoa'
 import {
@@ -19,6 +20,7 @@ import {
   GetAllFaqsResponse,
 } from 'service-layer/response-models/FaqResponse'
 
+@Security('jwt', ['admin'])
 @Route('faq')
 export class FaqController extends Controller {
   @Get()
@@ -33,6 +35,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Get('{id}')
   public async getFaq(@Path() id: string): Promise<FaqResponse> {
     try {
@@ -49,6 +52,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Post()
   @SuccessResponse('201', 'Created')
   public async createFaq(
@@ -65,6 +69,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Delete('{id}')
   public async deleteFaq(@Path() id: string): Promise<void> {
     try {
@@ -81,6 +86,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Patch('{id}')
   public async updateFaq(
     @Path() id: string,

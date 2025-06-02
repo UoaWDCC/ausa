@@ -7,6 +7,7 @@ import {
   Path,
   Post,
   Route,
+  Security,
   SuccessResponse,
 } from 'tsoa'
 import {
@@ -24,6 +25,7 @@ import { FirebaseAuthError } from 'firebase-admin/auth'
 
 @Route('user')
 export class UserController extends Controller {
+  @Security('jwt', ['admin'])
   @Get()
   public async getAllUsers(): Promise<GetAllUsersResponse> {
     try {
@@ -36,6 +38,7 @@ export class UserController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Get('{id}')
   public async getUser(@Path() id: string): Promise<UserResponse> {
     try {
@@ -52,6 +55,7 @@ export class UserController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Post()
   @SuccessResponse('201', 'Created')
   public async createUser(
@@ -72,6 +76,7 @@ export class UserController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Delete('{id}')
   public async deleteUser(@Path() id: string): Promise<void> {
     try {
@@ -88,6 +93,7 @@ export class UserController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Patch('{id}')
   public async updateUser(
     @Path() id: string,

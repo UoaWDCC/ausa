@@ -8,6 +8,7 @@ import {
   Post,
   Route,
   SuccessResponse,
+  Security,
 } from 'tsoa'
 import ExternalResourceService from 'data-layer/services/ExternalResourcesService'
 import {
@@ -19,6 +20,7 @@ import {
   ExternalResourceUpdateParams,
 } from 'service-layer/request-models/ExternalResourceRequest'
 
+@Security('jwt', ['admin'])
 @Route('external-resource')
 export class ExternalResourceController extends Controller {
   @Get()
@@ -34,6 +36,7 @@ export class ExternalResourceController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Get('{id}')
   public async getExternalResource(
     @Path() id: string,
@@ -52,6 +55,7 @@ export class ExternalResourceController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Post()
   @SuccessResponse('201', 'Created')
   public async createExternalResource(
@@ -71,6 +75,7 @@ export class ExternalResourceController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Delete('{id}')
   public async deleteExternalResource(@Path() id: string): Promise<void> {
     try {
@@ -87,6 +92,7 @@ export class ExternalResourceController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Patch('{id}')
   public async updateExternalResource(
     @Path() id: string,

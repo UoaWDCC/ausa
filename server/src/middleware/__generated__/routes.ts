@@ -11,8 +11,11 @@ import { FaqController } from './../../service-layer/controllers/FaqController';
 import { ExternalResourceController } from './../../service-layer/controllers/ExternalResourceController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { AuthController } from './../../service-layer/controllers/AuthController';
+import { expressAuthentication } from './../../business-layer/authentication';
+// @ts-ignore - no great way to install types from subpackage
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
 
+const expressAuthenticationRecasted = expressAuthentication as (req: ExRequest, securityName: string, scopes?: string[], res?: ExResponse) => Promise<any>;
 
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -35,12 +38,17 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UserWithToken": {
+        "dataType": "refAlias",
+        "type": {"dataType":"intersection","subSchemas":[{"ref":"User"},{"dataType":"nestedObjectLiteral","nestedProperties":{"token":{"dataType":"string"}}}],"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "GetAllUsersResponse": {
         "dataType": "refObject",
         "properties": {
             "error": {"dataType":"string"},
             "message": {"dataType":"string"},
-            "data": {"dataType":"array","array":{"dataType":"refObject","ref":"User"}},
+            "data": {"dataType":"array","array":{"dataType":"refAlias","ref":"UserWithToken"}},
         },
         "additionalProperties": false,
     },
@@ -50,7 +58,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "error": {"dataType":"string"},
             "message": {"dataType":"string"},
-            "data": {"ref":"User"},
+            "data": {"ref":"UserWithToken"},
         },
         "additionalProperties": false,
     },
@@ -216,6 +224,7 @@ export function RegisterRoutes(app: Router) {
         const argsUserController_getAllUsers: Record<string, TsoaRoute.ParameterSchema> = {
         };
         app.get('/user',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(UserController)),
             ...(fetchMiddlewares<RequestHandler>(UserController.prototype.getAllUsers)),
 
@@ -246,6 +255,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.get('/user/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(UserController)),
             ...(fetchMiddlewares<RequestHandler>(UserController.prototype.getUser)),
 
@@ -276,6 +286,7 @@ export function RegisterRoutes(app: Router) {
                 newUser: {"in":"body","name":"newUser","required":true,"ref":"AuthCreationParams"},
         };
         app.post('/user',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(UserController)),
             ...(fetchMiddlewares<RequestHandler>(UserController.prototype.createUser)),
 
@@ -306,6 +317,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.delete('/user/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(UserController)),
             ...(fetchMiddlewares<RequestHandler>(UserController.prototype.deleteUser)),
 
@@ -337,6 +349,7 @@ export function RegisterRoutes(app: Router) {
                 partialUser: {"in":"body","name":"partialUser","required":true,"ref":"UserUpdateParams"},
         };
         app.patch('/user/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(UserController)),
             ...(fetchMiddlewares<RequestHandler>(UserController.prototype.updateUser)),
 
@@ -366,6 +379,7 @@ export function RegisterRoutes(app: Router) {
         const argsFaqController_getAllFaqs: Record<string, TsoaRoute.ParameterSchema> = {
         };
         app.get('/faq',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.getAllFaqs)),
 
@@ -396,6 +410,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.get('/faq/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.getFaq)),
 
@@ -426,6 +441,7 @@ export function RegisterRoutes(app: Router) {
                 newFaq: {"in":"body","name":"newFaq","required":true,"ref":"FaqCreationParams"},
         };
         app.post('/faq',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.createFaq)),
 
@@ -456,6 +472,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.delete('/faq/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.deleteFaq)),
 
@@ -487,6 +504,7 @@ export function RegisterRoutes(app: Router) {
                 partialFaq: {"in":"body","name":"partialFaq","required":true,"ref":"FaqUpdateParams"},
         };
         app.patch('/faq/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.updateFaq)),
 
@@ -516,6 +534,7 @@ export function RegisterRoutes(app: Router) {
         const argsExternalResourceController_getAllExternalResources: Record<string, TsoaRoute.ParameterSchema> = {
         };
         app.get('/external-resource',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.getAllExternalResources)),
 
@@ -546,6 +565,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.get('/external-resource/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.getExternalResource)),
 
@@ -576,6 +596,7 @@ export function RegisterRoutes(app: Router) {
                 newExternalResource: {"in":"body","name":"newExternalResource","required":true,"ref":"ExternalResourceCreationParams"},
         };
         app.post('/external-resource',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.createExternalResource)),
 
@@ -606,6 +627,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.delete('/external-resource/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.deleteExternalResource)),
 
@@ -637,6 +659,7 @@ export function RegisterRoutes(app: Router) {
                 partialExternalResource: {"in":"body","name":"partialExternalResource","required":true,"ref":"ExternalResourceUpdateParams"},
         };
         app.patch('/external-resource/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.updateExternalResource)),
 
@@ -724,10 +747,11 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsAuthController_updatePassword: Record<string, TsoaRoute.ParameterSchema> = {
-                id: {"in":"path","name":"id","required":true,"dataType":"string"},
                 partialUser: {"in":"body","name":"partialUser","required":true,"dataType":"nestedObjectLiteral","nestedProperties":{"password":{"dataType":"string","required":true}}},
+                request: {"in":"request","name":"request","required":true,"dataType":"object"},
         };
-        app.patch('/auth/:id/forgot-password',
+        app.patch('/auth/forgot-password',
+            authenticateMiddleware([{"jwt":[]}]),
             ...(fetchMiddlewares<RequestHandler>(AuthController)),
             ...(fetchMiddlewares<RequestHandler>(AuthController.prototype.updatePassword)),
 
@@ -757,6 +781,76 @@ export function RegisterRoutes(app: Router) {
 
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
+
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+    function authenticateMiddleware(security: TsoaRoute.Security[] = []) {
+        return async function runAuthenticationMiddleware(request: any, response: any, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            // keep track of failed auth attempts so we can hand back the most
+            // recent one.  This behavior was previously existing so preserving it
+            // here
+            const failedAttempts: any[] = [];
+            const pushAndRethrow = (error: any) => {
+                failedAttempts.push(error);
+                throw error;
+            };
+
+            const secMethodOrPromises: Promise<any>[] = [];
+            for (const secMethod of security) {
+                if (Object.keys(secMethod).length > 1) {
+                    const secMethodAndPromises: Promise<any>[] = [];
+
+                    for (const name in secMethod) {
+                        secMethodAndPromises.push(
+                            expressAuthenticationRecasted(request, name, secMethod[name], response)
+                                .catch(pushAndRethrow)
+                        );
+                    }
+
+                    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+                    secMethodOrPromises.push(Promise.all(secMethodAndPromises)
+                        .then(users => { return users[0]; }));
+                } else {
+                    for (const name in secMethod) {
+                        secMethodOrPromises.push(
+                            expressAuthenticationRecasted(request, name, secMethod[name], response)
+                                .catch(pushAndRethrow)
+                        );
+                    }
+                }
+            }
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            try {
+                request['user'] = await Promise.any(secMethodOrPromises);
+
+                // Response was sent in middleware, abort
+                if (response.writableEnded) {
+                    return;
+                }
+
+                next();
+            }
+            catch(err) {
+                // Show most recent error as response
+                const error = failedAttempts.pop();
+                error.status = error.status || 401;
+
+                // Response was sent in middleware, abort
+                if (response.writableEnded) {
+                    return;
+                }
+                next(error);
+            }
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        }
+    }
 
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 }
