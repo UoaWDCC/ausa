@@ -17,9 +17,7 @@ const Card: React.FC<CardProps> = ({ title, children, className }) => {
   return (
     <div
       className={`
-        border 
         border-gray-200 
-        rounded-xl
         shadow-sm 
         p-4 
         ${className ?? ''}

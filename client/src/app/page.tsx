@@ -19,25 +19,25 @@ const Home = () => {
   const cards = [
     {
       title: 'Awareness',
-      style: 'h-full bg-green-100',
+      style: 'h-full bg-[#3A7D8C]',
       content:
         'Mental health is health. The first step to healing is understanding. We believe in building awareness by opening minds—breaking down the silence, one truth at a time.',
     },
     {
       title: 'Support',
-      style: 'h-full bg-red-100',
+      style: 'h-full bg-[#5A9B8C]',
       content:
         "You are not alone. Whether you're struggling, healing, or growing—we're here. Support isn't just a word. It's a network of real people, real stories, and real care.",
     },
     {
       title: 'Communication',
-      style: 'h-full bg-blue-100',
+      style: 'h-full bg-[#B2D8D8]',
       content:
         'Talk. Share. Listen. Communication connects us—it turns pain into empathy, and isolation into understanding. This is your safe space to speak and be heard.',
     },
     {
       title: 'Self Care',
-      style: 'h-full bg-yellow-100',
+      style: 'h-full bg-[#8A6DA8]',
       content:
         "Take a breath. Log off for a while. Say no when you need to. Self-care isn't selfish—it's survival, it's maintenance, it's reclaiming your peace one day at a time.",
     },
@@ -79,12 +79,12 @@ const Home = () => {
           </p>{' '}
           {/* </div> */}
           <p className="font-geist my-4 text-xl text-neutral-500">
-            Insert description text about something
+            A safe space for students to explore mental health resources tailored to your needs
           </p>
           <div>
             <Button
               variant="outline"
-              className="rounded-partial cursor-pointer border-none bg-[#FEDEA5] px-6 py-6 text-black shadow-md hover:bg-[#FED280] hover:text-black"
+              className="rounded-partial cursor-pointer border-none bg-[#6A8C7D] px-6 py-6 text-black shadow-md hover:bg-[#5A7C6D] hover:text-black"
             >
               Start Wellbeing Quiz
             </Button>{' '}
