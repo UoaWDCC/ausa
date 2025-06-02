@@ -190,7 +190,7 @@ const CarouselItem = React.forwardRef<
       )}
       {...props}
     >
-      <div className="w-[400px] h-[256px] shrink-0 grow-0 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
+      <div className="w-[300px] h-[256px] shrink-0 grow-0 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4 overflow">
         {children}
       </div>
     </div>
