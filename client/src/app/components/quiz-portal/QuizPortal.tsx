@@ -2,6 +2,14 @@ import React from 'react'
 import logo from '../../assets/icons/logo.svg'
 import Image, { StaticImageData } from 'next/image'
 import { ChevronRightIcon } from 'lucide-react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog'
 
 type CardProp = {
   name: string
@@ -40,7 +48,20 @@ const QuizPortal = () => {
       </p>
       <div className="m-6 grid grid-cols-1 gap-2 md:grid-cols-2 lg:grid-cols-3">
         <Card name="Stress less" image={logo} alt="logo" />
-        <Card name="Sleep soundly" image={logo} alt="logo" />
+        <Dialog>
+          <DialogTrigger asChild>
+            <Card name="Sleep soundly" image={logo} alt="logo" />
+          </DialogTrigger>
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Are you absolutely sure?</DialogTitle>
+              <DialogDescription>
+                This action cannot be undone. This will permanently delete your
+                account and remove your data from our servers.
+              </DialogDescription>
+            </DialogHeader>
+          </DialogContent>
+        </Dialog>
         <Card name="Manage anxiety" image={logo} alt="logo" />
         <Card name="Process thoughts" image={logo} alt="logo" />
         <Card name="Practice meditation" image={logo} alt="logo" />
