@@ -27,7 +27,7 @@ const QuizPortal = () => {
         What Kind of Headspace are You In?
       </h3>
       <p className="text-center text-sm sm:text-lg md:text-xl">
-        We can help lead you to the right resources
+        We can help lead you to the right resources 
       </p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 m-6">
         <Card name="Stress less" image={logo} alt='logo' />
