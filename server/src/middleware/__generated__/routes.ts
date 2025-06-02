@@ -379,7 +379,6 @@ export function RegisterRoutes(app: Router) {
         const argsFaqController_getAllFaqs: Record<string, TsoaRoute.ParameterSchema> = {
         };
         app.get('/faq',
-            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.getAllFaqs)),
 
@@ -534,7 +533,6 @@ export function RegisterRoutes(app: Router) {
         const argsExternalResourceController_getAllExternalResources: Record<string, TsoaRoute.ParameterSchema> = {
         };
         app.get('/external-resource',
-            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.getAllExternalResources)),
 

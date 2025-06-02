@@ -555,13 +555,7 @@
 						}
 					}
 				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
+				"security": [],
 				"parameters": []
 			},
 			"post": {
@@ -714,13 +708,7 @@
 						}
 					}
 				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
+				"security": [],
 				"parameters": []
 			},
 			"post": {
