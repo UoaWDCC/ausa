@@ -1,27 +1,45 @@
-import Link from 'next/link'
-import { Button } from '../button/Button'
+import React from "react";
+import logo from '../../assets/icons/logo.svg';
+import Image, { StaticImageData } from "next/image";
+
+type CardProp = {
+  name: string;
+  image: StaticImageData;
+  alt: string;
+}
+
+const Card = ({name, image, alt} : CardProp) => {
+  return (
+    <div className="rounded-sm h-15 border-2 border-[#a3a3a3]/50 flex justify-between items-center">
+      <div className="p-4">{name}</div>
+      <div className="p-4 flex gap-2">
+        <div><Image src={image} alt={alt} width={60} height={60} className="inline-block"/></div>
+        <div> > </div> 
+      </div>
+    </div>
+  );
+}
 
 const QuizPortal = () => {
   return (
-    <div className="container mx-auto max-w-7xl px-8 sm:px-10 md:px-14 lg:px-20">
-      <div className="my-8 flex flex-col items-center rounded-md bg-gradient-to-b from-amber-50 via-teal-50 to-cyan-200 p-6 shadow-md text-shadow-sm sm:my-14 sm:py-8 md:my-18 md:py-10 lg:my-24 lg:py-12">
-        <h2 className="text-md mb-2 max-w-prose text-center sm:text-lg md:text-xl lg:text-2xl">
-          By answering a few questions
-        </h2>
-        <h1 className="mb-4 max-w-prose text-center text-lg sm:text-xl md:text-2xl lg:text-3xl">
-          We Can Lead You to the Right Resources
-        </h1>
-        <p className="md:text-md mb-6 max-w-prose text-center text-xs sm:text-sm lg:text-lg">
-          Information text / stats etc.
-        </p>
-        <div>
-          <Link href="/quiz">
-            <Button variant="quiz">Start Wellbeing Quiz</Button>
-          </Link>
-        </div>
+    <div className="container mx-auto max-w-7xl px-8 sm:px-10 md:px-14 lg:px-20 bg-[#F6F6F6]">
+      <h3 className="text-center font-bold text-xl my-1 sm:text-2xl md:text-3xl md:my-2 lg:text-4xl lg:my-4">
+        What Kind of Headspace are You In?
+      </h3>
+      <p className="text-center text-sm sm:text-lg md:text-xl">
+        We can help lead you to the right resources
+      </p>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 m-6">
+        <Card name="Stress less" image={logo} alt='logo' />
+        <Card name="Sleep soundly" image={logo} alt='logo' />
+        <Card name="Manage anxiety" image={logo} alt='logo' />
+        <Card name="Process thoughts" image={logo} alt='logo' />
+        <Card name="Practice meditation" image={logo} alt='logo' />
+        <Card name="Start therapy" image={logo} alt='logo' />
       </div>
+      
     </div>
-  )
+  );
 }
 
 export default QuizPortal
