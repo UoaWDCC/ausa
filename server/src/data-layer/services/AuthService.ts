@@ -12,7 +12,6 @@ export default class AuthService {
    * @returns the logged-in user
    */
   public async login(email: string, password: string): Promise<User> {
-    try {
       const userCredential = await signInWithEmailAndPassword(
         authWeb,
         email,
@@ -20,9 +19,6 @@ export default class AuthService {
       )
       const user = await collections.user.doc(userCredential.user.uid).get()
       return user.data()
-    } catch (error) {
-      throw new Error('Login failed: ' + error)
-    }
   }
 
   /**

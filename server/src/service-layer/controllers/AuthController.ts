@@ -13,9 +13,10 @@ import {
   UserResponse,
 } from 'service-layer/response-models/UserResponse'
 import AuthService from 'data-layer/services/AuthService'
-import { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
+import { AuthCreationParams, LoginCredentials } from 'service-layer/request-models/AuthRequest'
 import { FirebaseAuthError } from 'firebase-admin/auth'
 import { UserRole } from 'types/types'
+import { FirebaseError } from 'firebase/app'
 
 @Route('auth')
 export class AuthController extends Controller {
@@ -40,9 +41,9 @@ export class AuthController extends Controller {
   }
 
   @Post("login")
-  @SuccessResponse('201', 'Login Successful')
+  @SuccessResponse('200', 'Login Successful')
   public async login(
-    @Body() credentials: { email: string; password: string },
+    @Body() credentials: LoginCredentials,
   ): Promise<UserResponse> {
     try {
       const user = await new AuthService().login(
@@ -51,7 +52,7 @@ export class AuthController extends Controller {
       )
       return { data: user }
     } catch (error) {
-      if (error instanceof FirebaseAuthError) {
+      if (error instanceof FirebaseError) {
         this.setStatus(401) // Unauthorized
         return { error: error.message }
       }

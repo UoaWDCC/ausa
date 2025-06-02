@@ -335,6 +335,21 @@
 			},
 			"ExternalResourceUpdateParams": {
 				"$ref": "#/components/schemas/Partial_ExternalResourceCreationParams_"
+			},
+			"LoginCredentials": {
+				"properties": {
+					"password": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"password",
+					"email"
+				],
+				"type": "object"
 			}
 		},
 		"securitySchemes": {
@@ -771,7 +786,7 @@
 			"post": {
 				"operationId": "Login",
 				"responses": {
-					"201": {
+					"200": {
 						"description": "Login Successful",
 						"content": {
 							"application/json": {
@@ -789,19 +804,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"properties": {
-									"password": {
-										"type": "string"
-									},
-									"email": {
-										"type": "string"
-									}
-								},
-								"required": [
-									"password",
-									"email"
-								],
-								"type": "object"
+								"$ref": "#/components/schemas/LoginCredentials"
 							}
 						}
 					}
