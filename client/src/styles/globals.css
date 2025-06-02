@@ -27,6 +27,7 @@
   --font-Inter: 'inter', sans-serif;
   --font-ReemKufi: 'ReemKufi', sans-serif;
   --font-Geist: 'geist', sans-serif;
+  --font-Montserrat: 'Montserrat', sans-serif;
 }
 
 @theme inline {
@@ -37,6 +38,7 @@
   --font-geist: var(--font-Geist);
   --font-EM: var(--font-EingrantchMono);
   --font-RK: var(--font-ReemKufi);
+  --font-MS: var(--font-Montserrat);
 }
 
 .font-sans {
@@ -76,6 +78,13 @@
   font-family: 'ReemKufi';
   font-weight: 400;
   src: url('../app/assets/fonts/ReemKufi/ReemKufi-Regular.ttf')
+    format('truetype');
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  font-weight: 400;
+  src: url('../app/assets/fonts/Montserrat/Montserrat-Regular.ttf')
     format('truetype');
 }
 

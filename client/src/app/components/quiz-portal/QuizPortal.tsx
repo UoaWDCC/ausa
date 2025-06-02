@@ -22,7 +22,7 @@ const Card = ({name, image, alt} : CardProp) => {
 
 const QuizPortal = () => {
   return (
-    <div className="container mx-auto max-w-7xl px-8 sm:px-10 md:px-14 lg:px-20 bg-[#F6F6F6]">
+    <div className="container mx-auto max-w-7xl px-8 sm:px-10 md:px-14 lg:px-20 bg-[#F6F6F6] font-MS text-slate-800">
       <h3 className="text-center font-bold text-xl my-1 sm:text-2xl md:text-3xl md:my-2 lg:text-4xl lg:my-4">
         What Kind of Headspace are You In?
       </h3>
