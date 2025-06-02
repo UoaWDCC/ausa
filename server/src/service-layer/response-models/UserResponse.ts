@@ -1,10 +1,10 @@
 import { CommonResponse } from './CommonResponse'
-import { User } from 'types/types'
+import { UserWithToken } from 'types/types'
 
 export interface GetAllUsersResponse extends CommonResponse {
-  data?: User[]
+  data?: UserWithToken[]
 }
 
 export interface UserResponse extends CommonResponse {
-  data?: User
+  data?: UserWithToken
 }

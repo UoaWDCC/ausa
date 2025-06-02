@@ -23,3 +23,7 @@ export interface ExternalResource {
   url: string
   description?: string
 }
+
+export type UserWithToken = User & {
+  token?: string
+}

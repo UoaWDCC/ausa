@@ -50,7 +50,8 @@ export class AuthController extends Controller {
         credentials.email,
         credentials.password,
       )
-      return { data: user }
+      this.setHeader('Authorization', `Bearer ${user.token}`)
+      return { data: {...user, token: undefined} }
     } catch (error) {
       if (error instanceof FirebaseError) {
         this.setStatus(401) // Unauthorized

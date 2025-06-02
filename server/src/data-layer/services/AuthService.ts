@@ -1,6 +1,6 @@
 import { adminAuth, authWeb } from 'firebase-config'
 import { signInWithEmailAndPassword } from 'firebase/auth'
-import { User, UserRole } from 'types/types'
+import { User, UserRole, UserWithToken } from 'types/types'
 import { collections } from 'data-layer/firebase-collections'
 import { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
 
@@ -11,14 +11,14 @@ export default class AuthService {
    * @param password - The password of the user
    * @returns the logged-in user
    */
-  public async login(email: string, password: string): Promise<User> {
+  public async login(email: string, password: string): Promise<UserWithToken> {
       const userCredential = await signInWithEmailAndPassword(
         authWeb,
         email,
         password,
       )
       const user = await collections.user.doc(userCredential.user.uid).get()
-      return user.data()
+      return {...user.data(), token: await userCredential.user.getIdToken()}
   }
 
   /**
@@ -34,6 +34,7 @@ export default class AuthService {
       password: newUser.password,
       displayName: `${newUser.firstName} ${newUser.lastName}`,
     })
+    delete newUser.password
     await collections.user.doc(userCredential.uid).set({
       ...newUser,
       role: UserRole.USER,
