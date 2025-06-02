@@ -126,7 +126,7 @@ const Home = () => {
                     <p className="text-lg">{card.content}</p>
                   </>
                 ) : (
-                  <p className="mt-15 ml-5 origin-bottom-left rotate-270 text-lg font-semibold">
+                  <p className="mr-8 mt-30 origin-bottom-right rotate-90 text-lg font-semibold">
                     {card.title}
                   </p>
                 )}
