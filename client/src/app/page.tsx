@@ -52,7 +52,7 @@ const Home = () => {
       {/* Info Expanding Section */}
       <div className="flex h-[58vh] flex-row bg-[#FAF7F2]">
         {/* Left side text and button */}
-        <div className="v-[40vh] ml-8 flex flex-col justify-center gap-2">
+        <div className="v-[40vh] ml-16 flex flex-col justify-center gap-2">
           <h1 className="font-geist mb-3 text-7xl font-bold text-neutral-600">
             Your Support
           </h1>{' '}
@@ -74,7 +74,7 @@ const Home = () => {
                 <Image src={Icon1} width={80} height={80} alt="Purple Icon" />
               </motion.div>
             </div>{' '}
-            <p className="font-geist text-7xl font-bold text-neutral-600">
+            <p className="font-geist text-7xl font-bold text-neutral-600 whitespace-nowrap">
               Starts Here.
             </p>{' '}
           </div>
@@ -135,6 +135,7 @@ const Home = () => {
           ))}
         </div>
       </div>
+      <div className="absolute border-r-[150px] border-r-transparent border-t-[100px] border-t-[#FAF7F2]"> </div>
 
       <div className="m-4 flex flex-col lg:hidden">
         <Accordion type="single" collapsible className="w-full">
