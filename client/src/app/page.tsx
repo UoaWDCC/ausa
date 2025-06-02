@@ -27,7 +27,7 @@ const Home = () => {
             </div>
 
             {/* Carousel content with responsive item sizes */}
-            <CarouselContent className="mb-10 -ml-2 md:-ml-4">
+            <CarouselContent>
               <CarouselItem>slide #1</CarouselItem>
               <CarouselItem>slide #2</CarouselItem>
               <CarouselItem>slide #3</CarouselItem>
