@@ -10,7 +10,9 @@ export function expressAuthentication(
   if (securityName === 'jwt') {
     const header = request.headers.authorization
     if (!header || !header.startsWith('Bearer ')) {
-        return Promise.reject(new Error('Invalid or missing authorization header'))
+      return Promise.reject(
+        new Error('Invalid or missing authorization header'),
+      )
     }
     const token = header.split(' ')[1]
 
