@@ -6,7 +6,7 @@ import linkedin from '../../assets/icons/linkedin.svg'
 import Link from 'next/link'
 const Footer = () => {
   return (
-    <div className="flex w-full flex-col gap-8 bg-[#393980] p-10 text-white md:grid md:grid-cols-3">
+    <div className="absolute bottom-0 flex w-full flex-col gap-8 bg-[#393980] p-10 text-white md:grid md:grid-cols-3">
       {/* col1 */}
       <div className="flex md:justify-start">
         <div className="flex flex-col gap-4">
