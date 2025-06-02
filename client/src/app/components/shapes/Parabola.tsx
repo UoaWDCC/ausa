@@ -1,6 +1,6 @@
 const Practice = () => {
   return (
-    <div className="absolute inset-x-0 bottom-0 z-0 w-full h-full overflow-hidden">
+    <div className="absolute inset-x-0 bottom-0 z-0 h-full w-full overflow-hidden">
       {/* Purple box at the bottom */}
       {/* <div className="absolute bottom-0 h-1/3 w-full bg-[#8A99EE]" /> */}
 
