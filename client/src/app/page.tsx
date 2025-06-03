@@ -74,7 +74,7 @@ const Home = () => {
                 <Image src={Icon1} width={80} height={80} alt="Purple Icon" />
               </motion.div>
             </div>{' '}
-            <p className="font-geist text-7xl font-bold text-neutral-600 whitespace-nowrap">
+            <p className="font-geist text-7xl font-bold text-neutral-600">
               Starts Here.
             </p>{' '}
           </div>
@@ -91,7 +91,7 @@ const Home = () => {
           </div>{' '}
         </div>
 
-        <div className="relative z-100 hidden w-screen justify-end overflow-x-hidden lg:flex">
+        <div className="relative z-100 hidden w-screen justify-end overflow-x-hidden xl:flex">
           {cards.map((card, i) => (
             <motion.div
               key={i}
@@ -135,10 +135,10 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="absolute border-r-[150px] border-r-transparent border-t-[100px] border-t-[#FAF7F2]"> </div>
+      <div className="absolute border-r-[8vw] border-r-transparent border-t-[6vw] border-t-[#FAF7F2]"></div>
 
-      <div className="m-4 flex flex-col lg:hidden">
-        <Accordion type="single" collapsible className="w-full">
+      <div className="m-4 flex flex-col xl:hidden">
+        <Accordion type="single" collapsible className="w-full p-[4em]">
           <AccordionItem value="item-1">
             <AccordionTrigger>Awareness</AccordionTrigger>
             <AccordionContent>
