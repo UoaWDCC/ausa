@@ -73,7 +73,7 @@ const Footer = () => {
                         </div>
                     </div>
                     {/* icon links to socials (instagram, linkedin, facebook) */}
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 md:mt-0 mt-6">
                         <div className="">
                             <Image src={facebook} alt="Facebook" className="h-8 w-8 mb-4 md:mb-0" />
                         </div>
