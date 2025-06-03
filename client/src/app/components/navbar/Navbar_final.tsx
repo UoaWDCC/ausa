@@ -39,7 +39,7 @@ const NavigationBar = () => {
 
   return (
     <nav
-      className={`font-Supreme h-[70px] ${hasScrolled ? 'bg-[#393980] opacity-90' : 'bg-[#393980]'} fixed top-0 left-0 z-100 w-full p-6 transition-opacity duration-300`}
+      className={`font-Supreme h-[70px] ${hasScrolled ? 'bg-[#393980] opacity-90' : 'bg-[#393980]'} fixed top-0 left-0 z-50 w-full p-6 transition-opacity duration-300`}
     >
       {/* Overlay when menu is open */}
       {open && (
