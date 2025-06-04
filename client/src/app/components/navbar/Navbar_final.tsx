@@ -1,17 +1,46 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Menu, X } from 'lucide-react'
 import logo from '../../assets/icons/logo.svg'
 import Image from 'next/image'
 import Link from 'next/link'
-import search_icon from '../../assets/icons/search_icon.svg'
-import profile_icon from '../../assets/icons/profile_icon.svg'
+// import search_icon from '../../assets/icons/search_icon.svg'
+// import profile_icon from '../../assets/icons/profile_icon.svg'
+import NavSearch from '../navSearch/navSearch'
+import { NavLink } from '../navLink/navLink'
+import {
+  Menu as HeadlessMenu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+} from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Button } from '../button/Button'
+
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
+  const [hasScrolled, setHasScrolled] = useState(false)
+
+  useEffect(() => {
+    const scrollHandler = () => {
+      if (window.scrollY > 0) {
+        setHasScrolled(true)
+      } else {
+        setHasScrolled(false)
+      }
+    }
+    window.addEventListener('scroll', scrollHandler)
+
+    return () => {
+      window.removeEventListener('scroll', scrollHandler)
+    }
+  }, [])
 
   return (
-    <nav className="font-Inter h-[70px] w-full bg-white p-6 shadow-md">
+    <nav
+      className={`font-Supreme h-[70px] ${hasScrolled ? 'bg-[#393980] opacity-90' : 'bg-[#393980]'} fixed top-0 left-0 z-50 w-full p-6 transition-opacity duration-300`}
+    >
       {/* Overlay when menu is open */}
       {open && (
         <div
@@ -32,33 +61,78 @@ const NavigationBar = () => {
         </div>
 
         {/* navbar links */}
-        <div className="hidden text-gray-700 md:flex md:gap-4 lg:gap-8">
-          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/">
-            Homepage
-          </Link>
-          <Link className="border-gray-500 pb-4 hover:border-b-6" href="/faq">
-            FAQ
-          </Link>
-          <Link
-            className="border-gray-500 pb-4 hover:border-b-6"
-            href="/external-resources"
-          >
-            External Resources
-          </Link>
-          <Link
-            className="border-gray-500 pb-4 hover:border-b-6"
-            href="/contact"
-          >
-            Contact
-          </Link>
+        <div className="hidden text-white md:flex md:gap-4 lg:gap-8">
+          <NavSearch />
+          <NavLink href="/" text="Home" />
+          <NavLink href="/" text="Support" />
+          <NavLink href="/faq" text="FAQs" />
+          {/* <NavLink href="/contact" text="Contacts" /> */}
+          {/* contacts drop down */}
+          <HeadlessMenu as="div" className="relative inline-block text-left">
+            <div>
+              <MenuButton className="inline-flex w-full justify-center gap-x-1.5">
+                Contacts
+                <ChevronDownIcon
+                  aria-hidden="true"
+                  className="-mr-1 size-5 text-gray-400"
+                />
+              </MenuButton>
+            </div>
 
-          <div className="hidden md:flex md:gap-4 lg:gap-8">
+            <MenuItems
+              transition
+              className="absolute right-0 z-10 mt-2 w-56 origin-top-right bg-white shadow-lg ring-1 ring-black/5 transition focus:outline-hidden data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-100 data-enter:ease-out data-leave:duration-75 data-leave:ease-in"
+            >
+              <div className="py-1">
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                  >
+                    placeholder text
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                  >
+                    placeholder text
+                  </a>
+                </MenuItem>
+                <MenuItem>
+                  <a
+                    href="#"
+                    className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                  >
+                    placeholder text
+                  </a>
+                </MenuItem>
+                <form action="#" method="POST">
+                  <MenuItem>
+                    <button
+                      type="submit"
+                      className="block w-full px-4 py-2 text-left text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
+                    >
+                      placeholder text
+                    </button>
+                  </MenuItem>
+                </form>
+              </div>
+            </MenuItems>
+          </HeadlessMenu>
+          <Button variant="default" className="h-[25px]">
+            Login
+          </Button>
+
+          {/* <div className="hidden md:flex md:gap-4 lg:gap-8">
             <Link href="/">
               <Image
                 src={search_icon}
                 width={25}
                 height={25}
                 alt="search icon"
+                className="cursor-pointer"
               />
             </Link>
             <Link href="/">
@@ -69,7 +143,7 @@ const NavigationBar = () => {
                 alt="profile icon"
               />
             </Link>
-          </div>
+          </div> */}
         </div>
 
         {/* Mobile Navbar */}
