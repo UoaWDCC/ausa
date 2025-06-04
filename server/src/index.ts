@@ -2,6 +2,7 @@ import 'dotenv/config'
 import cors from 'cors'
 import helmet from 'helmet'
 import express, { Express, Request, Response } from 'express'
+
 import { RegisterRoutes } from 'middleware/__generated__/routes'
 
 import * as swaggerJson from './middleware/__generated__/swagger.json'
