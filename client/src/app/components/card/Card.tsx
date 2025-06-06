@@ -1,37 +1,24 @@
 'use client'
-import Image from 'next/image'
-import { motion } from 'motion/react'
-
-import React from 'react';
+import React from 'react'
 
 type CardProps = {
   /** Optional heading text */
-  title?: string;
+  title?: string
   /** Card content */
-  children: React.ReactNode;
+  children: React.ReactNode
   /** Additional Tailwind (or CSS) classes */
-  className?: string;
-};
+  className?: string
+}
 
 const Card: React.FC<CardProps> = ({ title, children, className }) => {
   return (
     <div
-      className={`
-        border-gray-200
-        shadow-sm 
-        p-4
-        rounded-md
-        ${className ?? ''}
-      `}
+      className={`rounded-md border-gray-200 p-4 shadow-sm ${className ?? ''} `}
     >
-      {title && (
-        <h2 className="text-lg font-semibold mb-2">
-          {title}
-        </h2>
-      )}
+      {title && <h2 className="mb-2 text-lg font-semibold">{title}</h2>}
       <div>{children}</div>
     </div>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
