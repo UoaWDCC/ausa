@@ -1,4 +1,3 @@
-
 'use client'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -58,7 +57,6 @@ const Home = () => {
   }
 
   return (
-
     <div className="overflow-hidden bg-white">
       {/* Info Expanding Section */}
       <div className="flex h-[58vh] flex-row bg-[#FAF7F2]">
@@ -90,7 +88,8 @@ const Home = () => {
             </p>{' '}
           </div>
           <p className="font-geist my-4 text-xl text-neutral-500">
-            A safe space for students to explore mental health resources tailored to your needs
+            A safe space for students to explore mental health resources
+            tailored to your needs
           </p>
           <div>
             <Button
@@ -125,7 +124,7 @@ const Home = () => {
                     <div className="mb-6 flex items-center justify-between">
                       <h2 className="text-3xl font-bold">{card.title}</h2>
                       <button
-                        className="text-2xl font-bold cursor-pointer"
+                        className="cursor-pointer text-2xl font-bold"
                         onClick={(e) => {
                           e.stopPropagation()
                           setExpandedIndex(null)
@@ -137,7 +136,7 @@ const Home = () => {
                     <p className="text-lg">{card.content}</p>
                   </>
                 ) : (
-                  <p className="mr-8 mt-30 origin-bottom-right rotate-90 text-lg font-semibold">
+                  <p className="mt-30 mr-8 origin-bottom-right rotate-90 text-lg font-semibold">
                     {card.title}
                   </p>
                 )}
@@ -146,7 +145,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-      <div className="absolute border-r-[8vw] border-r-transparent border-t-[6vw] border-t-[#FAF7F2]"></div>
+      <div className="absolute border-t-[6vw] border-r-[8vw] border-t-[#FAF7F2] border-r-transparent"></div>
 
       <div className="m-4 flex flex-col xl:hidden">
         <Accordion type="single" collapsible className="w-full p-[4em]">
@@ -185,36 +184,37 @@ const Home = () => {
           <AccordionItem value="item-5"></AccordionItem>
         </Accordion>
 
-    <div className="">
-      {/* The parabola Background */}
-      <div className="translate-y-[-0px]">
-        <div className="absolute inset-0 bottom-0 z-0">
-          <Practice />
-        </div>
-
-        <div className="relative z-10 px-4 pt-100">
-          <Carousel>
-            {/* Spaces next and previous button to top right */}
-            <div className="mb-4 flex justify-end space-x-2">
-              <CarouselPrevious className="static translate-x-0 translate-y-0 rotate-0" />
-              <CarouselNext className="static translate-x-0 translate-y-0 rotate-0" />
+        <div className="">
+          {/* The parabola Background */}
+          <div className="translate-y-[-0px]">
+            <div className="absolute inset-0 bottom-0 z-0">
+              <Practice />
             </div>
 
-            {/* Carousel content with responsive item sizes */}
-            <CarouselContent>
-              <CarouselItem>slide #1</CarouselItem>
-              <CarouselItem>slide #2</CarouselItem>
-              <CarouselItem>slide #3</CarouselItem>
-              <CarouselItem>slide #4</CarouselItem>
-              <CarouselItem>slide #5</CarouselItem>
-              <CarouselItem>slide #6</CarouselItem>
-            </CarouselContent>
-          </Carousel>
+            <div className="relative z-10 px-4 pt-100">
+              <Carousel>
+                {/* Spaces next and previous button to top right */}
+                <div className="mb-4 flex justify-end space-x-2">
+                  <CarouselPrevious className="static translate-x-0 translate-y-0 rotate-0" />
+                  <CarouselNext className="static translate-x-0 translate-y-0 rotate-0" />
+                </div>
+
+                {/* Carousel content with responsive item sizes */}
+                <CarouselContent>
+                  <CarouselItem>slide #1</CarouselItem>
+                  <CarouselItem>slide #2</CarouselItem>
+                  <CarouselItem>slide #3</CarouselItem>
+                  <CarouselItem>slide #4</CarouselItem>
+                  <CarouselItem>slide #5</CarouselItem>
+                  <CarouselItem>slide #6</CarouselItem>
+                </CarouselContent>
+              </Carousel>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   )
-  return <div className="m-4 flex gap-2"></div>
 }
 
 export default Home
