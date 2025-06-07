@@ -42,6 +42,7 @@ nvm install
 | Gavin Ding               | Developer       | [Gavinzld](https://github.com/Gavinzld)     |
 | Logan Bellingham         | Developer       | [ganznz](https://github.com/ganznz)       |
 | Vincent Walker           | Developer       | [basicallycommits](https://github.com/basicallycommits)|
+| Nicky Tian               | Developer       | [Nicky8566](https://github.com/Nicky8566)|
 
 ## Our Plan 📋
 
@@ -55,6 +56,10 @@ AUSA's pre-existing website has A LOT of information that is not properly organi
 - Implement a "buddy system" that allows friending and messaging functionality
 
 ## local testing 
-```yarn dev-client```bash
+```bash
+yarn dev-client
+```
 
-```yarn dev-server```bash
+```bash
+yarn dev-server
+```
