@@ -41,5 +41,9 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.11.24",
     "typescript": "^5.3.3"
+  },
+  "volta": {
+    "node": "22.14.0",
+    "yarn": "4.9.1"
   }
 }
