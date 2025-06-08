@@ -95,7 +95,7 @@ jobs:
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Check formatting
-        run: yarn prettier:ci
+        run: yarn format:ci
 
   lint:
     needs: [check_changes, setup]
@@ -125,7 +125,7 @@ jobs:
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
       - name: Run linting
-        run: yarn lint-all
+        run: yarn lint:ci
 
   codegen:
     needs: [check_changes, setup]
