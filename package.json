@@ -7,11 +7,11 @@
     "server"
   ],
   "scripts": {
-    "lint": "eslint",
-    "lint-and-fix": "eslint . --fix",
-    "lint-all": "eslint .",
-    "prettier": "prettier . --write",
-    "prettier:ci": "prettier . --check",
+    "l": "yarn format && yarn lint",
+    "lint": "eslint . --fix",
+    "lint:ci": "eslint .",
+    "format": "prettier . --write",
+    "format:ci": "prettier . --check",
     "dev-client": "yarn workspace client dev",
     "dev-server": "yarn workspace server start",
     "storybook": "yarn workspace client storybook",
