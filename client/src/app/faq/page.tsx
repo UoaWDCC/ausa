@@ -1,3 +1,10 @@
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from '@/shadcn_components/ui/accordion'
+
 const Banner = () => {
   return <div className="border border-yellow-300 p-4"></div>
 }
@@ -39,9 +46,33 @@ const FAQ = () => {
           </div>
         </div>
         <div
-          className="border md:col-span-2 lg:col-span-3"
+          className="flex flex-col gap-8 border p-10 text-[#2D3B4E] md:col-span-2 lg:col-span-3"
           id="section-right"
-        ></div>
+        >
+          <h1 className="text-3xl font-semibold">Frequently Asked Questions</h1>
+          <h2 className="text-xl font-semibold">University Support</h2>
+          <div className="border p-4">
+            <Accordion type="single" collapsible className="w-full">
+              <AccordionItem value="item-1">
+                <AccordionTrigger>1</AccordionTrigger>
+                <AccordionContent></AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-2">
+                <AccordionTrigger>2</AccordionTrigger>
+                <AccordionContent></AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-3">
+                <AccordionTrigger>3</AccordionTrigger>
+                <AccordionContent></AccordionContent>
+              </AccordionItem>{' '}
+              <AccordionItem value="item-4">
+                <AccordionTrigger>4</AccordionTrigger>
+                <AccordionContent></AccordionContent>
+              </AccordionItem>
+              <AccordionItem value="item-5"></AccordionItem>
+            </Accordion>
+          </div>
+        </div>
       </div>
       <Banner />
     </div>
