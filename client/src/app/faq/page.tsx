@@ -11,17 +11,17 @@ const FAQ = () => {
           id="section-left"
         >
           <h1 className="flex justify-center">How Can We Help?</h1>
-          <div className="border">
+          <div className="flex flex-col gap-2 border">
             <h2>University Support</h2>
-            <ul>
-              <li></li>
-              <li></li>
-              <li></li>
+            <ul className="ml-4 list-disc">
+              <li>Campus Care</li>
+              <li>General Wellbeing Support</li>
+              <li>Privacy Concerns</li>
             </ul>
           </div>
           <div className="border">
             <h2>External Supoort</h2>
-            <ul>
+            <ul className="ml-4 list-disc">
               <li></li>
               <li></li>
               <li></li>
@@ -29,7 +29,7 @@ const FAQ = () => {
           </div>
           <div className="border">
             <h2>Emergency Support</h2>
-            <ul>
+            <ul className="ml-4 list-disc">
               <li></li>
               <li></li>
               <li></li>
