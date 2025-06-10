@@ -6,13 +6,13 @@ import {
 } from '@/shadcn_components/ui/accordion'
 
 const Banner = () => {
-  return <div className="border border-yellow-300 p-4"></div>
+  return <div className="bg-[#FFDE91] p-6"></div>
 }
 
 const FAQ = () => {
   return (
-    <div className="mt-[70px] flex flex-col">
-      <div className="font-geist flex h-[600px] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-[70px] flex min-h-[100vh] flex-col">
+      <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
         <div
           className="col-span-1 flex flex-col justify-center gap-4 bg-[#5A9B8C] p-8 text-white"
           id="section-left"
@@ -46,27 +46,27 @@ const FAQ = () => {
           </div>
         </div>
         <div
-          className="flex flex-col gap-8 border p-10 text-[#2D3B4E] md:col-span-2 lg:col-span-3"
+          className="flex flex-col gap-8 border bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
           id="section-right"
         >
-          <h1 className="text-3xl font-semibold">Frequently Asked Questions</h1>
-          <h2 className="text-xl font-semibold">University Support</h2>
-          <div className="border p-4">
+          <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
+          <h2 className="text-2xl font-semibold">University Support</h2>
+          <div className="">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
-                <AccordionTrigger>1</AccordionTrigger>
+                <AccordionTrigger>Campus Care</AccordionTrigger>
                 <AccordionContent></AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-2">
-                <AccordionTrigger>2</AccordionTrigger>
+                <AccordionTrigger>General Wellbeing Support</AccordionTrigger>
                 <AccordionContent></AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-3">
-                <AccordionTrigger>3</AccordionTrigger>
+                <AccordionTrigger>Privacy Concerns</AccordionTrigger>
                 <AccordionContent></AccordionContent>
               </AccordionItem>{' '}
               <AccordionItem value="item-4">
-                <AccordionTrigger>4</AccordionTrigger>
+                <AccordionTrigger>Quiz Matching</AccordionTrigger>
                 <AccordionContent></AccordionContent>
               </AccordionItem>
               <AccordionItem value="item-5"></AccordionItem>
