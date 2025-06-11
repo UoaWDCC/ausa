@@ -7,24 +7,30 @@ import {
 
 const Banner = () => {
   return (
-    <div className="bg-[#FFDE91] p-6">
+    <div className="bg-[#FFDE91] p-2">
       <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
-        <div className="animate-infinite-scrolling flex w-full flex-none gap-8 transition-transform">
-          <div className="font-geist flex w-[25%] justify-center gap-4">
-            <div className="flex flex-col justify-center text-2xl">
+        <div className="animate-infinite-scrolling flex w-full flex-none transition-transform">
+          <div className="font-geist flex items-center justify-center">
+            <div className="flex items-center text-base md:text-2xl">
               Support Available 24/7
             </div>
             <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
           </div>{' '}
-        </div>
-        <div className="animate-infinite-scrolling flex w-full flex-none gap-8 transition-transform">
-          {' '}
-          <div className="font-geist flex w-[25%] justify-center gap-4">
-            <div className="flex flex-col justify-center text-2xl">
-              Support Available 24/7
-            </div>
+          <div className="font-geist flex items-center justify-center">
+            <div className="text-base md:text-2xl">Support Available 24/7</div>
             <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
-          </div>
+          </div>{' '}
+        </div>
+        <div className="animate-infinite-scrolling flex w-full flex-none transition-transform">
+          {' '}
+          <div className="font-geist flex items-center justify-center">
+            <div className="text-base md:text-2xl">Support Available 24/7</div>
+            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
+          </div>{' '}
+          <div className="font-geist flex items-center justify-center">
+            <div className="text-base md:text-2xl">Support Available 24/7</div>
+            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
+          </div>{' '}
         </div>
       </div>
     </div>
