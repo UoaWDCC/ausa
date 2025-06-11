@@ -5,17 +5,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from './components/carousel/Carousel'
-import Practice from './components/shapes/Parabola'
-
 const Home = () => {
   return (
     <div className="">
       {/* The parabola Background */}
       <div className="translate-y-[-0px]">
-        <div className="absolute inset-0 bottom-0 z-0">
-          <Practice />
-        </div>
-
         <div className="relative z-10 px-4 pt-100">
           <Carousel>
             {/* Spaces next and previous button to top right */}
