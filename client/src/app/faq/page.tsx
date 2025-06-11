@@ -9,27 +9,21 @@ const Banner = () => {
   return (
     <div className="bg-[#FFDE91] p-2">
       <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
-        <div className="animate-infinite-scrolling flex w-full flex-none transition-transform">
+        <div className="animate-infinite-scrolling flex w-full flex-none gap-4 transition-transform">
           <div className="font-geist flex items-center justify-center">
             <div className="flex items-center text-base md:text-2xl">
               Support Available 24/7
             </div>
-            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
-          </div>{' '}
-          <div className="font-geist flex items-center justify-center">
-            <div className="text-base md:text-2xl">Support Available 24/7</div>
-            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
+            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]"></div>
           </div>{' '}
         </div>
-        <div className="animate-infinite-scrolling flex w-full flex-none transition-transform">
+        <div className="animate-infinite-scrolling flex w-full flex-none gap-2 transition-transform">
           {' '}
           <div className="font-geist flex items-center justify-center">
-            <div className="text-base md:text-2xl">Support Available 24/7</div>
-            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
-          </div>{' '}
-          <div className="font-geist flex items-center justify-center">
-            <div className="text-base md:text-2xl">Support Available 24/7</div>
-            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
+            <div className="flex items-center text-base md:text-2xl">
+              Support Available 24/7
+            </div>
+            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]"></div>
           </div>{' '}
         </div>
       </div>
