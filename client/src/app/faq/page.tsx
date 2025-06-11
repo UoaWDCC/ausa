@@ -4,23 +4,26 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/shadcn_components/ui/accordion'
-import image from '../assets/icons/logo.svg'
-import Image from 'next/image'
+
 const Banner = () => {
   return (
     <div className="bg-[#FFDE91] p-6">
       <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
         <div className="animate-infinite-scrolling flex w-full flex-none gap-8 transition-transform">
-          <div>
-            <h1>Support Available 24/7</h1>
-            <Image src={image} alt="ausa" />
-          </div>
+          <div className="font-geist flex w-[25%] justify-center gap-4">
+            <div className="flex flex-col justify-center text-2xl">
+              Support Available 24/7
+            </div>
+            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
+          </div>{' '}
         </div>
         <div className="animate-infinite-scrolling flex w-full flex-none gap-8 transition-transform">
           {' '}
-          <div>
-            <h1>Support Available 24/7</h1>
-            <Image src={image} alt="ausa" />
+          <div className="font-geist flex w-[25%] justify-center gap-4">
+            <div className="flex flex-col justify-center text-2xl">
+              Support Available 24/7
+            </div>
+            <div className="h-[30px] w-[30px] rounded-full bg-[#5A9B8C]"></div>
           </div>
         </div>
       </div>
