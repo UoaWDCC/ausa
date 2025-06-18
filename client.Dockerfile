@@ -37,4 +37,4 @@ COPY --from=builder /app/client/.next/static ./.next/static
 # If there is no public, make sure to run: mkdir -p public/.gitkeep
 COPY --from=builder /app/client/public ./public
 EXPOSE 3000
-CMD [ "yarn", "workspace", "server", "serve" ]
+CMD ["node", "server.js"]
