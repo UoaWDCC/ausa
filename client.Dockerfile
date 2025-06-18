@@ -37,6 +37,6 @@ WORKDIR /app
 COPY --from=builder /app/client/.next/standalone ./
 COPY --from=builder /app/client/.next/static ./client/.next/static
 COPY --from=builder /app/client/public ./client/public
-RUN ls client
+
 EXPOSE 3000
-CMD ["node", "client/server.js"]
+CMD ["node", "./client/server.js"]
