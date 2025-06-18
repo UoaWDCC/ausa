@@ -7,7 +7,7 @@ app = 'ausa-api'
 primary_region = 'syd'
 
 [build]
-dockerfile = "server.Dockerfile"
+dockerfile = "Dockerfile"
 
 [http_service]
 internal_port = 3000
