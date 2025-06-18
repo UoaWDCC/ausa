@@ -34,7 +34,7 @@ RUN yarn workspace client build
 FROM base AS runner
 COPY --from=builder /app/client/.next/standalone ./
 COPY --from=builder /app/client/.next/static ./.next/static
-# If there is no public, make sure to run: mkdir -p public/.gitkeep
+RUN mkdir -p /app/client/public
 COPY --from=builder /app/client/public ./public
 EXPOSE 3000
 CMD ["node", "server.js"]
