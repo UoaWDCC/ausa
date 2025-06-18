@@ -21,6 +21,7 @@ RUN volta install node
 FROM base as install
 COPY --link ./package.json ./yarn.lock ./.yarnrc.yml ./tsconfig.json ./
 COPY --link ./server/package.json ./server/package.json
+COPY --link ./server/tsconfig.prod.json ./server/tsconfig.prod.json
 RUN yarn workspaces focus server
 
 # Step 3: Build and serve
