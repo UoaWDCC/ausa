@@ -19,19 +19,11 @@ RUN volta install node
 
 # Step 2: Install packages
 FROM base as install
-# Install node modules
 COPY --link ../package.json ../yarn.lock ../.yarnrc.yml ../tsconfig.json ./
-COPY --link ./ ./server
 RUN yarn workspaces focus server
 
-# Step 3: Serve server
-FROM base as build
-COPY --from=install /app /app
-
+# Step 3: Build and serve
+COPY --link ./ ./server
 RUN yarn workspace server build
-
-# Final stage for app image
-FROM base
-COPY --from=build /app /app
 EXPOSE 8000
 CMD [ "yarn", "workspace", "server", "serve" ]
