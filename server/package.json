@@ -6,7 +6,7 @@
   "scripts": {
     "start": "concurrently \"yarn nodemon -e ts,js --exec \" \"yarn tsoa spec-and-routes\"",
     "nodemon": "nodemon",
-    "build": "tsc -p ./tsconfig.json && tsc-alias",
+    "build": "tsc -p ./tsconfig.prod.json && tsc-alias",
     "serve": "node --es-module-specifier-resolution=node dist/index.js"
   },
   "dependencies": {
