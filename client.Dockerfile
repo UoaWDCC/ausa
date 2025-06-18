@@ -1,5 +1,5 @@
 # syntax = docker/dockerfile:1
-FROM debian:stable-slim as base
+FROM debian:stable-slim AS base
 
 LABEL fly_launch_runtime="Node.js"
 
@@ -20,17 +20,21 @@ RUN curl https://get.volta.sh | bash
 RUN volta install node
 
 # Step 2: Install packages
-FROM base as install
+FROM base AS install
 COPY --link package.json yarn.lock .yarnrc.yml tsconfig.json ./
-COPY --link ./server ./server
-RUN yarn workspaces focus server
+COPY --link ./client ./client
+RUN yarn workspaces focus client
 
-# Step 3: Build and serve
-FROM base as build
+# Step 3: Build the application
+FROM base AS builder
 COPY --from=install /app /app
-RUN yarn workspace server build
+RUN yarn workspace client build
 
-FROM base
-COPY --from=build /app /app
-EXPOSE 8000
+# Stage 3: Production server
+FROM base AS runner
+COPY --from=builder /app/client/.next/standalone ./
+COPY --from=builder /app/client/.next/static ./.next/static
+# If there is no public, make sure to run: mkdir -p public/.gitkeep
+COPY --from=builder /app/client/public ./public
+EXPOSE 3000
 CMD [ "yarn", "workspace", "server", "serve" ]
