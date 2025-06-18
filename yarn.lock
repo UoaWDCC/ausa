@@ -11315,7 +11315,6 @@ __metadata:
   resolution: "project_ausa@workspace:."
   dependencies:
     "@eslint/eslintrc": "npm:^3.2.0"
-    "@types/jest": "npm:^29.5.12"
     "@types/node": "npm:^20"
     "@typescript-eslint/eslint-plugin": "npm:^7.1.0"
     "@typescript-eslint/parser": "npm:^7.1.0"
