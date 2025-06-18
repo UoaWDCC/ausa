@@ -28,13 +28,13 @@ RUN yarn workspaces focus client
 # Step 3: Build the application
 FROM base AS builder
 COPY --from=install /app /app
+RUN mkdir -p /app/client/public
 RUN yarn workspace client build
 
 # Stage 3: Production server
 FROM base AS runner
 COPY --from=builder /app/client/.next/standalone ./
 COPY --from=builder /app/client/.next/static ./.next/static
-RUN mkdir -p /app/client/public
 COPY --from=builder /app/client/public ./public
 EXPOSE 3000
 CMD ["node", "server.js"]
