@@ -2,9 +2,12 @@ name: CI Pipeline
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
   pull_request:
-    branches: [main]
+    branches:
+      - main
+  workflow_dispatch:
 
 env:
   CI: 'true'
@@ -41,28 +44,44 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Install yarn
-        run: corepack enable yarn
-
-      - name: Install deps
-        run: yarn
-
-      # Cache the node_modules directory
       - name: Cache node_modules
         uses: actions/cache@v4
         id: cache-node-modules
         with:
           path: |
-            .yarn/cache
-            node_modules
             server/node_modules
             client/node_modules
+            node_modules
+            .yarn/cache
           key: node-modules-${{ hashFiles('yarn.lock') }}
+          lookup-only: true
+
+      - name: Setup Node.js if cache missed
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: '.nvmrc'
+
+      - name: Install yarn if cache missed
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: corepack enable yarn
+
+      - name: Restore modules if cache missed
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        uses: actions/cache@v4
+        with:
+          path: |
+            server/node_modules
+            client/node_modules
+            node_modules
+            .yarn/cache
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            node-modules-
+
+      - name: Install dependencies if cache missed
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
 
   style:
     needs: [check_changes, setup]
@@ -83,6 +102,7 @@ jobs:
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
+        id: cache-node-modules
         with:
           path: |
             .yarn/cache
@@ -91,8 +111,12 @@ jobs:
             client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
+      - name: Install dependencies if cache misses
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
+
       - name: Check formatting
-        run: yarn prettier:ci
+        run: yarn format:ci
 
   lint:
     needs: [check_changes, setup]
@@ -113,6 +137,7 @@ jobs:
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
+        id: cache-node-modules
         with:
           path: |
             .yarn/cache
@@ -121,8 +146,12 @@ jobs:
             client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
 
+      - name: Install dependencies if cache misses
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
+
       - name: Run linting
-        run: yarn lint-all
+        run: yarn lint:ci
 
   codegen:
     needs: [check_changes, setup]
@@ -143,6 +172,7 @@ jobs:
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
+        id: cache-node-modules
         with:
           path: |
             .yarn/cache
@@ -150,6 +180,10 @@ jobs:
             server/node_modules
             client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies if cache misses
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
 
       - name: Generate typing
         run: yarn workspace server tsoa spec-and-routes
@@ -188,6 +222,7 @@ jobs:
       # Restore cached node_modules
       - name: Restore node_modules
         uses: actions/cache@v4
+        id: cache-node-modules
         with:
           path: |
             .yarn/cache
@@ -195,6 +230,10 @@ jobs:
             server/node_modules
             client/node_modules
           key: node-modules-${{ hashFiles('yarn.lock') }}
+
+      - name: Install dependencies if cache misses
+        if: steps.cache-node-modules.outputs.cache-hit != 'true'
+        run: yarn
 
       - name: Build
         run: yarn build

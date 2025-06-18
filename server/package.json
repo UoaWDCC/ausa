@@ -6,19 +6,23 @@
   "scripts": {
     "start": "concurrently \"yarn nodemon -e ts,js --exec \" \"yarn tsoa spec-and-routes\"",
     "nodemon": "nodemon",
-    "build": "tsc -p ./tsconfig.json && tsc-alias",
+    "build": "tsc -p ./tsconfig.prod.json && tsc-alias",
     "serve": "node --es-module-specifier-resolution=node dist/index.js"
   },
   "dependencies": {
     "@tsoa/runtime": "^6.6.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
     "express": "^5.1.0",
+    "firebase": "^11.8.1",
+    "firebase-admin": "^13.4.0",
     "helmet": "^8.1.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
     "tsoa": "^6.6.0"
   },
   "devDependencies": {
+    "@flydotio/dockerfile": "^0.7.10",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.1",
     "@types/node": "^22.15.2",
@@ -27,6 +31,6 @@
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
     "tsc-alias": "^1.8.15",
-    "typescript": "^5.8.3"
+    "typescript": "^5.3.3"
   }
 }

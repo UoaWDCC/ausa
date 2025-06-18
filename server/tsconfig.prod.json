@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "types": ["node"]
+  },
+  "extends": "./tsconfig.json",
+  "exclude": ["**/*.test.ts", "**/*.mock.ts", "**/*.setup.ts"]
+}
