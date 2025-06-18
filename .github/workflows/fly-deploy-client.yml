@@ -20,7 +20,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only --config fly.client.toml
+      - run: flyctl deploy --remote-only --config client/fly.client.toml
 
   finalize-deployment:
     name: Finalize Deployment

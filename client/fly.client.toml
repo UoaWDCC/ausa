@@ -7,7 +7,7 @@ app = 'ausa'
 primary_region = 'syd'
 
 [build]
-dockerfile = "client.Dockerfile"
+dockerfile = "Dockerfile"
 
 [http_service]
 internal_port = 3000
