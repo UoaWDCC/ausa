@@ -24,12 +24,13 @@ FROM base as install
 COPY --link package.json yarn.lock .yarnrc.yml tsconfig.json ./
 COPY --link ./server ./server
 RUN yarn workspaces focus server
+
+FROM base as build
+COPY --from=install /app /app
+
 RUN yarn workspace server build
 
-# Final stage for app image
 FROM base
-
-# Copy built application
 COPY --from=build /app /app
 EXPOSE 8000
 CMD [ "yarn", "workspace", "server", "serve" ]
