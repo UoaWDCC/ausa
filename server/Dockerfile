@@ -23,11 +23,10 @@ FROM base as install
 COPY --link ../package.json ../yarn.lock ../.yarnrc.yml ../tsconfig.json ./
 COPY --link ./package.json ./server/package.json
 RUN yarn workspaces focus server
-
+COPY --link ./ ./server
 
 # Step 3: Serve server
 FROM base as build
-COPY --link ../server ./server
 COPY --from=install /app /app
 
 RUN yarn workspace server build
