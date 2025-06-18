@@ -1,6 +1,8 @@
 # syntax = docker/dockerfile:1
 FROM debian:stable-slim as base
+
 LABEL fly_launch_runtime="Node.js"
+
 WORKDIR /app
 
 # Step 1: Install volta to setup Nodejs
@@ -19,13 +21,19 @@ RUN volta install node
 
 # Step 2: Install packages
 FROM base as install
-COPY --link ./package.json ./yarn.lock ./.yarnrc.yml ./tsconfig.json ./
-COPY --link ./server/package.json ./server/package.json
-COPY --link ./server/tsconfig.prod.json ./server/tsconfig.prod.json
+COPY --link package.json yarn.lock .yarnrc.yml tsconfig.json ./
+COPY --link ./server ./server
 RUN yarn workspaces focus server
 
-# Step 3: Build and serve
-COPY --link ./server ./server
+FROM base as build
+COPY --from=install /app /app
+
 RUN yarn workspace server build
+
+# Final stage for app image
+FROM base
+
+# Copy built application
+COPY --from=build /app /app
 EXPOSE 8000
 CMD [ "yarn", "workspace", "server", "serve" ]
