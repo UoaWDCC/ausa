@@ -35,9 +35,9 @@ RUN yarn workspace client build
 FROM base AS runner
 WORKDIR /app
 COPY --from=builder /app/client/.next/standalone ./
-COPY --from=builder /app/client/.next/static ./.next/static
-COPY --from=builder /app/client/public ./public
+COPY --from=builder /app/client/.next/static ./client/.next/static
+COPY --from=builder /app/client/public ./client/public
 RUN ls ./
 RUN ls ./.next
 EXPOSE 3000
-CMD ["node", "server.js"]
+CMD ["node", "client/server.js"]
