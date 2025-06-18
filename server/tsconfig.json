@@ -1,28 +1,21 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "composite": true,
-    "incremental": true,
+    "target": "es6",
+    "module": "CommonJS",
     "outDir": "./dist",
     "baseUrl": "src",
-    "moduleResolution": "Node",
-    "module": "CommonJS",
-    "target": "es6",
-    "sourceMap": true,
     "lib": ["ES2021"],
-    "esModuleInterop": true,
-    "alwaysStrict": true,
-    "noImplicitAny": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noUnusedLocals": true,
-    "resolveJsonModule": true,
-    "types": ["node"],
     "strict": true,
+    "esModuleInterop": true,
+    "strictNullChecks": false,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
+    "types": ["jest"],
     "experimentalDecorators": true,
-    "strictNullChecks": false // Hey this should probably be set to true eventually - having null checks is always a good idea
+    "moduleResolution": "Node",
+    "resolveJsonModule": true
   },
-  "include": ["src/**/*", "src/middleware/__generated__/swagger.json"],
-  "exclude": ["node_modules", "dist", "*.d.ts"]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

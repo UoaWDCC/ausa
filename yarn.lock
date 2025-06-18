@@ -6223,7 +6223,7 @@ __metadata:
     tailwind-merge: "npm:^3.3.0"
     tailwindcss: "npm:^4.1.8"
     tw-animate-css: "npm:^1.2.9"
-    typescript: "npm:^5.3.3"
+    typescript: "npm:^5.8.3"
   languageName: unknown
   linkType: soft
 
@@ -11333,6 +11333,7 @@ __metadata:
     globals: "npm:^16.0.0"
     prettier: "npm:3.5.3"
     prettier-plugin-tailwindcss: "npm:^0.6.11"
+    typescript: "npm:5.8.3"
     typescript-eslint: "npm:^8.30.1"
   languageName: unknown
   linkType: soft
@@ -13112,7 +13113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^5.3.3, typescript@npm:^5.7.2, typescript@npm:^5.8.3":
+"typescript@npm:5.8.3, typescript@npm:^5.7.2, typescript@npm:^5.8.3":
   version: 5.8.3
   resolution: "typescript@npm:5.8.3"
   bin:
@@ -13122,7 +13123,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@npm%3A^5.3.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
+"typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.7.2#optional!builtin<compat/typescript>, typescript@patch:typescript@npm%3A^5.8.3#optional!builtin<compat/typescript>":
   version: 5.8.3
   resolution: "typescript@patch:typescript@npm%3A5.8.3#optional!builtin<compat/typescript>::version=5.8.3&hash=5786d5"
   bin:

@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
-    "composite": true,
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": false,
     "skipLibCheck": true,
     "strict": true,
+    "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
     "moduleResolution": "bundler",
@@ -34,7 +34,6 @@
   "include": [
     "svgr.d.ts",
     "next-env.d.ts",
-    "**/*.js",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
