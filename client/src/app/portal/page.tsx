@@ -1,12 +1,14 @@
 import Link from 'next/link'
 const Portal = () => {
   return (
-    <div>
+    <div className="flex flex-col items-center">
       Portal
       <Link href="/quiz">
         <button>quiz</button>
       </Link>
-      <button>faq</button>
+      <Link href="/faq">
+        <button>faq</button>
+      </Link>
     </div>
   )
 }
