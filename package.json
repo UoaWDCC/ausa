@@ -16,7 +16,7 @@
     "dev-client": "yarn workspace client dev",
     "dev-server": "yarn workspace server start",
     "storybook": "yarn workspace client storybook",
-    "vsc-setup": "code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code install-extension bradlc.vscode-tailwindcss",
+    "vsc-setup": "code install-extension bradlc.vscode-tailwindcss",
     "build": "yarn workspace client build && yarn workspace server build"
   },
   "devDependencies": {
