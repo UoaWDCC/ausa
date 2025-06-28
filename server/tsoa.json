@@ -18,6 +18,6 @@
   },
   "routes": {
     "routesDir": "src/middleware/__generated__",
-    "authenticationModule": "src/business-layer/authentication.ts"
+    "authenticationModule": "src/business-layer/security/Authentication.ts"
   }
 }
