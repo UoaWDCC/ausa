@@ -34,8 +34,8 @@ export class ExternalResourceController extends Controller {
       return { data: res }
     } catch (error) {
       console.error('Error retrieving external resource:', error)
-      this.setStatus(500) // Internal Server Error
-      return { error: 'Failed to retrieve External Resource' }
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      return { error: 'Failed to retrieve external resource' }
     }
   }
 }

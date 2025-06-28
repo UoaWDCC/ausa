@@ -119,7 +119,10 @@ export class AdminUserController extends Controller {
   public async deleteUser(@Path() id: string): Promise<CommonResponse> {
     try {
       const user = await UserDataService.getUserById(id)
-      if (!user) this.setStatus(StatusCodes.NOT_FOUND)
+      if (!user) {
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'User not found' }
+      }
       await UserDataService.deleteUser(id)
       this.setStatus(StatusCodes.NO_CONTENT)
       return {}
