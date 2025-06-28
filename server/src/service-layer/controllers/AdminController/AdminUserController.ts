@@ -42,7 +42,7 @@ export class AdminUserController extends Controller {
         return { error: 'User already exists' }
       }
       await UserDataService.createUser(userData.id, userData.user)
-      this.setStatus(StatusCodes.OK)
+      this.setStatus(StatusCodes.CREATED)
       return {}
     } catch (error) {
       console.error('Error creating user:', error)
@@ -80,6 +80,10 @@ export class AdminUserController extends Controller {
   public async getUser(@Path() id: string): Promise<GetUserResponse> {
     try {
       const user = await UserDataService.getUserById(id)
+      if (!user) {
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'User not found' }
+      }
       return { data: user }
     } catch (error) {
       console.error('Error retrieving user:', error)
@@ -96,7 +100,10 @@ export class AdminUserController extends Controller {
   ): Promise<CommonResponse> {
     try {
       const user = await UserDataService.getUserById(id)
-      if (!user) this.setStatus(StatusCodes.NOT_FOUND)
+      if (!user) {
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'User not found' }
+      }
       await UserDataService.updateUserData(id, updateUserBody.user)
       this.setStatus(StatusCodes.OK)
       return {}
