@@ -55,7 +55,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
                 width={config.logo.width}
                 height={config.logo.height}
                 alt={config.logo.alt}
-                className="h-8 sm:h-10 w-auto drop-shadow-lg transition-transform duration-200 hover:scale-105"
+                className="drop-shadow-lg transition-transform duration-200 hover:scale-105"
                 priority
               />
             </Link>
@@ -79,9 +79,9 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
           <div className="flex items-center gap-2 sm:gap-3">
             {/* Search - Show on larger screens */}
             {config.showSearch && (
-              <div className="hidden lg:block">
+              <span className="hidden lg:flex items-center">
                 <NavSearch />
-              </div>
+              </span>
             )}
 
             {/* Action Buttons - Adaptive sizing */}
@@ -91,7 +91,6 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
                   key={`action-${button.href}-${index}`}
                   asChild
                   variant="default"
-                  size="sm"
                   className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
                 >
                   <Link

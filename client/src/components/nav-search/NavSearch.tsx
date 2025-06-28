@@ -16,6 +16,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { navSearchHandler } from '@/lib/navSearchHandler'
 import { NavSearchCard } from '../navSearchCard/navSearchCard'
+import { Button } from '@/components/ui/button'
 
 export interface PageInfo {
   title: string
@@ -129,16 +130,15 @@ const NavSearch: React.FC = () => {
   }
 
   return (
-    <div>
       <Dialog open={open} onOpenChange={handleToggle}>
         <DialogTrigger>
-          <button
-            type="button"
-            className="group cursor-pointer relative flex h-9 w-48 items-center gap-3 rounded-sm border border-slate-50/50 bg-slate-800/50 px-3 py-2 text-sm text-slate-50 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-slate-50 hover:bg-slate-800/70 hover:text-slate-300 focus:border-purple-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+          <Button
+            variant="outline"
+            className="group cursor-pointer relative flex w-48 items-center gap-3  bg-slate-800/50 px-3 shadow-sm backdrop-blur-sm transition-all duration-200  hover:bg-slate-800/70 hover:text-slate-300 focus:border-purple-800 focus:ring-2 focus:ring-blue-500/20"
           >
             <MdOutlineSearch className="h-4 w-4 flex-shrink-0" />
             <span className="flex-1 text-left">{SEARCH_PLACEHOLDER}</span>
-          </button>
+          </Button>
         </DialogTrigger>
         <DialogContent>
           <DialogHeader>
@@ -163,7 +163,6 @@ const NavSearch: React.FC = () => {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
   )
 }
 
