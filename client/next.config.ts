@@ -10,6 +10,17 @@ const nextConfig: NextConfig = {
     return config
   },
   /* config options here */
+  images: {
+    // TODO: remove
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '**',
+      },
+    ],
+  },
 }
 
 export default nextConfig
