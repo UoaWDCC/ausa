@@ -262,7 +262,7 @@
 			"post": {
 				"operationId": "CreateUser",
 				"responses": {
-					"200": {
+					"201": {
 						"description": "Successfully created user",
 						"content": {
 							"application/json": {
@@ -400,7 +400,7 @@
 			"delete": {
 				"operationId": "DeleteUser",
 				"responses": {
-					"200": {
+					"204": {
 						"description": "Successfully deleted user",
 						"content": {
 							"application/json": {
