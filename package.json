@@ -7,11 +7,12 @@
     "server"
   ],
   "scripts": {
-    "l": "yarn format && yarn lint",
-    "lint": "eslint . --fix",
-    "lint:ci": "eslint .",
-    "format": "prettier . --write",
-    "format:ci": "prettier . --check",
+    "lint": "biome lint",
+    "lint:fix": "biome lint . --fix",
+    "lint:ci": "biome lint .",
+    "format": "biome format",
+    "format:fix": "biome format . --write",
+    "format:ci": "biome format .",
     "dev-client": "yarn workspace client dev",
     "dev-server": "yarn workspace server start",
     "storybook": "yarn workspace client storybook",
