@@ -1,4 +1,4 @@
-import type { pageInfo } from '@/app/components/navSearch/navSearch'
+import type { pageInfo } from '@/components/navSearch/navSearch'
 import type { ExternalResource, Faq } from '@/types/types'
 
 export async function navSearchHandler(pages: pageInfo[]): Promise<pageInfo[]> {

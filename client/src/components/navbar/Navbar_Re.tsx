@@ -3,7 +3,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
-import logo from '../../assets/icons/logo.svg'
+import logo from '../../app/assets/icons/logo.svg'
 
 const NavbarRe = () => {
   const [open, setOpen] = useState(false)
@@ -11,13 +11,13 @@ const NavbarRe = () => {
   return (
     <nav className="fixed top-0 left-0 z-50 w-full bg-white p-4 shadow-md">
       <div className="mx-auto flex max-w-7xl items-center justify-between py-4">
-        <Link href="/" className="">
+        <Link href="/client/public" className="">
           <div>AUSA LOGO</div>
         </Link>
         {/* Desktop Navbar */}
         <div className="ml-auto hidden items-center md:flex md:gap-8 lg:gap-12">
           <Link
-            href="/"
+            href="/client/public"
             className="text-gray-700 transition hover:text-violet-500 dark:text-gray-300"
           >
             Home
@@ -74,25 +74,25 @@ const NavbarRe = () => {
         {/* Nav Links */}
         <nav className="font-size: 0.75rem; flex flex-col gap-4">
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             STUDENT EXPERIENCE
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             STUDENT VOICE
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             YOUR AUSA
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             STUDENT SUPPORT

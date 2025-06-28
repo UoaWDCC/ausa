@@ -10,7 +10,7 @@ import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import logo from '../../assets/icons/logo.svg'
+import logo from '../../app/assets/icons/logo.svg'
 import { Button } from '../button/Button'
 import { NavLink } from '../navLink/navLink'
 import NavSearch from '../navSearch/navSearch'
@@ -61,8 +61,8 @@ const NavigationBar = () => {
         {/* navbar links */}
         <div className="hidden text-white md:flex md:gap-4 lg:gap-8">
           <NavSearch />
-          <NavLink href="/" text="Home" />
-          <NavLink href="/" text="Support" />
+          <NavLink href="/client/public" text="Home" />
+          <NavLink href="/client/public" text="Support" />
           <NavLink href="/faq" text="FAQs" />
           {/* <NavLink href="/contact" text="Contacts" /> */}
           {/* contacts drop down */}
@@ -84,7 +84,7 @@ const NavigationBar = () => {
               <div className="py-1">
                 <MenuItem>
                   <a
-                    href="/"
+                    href="/client/public"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                   >
                     placeholder text
@@ -92,7 +92,7 @@ const NavigationBar = () => {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="/"
+                    href="/client/public"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                   >
                     placeholder text
@@ -100,7 +100,7 @@ const NavigationBar = () => {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="/"
+                    href="/client/public"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                   >
                     placeholder text
@@ -178,25 +178,25 @@ const NavigationBar = () => {
         {/* Nav Links */}
         <nav className="font-size: 0.75rem; flex flex-col gap-4">
           <Link
-            href="/"
+            href="/client/public"
             className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             STUDENT EXPERIENCE
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             STUDENT VOICE
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             YOUR AUSA
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="border-gray-500 transition duration-300 hover:translate-x-2 hover:border-l-4 hover:pl-2"
           >
             STUDENT SUPPORT

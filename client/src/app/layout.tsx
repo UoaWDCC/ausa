@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
-import Footer from './components/footer/Footer'
-import NavigationBar from './components/navbar/Navbar_final'
+import Footer from '@/components/footer/Footer'
+import NavigationBar from '@/components/navbar/Navbar_final'
 import Image from 'next/image'
 
 export const metadata: Metadata = {

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import profile_icon from '@/app/assets/icons/profile_icon.svg'
 import search_icon from '@/app/assets/icons/search_icon.svg'
-import logo from '../../assets/icons/logo.svg'
+import logo from '../../app/assets/icons/logo.svg'
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
@@ -43,7 +43,7 @@ const Navbar = () => {
           {/* <NavButton href="google.com" label="YOUR AUSA" />
                     <NavButton href="google.com" label="STUDENT SUPPORT" /> */}
           <div className="flex justify-center gap-4 sm:flex-shrink-0 md:ml-4 lg:gap-8">
-            <Link href="/">
+            <Link href="/client/public">
               <Image
                 className=""
                 src={search_icon}
@@ -52,7 +52,7 @@ const Navbar = () => {
                 alt="search icon"
               />
             </Link>
-            <Link href="/">
+            <Link href="/client/public">
               <Image
                 className=""
                 src={profile_icon}
@@ -105,25 +105,25 @@ const Navbar = () => {
         {/* Nav Links */}
         <nav className="font-size: 0.75rem; flex flex-col gap-4">
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             STUDENT EXPERIENCE
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             STUDENT VOICE
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             YOUR AUSA
           </Link>
           <Link
-            href="/"
+            href="/client/public"
             className="transition duration-300 hover:translate-x-2"
           >
             STUDENT SUPPORT
