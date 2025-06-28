@@ -28,7 +28,7 @@ RUN yarn workspaces focus server
 # Step 3: Build and serve
 FROM base as build
 COPY --from=install /app /app
-RUN yarn workspace server build
+RUN yarn build --filter server
 
 FROM base
 COPY --from=build /app /app
