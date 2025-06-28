@@ -10,7 +10,7 @@ import type { NavConfig } from '@/types/navbar.types'
 import { isNavDropdown } from '@/types/navbar.types'
 import { MobileDrawer } from './MobileDrawer'
 import { NavDropdownMenu, NavLinkItem } from './NavItems'
-import NavSearch from '../navSearch/navSearch'
+import NavSearch from '@/components/nav-search/NavSearch'
 
 interface NavigationBarProps {
   config: NavConfig
@@ -38,10 +38,10 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 z-50 w-full transition-all duration-300',
+        'fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-out',
         hasScrolled
-          ? 'bg-purple-900/90 backdrop-blur-md border-b border-white/10 shadow-lg'
-          : 'bg-purple-900/80 backdrop-blur-sm',
+          ? 'bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl shadow-slate-900/25'
+          : 'bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none',
         className,
       )}
     >
