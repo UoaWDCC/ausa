@@ -29,7 +29,7 @@ RUN yarn workspaces focus client
 FROM base AS builder
 COPY --from=install /app /app
 RUN mkdir -p /app/client/public
-RUN yarn build --filter client
+RUN yarn workspace client build
 
 # Stage 3: Production server
 FROM base AS runner
