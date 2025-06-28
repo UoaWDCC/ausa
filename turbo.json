@@ -1,0 +1,13 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "tasks": {
+    "dev": {
+      "persistent": true,
+      "cache": false,
+      "dependsOn": ["generate:types"]
+    },
+    "generate:types": {},
+    "build": {}
+  },
+  "ui": "tui"
+}
