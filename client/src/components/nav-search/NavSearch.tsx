@@ -26,6 +26,8 @@ export interface PageInfo {
 }
 
 // Constants
+const isMac = typeof window !== 'undefined' && window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
+
 const INITIAL_PAGES: PageInfo[] = [
   {
     title: 'Home',
@@ -72,16 +74,15 @@ const NavSearch: React.FC = () => {
       if (event.key === 'Escape') {
         setOpen(false)
       }
-      if (event.ctrlKey && event.key === 'k') {
-        event.preventDefault()
+      // Need to handle mac
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k' && !open) {
         setOpen(true)
       }
     }
 
     window.addEventListener('keydown', handleKeyDown)
     return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [])
-
+  }, [open])
   const handleToggle = () => setOpen(!open)
 
   const filterPages = (value: string): PageInfo[] => {
@@ -130,39 +131,48 @@ const NavSearch: React.FC = () => {
   }
 
   return (
-      <Dialog open={open} onOpenChange={handleToggle}>
-        <DialogTrigger>
-          <Button
-            variant="outline"
-            className="group cursor-pointer relative flex w-48 items-center gap-3  bg-slate-800/50 px-3 shadow-sm backdrop-blur-sm transition-all duration-200  hover:bg-slate-800/70 hover:text-slate-300 focus:border-purple-800 focus:ring-2 focus:ring-blue-500/20"
-          >
-            <MdOutlineSearch className="h-4 w-4 flex-shrink-0" />
-            <span className="flex-1 text-left">{SEARCH_PLACEHOLDER}</span>
-          </Button>
-        </DialogTrigger>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>
-              <p className="mb-4">Search</p>
-            </DialogTitle>
-            <DialogDescription>
-              <div className="flex h-6 items-center space-x-2 z-10">
-                <Input
-                  placeholder={SEARCH_PLACEHOLDER}
-                  value={searchValue}
-                  onChange={handleSearch}
-                />
-                <MdOutlineSearch className="size-2 h-6 w-6 cursor-pointer" />
-              </div>
-            </DialogDescription>
-          </DialogHeader>
-          <DialogFooter>
-            <div className="flex w-full flex-col gap-2 z-10">
-              {renderSearchResults()}
+    <Dialog open={open} onOpenChange={handleToggle}>
+      <DialogTrigger>
+        <Button
+          variant="outline"
+          className="group cursor-pointer relative flex w-48 items-center gap-3  bg-slate-800/50 px-3 shadow-sm backdrop-blur-sm transition-all duration-200  hover:bg-slate-800/70 hover:text-slate-300 focus:border-purple-800 focus:ring-2 focus:ring-blue-500/20"
+        >
+          <MdOutlineSearch className="h-4 w-4 flex-shrink-0" />
+          <span className="flex-1 text-left">{SEARCH_PLACEHOLDER}</span>
+          <div
+            className="pointer-events-none absolute right-3 top-[50%] -translate-y-1/2 select-none items-center gap-1">
+            {/**  Keyboard shortcut hint */}
+            <kbd
+              className="flex items-center gap-1 rounded border border-slate-700 bg-slate-800 px-1.5 font-mono text-[10px] font-medium text-slate-400 opacity-100">
+              <span className="text-xs">{isMac ? '⌘' : 'Ctrl'}</span>
+              <span>K</span>
+            </kbd>
+          </div>
+        </Button>
+      </DialogTrigger>
+      <DialogContent>
+        <DialogHeader>
+          <DialogTitle>
+            <p className="mb-4">Search</p>
+          </DialogTitle>
+          <DialogDescription>
+            <div className="flex h-6 items-center space-x-2 z-10">
+              <Input
+                placeholder={SEARCH_PLACEHOLDER}
+                value={searchValue}
+                onChange={handleSearch}
+              />
+              <MdOutlineSearch className="size-2 h-6 w-6 cursor-pointer" />
             </div>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
+          </DialogDescription>
+        </DialogHeader>
+        <DialogFooter>
+          <div className="flex w-full flex-col gap-2 z-10">
+            {renderSearchResults()}
+          </div>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
   )
 }
 
