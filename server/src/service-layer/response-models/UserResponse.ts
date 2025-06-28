@@ -1,10 +1,10 @@
-import type { UserWithToken } from 'types/types'
+import type { User } from 'data-layer/models/User'
 import type { CommonResponse } from './CommonResponse'
 
 export interface GetAllUsersResponse extends CommonResponse {
-  data?: UserWithToken[]
+  data?: User[]
 }
 
 export interface UserResponse extends CommonResponse {
-  data?: UserWithToken
+  data?: User
 }

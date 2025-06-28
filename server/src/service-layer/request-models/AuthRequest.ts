@@ -1,4 +1,4 @@
-import type { User } from 'types/types'
+import type { User } from 'data-layer/models/User'
 
 export type AuthCreationParams = Omit<User, 'id'> & {
   password: string

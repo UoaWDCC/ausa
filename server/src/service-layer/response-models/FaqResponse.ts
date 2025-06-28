@@ -1,4 +1,4 @@
-import type { Faq } from 'types/types'
+import type { Faq } from 'data-layer/models/Faq'
 import type { CommonResponse } from './CommonResponse'
 
 export interface GetAllFaqsResponse extends CommonResponse {
