@@ -1,8 +1,8 @@
-import * as firebaseAdmin from 'firebase-admin'
-import { initializeApp as initApp } from 'firebase/app'
-import { getAuth as getAuthAdmin } from 'firebase-admin/auth'
-import { getAuth } from 'firebase/auth'
 import { config } from 'dotenv'
+import { initializeApp as initApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
+import * as firebaseAdmin from 'firebase-admin'
+import { getAuth as getAuthAdmin } from 'firebase-admin/auth'
 import {
   getFirestore,
   type QueryDocumentSnapshot,

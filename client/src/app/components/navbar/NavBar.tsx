@@ -5,7 +5,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import profile_icon from '@/app/assets/icons/profile_icon.svg'
-// import search_icon from '../../assets/icons/search_icon.svg'
 import search_icon from '@/app/assets/icons/search_icon.svg'
 import logo from '../../assets/icons/logo.svg'
 

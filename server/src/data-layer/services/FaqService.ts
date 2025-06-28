@@ -1,10 +1,10 @@
 import { collections } from 'data-layer/firebase-collections'
-import type { Faq } from 'types/types'
+import type { WriteResult } from 'firebase-admin/firestore'
 import type {
   FaqCreationParams,
   FaqUpdateParams,
 } from 'service-layer/request-models/FaqRequest'
-import type { WriteResult } from 'firebase-admin/firestore'
+import type { Faq } from 'types/types'
 
 export default class FaqService {
   /**

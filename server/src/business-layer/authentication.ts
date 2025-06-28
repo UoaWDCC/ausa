@@ -1,6 +1,6 @@
+import UserService from 'data-layer/services/UserService'
 import type * as express from 'express'
 import { adminAuth } from 'firebase-config'
-import UserService from 'data-layer/services/UserService'
 
 export function expressAuthentication(
   request: express.Request,

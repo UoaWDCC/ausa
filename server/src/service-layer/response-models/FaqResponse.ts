@@ -1,5 +1,5 @@
-import type { CommonResponse } from './CommonResponse'
 import type { Faq } from 'types/types'
+import type { CommonResponse } from './CommonResponse'
 
 export interface GetAllFaqsResponse extends CommonResponse {
   data?: Faq[]

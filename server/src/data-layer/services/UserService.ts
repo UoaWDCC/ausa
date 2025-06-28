@@ -1,10 +1,10 @@
 import { collections } from 'data-layer/firebase-collections'
-import type { User } from 'types/types'
+import type { WriteResult } from 'firebase-admin/firestore'
 import type {
   UserCreationParams,
   UserUpdateParams,
 } from 'service-layer/request-models/UserRequest'
-import type { WriteResult } from 'firebase-admin/firestore'
+import type { User } from 'types/types'
 
 export default class UserService {
   /**

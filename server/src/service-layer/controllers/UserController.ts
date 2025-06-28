@@ -1,3 +1,15 @@
+import AuthService from 'data-layer/services/AuthService'
+import UserService from 'data-layer/services/UserService'
+import { FirebaseAuthError } from 'firebase-admin/auth'
+import type { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
+import type {
+  // UserCreationParams,
+  UserUpdateParams,
+} from 'service-layer/request-models/UserRequest'
+import type {
+  GetAllUsersResponse,
+  UserResponse,
+} from 'service-layer/response-models/UserResponse'
 import {
   Body,
   Controller,
@@ -10,18 +22,6 @@ import {
   Security,
   SuccessResponse,
 } from 'tsoa'
-import type {
-  // UserCreationParams,
-  UserUpdateParams,
-} from 'service-layer/request-models/UserRequest'
-import UserService from 'data-layer/services/UserService'
-import type {
-  UserResponse,
-  GetAllUsersResponse,
-} from 'service-layer/response-models/UserResponse'
-import AuthService from 'data-layer/services/AuthService'
-import type { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
-import { FirebaseAuthError } from 'firebase-admin/auth'
 
 @Route('user')
 export class UserController extends Controller {

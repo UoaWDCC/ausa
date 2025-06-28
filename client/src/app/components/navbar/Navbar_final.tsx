@@ -13,8 +13,6 @@ import { useEffect, useState } from 'react'
 import logo from '../../assets/icons/logo.svg'
 import { Button } from '../button/Button'
 import { NavLink } from '../navLink/navLink'
-// import search_icon from '../../assets/icons/search_icon.svg'
-// import profile_icon from '../../assets/icons/profile_icon.svg'
 import NavSearch from '../navSearch/navSearch'
 
 const NavigationBar = () => {

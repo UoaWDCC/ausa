@@ -1,12 +1,10 @@
 import 'dotenv/config'
 import cors from 'cors'
-import helmet from 'helmet'
 import express, { type Express, type Request, type Response } from 'express'
-
+import helmet from 'helmet'
 import { RegisterRoutes } from 'middleware/__generated__/routes'
-
-import * as swaggerJson from './middleware/__generated__/swagger.json'
 import * as swaggerUI from 'swagger-ui-express'
+import * as swaggerJson from './middleware/__generated__/swagger.json'
 
 const app: Express = express()
 

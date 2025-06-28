@@ -1,3 +1,12 @@
+import ExternalResourceService from 'data-layer/services/ExternalResourcesService'
+import type {
+  ExternalResourceCreationParams,
+  ExternalResourceUpdateParams,
+} from 'service-layer/request-models/ExternalResourceRequest'
+import type {
+  ExternalResourceResponse,
+  GetAllExternalResourceResponse,
+} from 'service-layer/response-models/ExternalResourceResponse'
 import {
   Body,
   Controller,
@@ -7,18 +16,9 @@ import {
   Path,
   Post,
   Route,
-  SuccessResponse,
   Security,
+  SuccessResponse,
 } from 'tsoa'
-import ExternalResourceService from 'data-layer/services/ExternalResourcesService'
-import type {
-  ExternalResourceResponse,
-  GetAllExternalResourceResponse,
-} from 'service-layer/response-models/ExternalResourceResponse'
-import type {
-  ExternalResourceCreationParams,
-  ExternalResourceUpdateParams,
-} from 'service-layer/request-models/ExternalResourceRequest'
 
 @Route('external-resource')
 export class ExternalResourceController extends Controller {
