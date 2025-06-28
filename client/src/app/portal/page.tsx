@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import PortalItem from '@/components/portal/portal-item/portal-item'
 const Portal = () => {
   return (
     <div className="font-geist mt-[70px] flex h-screen flex-col items-center justify-center gap-4 bg-[#393980]">
@@ -7,9 +8,7 @@ const Portal = () => {
         <div className="flex gap-4">
           {' '}
           <Link href="/quiz">
-            <button className="cursor-pointer border bg-gray-400 px-8 py-4 text-2xl hover:bg-white">
-              quiz
-            </button>
+            <PortalItem title="faq" content="this is a string" link="/faq" />
           </Link>
           <Link href="/faq">
             <button className="cursor-pointer border bg-gray-400 px-8 py-4 text-2xl hover:bg-white">
