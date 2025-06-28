@@ -100,7 +100,9 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
                     rel={button.external ? 'noopener noreferrer' : undefined}
                     className="flex items-center gap-1 sm:gap-2"
                   >
-                    {button.icon && <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />}
+                    {button.icon && (
+                      <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />
+                    )}
                     <span className="hidden sm:inline">{button.label}</span>
                   </Link>
                 </Button>
