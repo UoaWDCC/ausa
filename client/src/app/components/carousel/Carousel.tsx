@@ -7,7 +7,8 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import * as React from 'react'
 
 import { cn } from '@/lib/utils'
-import { Button } from '../button/Button'
+import { Button } from '@/components/ui/button'
+import AusaDecorationImage from '@/components/ausa/Ausa'
 
 type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
@@ -134,16 +135,15 @@ const Carousel = React.forwardRef<
           canScrollNext,
         }}
       >
-        <div
+        <section
           ref={ref}
           onKeyDownCapture={handleKeyDown}
           className={cn('relative', className)}
-          role="region"
           aria-roledescription="carousel"
           {...props}
         >
           {children}
-        </div>
+        </section>
       </CarouselContext.Provider>
     )
   },
@@ -157,7 +157,7 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow-hidden">
+    <div ref={carouselRef} className="overflow">
       <div
         ref={ref}
         className={cn(
@@ -172,30 +172,40 @@ const CarouselContent = React.forwardRef<
 })
 CarouselContent.displayName = 'CarouselContent'
 
-const CarouselItem = React.forwardRef<
-  HTMLDivElement,
-  React.HTMLAttributes<HTMLDivElement>
->(({ className, children, ...props }, ref) => {
-  const { orientation } = useCarousel()
+interface CarouselItemProps extends React.HTMLAttributes<HTMLFieldSetElement> {
+  heroImage?: React.ReactNode
+}
 
-  return (
-    <div
-      ref={ref}
-      role="group"
-      aria-roledescription="slide"
-      className={cn(
-        'mx-auto mb-2 flex min-w-0 shrink-0 grow-0 basis-full justify-center xl:basis-1/3',
-        orientation === 'horizontal' ? 'pl-4' : 'pt-4',
-        className,
-      )}
-      {...props}
-    >
-      <div className="overflow h-[256px] w-[300px] shrink-0 grow-0 rounded-[8px_8px_8px_8px] bg-gray-200 bg-gradient-to-b from-[#D9D9D9] to-[#9aa7ed] pl-2 md:pl-4">
-        {children}
-      </div>
-    </div>
-  )
-})
+const CarouselItem = React.forwardRef<HTMLFieldSetElement, CarouselItemProps>(
+  ({ className, children, heroImage, ...props }, ref) => {
+    const { orientation } = useCarousel()
+
+    return (
+      <fieldset
+        ref={ref}
+        aria-roledescription="slide"
+        className={cn(
+          'relative mx-auto mb-2 flex min-w-0 shrink-0 grow-0 basis-full justify-center xl:basis-1/2',
+          orientation === 'horizontal' ? 'pl-4' : 'pt-4',
+          className,
+        )}
+        {...props}
+      >
+        <div className="max-h-fit w-full overflow-hidden rounded-sm bg-purple-100 p-4">
+          {heroImage && (
+            <div className="-mx-4 -mt-4 mb-4 overflow-hidden rounded-t-sm">
+              {heroImage}
+            </div>
+          )}
+          {children}
+          <span className="absolute right-3 z-10 mt-auto drop-shadow-lg">
+            <AusaDecorationImage size="sm" rotation={5} />
+          </span>
+        </div>
+      </fieldset>
+    )
+  },
+)
 CarouselItem.displayName = 'CarouselItem'
 
 const CarouselPrevious = React.forwardRef<
