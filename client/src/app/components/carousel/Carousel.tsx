@@ -135,16 +135,15 @@ const Carousel = React.forwardRef<
           canScrollNext,
         }}
       >
-        <div
+        <section
           ref={ref}
           onKeyDownCapture={handleKeyDown}
           className={cn('relative', className)}
-          role="region"
           aria-roledescription="carousel"
           {...props}
         >
           {children}
-        </div>
+        </section>
       </CarouselContext.Provider>
     )
   },
@@ -173,18 +172,17 @@ const CarouselContent = React.forwardRef<
 })
 CarouselContent.displayName = 'CarouselContent'
 
-interface CarouselItemProps extends React.HTMLAttributes<HTMLDivElement> {
+interface CarouselItemProps extends React.HTMLAttributes<HTMLFieldSetElement> {
   heroImage?: React.ReactNode
 }
 
-const CarouselItem = React.forwardRef<HTMLDivElement, CarouselItemProps>(
+const CarouselItem = React.forwardRef<HTMLFieldSetElement, CarouselItemProps>(
   ({ className, children, heroImage, ...props }, ref) => {
     const { orientation } = useCarousel()
 
     return (
-      <div
+      <fieldset
         ref={ref}
-        role="group"
         aria-roledescription="slide"
         className={cn(
           'relative mx-auto mb-2 flex min-w-0 shrink-0 grow-0 basis-full justify-center xl:basis-1/2',
@@ -204,7 +202,7 @@ const CarouselItem = React.forwardRef<HTMLDivElement, CarouselItemProps>(
             <AusaDecorationImage size="sm" rotation={5} />
           </span>
         </div>
-      </div>
+      </fieldset>
     )
   },
 )
