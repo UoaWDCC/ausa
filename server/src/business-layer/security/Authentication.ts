@@ -1,5 +1,6 @@
 import FireBaseError from 'business-layer/errors/FirebaseError'
 import type * as express from 'express'
+import { StatusCodes } from 'http-status-codes'
 import { auth } from './Firebase'
 
 export function expressAuthentication(
@@ -28,7 +29,7 @@ export function expressAuthentication(
                 if (user.customClaims === undefined) {
                   throw new FireBaseError(
                     'Authentication Error',
-                    401,
+                    StatusCodes.UNAUTHORIZED,
                     'No Scope',
                   )
                 }
@@ -38,7 +39,7 @@ export function expressAuthentication(
                 ) {
                   throw new FireBaseError(
                     'Authentication Error',
-                    401,
+                    StatusCodes.UNAUTHORIZED,
                     'No Scope',
                   )
                 }
@@ -49,14 +50,26 @@ export function expressAuthentication(
               if (!(reason instanceof FireBaseError)) {
                 console.error(reason)
               }
-              reject(new FireBaseError('Authentication Error', 401, reason))
+              reject(
+                new FireBaseError(
+                  'Authentication Error',
+                  StatusCodes.UNAUTHORIZED,
+                  reason,
+                ),
+              )
             })
         })
         .catch((reason) => {
           if (!(reason instanceof FireBaseError)) {
             console.error(reason)
           }
-          reject(new FireBaseError('Authentication Error', 401, reason))
+          reject(
+            new FireBaseError(
+              'Authentication Error',
+              StatusCodes.UNAUTHORIZED,
+              reason,
+            ),
+          )
         })
     })
   }
