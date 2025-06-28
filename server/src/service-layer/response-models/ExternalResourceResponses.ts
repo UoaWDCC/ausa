@@ -5,6 +5,6 @@ export interface GetAllExternalResourceResponse extends CommonResponse {
   data?: ExternalResource[]
 }
 
-export interface ExternalResourceResponse extends CommonResponse {
+export interface GetExternalResourceResponse extends CommonResponse {
   data?: ExternalResource
 }

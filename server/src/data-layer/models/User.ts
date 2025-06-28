@@ -1,12 +1,5 @@
-export enum UserRole {
-  ADMIN = 'admin',
-  USER = 'user',
-}
+import type { Timestamp } from 'firebase-admin/firestore'
 
-export interface User {
-  id: string
-  firstName: string
-  lastName: string
-  email: string
-  role: UserRole
+export type UserAdditionalInfo = {
+  date_of_birth: Timestamp
 }
