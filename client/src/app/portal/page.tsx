@@ -17,8 +17,10 @@ const Portal = () => {
             </button>
           </Link>
         </div>
-        <div className="border p-2">sign up</div>
-        <div className="border p-2">log in</div>
+        <div className="flex gap-4">
+          <button className="rounded-sm border p-2">sign up</button>
+          <button className="rounded-sm border p-2">log in</button>
+        </div>
       </div>
     </div>
   )
