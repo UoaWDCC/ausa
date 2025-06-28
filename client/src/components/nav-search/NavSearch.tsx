@@ -134,7 +134,7 @@ const NavSearch: React.FC = () => {
         <DialogTrigger>
           <button
             type="button"
-            className="group cursor-pointer relative flex h-9 w-48 items-center gap-3 rounded-sm border border-slate-700/50 bg-slate-800/50 px-3 py-2 text-sm text-slate-400 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-slate-600 hover:bg-slate-800/70 hover:text-slate-300 focus:border-purple-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
+            className="group cursor-pointer relative flex h-9 w-48 items-center gap-3 rounded-sm border border-slate-700/50 bg-slate-800/50 px-3 py-2 text-sm text-slate-50 shadow-sm backdrop-blur-sm transition-all duration-200 hover:border-slate-600 hover:bg-slate-800/70 hover:text-slate-300 focus:border-purple-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20"
           >
             <MdOutlineSearch className="h-4 w-4 flex-shrink-0" />
             <span className="flex-1 text-left">{SEARCH_PLACEHOLDER}</span>

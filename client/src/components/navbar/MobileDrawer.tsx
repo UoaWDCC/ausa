@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import type { NavConfig, NavItem } from '@/types/navbar.types'
+import NavSearch from '@/components/nav-search/NavSearch'
 
 interface MobileDrawerProps {
   isOpen: boolean
@@ -19,7 +20,19 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
 }) => {
   const mobileItems =
     config.mobileNavItems ||
-    (config.navItems.filter((item) => !('items' in item)) as NavItem[])
+    (() => {
+      const flatItems: NavItem[] = []
+      config.navItems.forEach((item) => {
+        if ('items' in item) {
+          // If it's a dropdown, add all its items
+          flatItems.push(...item.items)
+        } else {
+          // If it's a regular nav item, add it
+          flatItems.push(item)
+        }
+      })
+      return flatItems
+    })()
 
   return (
     <>
@@ -41,7 +54,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       >
         <div className="flex h-full flex-col p-6">
           {/* Header */}
-          <div className="mb-8 flex items-center justify-between">
+          <div className="mb-6 flex items-center justify-between">
             <Link href={config.logo.href} onClick={onClose}>
               <Image
                 src={config.logo.src}
@@ -60,8 +73,15 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
             </button>
           </div>
 
+          {/* Search Bar */}
+          {config.showSearch && (
+            <div className="mb-6">
+              <NavSearch />
+            </div>
+          )}
+
           {/* Navigation Links */}
-          <nav className="flex flex-col space-y-1">
+          <nav className="flex flex-col space-y-1 flex-1">
             {mobileItems.map((item, index) => (
               <Link
                 key={`mobile-${item.href}-${index}`}

@@ -45,27 +45,24 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
         className,
       )}
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+      <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-8">
+        <div className="flex h-14 sm:h-16 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
-          <div className="flex-shrink-0">
+          <div className="flex-shrink-0 min-w-0">
             <Link href={config.logo.href} className="block">
               <Image
                 src={config.logo.src}
                 width={config.logo.width}
                 height={config.logo.height}
                 alt={config.logo.alt}
-                className="h-10 w-auto drop-shadow-lg transition-transform duration-200 hover:scale-105"
+                className="h-8 sm:h-10 w-auto drop-shadow-lg transition-transform duration-200 hover:scale-105"
                 priority
               />
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center md:space-x-6">
-            {/* Search */}
-            {config.showSearch && <NavSearch />}
-
+          {/* Tablet/Desktop Navigation */}
+          <div className="hidden md:flex md:items-center md:space-x-4 lg:space-x-6 flex-1 justify-end">
             {/* Navigation Items */}
             {config.navItems.map((item) => (
               <div key={`nav-${item.label}`}>
@@ -76,46 +73,58 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
                 )}
               </div>
             ))}
-
-            {/* Action Buttons */}
-            {config.actionButtons?.map((button, index) => (
-              <Button
-                key={`action-${button.href}-${index}`}
-                asChild
-                variant="default"
-                size="sm"
-                className="shadow-lg hover:shadow-xl"
-              >
-                <Link
-                  href={button.href}
-                  target={button.external ? '_blank' : undefined}
-                  rel={button.external ? 'noopener noreferrer' : undefined}
-                  className="flex items-center gap-2"
-                >
-                  {button.icon && <button.icon className="h-4 w-4" />}
-                  {button.label}
-                </Link>
-              </Button>
-            ))}
           </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
-            <Button
-              variant="ghost"
-              type="button"
-              onClick={toggleMobileMenu}
-              className="rounded-md p-2 text-white hover:bg-white/10 transition-colors"
-              aria-expanded={isMobileMenuOpen}
-              aria-label="Toggle navigation menu"
-            >
-              <Menu className="h-6 w-6" />
-            </Button>
+          {/* Right side actions */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Search - Show on larger screens */}
+            {config.showSearch && (
+              <div className="hidden lg:block">
+                <NavSearch />
+              </div>
+            )}
+
+            {/* Action Buttons - Adaptive sizing */}
+            <div className="hidden sm:flex sm:items-center sm:gap-2">
+              {config.actionButtons?.map((button, index) => (
+                <Button
+                  key={`action-${button.href}-${index}`}
+                  asChild
+                  variant="default"
+                  size="sm"
+                  className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
+                >
+                  <Link
+                    href={button.href}
+                    target={button.external ? '_blank' : undefined}
+                    rel={button.external ? 'noopener noreferrer' : undefined}
+                    className="flex items-center gap-1 sm:gap-2"
+                  >
+                    {button.icon && <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />}
+                    <span className="hidden sm:inline">{button.label}</span>
+                  </Link>
+                </Button>
+              ))}
+            </div>
+
+            {/* Mobile/Tablet Menu Button */}
+            <div className="md:hidden">
+              <Button
+                variant="ghost"
+                type="button"
+                onClick={toggleMobileMenu}
+                className="rounded-md p-1.5 sm:p-2 text-white hover:bg-white/10 transition-colors"
+                aria-expanded={isMobileMenuOpen}
+                aria-label="Toggle navigation menu"
+              >
+                <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      {/* Mobile/Tablet Drawer */}
       <MobileDrawer
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
