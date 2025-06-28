@@ -60,8 +60,8 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
 }: HeroSectionProps) => {
   return (
     <header className="relative z-10 overflow-hidden py-40 text-center text-white">
-      <div className="relative z-10 mx-auto max-w-4xl px-4">
-        <div className="overflow-hidden rounded-2xl border border-white/20 bg-black/40 p-8 shadow-2xl backdrop-blur-sm">
+      <div className="relative z-10 mx-auto max-w-4xl sm:px-4">
+        <div className="overflow-hidden rounded-md border border-white/20 bg-black/40 py-8 px-4 sm:px-8 shadow-2xl backdrop-blur-sm">
           {/* Featured AUSA logo */}
           <div className="mb-8 flex justify-center">
             <Image

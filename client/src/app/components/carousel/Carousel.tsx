@@ -187,13 +187,13 @@ const CarouselItem = React.forwardRef<HTMLDivElement, CarouselItemProps>(
         role="group"
         aria-roledescription="slide"
         className={cn(
-          'relative mx-auto mb-2 flex min-w-0 shrink-0 grow-0 basis-full justify-center xl:basis-1/3',
+          'relative mx-auto mb-2 flex min-w-0 shrink-0 grow-0 basis-full justify-center xl:basis-1/2',
           orientation === 'horizontal' ? 'pl-4' : 'pt-4',
           className,
         )}
         {...props}
       >
-        <div className="min-h-md max-h-fit w-full overflow-hidden rounded-sm bg-purple-100 p-4">
+        <div className="max-h-fit w-full overflow-hidden rounded-sm bg-purple-100 p-4">
           {heroImage && (
             <div className="-mx-4 -mt-4 mb-4 overflow-hidden rounded-t-sm">
               {heroImage}
