@@ -2,7 +2,11 @@ import { X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import type { NavConfig, NavItem } from '@/types/navbar.types'
+import {
+  isNavDropdown,
+  type NavConfig,
+  type NavItem,
+} from '@/types/navbar.types'
 import NavSearch from '@/components/nav-search/NavSearch'
 
 interface MobileDrawerProps {
@@ -23,7 +27,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
     (() => {
       const flatItems: NavItem[] = []
       config.navItems.forEach((item) => {
-        if ('items' in item) {
+        if (isNavDropdown(item)) {
           // If it's a dropdown, add all its items
           flatItems.push(...item.items)
         } else {
