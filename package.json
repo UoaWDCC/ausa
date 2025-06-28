@@ -13,11 +13,16 @@
     "format": "biome format",
     "format:fix": "biome format . --write",
     "format:ci": "biome format .",
-    "dev-client": "yarn workspace client dev",
-    "dev-server": "yarn workspace server start",
+    "dev": "turbo run dev",
+    "dev:client": "turbo run dev --filter client",
+    "dev:server": "turbo run dev --filter server",
     "storybook": "yarn workspace client storybook",
     "vsc-setup": "code install-extension bradlc.vscode-tailwindcss",
-    "build": "yarn workspace client build && yarn workspace server build"
+    "build": "turbo run build"
+  },
+  "dependencies": {
+    "turbo": "^2.5.4",
+    "typescript": "5.8.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.0.6",
@@ -32,8 +37,5 @@
   "volta": {
     "node": "22.14.0",
     "yarn": "4.9.1"
-  },
-  "dependencies": {
-    "typescript": "5.8.3"
   }
 }

@@ -3,7 +3,7 @@
   "watch": ["src"],
   "ignore": ["src/routes/__generated__/*"],
   "events": {
-    "crash": "yarn tsoa spec-and-routes"
+    "crash": "yarn generate:types"
   },
   "ext": "ts"
 }

@@ -141,3 +141,6 @@ dist
 firebase-creds.json
 
 .DS_Store
+
+# Turbo files
+.turbo
