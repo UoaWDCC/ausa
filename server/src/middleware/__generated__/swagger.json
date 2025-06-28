@@ -7,250 +7,6 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"UserRole": {
-				"enum": [
-					"admin",
-					"user"
-				],
-				"type": "string"
-			},
-			"User": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"firstName": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"role": {
-						"$ref": "#/components/schemas/UserRole"
-					}
-				},
-				"required": [
-					"id",
-					"firstName",
-					"lastName",
-					"email",
-					"role"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"UserWithToken": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/User"
-					},
-					{
-						"properties": {
-							"token": {
-								"type": "string"
-							}
-						},
-						"type": "object"
-					}
-				]
-			},
-			"GetAllUsersResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"items": {
-							"$ref": "#/components/schemas/UserWithToken"
-						},
-						"type": "array"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"UserResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"$ref": "#/components/schemas/UserWithToken"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Pick_User.Exclude_keyofUser.id__": {
-				"properties": {
-					"firstName": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"role": {
-						"$ref": "#/components/schemas/UserRole"
-					}
-				},
-				"required": [
-					"firstName",
-					"lastName",
-					"email",
-					"role"
-				],
-				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"Omit_User.id_": {
-				"$ref": "#/components/schemas/Pick_User.Exclude_keyofUser.id__",
-				"description": "Construct a type with the properties of T except for those in type K."
-			},
-			"AuthCreationParams": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/Omit_User.id_"
-					},
-					{
-						"properties": {
-							"password": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"password"
-						],
-						"type": "object"
-					}
-				]
-			},
-			"Partial_User_": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"firstName": {
-						"type": "string"
-					},
-					"lastName": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"role": {
-						"$ref": "#/components/schemas/UserRole"
-					}
-				},
-				"type": "object",
-				"description": "Make all properties in T optional"
-			},
-			"UserUpdateParams": {
-				"$ref": "#/components/schemas/Partial_User_"
-			},
-			"Faq": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"question": {
-						"type": "string"
-					},
-					"answer": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"id",
-					"question",
-					"answer"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GetAllFaqsResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"items": {
-							"$ref": "#/components/schemas/Faq"
-						},
-						"type": "array"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"FaqResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"$ref": "#/components/schemas/Faq"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Pick_Faq.Exclude_keyofFaq.id__": {
-				"properties": {
-					"question": {
-						"type": "string"
-					},
-					"answer": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"question",
-					"answer"
-				],
-				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"Omit_Faq.id_": {
-				"$ref": "#/components/schemas/Pick_Faq.Exclude_keyofFaq.id__",
-				"description": "Construct a type with the properties of T except for those in type K."
-			},
-			"FaqCreationParams": {
-				"$ref": "#/components/schemas/Omit_Faq.id_"
-			},
-			"Partial_FaqCreationParams_": {
-				"properties": {
-					"question": {
-						"type": "string"
-					},
-					"answer": {
-						"type": "string"
-					}
-				},
-				"type": "object",
-				"description": "Make all properties in T optional"
-			},
-			"FaqUpdateParams": {
-				"$ref": "#/components/schemas/Partial_FaqCreationParams_"
-			},
 			"ExternalResource": {
 				"properties": {
 					"id": {
@@ -292,7 +48,7 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"ExternalResourceResponse": {
+			"GetExternalResourceResponse": {
 				"properties": {
 					"error": {
 						"type": "string"
@@ -307,64 +63,138 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
+			"CommonResponse": {
 				"properties": {
-					"title": {
+					"error": {
 						"type": "string"
 					},
-					"url": {
-						"type": "string"
-					},
-					"description": {
+					"message": {
 						"type": "string"
 					}
 				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"FirebaseFirestore.Timestamp": {
+				"description": "A Timestamp represents a point in time independent of any time zone or\ncalendar, represented as seconds and fractions of seconds at nanosecond\nresolution in UTC Epoch time. It is encoded using the Proleptic Gregorian\nCalendar which extends the Gregorian calendar backwards to year one. It is\nencoded assuming all minutes are 60 seconds long, i.e. leap seconds are\n\"smeared\" so that no leap second table is needed for interpretation. Range\nis from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z.",
+				"properties": {
+					"seconds": {
+						"type": "number",
+						"format": "double",
+						"description": "The number of seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z."
+					},
+					"nanoseconds": {
+						"type": "number",
+						"format": "double",
+						"description": "The non-negative fractions of a second at nanosecond resolution."
+					}
+				},
 				"required": [
-					"title",
-					"url"
+					"seconds",
+					"nanoseconds"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
+				"additionalProperties": false
 			},
-			"Omit_ExternalResource.id_": {
-				"$ref": "#/components/schemas/Pick_ExternalResource.Exclude_keyofExternalResource.id__",
-				"description": "Construct a type with the properties of T except for those in type K."
-			},
-			"ExternalResourceCreationParams": {
-				"$ref": "#/components/schemas/Omit_ExternalResource.id_"
-			},
-			"Partial_ExternalResourceCreationParams_": {
+			"UserAdditionalInfo": {
 				"properties": {
-					"title": {
+					"date_of_birth": {
+						"$ref": "#/components/schemas/FirebaseFirestore.Timestamp"
+					}
+				},
+				"required": [
+					"date_of_birth"
+				],
+				"type": "object"
+			},
+			"CreateUserRequest": {
+				"properties": {
+					"id": {
 						"type": "string"
 					},
-					"url": {
+					"user": {
+						"$ref": "#/components/schemas/UserAdditionalInfo"
+					}
+				},
+				"required": [
+					"id",
+					"user"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DocumentDataWithUid_UserAdditionalInfo_": {
+				"allOf": [
+					{
+						"$ref": "#/components/schemas/UserAdditionalInfo"
+					},
+					{
+						"properties": {
+							"id": {
+								"type": "string",
+								"description": "The ID of the document for which this document contains data."
+							}
+						},
+						"required": [
+							"id"
+						],
+						"type": "object"
+					}
+				]
+			},
+			"GetAllUsersResponse": {
+				"properties": {
+					"error": {
 						"type": "string"
 					},
-					"description": {
+					"message": {
 						"type": "string"
+					},
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/DocumentDataWithUid_UserAdditionalInfo_"
+						},
+						"type": "array"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetUserResponse": {
+				"properties": {
+					"error": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/DocumentDataWithUid_UserAdditionalInfo_"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"Partial_UserAdditionalInfo_": {
+				"properties": {
+					"date_of_birth": {
+						"$ref": "#/components/schemas/FirebaseFirestore.Timestamp"
 					}
 				},
 				"type": "object",
 				"description": "Make all properties in T optional"
 			},
-			"ExternalResourceUpdateParams": {
-				"$ref": "#/components/schemas/Partial_ExternalResourceCreationParams_"
-			},
-			"LoginCredentials": {
+			"UpdateUserRequest": {
 				"properties": {
-					"password": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
+					"user": {
+						"$ref": "#/components/schemas/Partial_UserAdditionalInfo_"
 					}
 				},
 				"required": [
-					"password",
-					"email"
+					"user"
 				],
-				"type": "object"
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {
@@ -381,319 +211,7 @@
 		"contact": {}
 	},
 	"paths": {
-		"/user": {
-			"get": {
-				"operationId": "GetAllUsers",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GetAllUsersResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": []
-			},
-			"post": {
-				"operationId": "CreateUser",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/UserResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AuthCreationParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/user/{id}": {
-			"get": {
-				"operationId": "GetUser",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/UserResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			},
-			"delete": {
-				"operationId": "DeleteUser",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			},
-			"patch": {
-				"operationId": "UpdateUser",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/UserResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserUpdateParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/faq": {
-			"get": {
-				"operationId": "GetAllFaqs",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GetAllFaqsResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": []
-			},
-			"post": {
-				"operationId": "CreateFaq",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/FaqResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/FaqCreationParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/faq/{id}": {
-			"get": {
-				"operationId": "GetFaq",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/FaqResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			},
-			"delete": {
-				"operationId": "DeleteFaq",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			},
-			"patch": {
-				"operationId": "UpdateFaq",
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/FaqResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/FaqUpdateParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/external-resource": {
+		"/external-resources": {
 			"get": {
 				"operationId": "GetAllExternalResources",
 				"responses": {
@@ -710,42 +228,9 @@
 				},
 				"security": [],
 				"parameters": []
-			},
-			"post": {
-				"operationId": "CreateExternalResource",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/ExternalResourceResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/ExternalResourceCreationParams"
-							}
-						}
-					}
-				}
 			}
 		},
-		"/external-resource/{id}": {
+		"/external-resources/{id}": {
 			"get": {
 				"operationId": "GetExternalResource",
 				"responses": {
@@ -754,7 +239,131 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ExternalResourceResponse"
+									"$ref": "#/components/schemas/GetExternalResourceResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/admin/users": {
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"200": {
+						"description": "Successfully created user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Creates a new user.",
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [],
+				"requestBody": {
+					"description": "The data for the new user.",
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateUserRequest",
+								"description": "The data for the new user."
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"operationId": "GetAllUsers",
+				"responses": {
+					"200": {
+						"description": "Successfully fetched all users",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetAllUsersResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Retrieves all users.",
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": []
+			}
+		},
+		"/admin/users/{id}": {
+			"get": {
+				"operationId": "GetUser",
+				"responses": {
+					"200": {
+						"description": "Successfully fetched user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetUserResponse"
+								}
+							}
+						}
+					}
+				},
+				"description": "Retrieves a user by ID.",
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"description": "The ID of the user to retrieve.",
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "UpdateUser",
+				"responses": {
+					"200": {
+						"description": "Successfully updated user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommonResponse"
 								}
 							}
 						}
@@ -776,42 +385,27 @@
 							"type": "string"
 						}
 					}
-				]
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateUserRequest"
+							}
+						}
+					}
+				}
 			},
 			"delete": {
-				"operationId": "DeleteExternalResource",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			},
-			"patch": {
-				"operationId": "UpdateExternalResource",
+				"operationId": "DeleteUser",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Successfully deleted user",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/ExternalResourceResponse"
+									"$ref": "#/components/schemas/CommonResponse"
 								}
 							}
 						}
@@ -833,109 +427,7 @@
 							"type": "string"
 						}
 					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/ExternalResourceUpdateParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/auth/register": {
-			"post": {
-				"operationId": "Register",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/UserResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/AuthCreationParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/auth/login": {
-			"post": {
-				"operationId": "Login",
-				"responses": {
-					"200": {
-						"description": "Login Successful",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/UserResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/LoginCredentials"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/auth/forgot-password": {
-			"patch": {
-				"operationId": "UpdatePassword",
-				"responses": {
-					"204": {
-						"description": "No content"
-					}
-				},
-				"security": [
-					{
-						"jwt": []
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"properties": {
-									"password": {
-										"type": "string"
-									}
-								},
-								"required": [
-									"password"
-								],
-								"type": "object"
-							}
-						}
-					}
-				}
+				]
 			}
 		}
 	},
