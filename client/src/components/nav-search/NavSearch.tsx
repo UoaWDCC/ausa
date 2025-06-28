@@ -26,7 +26,9 @@ export interface PageInfo {
 }
 
 // Constants
-const isMac = typeof window !== 'undefined' && window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
+const isMac =
+  typeof window !== 'undefined' &&
+  window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
 
 const INITIAL_PAGES: PageInfo[] = [
   {
@@ -139,11 +141,9 @@ const NavSearch: React.FC = () => {
         >
           <MdOutlineSearch className="h-4 w-4 flex-shrink-0" />
           <span className="flex-1 text-left">{SEARCH_PLACEHOLDER}</span>
-          <div
-            className="pointer-events-none absolute right-3 top-[50%] -translate-y-1/2 select-none items-center gap-1">
+          <div className="pointer-events-none absolute right-3 top-[50%] -translate-y-1/2 select-none items-center gap-1">
             {/**  Keyboard shortcut hint */}
-            <kbd
-              className="flex items-center gap-1 rounded border border-slate-700 bg-slate-800 px-1.5 font-mono text-[10px] font-medium text-slate-400 opacity-100">
+            <kbd className="flex items-center gap-1 rounded border border-slate-700 bg-slate-800 px-1.5 font-mono text-[10px] font-medium text-slate-400 opacity-100">
               <span className="text-xs">{isMac ? '⌘' : 'Ctrl'}</span>
               <span>K</span>
             </kbd>
