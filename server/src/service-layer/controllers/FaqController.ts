@@ -10,12 +10,12 @@ import {
   Security,
   SuccessResponse,
 } from 'tsoa'
-import {
+import type {
   FaqCreationParams,
   FaqUpdateParams,
 } from 'service-layer/request-models/FaqRequest'
 import FaqService from 'data-layer/services/FaqService'
-import {
+import type {
   FaqResponse,
   GetAllFaqsResponse,
 } from 'service-layer/response-models/FaqResponse'

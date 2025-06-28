@@ -10,9 +10,9 @@ import {
 } from 'tsoa'
 
 import UserService from 'data-layer/services/UserService'
-import { UserResponse } from 'service-layer/response-models/UserResponse'
+import type { UserResponse } from 'service-layer/response-models/UserResponse'
 import AuthService from 'data-layer/services/AuthService'
-import {
+import type {
   AuthCreationParams,
   LoginCredentials,
 } from 'service-layer/request-models/AuthRequest'

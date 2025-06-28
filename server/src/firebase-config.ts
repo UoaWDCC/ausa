@@ -3,7 +3,10 @@ import { initializeApp as initApp } from 'firebase/app'
 import { getAuth as getAuthAdmin } from 'firebase-admin/auth'
 import { getAuth } from 'firebase/auth'
 import { config } from 'dotenv'
-import { getFirestore, QueryDocumentSnapshot } from 'firebase-admin/firestore'
+import {
+  getFirestore,
+  type QueryDocumentSnapshot,
+} from 'firebase-admin/firestore'
 
 config()
 

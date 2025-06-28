@@ -1,5 +1,5 @@
 import { db, converter } from 'firebase-config'
-import { Faq, ExternalResource, User } from 'types/types'
+import type { Faq, ExternalResource, User } from 'types/types'
 
 export const collections = {
   faq: db.collection('faq').withConverter(converter<Faq>()),

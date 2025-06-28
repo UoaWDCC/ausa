@@ -1,7 +1,7 @@
 'use client'
-import React, { FC } from 'react'
-import { twMerge } from 'tailwind-merge'
 import { type ClassValue, clsx } from 'clsx'
+import React, { type FC } from 'react'
+import { twMerge } from 'tailwind-merge'
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -70,9 +70,10 @@ const Button: FC<ButtonProps> = ({ theme, border, click }: ButtonProps) => {
     return cn(
       `font-geist px-4 py-2 rounded-md font-semibold duration-300 cursor-pointer ${styles.bg} ${styles.text} ${border && `${styles.border} border-2`}`,
     )
-  }, [theme, border])
+  }, [border, styles])
   return (
     <button
+      type="button"
       className={className}
       onClick={() => {
         if (typeof click === 'function') {

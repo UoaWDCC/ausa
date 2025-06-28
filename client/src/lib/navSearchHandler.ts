@@ -1,5 +1,5 @@
-import { pageInfo } from '@/app/components/navSearch/navSearch'
-import { ExternalResource, Faq } from '@/types/types'
+import type { pageInfo } from '@/app/components/navSearch/navSearch'
+import type { ExternalResource, Faq } from '@/types/types'
 
 export async function navSearchHandler(pages: pageInfo[]): Promise<pageInfo[]> {
   const url = process.env.BACKEND_URL || 'http://localhost:8000'

@@ -1,4 +1,4 @@
-import * as express from 'express'
+import type * as express from 'express'
 import { adminAuth } from 'firebase-config'
 import UserService from 'data-layer/services/UserService'
 

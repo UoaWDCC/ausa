@@ -1,5 +1,5 @@
-import { ExternalResource } from 'types/types'
-import { CommonResponse } from './CommonResponse'
+import type { ExternalResource } from 'types/types'
+import type { CommonResponse } from './CommonResponse'
 
 export interface GetAllExternalResourceResponse extends CommonResponse {
   data?: ExternalResource[]

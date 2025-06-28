@@ -1,7 +1,7 @@
 import 'dotenv/config'
 import cors from 'cors'
 import helmet from 'helmet'
-import express, { Express, Request, Response } from 'express'
+import express, { type Express, type Request, type Response } from 'express'
 
 import { RegisterRoutes } from 'middleware/__generated__/routes'
 

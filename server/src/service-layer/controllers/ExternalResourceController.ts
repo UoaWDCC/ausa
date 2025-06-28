@@ -11,11 +11,11 @@ import {
   Security,
 } from 'tsoa'
 import ExternalResourceService from 'data-layer/services/ExternalResourcesService'
-import {
+import type {
   ExternalResourceResponse,
   GetAllExternalResourceResponse,
 } from 'service-layer/response-models/ExternalResourceResponse'
-import {
+import type {
   ExternalResourceCreationParams,
   ExternalResourceUpdateParams,
 } from 'service-layer/request-models/ExternalResourceRequest'

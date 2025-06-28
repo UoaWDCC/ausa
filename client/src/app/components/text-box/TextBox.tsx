@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react'
+import React, { type ReactNode } from 'react'
 
 type TextBoxProps = {
   text: string
@@ -38,7 +38,7 @@ const TextBox = ({ text, theme, border, children }: TextBoxProps) => {
   const styles = themes[theme]
   const className = React.useMemo(() => {
     return `font-geist ${styles.bg} ${styles.text} ${border && `${styles.border} border-2`} p-2 rounded-md flex flex-col justify-center w-[10rem] md:w-[20rem] gap-2`
-  }, [theme, border])
+  }, [styles, border])
   return (
     <div className={className}>
       {children && <div>{children}</div>}

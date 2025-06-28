@@ -10,17 +10,17 @@ import {
   Security,
   SuccessResponse,
 } from 'tsoa'
-import {
+import type {
   // UserCreationParams,
   UserUpdateParams,
 } from 'service-layer/request-models/UserRequest'
 import UserService from 'data-layer/services/UserService'
-import {
+import type {
   UserResponse,
   GetAllUsersResponse,
 } from 'service-layer/response-models/UserResponse'
 import AuthService from 'data-layer/services/AuthService'
-import { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
+import type { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
 import { FirebaseAuthError } from 'firebase-admin/auth'
 
 @Route('user')
