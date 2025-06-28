@@ -1,13 +1,12 @@
 'use client'
-import { useState } from 'react'
-// import search_icon from '../../assets/icons/search_icon.svg'
-import search_icon from '@/app/assets/icons/search_icon.svg'
-import profile_icon from '@/app/assets/icons/profile_icon.svg'
-import logo from '../../assets/icons/logo.svg'
-import Image from 'next/image'
-import { Menu, X } from 'lucide-react'
-import Link from 'next/link'
 import { Button } from '@headlessui/react'
+import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useState } from 'react'
+import profile_icon from '@/app/assets/icons/profile_icon.svg'
+import search_icon from '@/app/assets/icons/search_icon.svg'
+import logo from '../../assets/icons/logo.svg'
 
 const Navbar = () => {
   const [open, setOpen] = useState(false)
@@ -67,7 +66,11 @@ const Navbar = () => {
 
         {/* Mobile Navbar */}
         <div className="flex w-full items-center justify-between md:hidden">
-          <button className="cursor-pointer" onClick={handleToggle}>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleToggle}
+          >
             {open ? <X /> : <Menu />}
           </button>
           <Image
@@ -90,7 +93,11 @@ const Navbar = () => {
         {/* Header with Logo and Close Button */}
         <div className="mb-8 flex items-center justify-between">
           <Image src={logo} width={100} height={100} alt="logo" />
-          <button className="cursor-pointer" onClick={handleToggle}>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleToggle}
+          >
             <X className="h-6 w-6" />
           </button>
         </div>

@@ -1,5 +1,0 @@
-*.md
-package-lock.json
-.github/
-**/__generated__
-**/*.index.html

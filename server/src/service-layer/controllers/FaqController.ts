@@ -1,3 +1,12 @@
+import FaqService from 'data-layer/services/FaqService'
+import type {
+  FaqCreationParams,
+  FaqUpdateParams,
+} from 'service-layer/request-models/FaqRequest'
+import type {
+  FaqResponse,
+  GetAllFaqsResponse,
+} from 'service-layer/response-models/FaqResponse'
 import {
   Body,
   Controller,
@@ -10,15 +19,6 @@ import {
   Security,
   SuccessResponse,
 } from 'tsoa'
-import {
-  FaqCreationParams,
-  FaqUpdateParams,
-} from 'service-layer/request-models/FaqRequest'
-import FaqService from 'data-layer/services/FaqService'
-import {
-  FaqResponse,
-  GetAllFaqsResponse,
-} from 'service-layer/response-models/FaqResponse'
 
 @Route('faq')
 export class FaqController extends Controller {

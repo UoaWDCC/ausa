@@ -1,8 +1,8 @@
-import { adminAuth, authWeb } from 'firebase-config'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { User, UserRole, UserWithToken } from 'types/types'
 import { collections } from 'data-layer/firebase-collections'
-import { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { adminAuth, authWeb } from 'firebase-config'
+import type { AuthCreationParams } from 'service-layer/request-models/AuthRequest'
+import { type User, UserRole, type UserWithToken } from 'types/types'
 
 export default class AuthService {
   /**

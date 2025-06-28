@@ -1,4 +1,5 @@
 import Link from 'next/link'
+
 const NavButton = ({ title, link }: { title: string; link: string }) => {
   return (
     // test NavButton component

@@ -1,5 +1,9 @@
 'use client'
 
+import { redirect } from 'next/navigation'
+import type React from 'react'
+import { useEffect, useState } from 'react'
+import { MdOutlineSearch } from 'react-icons/md'
 import {
   Dialog,
   DialogContent,
@@ -10,11 +14,8 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog'
 import { Input } from '@/components/ui/input'
-import { MdOutlineSearch } from 'react-icons/md'
-import { NavSearchCard } from '../navSearchCard/navSearchCard'
-import React, { useEffect, useState } from 'react'
-import { redirect } from 'next/navigation'
 import { navSearchHandler } from '@/lib/navSearchHandler'
+import { NavSearchCard } from '../navSearchCard/navSearchCard'
 
 export interface pageInfo {
   title: string
@@ -88,10 +89,9 @@ const NavSearch: React.FC = () => {
       (page) =>
         page.title.toLowerCase().includes(value.toLowerCase()) ||
         page.description.toLowerCase().includes(value.toLowerCase()) ||
-        (page.keywords &&
-          page.keywords.some((keyword) =>
-            keyword.toLowerCase().includes(value.toLowerCase()),
-          )),
+        page.keywords?.some((keyword) =>
+          keyword.toLowerCase().includes(value.toLowerCase()),
+        ),
     )
     setSearchResults(filteredResults)
   }
@@ -124,6 +124,7 @@ const NavSearch: React.FC = () => {
             <div className="flex w-full flex-col gap-2">
               {searchResults.map((res) => (
                 <button
+                  type="button"
                   key={res.title}
                   onClick={() => {
                     setSearchValue('')

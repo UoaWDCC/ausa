@@ -1,13 +1,4 @@
 'use client'
-import { useState, useEffect } from 'react'
-import { Menu, X } from 'lucide-react'
-import logo from '../../assets/icons/logo.svg'
-import Image from 'next/image'
-import Link from 'next/link'
-// import search_icon from '../../assets/icons/search_icon.svg'
-// import profile_icon from '../../assets/icons/profile_icon.svg'
-import NavSearch from '../navSearch/navSearch'
-import { NavLink } from '../navLink/navLink'
 import {
   Menu as HeadlessMenu,
   MenuButton,
@@ -15,7 +6,14 @@ import {
   MenuItems,
 } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Menu, X } from 'lucide-react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { useEffect, useState } from 'react'
+import logo from '../../assets/icons/logo.svg'
 import { Button } from '../button/Button'
+import { NavLink } from '../navLink/navLink'
+import NavSearch from '../navSearch/navSearch'
 
 const NavigationBar = () => {
   const [open, setOpen] = useState(false)
@@ -86,7 +84,7 @@ const NavigationBar = () => {
               <div className="py-1">
                 <MenuItem>
                   <a
-                    href="#"
+                    href="/"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                   >
                     placeholder text
@@ -94,7 +92,7 @@ const NavigationBar = () => {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="#"
+                    href="/"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                   >
                     placeholder text
@@ -102,7 +100,7 @@ const NavigationBar = () => {
                 </MenuItem>
                 <MenuItem>
                   <a
-                    href="#"
+                    href="/"
                     className="block px-4 py-2 text-sm text-gray-700 data-focus:bg-gray-100 data-focus:text-gray-900 data-focus:outline-hidden"
                   >
                     placeholder text
@@ -148,7 +146,11 @@ const NavigationBar = () => {
 
         {/* Mobile Navbar */}
         <div className="flex items-center justify-between md:hidden">
-          <button className="cursor-pointer" onClick={handleToggle}>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleToggle}
+          >
             {open ? <X /> : <Menu />}
           </button>
           {/* <Image src={logo} width={100} height={100} alt="logo" className="mx-auto" /> */}
@@ -164,7 +166,11 @@ const NavigationBar = () => {
         {/* Header with Logo and Close Button */}
         <div className="mb-8 flex items-center justify-between">
           <Image src={logo} width={100} height={100} alt="logo" />
-          <button className="cursor-pointer" onClick={handleToggle}>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleToggle}
+          >
             <X className="h-6 w-6" />
           </button>
         </div>

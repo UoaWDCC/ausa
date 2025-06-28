@@ -1,9 +1,10 @@
 'use client'
-import { useState } from 'react'
-import logo from '../../assets/icons/logo.svg'
+import { Menu, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { X, Menu } from 'lucide-react'
+import { useState } from 'react'
+import logo from '../../assets/icons/logo.svg'
+
 const NavbarRe = () => {
   const [open, setOpen] = useState(false)
   const handleToggle = () => setOpen(!open)
@@ -41,7 +42,11 @@ const NavbarRe = () => {
           </Link>
         </div>{' '}
         <div className="flex md:hidden">
-          <button className="cursor-pointer" onClick={handleToggle}>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleToggle}
+          >
             {open ? <X /> : <Menu />}
           </button>
         </div>
@@ -57,7 +62,11 @@ const NavbarRe = () => {
         {/* Header with Logo and Close Button */}
         <div className="mb-8 flex items-center justify-between">
           <Image src={logo} width={100} height={100} alt="logo" />
-          <button className="cursor-pointer" onClick={handleToggle}>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={handleToggle}
+          >
             <X className="h-6 w-6" />
           </button>
         </div>

@@ -1,9 +1,10 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import ausa from '../../assets/icons/ausa.svg'
 import facebook from '../../assets/icons/facebook.svg'
 import instagram from '../../assets/icons/instagram.svg'
 import linkedin from '../../assets/icons/linkedin.svg'
-import Link from 'next/link'
+
 const Footer = () => {
   return (
     <div className="flex w-full flex-col gap-8 bg-[#393980] p-10 text-white md:grid md:grid-cols-3">

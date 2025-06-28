@@ -1,24 +1,23 @@
+import AuthService from 'data-layer/services/AuthService'
+import UserService from 'data-layer/services/UserService'
+import { FirebaseError } from 'firebase/app'
+import { FirebaseAuthError } from 'firebase-admin/auth'
+import type {
+  AuthCreationParams,
+  LoginCredentials,
+} from 'service-layer/request-models/AuthRequest'
+import type { UserResponse } from 'service-layer/response-models/UserResponse'
 import {
   Body,
   Controller,
   Patch,
   Post,
-  Route,
-  SuccessResponse,
-  Security,
   Request,
+  Route,
+  Security,
+  SuccessResponse,
 } from 'tsoa'
-
-import UserService from 'data-layer/services/UserService'
-import { UserResponse } from 'service-layer/response-models/UserResponse'
-import AuthService from 'data-layer/services/AuthService'
-import {
-  AuthCreationParams,
-  LoginCredentials,
-} from 'service-layer/request-models/AuthRequest'
-import { FirebaseAuthError } from 'firebase-admin/auth'
 import { UserRole } from 'types/types'
-import { FirebaseError } from 'firebase/app'
 
 @Route('auth')
 export class AuthController extends Controller {
