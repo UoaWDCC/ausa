@@ -21,10 +21,10 @@ const Footer = () => {
   }, [])
   return (
     <div className={cn(
-            'bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out flex flex-col gap-8 p-10 text-white md:grid md:grid-cols-3',
-            hasScrolled
-              ? 'bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl shadow-slate-900/25'
-              : 'bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none '
+            'bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out flex text-white bg-slate-900/95 backdrop-blur-md',
+            // hasScrolled
+            //   ? 'bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl bg-opacity-10'
+            //   : 'bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none '
           )} >
       {/* col1 */}
       <div className="flex md:justify-start">
@@ -74,10 +74,10 @@ const Footer = () => {
         </div>
       </div>
       {/* last row */}
-      <div className="col-span-3 grid grid-cols-2 gap-4 border-t-1 border-white py-8 md:grid-cols-3">
-        <div className="mt-4 hidden h-[100px] w-[100px] flex-shrink-0 md:mt-0 md:block md:h-40 md:w-40">
+      <div className="col-span-3 grid grid-cols-2 gap-4 border-t-1 border-white py-8 md:grid-cols-4">
+        {/* <div className="mt-4 hidden h-[100px] w-[100px] flex-shrink-0 md:mt-0 md:block md:h-40 md:w-40">
           <Image src={ausa} alt="TRK AUSA" className="rounded-md" />
-        </div>
+        </div> */}
 
         {/* middle column, random information */}
         <div className="mt-4 flex flex-col gap-4 md:m-0 md:h-full">
@@ -94,23 +94,23 @@ const Footer = () => {
         {/* logo image */}
         {/* icon links to socials (instagram, linkedin, facebook) */}
         <div className="col-span-2 mt-4 flex max-h-[160px] flex-shrink-0 justify-start gap-3 md:col-span-1 md:m-0 md:grid md:justify-end">
-          <div className="mb-4 h-[40px] w-[40px] flex-shrink-0 md:mb-0">
+          <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
             <Link href="#" className="">
               <Image src={facebook} alt="Facebook" className="" />
             </Link>
           </div>
 
-          <div className="mb-4 h-[40px] w-[40px] flex-shrink-0 md:mb-0">
+          <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
             <Link href="#" className="">
               <Image
                 src={instagram}
                 alt="Instagram"
-                className="mb-4 h-[40px] w-[40px] md:mb-0"
+                className="mb-4 h-[20px] w-[20px] md:mb-0"
               />
             </Link>
           </div>
 
-          <div className="mb-4 h-[40px] w-[40px] flex-shrink-0 md:mb-0">
+          <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
             <Link href="#" className="">
               <Image
                 src={linkedin}

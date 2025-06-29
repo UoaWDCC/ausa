@@ -112,13 +112,13 @@ export const HomeCarousel: React.FC<HomeCarouselProps> = ({
                 <h3 className="text-xl font-bold text-gray-900">
                   {item.title}
                 </h3>
-                <p className="text-sm text-gray-600">{item.description}</p>
+                <p className="text-sm text-gray-400">{item.description}</p>
                 {item.content.subtitle && (
-                  <h4 className="text-lg font-semibold text-purple-700">
+                  <h4 className="text-lg font-semibold text-blue-200">
                     {item.content.subtitle}
                   </h4>
                 )}
-                <p className="text-gray-700">{item.content.body}</p>
+                <p className="text-gray-300">{item.content.body}</p>
                 {item.content.callToAction && (
                   <Button asChild>
                     <a href={item.content.callToAction.href}>

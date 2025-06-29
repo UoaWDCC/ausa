@@ -33,9 +33,9 @@ export default function RootLayout({
             {children}
           </div>
         </main>
-        <footer className="relative z-20 mt-auto bg-white">
+        {/* <footer className="relative z-20 mt-auto bg-white">
           <Footer />
-        </footer>
+        </footer> */}
       </body>
     </html>
   )
