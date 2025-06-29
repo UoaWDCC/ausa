@@ -21,10 +21,10 @@ const Footer = () => {
   }, [])
   return (
     <div className={cn(
-            'fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-out',
+            'bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out flex flex-col gap-8 p-10 text-white md:grid md:grid-cols-3',
             hasScrolled
               ? 'bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl shadow-slate-900/25'
-              : 'bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none'
+              : 'bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none '
           )} >
       {/* col1 */}
       <div className="flex md:justify-start">
