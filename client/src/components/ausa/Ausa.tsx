@@ -1,7 +1,7 @@
 import {
   DecorationImage,
   type CustomisableDecorationImageProps,
-} from '../decoration-image/DecorationImage'
+} from '@/components/decoration-image/DecorationImage'
 
 export default function AusaDecorationImage(
   props: CustomisableDecorationImageProps,

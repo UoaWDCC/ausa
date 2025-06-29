@@ -5,7 +5,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/app/components/carousel/Carousel'
+} from '@/components/carousel/Carousel'
 import Image from 'next/image'
 
 /**

@@ -1,9 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import ausa from '../../assets/icons/ausa.svg'
-import facebook from '../../assets/icons/facebook.svg'
-import instagram from '../../assets/icons/instagram.svg'
-import linkedin from '../../assets/icons/linkedin.svg'
+import ausa from '../../app/assets/icons/ausa.svg'
+import facebook from '../../app/assets/icons/facebook.svg'
+import instagram from '../../app/assets/icons/instagram.svg'
+import linkedin from '../../app/assets/icons/linkedin.svg'
 
 const Footer = () => {
   return (
