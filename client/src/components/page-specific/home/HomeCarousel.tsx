@@ -109,7 +109,7 @@ export const HomeCarousel: React.FC<HomeCarouselProps> = ({
               }
             >
               <div className="space-y-3">
-                <h3 className="text-xl font-bold text-gray-900">
+                <h3 className="text-xl font-bold text-gray-100">
                   {item.title}
                 </h3>
                 <p className="text-sm text-gray-400">{item.description}</p>

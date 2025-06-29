@@ -191,7 +191,7 @@ const CarouselItem = React.forwardRef<HTMLFieldSetElement, CarouselItemProps>(
         )}
         {...props}
       >
-        <div className="max-h-fit w-full overflow-hidden rounded-sm bg-slate-900 p-4">
+        <div className="max-h-fit w-full overflow-hidden rounded-sm bg-slate-900/55  p-4">
           {heroImage && (
             <div className="-mx-4 -mt-4 mb-4 overflow-hidden rounded-t-sm">
               {heroImage}
