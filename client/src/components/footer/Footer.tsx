@@ -1,13 +1,31 @@
+"use client"
 import Image from 'next/image'
 import Link from 'next/link'
 import ausa from '../../app/assets/icons/ausa.svg'
 import facebook from '../../app/assets/icons/facebook.svg'
 import instagram from '../../app/assets/icons/instagram.svg'
 import linkedin from '../../app/assets/icons/linkedin.svg'
+import { cn } from '@/lib/utils'
+import { useEffect, useState } from 'react'
 
-const Footer = () => {
+const Footer = () => { 
+  
+  const [hasScrolled, setHasScrolled] = useState(false)
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 0)
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
   return (
-    <div className="flex w-full flex-col gap-8 bg-[#393980] p-10 text-white md:grid md:grid-cols-3">
+    <div className={cn(
+            'fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-out',
+            hasScrolled
+              ? 'bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl shadow-slate-900/25'
+              : 'bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none'
+          )} >
       {/* col1 */}
       <div className="flex md:justify-start">
         <div className="flex flex-col gap-4">
