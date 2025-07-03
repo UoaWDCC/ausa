@@ -36,7 +36,7 @@ const FAQ = () => {
     <div className="mt-[70px] flex min-h-[100vh] flex-col">
       <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
         <div
-          className="col-span-1 flex flex-col justify-center gap-4 bg-[#5A9B8C] p-8 text-white"
+          className="col-span-1 flex flex-col justify-center gap-4 bg-slate-900/50 p-8 text-white"
           id="section-left"
         >
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
