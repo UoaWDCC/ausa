@@ -12,7 +12,7 @@ interface FAQProps {
 
 const Banner = () => {
   return (
-    <div className="bg-[#FFDE91] p-2">
+    <div className="bg-slate-900/80 text-white p-2">
       <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
         <div className="animate-infinite-scrolling flex w-full flex-none gap-4 transition-transform">
           <div className="font-geist flex items-center justify-center">
