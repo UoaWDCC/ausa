@@ -6,7 +6,7 @@ import linkedin from '../../app/assets/icons/linkedin.svg'
 
 const Footer = () => {
   return (
-    <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-6 text-white bg-slate-900/95 backdrop-blur-md grid grid-cols-3">
+    <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-6 text-white bg-slate-900/95 backdrop-blur-md flex flex-col md:grid md:grid-cols-3 ">
       {/* col1 */}
       <div className="flex flex-col ">
         <div className="flex flex-col gap-4 p-2">
@@ -22,7 +22,7 @@ const Footer = () => {
         </div>
       </div>
       {/* col2 */}
-      <div className="flex justify-center">
+      <div className="flex md:justify-center">
         <div className="flex flex-col gap-4 p-2">
           <h1 className="text-2xl">Services</h1>
           <Link href="#">
@@ -44,7 +44,7 @@ const Footer = () => {
         </div>
       </div>
       {/* col3 */}
-      <div className="flex justify-end">
+      <div className="flex md:justify-end">
         <div className="flex flex-col gap-4 p-2">
           <h1 className="text-2xl">Emergency help</h1>
           <Link href="#">
