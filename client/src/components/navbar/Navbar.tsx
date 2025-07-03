@@ -146,7 +146,13 @@ const defaultNavConfig: NavConfig = {
   navItems: [
     { label: 'Home', href: '/' },
     { label: 'Support', href: '/support' },
-    { label: 'FAQs', href: '/faq' },
+    { label: 'FAQs', 
+      items: [
+        { label: 'University Support', href: '/faq/support' },
+        { label: 'External Support', href: 'faq/external'},
+        { label: 'Emergency Support', href: 'faq/emergency'},
+      ],
+    },
     {
       label: 'Contacts',
       items: [
