@@ -6,7 +6,7 @@ import linkedin from '../../app/assets/icons/linkedin.svg'
 
 const Footer = () => {
   return (
-    <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-4 text-white bg-slate-900/95 backdrop-blur-md grid grid-cols-3">
+    <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-6 text-white bg-slate-900/95 backdrop-blur-md grid grid-cols-3">
       {/* col1 */}
       <div className="flex flex-col ">
         <div className="flex flex-col gap-4 p-2">
