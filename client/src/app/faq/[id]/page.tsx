@@ -4,6 +4,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/shadcn_components/ui/accordion'
+import { redirect } from 'next/navigation'
+
+interface FAQProps {
+  params: Promise<{ id: string }>
+}
 
 const Banner = () => {
   return (
@@ -31,7 +36,12 @@ const Banner = () => {
   )
 }
 
-const FAQ = () => {
+export default async function FAQ({ params }: FAQProps) {
+  const title: Record<string, string> = { "university-support": "University Support", "external-support": "External Support", "emergency-support": "Emergency Support" }
+  const { id } = await params
+  if (!title[id]) {
+    redirect('/404')
+  }
   return (
     <div className="mt-[70px] flex min-h-[100vh] flex-col">
       <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
@@ -51,7 +61,7 @@ const FAQ = () => {
             </ul>
           </div>
           <div className="mb-4 flex flex-col items-center gap-2">
-            <h2 className="text-lg font-semibold">External Supoort</h2>
+            <h2 className="text-lg font-semibold">External Support</h2>
             <ul className="ml-4 list-disc">
               <li>Campus Care</li>
               <li>General Wellbeing Support</li>
@@ -72,7 +82,7 @@ const FAQ = () => {
           id="section-right"
         >
           <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
-          <h2 className="text-2xl font-semibold">University Support</h2>
+          <h2 className="text-2xl font-semibold">{title[id]}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
@@ -100,5 +110,3 @@ const FAQ = () => {
     </div>
   )
 }
-
-export default FAQ
