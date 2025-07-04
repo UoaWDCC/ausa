@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import ausa from '../../app/assets/icons/ausa.svg'
+// import ausa from '../../app/assets/icons/ausa.svg'
 import facebook from '../../app/assets/icons/facebook.svg'
 import gps from '../../app/assets/icons/gps.svg'
 import instagram from '../../app/assets/icons/instagram.svg'
