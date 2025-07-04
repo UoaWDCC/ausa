@@ -26,4 +26,17 @@ export class FaqDataService {
       await FirestoreCollections.faq.doc(id).get()
     return faqSnapshot.data()
   }
+
+    /**
+     * Creates a new faq in the Firestore collection.
+     *
+     * @param faq The Faq object to create.
+     * @returns A promise that resolves to the created Faq object.
+     */
+    public static async createFaq(
+        faq: Faq,
+    ){
+        return FirestoreCollections.faq
+        .add(faq)
+    }
 }
