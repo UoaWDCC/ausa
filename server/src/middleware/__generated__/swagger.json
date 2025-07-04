@@ -7,6 +7,26 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"Faq": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"question": {
+						"type": "string"
+					},
+					"answer": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"question",
+					"answer"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ExternalResource": {
 				"properties": {
 					"id": {
@@ -211,6 +231,28 @@
 		"contact": {}
 	},
 	"paths": {
+		"/faq": {
+			"get": {
+				"operationId": "GetFaqs",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Faq"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		},
 		"/external-resources": {
 			"get": {
 				"operationId": "GetAllExternalResources",

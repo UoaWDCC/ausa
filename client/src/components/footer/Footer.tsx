@@ -55,13 +55,13 @@ const Footer = () => {
         </div>
       </div>
       {/* last row */}
-      <div className="col-span-3 grid grid-cols-2 gap-4 border-t-1 border-white py-8 md:grid-cols-4">
+      <div className="flex gap-4 border-t-1 border-white py-8 w-full">
         {/* <div className="mt-4 hidden h-[100px] w-[100px] flex-shrink-0 md:mt-0 md:block md:h-40 md:w-40">
           <Image src={ausa} alt="TRK AUSA" className="rounded-md" />
         </div> */}
 
         {/* middle column, random information */}
-        <div className="mt-4 flex flex-col gap-4 md:m-0 md:h-full">
+        <div className="mt-4 flex flex-col gap-4 ml-auto">
           <div>
             © Te Rōpū Kahikatea - Auckland University Students’ Association
             2025. All Rights Reserved.
@@ -74,7 +74,7 @@ const Footer = () => {
 
         {/* logo image */}
         {/* icon links to socials (instagram, linkedin, facebook) */}
-        <div className="col-span-2 mt-4 flex max-h-[160px] flex-shrink-0 justify-start gap-3 md:col-span-1 md:m-0 md:grid md:justify-end">
+        <div className="mt-4 flex max-h-[160px] flex-shrink-0 justify-start gap-3">
           <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
             <Link href="#" className="">
               <Image src={facebook} alt="Facebook" className="" />

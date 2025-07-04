@@ -4,6 +4,8 @@
 import type { TsoaRoute } from '@tsoa/runtime';
 import {  fetchMiddlewares, ExpressTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { FaqController } from './../../service-layer/controllers/FaqController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ExternalResourceController } from './../../service-layer/controllers/ExternalResourceController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { AdminUserController } from './../../service-layer/controllers/AdminController/AdminUserController';
@@ -17,6 +19,16 @@ const expressAuthenticationRecasted = expressAuthentication as (req: ExRequest, 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "Faq": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "question": {"dataType":"string","required":true},
+            "answer": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ExternalResource": {
         "dataType": "refObject",
         "properties": {
@@ -135,6 +147,35 @@ export function RegisterRoutes(app: Router) {
 
 
     
+        const argsFaqController_getFaqs: Record<string, TsoaRoute.ParameterSchema> = {
+        };
+        app.get('/faq',
+            ...(fetchMiddlewares<RequestHandler>(FaqController)),
+            ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.getFaqs)),
+
+            async function FaqController_getFaqs(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsFaqController_getFaqs, request, response });
+
+                const controller = new FaqController();
+
+              await templateService.apiHandler({
+                methodName: 'getFaqs',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsExternalResourceController_getAllExternalResources: Record<string, TsoaRoute.ParameterSchema> = {
         };
         app.get('/external-resources',
