@@ -273,6 +273,27 @@
 				}
 			}
 		},
+		"/faq/{faqId}": {
+			"delete": {
+				"operationId": "DeleteFaq",
+				"responses": {
+					"204": {
+						"description": "No content"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "faqId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/external-resources": {
 			"get": {
 				"operationId": "GetAllExternalResources",

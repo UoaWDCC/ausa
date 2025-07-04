@@ -39,4 +39,10 @@ export class FaqDataService {
         return FirestoreCollections.faq
         .add(faq)
     }
+
+    public static async deleteFaq(
+        faqId: string,
+    ){
+        return FirestoreCollections.faq.doc(faqId).delete()
+    }
 }
