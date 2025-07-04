@@ -56,39 +56,65 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="">
-            Visit Us: 4 Alfred Street, Auckland Central, Auckland 1010
-          </div>
-          <div className="">Phone: 09 309 0789</div>
         </div>
-
-        {/* logo image */}
-        {/* icon links to socials (instagram, linkedin, facebook) */}
-        <div className="col-span-2 mt-4 flex max-h-[160px] flex-shrink-0 justify-start gap-3 md:col-span-1 md:m-0 md:grid md:justify-end">
-          <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-            <Link href="#" className="">
-              <Image src={facebook} alt="Facebook" className="" />
+        {/* About Us */}
+        <div className="flex flex-col ">
+          <div className="flex flex-col gap-4 p-2">
+            <h1 className="text-2xl font-bold">About Us</h1>
+            <Link href="#">
+              <span className="border-white hover:border-b-1">
+                Student Council
+              </span>
+            </Link>
+            <Link href="#">
+              <span className="border-white hover:border-b-1">
+                AUSA Website
+              </span>
             </Link>
           </div>
-
-          <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-            <Link href="#" className="">
-              <Image
-                src={instagram}
-                alt="Instagram"
-                className="mb-4 h-[20px] w-[20px] md:mb-0"
-              />
+        </div>
+        {/* Services */}
+        <div className="flex md:justify-center">
+          <div className="flex flex-col gap-4 p-2">
+            <h1 className="text-2xl font-bold">Services</h1>
+            <Link href="#">
+              <span className="border-white hover:border-b-1">Advocacy</span>
+            </Link>
+            <Link href="#">
+              <span className="border-white hover:border-b-1">
+                Buddy Program
+              </span>
+            </Link>
+            <Link href="#">
+              <span className="border-white hover:border-b-1">
+                Class Representatives
+              </span>
+            </Link>
+            <Link href="#">
+              <span className="border-white hover:border-b-1">
+                Health Counseling
+              </span>
             </Link>
           </div>
-
-          <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-            <Link href="#" className="">
-              <Image
-                src={linkedin}
-                alt="LinkedIn"
-                className="mb-4 h-[40px] w-[40px] md:mb-0"
-              />
+        </div>
+        {/* Emergency Help */}
+        <div className="flex md:justify-end">
+          <div className="flex flex-col gap-4 p-2">
+            <h1 className="text-2xl font-bold">Emergency Help</h1>
+            <Link href="#">
+              <span className="border-white hover:border-b-1">
+                Emergency Contacts
+              </span>
             </Link>
+          </div>
+        </div>
+      </div>
+      {/* Copyright */}
+      <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-6 text-white bg-slate-900/95 backdrop-blur-md flex flex-col md:grid md:grid-cols-[1fr] md:gap-x-6">
+        <div className="flex md:justify-center">
+          <div className="flex flex-col gap-4 p-2">
+            © Te Rōpū Kahikatea - Auckland University Students’ Association
+            2025. All Rights Reserved.
           </div>
         </div>
       </div>
