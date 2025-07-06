@@ -1,8 +1,8 @@
-import PortalItem from '@/components/portal/portal-item/portal-item';
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground';
-import { Button } from '@/components/ui/button';
-import Image from 'next/image';
-import { Separator } from '@/components/ui/separator';
+import PortalItem from '@/components/portal/portal-item/portal-item'
+import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
+import { Button } from '@/components/ui/button'
+import Image from 'next/image'
+import { Separator } from '@/components/ui/separator'
 
 const Portal = () => {
   return (
@@ -32,11 +32,7 @@ const Portal = () => {
           </h1>
 
           <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <PortalItem
-              title="Home"
-              content="Go to Home Page"
-              link="/"
-            />
+            <PortalItem title="Home" content="Go to Home Page" link="/" />
             <PortalItem
               title="Support"
               content="Contact Support"
@@ -56,7 +52,7 @@ const Portal = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Portal;
+export default Portal
