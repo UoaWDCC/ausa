@@ -1,17 +1,17 @@
-import type { Metadata } from 'next';
-import '@/styles/globals.css';
-import Image from 'next/image';
-import NavigationBar from '@/components/navbar/Navbar';
+import type { Metadata } from 'next'
+import '@/styles/globals.css'
+import Image from 'next/image'
+import NavigationBar from '@/components/navbar/Navbar'
 
 export const metadata: Metadata = {
   title: 'AUSA',
   description: '',
-};
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -37,5 +37,5 @@ export default function RootLayout({
         </footer> */}
       </body>
     </html>
-  );
+  )
 }

@@ -45,7 +45,7 @@ const Practice = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Practice;
+export default Practice
