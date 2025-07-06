@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
-import NavigationBar from './components/navbar/Navbar_final'
-import Footer from './components/footer/Footer'
+import Image from 'next/image'
+import NavigationBar from '@/components/navbar/Navbar'
 
 export const metadata: Metadata = {
   title: 'AUSA',
@@ -15,24 +15,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={``}>
+      <body className="relative flex min-h-screen flex-col">
         <NavigationBar />
-        <div
-          className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat brightness-50"
-          style={{
-            backgroundImage:
-              "url('https://upload.wikimedia.org/wikipedia/commons/8/8a/Polynesian_Cultural_Center_-_Canoe_Pageant_%288328364423%29.jpg')",
-          }}
-        />
-        <div className="fixed right-4 bottom-4 z-10">
-          <img
-            src="https://img.freepik.com/free-psd/halfopened-coconut-shell-showcasing-its-creamy-white-interior-small-bite-taken-out-it-its-delectable-treat-image-portrays-freshness-tropical-vibes_191095-78031.jpg?semt=ais_items_boosted&w=740"
-            alt="Bottom right image"
-            className="h-16 w-16 rounded object-cover"
+        <div className="pointer-events-none fixed inset-0 -z-10 brightness-35">
+          <Image
+            src={'/static/backgrounds/uoa-background.jpg'}
+            alt="Univeristy of Auckland"
+            fill
+            className="object-cover object-center"
+            priority
+            sizes="100vw"
           />
         </div>
-        {children}
-        <Footer />
+        <main className="relative z-10 w-full max-w-full flex-1 overflow-x-hidden">
+          <div className="container mx-auto px-4 pb-16 sm:px-6 lg:px-8">
+            {children}
+          </div>
+        </main>
+        {/* <footer className="relative z-20 mt-auto bg-white">
+          <Footer />
+        </footer> */}
       </body>
     </html>
   )

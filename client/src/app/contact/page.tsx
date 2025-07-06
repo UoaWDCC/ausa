@@ -1,4 +1,5 @@
-import ContactForm from '../components/contact-form/ContactForm'
+import ContactForm from '@/components/contact-form/ContactForm'
+
 const Contact = () => {
   return (
     <div className="font-RG">

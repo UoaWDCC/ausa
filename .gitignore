@@ -1,6 +1,5 @@
 # IDEs
 .idea
-.vscode
 
 # Below is a copy of https://github.com/github/gitignore/blob/HEAD/Node.gitignore
 
@@ -140,3 +139,8 @@ dist
 
 # Firebase config
 firebase-creds.json
+
+.DS_Store
+
+# Turbo files
+.turbo

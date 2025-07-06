@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import 'tw-animate-css';
+@import "tailwindcss";
+@import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -25,11 +25,11 @@
 }
 
 @theme {
-  --font-ReservoirGrunge: 'ReservoirGrunge', sans-serif;
-  --font-EingrantchMono: 'EingrantchMono', sans-serif;
-  --font-Inter: 'inter', sans-serif;
-  --font-ReemKufi: 'ReemKufi', sans-serif;
-  --font-Geist: 'geist', sans-serif;
+  --font-ReservoirGrunge: "ReservoirGrunge", sans-serif;
+  --font-EingrantchMono: "EingrantchMono", sans-serif;
+  --font-Inter: "inter", sans-serif;
+  --font-ReemKufi: "ReemKufi", sans-serif;
+  --font-Geist: "geist", sans-serif;
 }
 
 @theme inline {
@@ -96,24 +96,24 @@
 }
 
 @font-face {
-  font-family: 'ReservoirGrunge';
+  font-family: "ReservoirGrunge";
   font-weight: 400;
-  src: url('../app/assets/fonts/ReservoirGrunge/RESEGRG_.TTF')
-    format('truetype');
+  src: url("../app/assets/fonts/ReservoirGrunge/RESEGRG_.TTF")
+    format("truetype");
 }
 
 @font-face {
-  font-family: 'EingrantchMono';
+  font-family: "EingrantchMono";
   font-weight: 400;
-  src: url('../app/assets/fonts/EingrantchMono/EingrantchMono-Medium.ttf')
-    format('truetype');
+  src: url("../app/assets/fonts/EingrantchMono/EingrantchMono-Medium.ttf")
+    format("truetype");
 }
 
 @font-face {
-  font-family: 'ReemKufi';
+  font-family: "ReemKufi";
   font-weight: 400;
-  src: url('../app/assets/fonts/ReemKufi/ReemKufi-Regular.ttf')
-    format('truetype');
+  src: url("../app/assets/fonts/ReemKufi/ReemKufi-Regular.ttf")
+    format("truetype");
 }
 
 @theme {

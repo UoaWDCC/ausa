@@ -1,7 +1,7 @@
-import { pageInfo } from '@/app/components/navSearch/navSearch'
-import { ExternalResource, Faq } from '@/types/types'
+import type { PageInfo } from '@/components/nav-search/NavSearch'
+import type { ExternalResource, Faq } from '@/types/types'
 
-export async function navSearchHandler(pages: pageInfo[]): Promise<pageInfo[]> {
+export async function navSearchHandler(pages: PageInfo[]): Promise<PageInfo[]> {
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
   const res = await fetch(`${url}/faq`, {
     headers: {

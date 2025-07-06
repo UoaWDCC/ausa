@@ -7,37 +7,27 @@
     "server"
   ],
   "scripts": {
-    "l": "yarn format && yarn lint",
-    "lint": "eslint . --fix",
-    "lint:ci": "eslint .",
-    "format": "prettier . --write",
-    "format:ci": "prettier . --check",
-    "dev-client": "yarn workspace client dev",
-    "dev-server": "yarn workspace server start",
+    "lint": "biome lint",
+    "lint:fix": "biome lint . --fix",
+    "lint:ci": "biome lint .",
+    "format": "biome format",
+    "format:fix": "biome format . --write",
+    "format:ci": "biome format .",
+    "dev": "turbo run dev",
+    "dev:client": "turbo run dev --filter client",
+    "dev:server": "turbo run dev --filter server",
     "storybook": "yarn workspace client storybook",
-    "vsc-setup": "code --install-extension dbaeumer.vscode-eslint && code --install-extension esbenp.prettier-vscode && code install-extension bradlc.vscode-tailwindcss",
-    "build": "yarn workspace client build && yarn workspace server build"
+    "vsc-setup": "code install-extension bradlc.vscode-tailwindcss",
+    "build": "turbo run build"
+  },
+  "dependencies": {
+    "typescript": "5.8.3"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.2.0",
+    "@biomejs/biome": "2.0.6",
     "@types/node": "^20",
-    "@typescript-eslint/eslint-plugin": "^7.1.0",
-    "@typescript-eslint/parser": "^7.1.0",
-    "eslint": "^8.57.0",
-    "eslint-config-next": "^14.2.4",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-config-standard": "^17.1.0",
-    "eslint-plugin": "^1.0.1",
-    "eslint-plugin-import": "^2.29.1",
-    "eslint-plugin-n": "^16.6.2",
-    "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-prettier": "^5.0.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.33.2",
     "globals": "^16.0.0",
-    "prettier": "3.5.3",
-    "prettier-plugin-tailwindcss": "^0.6.11",
-    "typescript-eslint": "^8.30.1"
+    "turbo": "^2.5.4"
   },
   "engines": {
     "node": ">=22",
@@ -47,8 +37,5 @@
   "volta": {
     "node": "22.14.0",
     "yarn": "4.9.1"
-  },
-  "dependencies": {
-    "typescript": "5.8.3"
   }
 }
