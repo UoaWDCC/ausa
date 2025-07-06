@@ -43,6 +43,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+        key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+        restore-keys: |
+          turbo-${{ runner.os }}-
+
 
       - name: Cache node_modules
         uses: actions/cache@v4
@@ -149,6 +162,18 @@ jobs:
       - name: Install dependencies if cache misses
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn
+      
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+        key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+        restore-keys: |
+          turbo-${{ runner.os }}-
 
       - name: Run linting
         run: yarn lint:ci
@@ -185,6 +210,18 @@ jobs:
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn
 
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+        key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+        restore-keys: |
+          turbo-${{ runner.os }}-
+
       - name: Generate typing
         run: yarn workspace server tsoa spec-and-routes
 
@@ -218,6 +255,18 @@ jobs:
 
       - name: Install yarn
         run: corepack enable yarn
+
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+        key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+        restore-keys: |
+          turbo-${{ runner.os }}-
 
       # Restore cached node_modules
       - name: Restore node_modules
