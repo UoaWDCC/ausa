@@ -48,6 +48,21 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"url":{"dataType":"string","required":true},"description":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Omit_ExternalResource.id_": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_ExternalResource.Exclude_keyofExternalResource.id__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "createExternalResourceRequest": {
+        "dataType": "refAlias",
+        "type": {"ref":"Omit_ExternalResource.id_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CommonResponse": {
         "dataType": "refObject",
         "properties": {
@@ -188,6 +203,36 @@ export function RegisterRoutes(app: Router) {
                 next,
                 validatedArgs,
                 successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_createExternalResource: Record<string, TsoaRoute.ParameterSchema> = {
+                externalResource: {"in":"body","name":"externalResource","required":true,"ref":"createExternalResourceRequest"},
+        };
+        app.post('/external-resources',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.createExternalResource)),
+
+            async function ExternalResourceController_createExternalResource(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_createExternalResource, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'createExternalResource',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
               });
             } catch (err) {
                 return next(err);

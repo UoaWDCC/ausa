@@ -1,10 +1,11 @@
 import { ExternalResourceDataService } from 'data-layer/services/ExternalResourceDataService'
 import { StatusCodes } from 'http-status-codes'
+import { createExternalResourceRequest } from 'service-layer/request-models/ExternalResourceRequests'
 import type {
   GetAllExternalResourceResponse,
   GetExternalResourceResponse,
 } from 'service-layer/response-models/ExternalResourceResponses'
-import { Controller, Get, Path, Route } from 'tsoa'
+import { Body, Controller, Get, Path, Post, Route, SuccessResponse } from 'tsoa'
 
 @Route('external-resources')
 export class ExternalResourceController extends Controller {
@@ -36,6 +37,23 @@ export class ExternalResourceController extends Controller {
       console.error('Error retrieving external resource:', error)
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
       return { error: 'Failed to retrieve external resource' }
+    }
+  }
+
+  @Post()
+  @SuccessResponse(StatusCodes.CREATED, 'Successfully created external resource')
+  public async createExternalResource(
+    @Body() externalResource: createExternalResourceRequest,
+  ): Promise<GetExternalResourceResponse> {
+    try {
+      const createdResource =
+        await ExternalResourceDataService.createExternalResource(externalResource)
+      this.setStatus(StatusCodes.CREATED)
+      return { data: createdResource }
+    } catch (error) {
+      console.error('Error creating external resource:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      return { error: 'Failed to create external resource' }
     }
   }
 }
