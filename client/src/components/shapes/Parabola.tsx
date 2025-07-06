@@ -1,11 +1,11 @@
 const Practice = () => {
   return (
     <div className="relative h-screen w-full overflow-hidden">
-    
-
       {/* Portal box centered */}
       <div className="absolute top-1/2 left-1/2 z-10 w-[350px] md:w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-md bg-white p-6 shadow-xl">
-        <h2 className="text-center text-xl font-semibold mb-6">portal component</h2>
+        <h2 className="text-center text-xl font-semibold mb-6">
+          portal component
+        </h2>
 
         {/* Cards section */}
         <div className="grid grid-cols-2 gap-4 text-center">
