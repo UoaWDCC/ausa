@@ -25,6 +25,18 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
   const [hasScrolled, setHasScrolled] = useState(false)
 
   useEffect(() => {
+  if (isMobileMenuOpen) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+
+  return () => {
+    document.body.style.overflow = ''
+  }
+}, [isMobileMenuOpen])
+
+  useEffect(() => {
     const handleScroll = () => {
       setHasScrolled(window.scrollY > 0)
     }
