@@ -13,7 +13,7 @@ type CarouselApi = UseEmblaCarouselType[1]
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>
 type CarouselOptions = UseCarouselParameters[0]
 type CarouselPlugin = UseCarouselParameters[1]
-
+//Test comment
 type CarouselProps = {
   opts?: CarouselOptions
   plugins?: CarouselPlugin
