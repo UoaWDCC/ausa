@@ -8,7 +8,6 @@ import type {
   GetAllUsersResponse,
   GetUserResponse,
 } from 'service-layer/response-models/AdminResponses'
-//Another test comment
 import type { CommonResponse } from 'service-layer/response-models/CommonResponse'
 import {
   Body,
