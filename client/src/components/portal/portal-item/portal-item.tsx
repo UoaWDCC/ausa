@@ -6,20 +6,22 @@ interface IPortalItemProps extends PortalItem {
   link: string
 }
 
-const PortalItem1 = ({ title, content, link }: IPortalItemProps) => {
+const PortalItem1 = ({ title, link }: IPortalItemProps) => {
   return (
-    <div className="flex flex-col items-center rounded-md border border-white/10 bg-white/10 p-6 shadow-md backdrop-blur-md">
-      <h2 className="mb-1 text-lg font-semibold text-white drop-shadow-sm">
-        {title}
-      </h2>
+    <Link
+      href={link}
+      className="relative block w-full sm:w-30 h-24 sm:h-30 rounded-lg bg-white/10 p-6 text-center shadow-md backdrop-blur-md transition hover:bg-white/20"
+    >
+      {/* Inner white border inset */}
+      <div className="pointer-events-none absolute inset-2 rounded-lg border border-white/30"></div>
 
-      <Link
-        href={link}
-        className="mb-2 text-sm text-blue-300 underline transition-colors duration-150 hover:text-white"
-      >
-        {content}
-      </Link>
-    </div>
+      {/* Title centered */}
+      <div className="flex h-full w-full items-center justify-center">
+        <h2 className="text-lg sm:text-xl font-semibold text-white drop-shadow-sm">
+          {title}
+        </h2>
+      </div>
+    </Link>
   )
 }
 

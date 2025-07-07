@@ -6,7 +6,7 @@ import { Separator } from '@/components/ui/separator'
 
 const Portal = () => {
   return (
-    <div className="relative z-10 py-32 text-white">
+    <div className="relative z-10 py-20 text-white">
       <div className="relative z-10 mx-auto max-w-4xl sm:px-4">
         <div className="relative overflow-hidden rounded-md border border-white/20 bg-black/40 p-8 sm:p-10 shadow-2xl backdrop-blur-sm">
           <TiledAusaBackground />
