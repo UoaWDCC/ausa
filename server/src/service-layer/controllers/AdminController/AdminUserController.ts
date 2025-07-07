@@ -132,5 +132,4 @@ export class AdminUserController extends Controller {
       return { error: 'Failed to delete user' }
     }
   }
-  //Another test comment
 }
