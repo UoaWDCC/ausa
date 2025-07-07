@@ -34,7 +34,7 @@ export default function RootLayout({
           </div>
         </main>
         <footer className="relative z-20 mt-auto bg-white">
-           <Footer />
+          <Footer />
         </footer>
       </body>
     </html>

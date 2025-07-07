@@ -8,8 +8,7 @@ export class FaqDataService {
    * @returns A promise that resolves to an array of Faq objects.
    */
   public static async getAllFaqs(): Promise<Faq[]> {
-    const faqSnapshots =
-      await FirestoreCollections.faq.get()
+    const faqSnapshots = await FirestoreCollections.faq.get()
     return faqSnapshots.docs.map((doc) => doc.data())
   }
 
@@ -19,30 +18,22 @@ export class FaqDataService {
    * @param id The ID of the faq to fetch.
    * @returns A promise that resolves to a Faq object.
    */
-  public static async getFaqById(
-    id: string,
-  ): Promise<Faq> {
-    const faqSnapshot =
-      await FirestoreCollections.faq.doc(id).get()
+  public static async getFaqById(id: string): Promise<Faq> {
+    const faqSnapshot = await FirestoreCollections.faq.doc(id).get()
     return faqSnapshot.data()
   }
 
-    /**
-     * Creates a new faq in the Firestore collection.
-     *
-     * @param faq The Faq object to create.
-     * @returns A promise that resolves to the created Faq object.
-     */
-    public static async createFaq(
-        faq: Faq,
-    ){
-        return FirestoreCollections.faq
-        .add(faq)
-    }
+  /**
+   * Creates a new faq in the Firestore collection.
+   *
+   * @param faq The Faq object to create.
+   * @returns A promise that resolves to the created Faq object.
+   */
+  public static async createFaq(faq: Faq) {
+    return FirestoreCollections.faq.add(faq)
+  }
 
-    public static async deleteFaq(
-        faqId: string,
-    ){
-        return FirestoreCollections.faq.doc(faqId).delete()
-    }
+  public static async deleteFaq(faqId: string) {
+    return FirestoreCollections.faq.doc(faqId).delete()
+  }
 }
