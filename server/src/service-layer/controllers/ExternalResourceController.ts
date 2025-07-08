@@ -58,6 +58,7 @@ export class ExternalResourceController extends Controller {
   }
 
   @Patch('{id}')
+  @SuccessResponse(StatusCodes.OK, 'Successfully updated external resource')
   public async updateExternalResource(
     @Path() id: string,
     @Body() externalResource: updateExternalResourceRequest,
