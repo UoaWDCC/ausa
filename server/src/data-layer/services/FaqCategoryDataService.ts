@@ -5,7 +5,7 @@ import {
   updateFaqCategoryRequest,
 } from 'service-layer/request-models/FaqCategoryRequests'
 
-export class FaqDataService {
+export class FaqCategoryDataService {
   /**
    * Fetches all FAQ Categories from the Firestore collection.
    *
@@ -27,6 +27,13 @@ export class FaqDataService {
       .doc(id)
       .get()
     return faqCategorySnapshot.data()
+  }
+
+  public static async getFaqCategoryByName(name: string): Promise<FaqCategory> {
+    const faqCategorySnapshot = await FirestoreCollections.faqCategories
+      .where('name', '==', name)
+      .get()
+    return faqCategorySnapshot.docs.map((doc) => doc.data())[0]
   }
 
   /**
