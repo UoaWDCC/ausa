@@ -89,6 +89,24 @@
 			"createExternalResourceRequest": {
 				"$ref": "#/components/schemas/Omit_ExternalResource.id_"
 			},
+			"Partial_createExternalResourceRequest_": {
+				"properties": {
+					"title": {
+						"type": "string"
+					},
+					"url": {
+						"type": "string"
+					},
+					"description": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"description": "Make all properties in T optional"
+			},
+			"updateExternalResourceRequest": {
+				"$ref": "#/components/schemas/Partial_createExternalResourceRequest_"
+			},
 			"CommonResponse": {
 				"properties": {
 					"error": {
@@ -309,6 +327,42 @@
 						}
 					}
 				]
+			},
+			"patch": {
+				"operationId": "UpdateExternalResource",
+				"responses": {
+					"200": {
+						"description": "Successfully updated external resource",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetExternalResourceResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/updateExternalResourceRequest"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/admin/users": {

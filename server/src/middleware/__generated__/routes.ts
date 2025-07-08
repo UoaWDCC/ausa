@@ -63,6 +63,16 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"Omit_ExternalResource.id_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_createExternalResourceRequest_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string"},"url":{"dataType":"string"},"description":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "updateExternalResourceRequest": {
+        "dataType": "refAlias",
+        "type": {"ref":"Partial_createExternalResourceRequest_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "CommonResponse": {
         "dataType": "refObject",
         "properties": {
@@ -233,6 +243,37 @@ export function RegisterRoutes(app: Router) {
                 next,
                 validatedArgs,
                 successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_updateExternalResource: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                externalResource: {"in":"body","name":"externalResource","required":true,"ref":"updateExternalResourceRequest"},
+        };
+        app.patch('/external-resources/:id',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.updateExternalResource)),
+
+            async function ExternalResourceController_updateExternalResource(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_updateExternalResource, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'updateExternalResource',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
               });
             } catch (err) {
                 return next(err);
