@@ -1,11 +1,11 @@
 import { ExternalResourceDataService } from 'data-layer/services/ExternalResourceDataService'
 import { StatusCodes } from 'http-status-codes'
-import { createExternalResourceRequest } from 'service-layer/request-models/ExternalResourceRequests'
+import { createExternalResourceRequest, updateExternalResourceRequest } from 'service-layer/request-models/ExternalResourceRequests'
 import type {
   GetAllExternalResourceResponse,
   GetExternalResourceResponse,
 } from 'service-layer/response-models/ExternalResourceResponses'
-import { Body, Controller, Get, Path, Post, Route, SuccessResponse } from 'tsoa'
+import { Body, Controller, Get, Patch, Path, Post, Route, SuccessResponse } from 'tsoa'
 
 @Route('external-resources')
 export class ExternalResourceController extends Controller {
@@ -56,4 +56,25 @@ export class ExternalResourceController extends Controller {
       return { error: 'Failed to create external resource' }
     }
   }
-}
+
+  @Patch('{id}')
+  public async updateExternalResource(
+    @Path() id: string,
+    @Body() externalResource: updateExternalResourceRequest,
+  ): Promise<GetExternalResourceResponse> {
+    try {
+      const existingResource = await ExternalResourceDataService.getExternalResourceById(id)
+      if (!existingResource) {
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'External Resource not found' }
+      }
+      const updatedResource =
+        await ExternalResourceDataService.updateExternalResource(id, externalResource)
+      return { data: updatedResource }
+    } catch (error) {
+      console.error('Error updating external resource:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      return { error: 'Failed to update external resource' }
+    }
+  }
+  }
