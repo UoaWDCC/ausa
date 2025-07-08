@@ -1,6 +1,9 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import type { ExternalResource } from 'data-layer/models/ExternalResource'
-import { createExternalResourceRequest, updateExternalResourceRequest } from 'service-layer/request-models/ExternalResourceRequests'
+import {
+  createExternalResourceRequest,
+  updateExternalResourceRequest,
+} from 'service-layer/request-models/ExternalResourceRequests'
 
 export class ExternalResourceDataService {
   /**
@@ -38,7 +41,7 @@ export class ExternalResourceDataService {
     externalResource: createExternalResourceRequest,
   ): Promise<ExternalResource> {
     const docRef = await FirestoreCollections.externalResources.doc()
-    await docRef.set({id: docRef.id, ...externalResource})
+    await docRef.set({ id: docRef.id, ...externalResource })
     const createdResourceSnapshot = await docRef.get()
     return createdResourceSnapshot.data()
   }

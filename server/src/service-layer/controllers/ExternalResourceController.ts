@@ -1,11 +1,23 @@
 import { ExternalResourceDataService } from 'data-layer/services/ExternalResourceDataService'
 import { StatusCodes } from 'http-status-codes'
-import { createExternalResourceRequest, updateExternalResourceRequest } from 'service-layer/request-models/ExternalResourceRequests'
+import {
+  createExternalResourceRequest,
+  updateExternalResourceRequest,
+} from 'service-layer/request-models/ExternalResourceRequests'
 import type {
   GetAllExternalResourceResponse,
   GetExternalResourceResponse,
 } from 'service-layer/response-models/ExternalResourceResponses'
-import { Body, Controller, Get, Patch, Path, Post, Route, SuccessResponse } from 'tsoa'
+import {
+  Body,
+  Controller,
+  Get,
+  Patch,
+  Path,
+  Post,
+  Route,
+  SuccessResponse,
+} from 'tsoa'
 
 @Route('external-resources')
 export class ExternalResourceController extends Controller {
@@ -41,13 +53,18 @@ export class ExternalResourceController extends Controller {
   }
 
   @Post()
-  @SuccessResponse(StatusCodes.CREATED, 'Successfully created external resource')
+  @SuccessResponse(
+    StatusCodes.CREATED,
+    'Successfully created external resource',
+  )
   public async createExternalResource(
     @Body() externalResource: createExternalResourceRequest,
   ): Promise<GetExternalResourceResponse> {
     try {
       const createdResource =
-        await ExternalResourceDataService.createExternalResource(externalResource)
+        await ExternalResourceDataService.createExternalResource(
+          externalResource,
+        )
       this.setStatus(StatusCodes.CREATED)
       return { data: createdResource }
     } catch (error) {
@@ -64,13 +81,17 @@ export class ExternalResourceController extends Controller {
     @Body() externalResource: updateExternalResourceRequest,
   ): Promise<GetExternalResourceResponse> {
     try {
-      const existingResource = await ExternalResourceDataService.getExternalResourceById(id)
+      const existingResource =
+        await ExternalResourceDataService.getExternalResourceById(id)
       if (!existingResource) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'External Resource not found' }
       }
       const updatedResource =
-        await ExternalResourceDataService.updateExternalResource(id, externalResource)
+        await ExternalResourceDataService.updateExternalResource(
+          id,
+          externalResource,
+        )
       return { data: updatedResource }
     } catch (error) {
       console.error('Error updating external resource:', error)
@@ -78,4 +99,4 @@ export class ExternalResourceController extends Controller {
       return { error: 'Failed to update external resource' }
     }
   }
-  }
+}

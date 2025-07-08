@@ -37,7 +37,11 @@ const Banner = () => {
 }
 
 export default async function FAQ({ params }: FAQProps) {
-  const title: Record<string, string> = { "university-support": "University Support", "external-support": "External Support", "emergency-support": "Emergency Support" }
+  const title: Record<string, string> = {
+    'university-support': 'University Support',
+    'external-support': 'External Support',
+    'emergency-support': 'Emergency Support',
+  }
   const { id } = await params
   if (!title[id]) {
     redirect('/404')
