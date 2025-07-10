@@ -1,3 +1,4 @@
+import { FaqCategoryDataService } from 'data-layer/services/FaqCategoryDataService'
 import { FaqDataService } from 'data-layer/services/FaqDataService'
 import { StatusCodes } from 'http-status-codes'
 import { createFaqRequest, updateFaqRequest } from 'service-layer/request-models/FaqRequests'
@@ -66,6 +67,11 @@ export class FaqController extends Controller {
     @Body() faq: createFaqRequest,
   ): Promise<GetFaqResponse> {
     try {
+        const existingFaqCategory = await FaqCategoryDataService.getFaqCategoryById(faq.categoryId)
+      if (!existingFaqCategory) {
+        this.setStatus(StatusCodes.BAD_REQUEST)
+        return { error: 'Invalid FAQ category ID' }
+      }
       const createdFaq =
         await FaqDataService.createFaq(faq)
       this.setStatus(StatusCodes.CREATED)
