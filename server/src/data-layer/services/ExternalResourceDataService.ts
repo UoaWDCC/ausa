@@ -55,4 +55,9 @@ export class ExternalResourceDataService {
     const updatedResourceSnapshot = await docRef.get()
     return updatedResourceSnapshot.data()
   }
+
+  public static async deleteExternalResource(id: string): Promise<void> {
+    const docRef = FirestoreCollections.externalResources.doc(id)
+    await docRef.delete()
+  }
 }

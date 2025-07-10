@@ -52,4 +52,18 @@ export class FaqDataService {
     const updatedResourceSnapshot = await docRef.get()
     return updatedResourceSnapshot.data()
   }
+
+  public static async deleteFaq(id: string): Promise<void> {
+    const docRef = FirestoreCollections.faq.doc(id)
+    await docRef.delete()
+  }
+
+  public static async deleteFaqsByCategoryId(categoryId: string): Promise<void> {
+    const faqSnapshots = await FirestoreCollections.faq
+      .where('categoryId', '==', categoryId)
+      .get()
+    for (const doc of faqSnapshots.docs) {
+      await doc.ref.delete()
+    }
+  }
 }

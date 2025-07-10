@@ -1,4 +1,5 @@
 import { FaqCategoryDataService } from 'data-layer/services/FaqCategoryDataService'
+import { FaqDataService } from 'data-layer/services/FaqDataService'
 import { StatusCodes } from 'http-status-codes'
 import {
   createFaqCategoryRequest,
@@ -126,6 +127,7 @@ export class FaqCategoryController extends Controller {
         return
       }
       await FaqCategoryDataService.deleteFaqCategory(id)
+      await FaqDataService.deleteFaqsByCategoryId(id)
     } catch (error) {
       console.error('Error deleting FAQ category:', error)
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
