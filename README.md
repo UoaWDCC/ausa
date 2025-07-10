@@ -47,6 +47,7 @@ nvm install
 | Gavin Ding       | Developer       | [Gavinzld](https://github.com/Gavinzld)                 |
 | Logan Bellingham | Developer       | [ganznz](https://github.com/ganznz)                     |
 | Vincent Walker   | Developer       | [basicallycommits](https://github.com/basicallycommits) |
+| Nicky Tian       | Developer       | [Niky8566](https://github.com/Nicky8566)                |
 
 ## Our Plan 📋
 
