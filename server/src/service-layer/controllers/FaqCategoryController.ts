@@ -27,11 +27,20 @@ export class FaqCategoryController extends Controller {
   @Get()
   public async getAllFaqCategories(
     @Query('name') name?: string,
+    @Query('url') url?: string,
   ): Promise<GetAllFaqCategoryResponse> {
     try {
       if (name) {
         const faqCategory =
           await FaqCategoryDataService.getFaqCategoryByName(name)
+        if (faqCategory) {
+          return { data: [faqCategory] }
+        }
+        return { data: [] }
+      }
+      if (url) {
+        const faqCategory =
+          await FaqCategoryDataService.getFaqCategoryByURL(url)
         if (faqCategory) {
           return { data: [faqCategory] }
         }
@@ -65,7 +74,10 @@ export class FaqCategoryController extends Controller {
   }
 
   @Post()
-  @SuccessResponse(StatusCodes.CREATED, 'Successfully created FAQ Category')
+  @SuccessResponse(
+    StatusCodes.CREATED,
+    'Successfully created FAQ Category',
+  )
   public async createFaqCategory(
     @Body() faqCategory: createFaqCategoryRequest,
   ): Promise<GetFaqCategoryResponse> {

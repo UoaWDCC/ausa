@@ -487,6 +487,7 @@ export function RegisterRoutes(app: Router) {
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsFaqCategoryController_getAllFaqCategories: Record<string, TsoaRoute.ParameterSchema> = {
                 name: {"in":"query","name":"name","dataType":"string"},
+                url: {"in":"query","name":"url","dataType":"string"},
         };
         app.get('/faq-category',
             ...(fetchMiddlewares<RequestHandler>(FaqCategoryController)),

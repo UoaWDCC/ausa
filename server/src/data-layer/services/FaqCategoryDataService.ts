@@ -36,6 +36,13 @@ export class FaqCategoryDataService {
     return faqCategorySnapshot.docs.map((doc) => doc.data())[0]
   }
 
+  public static async getFaqCategoryByURL(url: string): Promise<FaqCategory> {
+    const faqCategorySnapshot = await FirestoreCollections.faqCategories
+      .where('url', '==', url)
+      .get()
+    return faqCategorySnapshot.docs.map((doc) => doc.data())[0]
+  }
+
   /**
    * Makes a new FAQ Category in the Firestore collection.
    *

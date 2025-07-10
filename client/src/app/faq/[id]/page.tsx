@@ -43,7 +43,20 @@ export default async function FAQ({ params }: FAQProps) {
     'emergency-support': 'Emergency Support',
   }
   const { id } = await params
-  if (!title[id]) {
+  /*if (!title[id]) {
+    redirect('/404')
+  }*/
+  const url = process.env.BACKEND_URL || 'http://localhost:8000'
+  const res = await fetch(`${url}/faq-category?name=${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+    mode: 'cors',
+  })
+  const faqCategory = await res.json()
+
+  if (res.status !== 200 || faqCategory.data.length === 0) {
     redirect('/404')
   }
   return (
@@ -86,7 +99,7 @@ export default async function FAQ({ params }: FAQProps) {
           id="section-right"
         >
           <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
-          <h2 className="text-2xl font-semibold">{title[id]}</h2>
+          <h2 className="text-2xl font-semibold">{faqCategory.data.name}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
               <AccordionItem value="item-1">
