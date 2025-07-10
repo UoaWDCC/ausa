@@ -26,11 +26,11 @@ import {
 export class FaqController extends Controller {
   @Get()
   public async getAllFaqs(
-    @Query('category') categoryId?: string,
+    @Query('category') category?: string,
   ): Promise<GetAllFaqResponse> {
     try {
-      if (categoryId) {
-        const faqs = await FaqDataService.getFaqsByCategoryId(categoryId)
+      if (category) {
+        const faqs = await FaqDataService.getFaqsByCategoryId(category)
         if (faqs) {
           return { data: faqs }
         }
@@ -120,32 +120,23 @@ export class FaqController extends Controller {
     }
   }
 
-  @Delete('category/{categoryId}')
-  @SuccessResponse(
-    StatusCodes.NO_CONTENT,
-    'Successfully deleted FAQs by category',
-  )
-  public async deleteFaqsByCategoryId(
-    @Path() categoryId: string,
-  ): Promise<void> {
-    try {
-      const existingCategory =
-        await FaqCategoryDataService.getFaqCategoryById(categoryId)
-      if (!existingCategory) {
-        this.setStatus(StatusCodes.NOT_FOUND)
-        return
-      }
-      await FaqDataService.deleteFaqsByCategoryId(categoryId)
-    } catch (error) {
-      console.error('Error deleting FAQs by category:', error)
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
-    }
-  }
-
   @Delete()
   @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted all FAQs')
-  public async deleteAllFaqs(): Promise<void> {
+  public async deleteAllFaqs(
+    @Query("categoryId") categoryId?: string,
+  ): Promise<void> {
     try {
+        if (categoryId) {
+          const existingCategory =
+            await FaqCategoryDataService.getFaqCategoryById(categoryId)
+          if (!existingCategory) {
+            this.setStatus(StatusCodes.NOT_FOUND)
+            return
+          }
+          await FaqDataService.deleteFaqsByCategoryId(categoryId)
+          this.setStatus(StatusCodes.NO_CONTENT)
+          return
+        }
       await FaqDataService.deleteAllFaqs()
       this.setStatus(StatusCodes.NO_CONTENT)
     } catch (error) {

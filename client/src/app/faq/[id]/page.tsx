@@ -4,6 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/shadcn_components/ui/accordion'
+import { Faq, FaqCategory } from '@/types/types'
 import { redirect } from 'next/navigation'
 
 interface FAQProps {
@@ -37,17 +38,14 @@ const Banner = () => {
 }
 
 export default async function FAQ({ params }: FAQProps) {
-  const title: Record<string, string> = {
-    'university-support': 'University Support',
-    'external-support': 'External Support',
-    'emergency-support': 'Emergency Support',
-  }
+  const faqCategoryMap: Record<string, Faq[]> = {}
+    
   const { id } = await params
   /*if (!title[id]) {
     redirect('/404')
   }*/
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
-  const res = await fetch(`${url}/faq-category?name=${id}`, {
+  const res = await fetch(`${url}/faq-category?url=${id}`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -59,6 +57,34 @@ export default async function FAQ({ params }: FAQProps) {
   if (res.status !== 200 || faqCategory.data.length === 0) {
     redirect('/404')
   }
+
+  const res2 = await fetch(`${url}/faq-category`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+    mode: 'cors',
+  }) 
+  const faqCategories = await res2.json()
+  if (res2.status !== 200) {
+    redirect("/500") //redirect to error page?
+  }
+
+  await Promise.all(
+  faqCategories.data.map(async (category: FaqCategory) => {
+    const res = await fetch(`${url}/faq?category=${category.id}`, {
+      headers: { 'Content-Type': 'application/json' },
+      method: 'GET',
+      mode: 'cors',
+    })
+    const faqData = await res.json()
+    faqCategoryMap[category.id] = faqData.data
+  })
+)
+
+  //console.log("faqCategory", faqCategories)
+  //console.log('faqCategoryMap', faqCategoryMap)
+
   return (
     <div className="mt-[70px] flex min-h-[100vh] flex-col">
       <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
@@ -69,56 +95,32 @@ export default async function FAQ({ params }: FAQProps) {
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
             How Can We Help?
           </h1>
-          <div className="mb-4 flex flex-col items-center gap-2">
-            <h2 className="flex text-lg font-semibold">University Support</h2>
-            <ul className="ml-4 list-disc">
-              <li>Campus Care</li>
-              <li>General Wellbeing Support</li>
-              <li>Privacy Concerns</li>
-            </ul>
-          </div>
-          <div className="mb-4 flex flex-col items-center gap-2">
-            <h2 className="text-lg font-semibold">External Support</h2>
-            <ul className="ml-4 list-disc">
-              <li>Campus Care</li>
-              <li>General Wellbeing Support</li>
-              <li>Privacy Concerns</li>
-            </ul>
-          </div>
-          <div className="mb-4 flex flex-col items-center gap-2">
-            <h2 className="text-lg font-semibold">Emergency Support</h2>
-            <ul className="ml-4 list-disc">
-              <li>Campus Care</li>
-              <li>General Wellbeing Support</li>
-              <li>Privacy Concerns</li>
-            </ul>
-          </div>
+          {faqCategories.data.map((category: FaqCategory) => (
+            <div key={category.id} className="mb-4 flex flex-col items-center gap-2">
+              <h2 className="flex text-lg font-semibold">{category.name}</h2>
+              <ul className="ml-4 list-disc">
+                {faqCategoryMap[category.id]?.map((faq: Faq) => (
+                  <li key={faq.id}>{faq.question}</li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
         <div
           className="flex flex-col gap-8 border bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
           id="section-right"
         >
           <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
-          <h2 className="text-2xl font-semibold">{faqCategory.data.name}</h2>
+          <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Campus Care</AccordionTrigger>
-                <AccordionContent></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>General Wellbeing Support</AccordionTrigger>
-                <AccordionContent></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>Privacy Concerns</AccordionTrigger>
-                <AccordionContent></AccordionContent>
-              </AccordionItem>{' '}
-              <AccordionItem value="item-4">
-                <AccordionTrigger>Quiz Matching</AccordionTrigger>
-                <AccordionContent></AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-5"></AccordionItem>
+              {faqCategoryMap[faqCategory.data[0].id]?.map((faq: Faq) => (
+                console.log('faq', faq),
+                <AccordionItem value={`item-${faq.id}`} key={faq.id}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </div>
         </div>

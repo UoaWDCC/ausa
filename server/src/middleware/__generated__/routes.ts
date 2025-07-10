@@ -426,37 +426,8 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        const argsFaqController_deleteFaqsByCategoryId: Record<string, TsoaRoute.ParameterSchema> = {
-                categoryId: {"in":"path","name":"categoryId","required":true,"dataType":"string"},
-        };
-        app.delete('/faq/category/:categoryId',
-            ...(fetchMiddlewares<RequestHandler>(FaqController)),
-            ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.deleteFaqsByCategoryId)),
-
-            async function FaqController_deleteFaqsByCategoryId(request: ExRequest, response: ExResponse, next: any) {
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args: argsFaqController_deleteFaqsByCategoryId, request, response });
-
-                const controller = new FaqController();
-
-              await templateService.apiHandler({
-                methodName: 'deleteFaqsByCategoryId',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: 204,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsFaqController_deleteAllFaqs: Record<string, TsoaRoute.ParameterSchema> = {
+                categoryId: {"in":"query","name":"categoryId","dataType":"string"},
         };
         app.delete('/faq',
             ...(fetchMiddlewares<RequestHandler>(FaqController)),

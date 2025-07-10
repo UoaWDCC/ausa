@@ -510,7 +510,16 @@
 					}
 				},
 				"security": [],
-				"parameters": []
+				"parameters": [
+					{
+						"in": "query",
+						"name": "categoryId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/faq/{id}": {
@@ -588,27 +597,6 @@
 					{
 						"in": "path",
 						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/faq/category/{categoryId}": {
-			"delete": {
-				"operationId": "DeleteFaqsByCategoryId",
-				"responses": {
-					"204": {
-						"description": "Successfully deleted FAQs by category"
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "categoryId",
 						"required": true,
 						"schema": {
 							"type": "string"
