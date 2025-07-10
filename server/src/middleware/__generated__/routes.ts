@@ -276,7 +276,7 @@ export function RegisterRoutes(app: Router) {
 
     
         const argsFaqController_getAllFaqs: Record<string, TsoaRoute.ParameterSchema> = {
-                categoryId: {"in":"query","name":"category","dataType":"string"},
+                category: {"in":"query","name":"category","dataType":"string"},
         };
         app.get('/faq',
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
