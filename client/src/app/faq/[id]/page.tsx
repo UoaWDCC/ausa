@@ -39,7 +39,7 @@ const Banner = () => {
 
 export default async function FAQ({ params }: FAQProps) {
   const faqCategoryMap: Record<string, Faq[]> = {}
-    
+
   const { id } = await params
   /*if (!title[id]) {
     redirect('/404')
@@ -64,23 +64,23 @@ export default async function FAQ({ params }: FAQProps) {
     },
     method: 'GET',
     mode: 'cors',
-  }) 
+  })
   const faqCategories = await res2.json()
   if (res2.status !== 200) {
-    redirect("/500") //redirect to error page?
+    redirect('/500') //redirect to error page?
   }
 
   await Promise.all(
-  faqCategories.data.map(async (category: FaqCategory) => {
-    const res = await fetch(`${url}/faq?category=${category.id}`, {
-      headers: { 'Content-Type': 'application/json' },
-      method: 'GET',
-      mode: 'cors',
-    })
-    const faqData = await res.json()
-    faqCategoryMap[category.id] = faqData.data
-  })
-)
+    faqCategories.data.map(async (category: FaqCategory) => {
+      const res = await fetch(`${url}/faq?category=${category.id}`, {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'GET',
+        mode: 'cors',
+      })
+      const faqData = await res.json()
+      faqCategoryMap[category.id] = faqData.data
+    }),
+  )
 
   //console.log("faqCategory", faqCategories)
   //console.log('faqCategoryMap', faqCategoryMap)
@@ -96,7 +96,10 @@ export default async function FAQ({ params }: FAQProps) {
             How Can We Help?
           </h1>
           {faqCategories.data.map((category: FaqCategory) => (
-            <div key={category.id} className="mb-4 flex flex-col items-center gap-2">
+            <div
+              key={category.id}
+              className="mb-4 flex flex-col items-center gap-2"
+            >
               <h2 className="flex text-lg font-semibold">{category.name}</h2>
               <ul className="ml-4 list-disc">
                 {faqCategoryMap[category.id]?.map((faq: Faq) => (
@@ -114,13 +117,17 @@ export default async function FAQ({ params }: FAQProps) {
           <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
-              {faqCategoryMap[faqCategory.data[0].id]?.map((faq: Faq) => (
-                console.log('faq', faq),
-                <AccordionItem value={`item-${faq.id}`} key={faq.id}>
-                  <AccordionTrigger>{faq.question}</AccordionTrigger>
-                  <AccordionContent>{faq.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
+              {faqCategoryMap[faqCategory.data[0].id]?.map(
+                (faq: Faq) => (
+                  console.log('faq', faq),
+                  (
+                    <AccordionItem value={`item-${faq.id}`} key={faq.id}>
+                      <AccordionTrigger>{faq.question}</AccordionTrigger>
+                      <AccordionContent>{faq.answer}</AccordionContent>
+                    </AccordionItem>
+                  )
+                ),
+              )}
             </Accordion>
           </div>
         </div>

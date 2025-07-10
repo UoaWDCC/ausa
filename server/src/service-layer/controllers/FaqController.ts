@@ -123,20 +123,20 @@ export class FaqController extends Controller {
   @Delete()
   @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted all FAQs')
   public async deleteAllFaqs(
-    @Query("categoryId") categoryId?: string,
+    @Query('categoryId') categoryId?: string,
   ): Promise<void> {
     try {
-        if (categoryId) {
-          const existingCategory =
-            await FaqCategoryDataService.getFaqCategoryById(categoryId)
-          if (!existingCategory) {
-            this.setStatus(StatusCodes.NOT_FOUND)
-            return
-          }
-          await FaqDataService.deleteFaqsByCategoryId(categoryId)
-          this.setStatus(StatusCodes.NO_CONTENT)
+      if (categoryId) {
+        const existingCategory =
+          await FaqCategoryDataService.getFaqCategoryById(categoryId)
+        if (!existingCategory) {
+          this.setStatus(StatusCodes.NOT_FOUND)
           return
         }
+        await FaqDataService.deleteFaqsByCategoryId(categoryId)
+        this.setStatus(StatusCodes.NO_CONTENT)
+        return
+      }
       await FaqDataService.deleteAllFaqs()
       this.setStatus(StatusCodes.NO_CONTENT)
     } catch (error) {
