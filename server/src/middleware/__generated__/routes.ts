@@ -339,6 +339,7 @@ export function RegisterRoutes(app: Router) {
                 faq: {"in":"body","name":"faq","required":true,"ref":"createFaqRequest"},
         };
         app.post('/faq',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.createFaq)),
 
@@ -370,6 +371,7 @@ export function RegisterRoutes(app: Router) {
                 faq: {"in":"body","name":"faq","required":true,"ref":"updateFaqRequest"},
         };
         app.patch('/faq/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.updateFaq)),
 
@@ -400,6 +402,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.delete('/faq/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.deleteFaq)),
 
@@ -430,6 +433,7 @@ export function RegisterRoutes(app: Router) {
                 categoryId: {"in":"query","name":"categoryId","dataType":"string"},
         };
         app.delete('/faq',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqController)),
             ...(fetchMiddlewares<RequestHandler>(FaqController.prototype.deleteAllFaqs)),
 
@@ -521,6 +525,7 @@ export function RegisterRoutes(app: Router) {
                 faqCategory: {"in":"body","name":"faqCategory","required":true,"ref":"createFaqCategoryRequest"},
         };
         app.post('/faq-category',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqCategoryController)),
             ...(fetchMiddlewares<RequestHandler>(FaqCategoryController.prototype.createFaqCategory)),
 
@@ -552,6 +557,7 @@ export function RegisterRoutes(app: Router) {
                 faqCategory: {"in":"body","name":"faqCategory","required":true,"ref":"updateFaqCategoryRequest"},
         };
         app.patch('/faq-category/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqCategoryController)),
             ...(fetchMiddlewares<RequestHandler>(FaqCategoryController.prototype.updateFaqCategory)),
 
@@ -582,6 +588,7 @@ export function RegisterRoutes(app: Router) {
                 id: {"in":"path","name":"id","required":true,"dataType":"string"},
         };
         app.delete('/faq-category/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(FaqCategoryController)),
             ...(fetchMiddlewares<RequestHandler>(FaqCategoryController.prototype.deleteFaqCategory)),
 
@@ -671,6 +678,7 @@ export function RegisterRoutes(app: Router) {
                 externalResource: {"in":"body","name":"externalResource","required":true,"ref":"createExternalResourceRequest"},
         };
         app.post('/external-resources',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.createExternalResource)),
 
@@ -702,6 +710,7 @@ export function RegisterRoutes(app: Router) {
                 externalResource: {"in":"body","name":"externalResource","required":true,"ref":"updateExternalResourceRequest"},
         };
         app.patch('/external-resources/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.updateExternalResource)),
 

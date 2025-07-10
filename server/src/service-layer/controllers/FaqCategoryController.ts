@@ -19,6 +19,7 @@ import {
   Post,
   Query,
   Route,
+  Security,
   SuccessResponse,
 } from 'tsoa'
 
@@ -73,6 +74,7 @@ export class FaqCategoryController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Post()
   @SuccessResponse(StatusCodes.CREATED, 'Successfully created FAQ Category')
   public async createFaqCategory(
@@ -102,6 +104,7 @@ export class FaqCategoryController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Patch('{id}')
   @SuccessResponse(StatusCodes.OK, 'Successfully updated FAQ category')
   public async updateFaqCategory(
@@ -127,7 +130,7 @@ export class FaqCategoryController extends Controller {
     }
   }
 
-  // Need to delete all related Faqs too, wait for FaqController to be implemented
+  @Security('jwt', ['admin'])
   @Delete('{id}')
   @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted FAQ category')
   public async deleteFaqCategory(@Path() id: string): Promise<void> {

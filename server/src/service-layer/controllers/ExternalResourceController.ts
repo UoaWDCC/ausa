@@ -16,6 +16,7 @@ import {
   Path,
   Post,
   Route,
+  Security,
   SuccessResponse,
 } from 'tsoa'
 
@@ -52,6 +53,7 @@ export class ExternalResourceController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Post()
   @SuccessResponse(
     StatusCodes.CREATED,
@@ -74,6 +76,7 @@ export class ExternalResourceController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Patch('{id}')
   @SuccessResponse(StatusCodes.OK, 'Successfully updated external resource')
   public async updateExternalResource(

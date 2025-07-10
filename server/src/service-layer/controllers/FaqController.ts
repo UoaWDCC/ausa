@@ -19,6 +19,7 @@ import {
   Post,
   Query,
   Route,
+  Security,
   SuccessResponse,
 } from 'tsoa'
 
@@ -61,6 +62,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Post()
   @SuccessResponse(StatusCodes.CREATED, 'Successfully created FAQ')
   public async createFaq(
@@ -83,6 +85,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Patch('{id}')
   @SuccessResponse(StatusCodes.OK, 'Successfully updated FAQ')
   public async updateFaq(
@@ -104,6 +107,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Delete('{id}')
   @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted FAQ')
   public async deleteFaq(@Path() id: string): Promise<void> {
@@ -120,6 +124,7 @@ export class FaqController extends Controller {
     }
   }
 
+  @Security('jwt', ['admin'])
   @Delete()
   @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted all FAQs')
   public async deleteAllFaqs(
