@@ -501,6 +501,16 @@
 						}
 					}
 				}
+			},
+			"delete": {
+				"operationId": "DeleteAllFaqs",
+				"responses": {
+					"204": {
+						"description": "Successfully deleted all FAQs"
+					}
+				},
+				"security": [],
+				"parameters": []
 			}
 		},
 		"/faq/{id}": {
@@ -578,6 +588,27 @@
 					{
 						"in": "path",
 						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/faq/category/{categoryId}": {
+			"delete": {
+				"operationId": "DeleteFaqsByCategoryId",
+				"responses": {
+					"204": {
+						"description": "Successfully deleted FAQs by category"
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "categoryId",
 						"required": true,
 						"schema": {
 							"type": "string"
