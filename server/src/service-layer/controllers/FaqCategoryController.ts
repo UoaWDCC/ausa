@@ -88,6 +88,12 @@ export class FaqCategoryController extends Controller {
         this.setStatus(StatusCodes.CONFLICT)
         return { error: 'FAQ Category with this name already exists' }
       }
+      const existingUrlCategory =
+        await FaqCategoryDataService.getFaqCategoryByURL(faqCategory.url)
+      if (existingUrlCategory) {
+        this.setStatus(StatusCodes.CONFLICT)
+        return { error: 'FAQ Category with this URL already exists' }
+      }
       const createdCategory =
         await FaqCategoryDataService.createFaqCategory(faqCategory)
       this.setStatus(StatusCodes.CREATED)
