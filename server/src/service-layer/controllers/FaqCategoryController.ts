@@ -67,7 +67,7 @@ export class FaqCategoryController extends Controller {
   @Post()
   @SuccessResponse(
     StatusCodes.CREATED,
-    'Successfully created external resource',
+    'Successfully created FAQ Category',
   )
   public async createFaqCategory(
     @Body() faqCategory: createFaqCategoryRequest,

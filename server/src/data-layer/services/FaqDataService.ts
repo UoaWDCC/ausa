@@ -20,7 +20,7 @@ export class FaqDataService {
    * @param id The ID of the faq to fetch.
    * @returns A promise that resolves to an Faq object.
    */
-  public static async getExternalResourceById(
+  public static async getFaq(
     id: string,
   ): Promise<Faq> {
     const faqSnapshot =
@@ -65,5 +65,12 @@ export class FaqDataService {
     for (const doc of faqSnapshots.docs) {
       await doc.ref.delete()
     }
+  }
+
+  public static async getFaqsByCategoryId(categoryId: string): Promise<Faq[]> {
+    const faqSnapshots = await FirestoreCollections.faq
+      .where('categoryId', '==', categoryId)
+      .get()
+    return faqSnapshots.docs.map((doc) => doc.data())
   }
 }
