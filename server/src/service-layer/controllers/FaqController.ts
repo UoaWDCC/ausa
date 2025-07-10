@@ -1,8 +1,14 @@
 import { FaqCategoryDataService } from 'data-layer/services/FaqCategoryDataService'
 import { FaqDataService } from 'data-layer/services/FaqDataService'
 import { StatusCodes } from 'http-status-codes'
-import { createFaqRequest, updateFaqRequest } from 'service-layer/request-models/FaqRequests'
-import { GetAllFaqResponse, GetFaqResponse } from 'service-layer/response-models/FaqResponses'
+import {
+  createFaqRequest,
+  updateFaqRequest,
+} from 'service-layer/request-models/FaqRequests'
+import {
+  GetAllFaqResponse,
+  GetFaqResponse,
+} from 'service-layer/response-models/FaqResponses'
 import {
   Body,
   Controller,
@@ -24,8 +30,7 @@ export class FaqController extends Controller {
   ): Promise<GetAllFaqResponse> {
     try {
       if (categoryId) {
-        const faqs =
-          await FaqDataService.getFaqsByCategoryId(categoryId)
+        const faqs = await FaqDataService.getFaqsByCategoryId(categoryId)
         if (faqs) {
           return { data: faqs }
         }
@@ -41,9 +46,7 @@ export class FaqController extends Controller {
   }
 
   @Get('{id}')
-  public async getFaqCategory(
-    @Path() id: string,
-  ): Promise<GetFaqResponse> {
+  public async getFaqCategory(@Path() id: string): Promise<GetFaqResponse> {
     try {
       const res = await FaqDataService.getFaq(id)
       if (!res) {
@@ -59,21 +62,18 @@ export class FaqController extends Controller {
   }
 
   @Post()
-  @SuccessResponse(
-    StatusCodes.CREATED,
-    'Successfully created FAQ',
-  )
+  @SuccessResponse(StatusCodes.CREATED, 'Successfully created FAQ')
   public async createFaq(
     @Body() faq: createFaqRequest,
   ): Promise<GetFaqResponse> {
     try {
-        const existingFaqCategory = await FaqCategoryDataService.getFaqCategoryById(faq.categoryId)
+      const existingFaqCategory =
+        await FaqCategoryDataService.getFaqCategoryById(faq.categoryId)
       if (!existingFaqCategory) {
         this.setStatus(StatusCodes.BAD_REQUEST)
         return { error: 'Invalid FAQ category ID' }
       }
-      const createdFaq =
-        await FaqDataService.createFaq(faq)
+      const createdFaq = await FaqDataService.createFaq(faq)
       this.setStatus(StatusCodes.CREATED)
       return { data: createdFaq }
     } catch (error) {
@@ -95,10 +95,7 @@ export class FaqController extends Controller {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'FAQ not found' }
       }
-      const updatedFaq = await FaqDataService.updateFaq(
-        id,
-        faq,
-      )
+      const updatedFaq = await FaqDataService.updateFaq(id, faq)
       return { data: updatedFaq }
     } catch (error) {
       console.error('Error updating FAQ:', error)
@@ -123,31 +120,37 @@ export class FaqController extends Controller {
     }
   }
 
-    @Delete('category/{categoryId}')
-  @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted FAQs by category')
-    public async deleteFaqsByCategoryId(@Path() categoryId: string): Promise<void> {
+  @Delete('category/{categoryId}')
+  @SuccessResponse(
+    StatusCodes.NO_CONTENT,
+    'Successfully deleted FAQs by category',
+  )
+  public async deleteFaqsByCategoryId(
+    @Path() categoryId: string,
+  ): Promise<void> {
     try {
-        const existingCategory = await FaqCategoryDataService.getFaqCategoryById(categoryId)
-        if (!existingCategory) {
-            this.setStatus(StatusCodes.NOT_FOUND)
-            return
-        }
-        await FaqDataService.deleteFaqsByCategoryId(categoryId)
+      const existingCategory =
+        await FaqCategoryDataService.getFaqCategoryById(categoryId)
+      if (!existingCategory) {
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return
+      }
+      await FaqDataService.deleteFaqsByCategoryId(categoryId)
     } catch (error) {
-        console.error('Error deleting FAQs by category:', error)
-        this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      console.error('Error deleting FAQs by category:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
     }
-}
-
-@Delete()
-@SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted all FAQs')
-public async deleteAllFaqs(): Promise<void> {
-  try {
-    await FaqDataService.deleteAllFaqs()
-    this.setStatus(StatusCodes.NO_CONTENT)
-  } catch (error) {
-    console.error('Error deleting all FAQs:', error)
-    this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
   }
-}
+
+  @Delete()
+  @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted all FAQs')
+  public async deleteAllFaqs(): Promise<void> {
+    try {
+      await FaqDataService.deleteAllFaqs()
+      this.setStatus(StatusCodes.NO_CONTENT)
+    } catch (error) {
+      console.error('Error deleting all FAQs:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+  }
 }
