@@ -73,4 +73,11 @@ export class FaqDataService {
       .get()
     return faqSnapshots.docs.map((doc) => doc.data())
   }
+
+  public static async deleteAllFaqs(): Promise<void> {
+    const faqSnapshots = await FirestoreCollections.faq.get()
+    for (const doc of faqSnapshots.docs) {
+      await doc.ref.delete()
+    }
+  }
 }

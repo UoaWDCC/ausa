@@ -122,4 +122,32 @@ export class FaqController extends Controller {
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
     }
   }
+
+    @Delete('category/{categoryId}')
+  @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted FAQs by category')
+    public async deleteFaqsByCategoryId(@Path() categoryId: string): Promise<void> {
+    try {
+        const existingCategory = await FaqCategoryDataService.getFaqCategoryById(categoryId)
+        if (!existingCategory) {
+            this.setStatus(StatusCodes.NOT_FOUND)
+            return
+        }
+        await FaqDataService.deleteFaqsByCategoryId(categoryId)
+    } catch (error) {
+        console.error('Error deleting FAQs by category:', error)
+        this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+}
+
+@Delete()
+@SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted all FAQs')
+public async deleteAllFaqs(): Promise<void> {
+  try {
+    await FaqDataService.deleteAllFaqs()
+    this.setStatus(StatusCodes.NO_CONTENT)
+  } catch (error) {
+    console.error('Error deleting all FAQs:', error)
+    this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+  }
+}
 }
