@@ -78,7 +78,7 @@ export default async function FAQ({ params }: FAQProps) {
         mode: 'cors',
       })
       const faqData = await res.json()
-      faqCategoryMap[category.id] = faqData.data
+      faqCategoryMap[category.id] = faqData.data.sort((a: Faq, b: Faq) => a.question.localeCompare(b.question))
     }),
   )
 
