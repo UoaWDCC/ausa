@@ -50,7 +50,7 @@ const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             type="text"
             name="name"
-            placeholder="Ray Zhao 🥵🥵🥵🥵😩"
+            placeholder="Name"
             className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
           />
         </label>

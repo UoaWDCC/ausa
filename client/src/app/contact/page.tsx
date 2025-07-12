@@ -3,8 +3,8 @@ import ContactForm from '@/components/contact-form/ContactForm'
 const Contact = () => {
   return (
     <div className="font-RG pt-20">
-      <div className="font-RK bg-white">
-        <div className="min-h-screen flex flex-col items-center overflow-hidden bg-[#ffffff] mb-0 pb-0">
+      <div className="font-RK">
+        <div className="min-h-screen flex flex-col items-center overflow-hidden mb-0 pb-0">
           <div className="mt-2 flex w-[90%] flex-col items-center gap-10 rounded-[55px] bg-[#2C2C2C] p-8 md:w-[95%] md:justify-center lg:max-w-[1500px] xl:max-w-[1800px] xl:flex-row xl:p-10">
             <div className="flex flex-col items-center gap-5 text-center xl:items-start xl:gap-25 xl:text-left">
               <div>
@@ -43,3 +43,4 @@ const Contact = () => {
 }
 
 export default Contact
+
