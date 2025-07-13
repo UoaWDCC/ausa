@@ -6,11 +6,15 @@ import { Button } from "@/components/ui/button";
 const quizQuestion = [
   {
     question: "How are you feeling today?",
-    options: ["Great", "Nice", "Not good"]
+    options: ["Great", "Anxious", "Overwhelmed"]
   }, 
   {
-    question: "Do you need help?",
-    options: ["Yes", "Maybe", "No"]
+    question: "Why do you feel this way?",
+    options: ["Financial reason", "Academic reason", "Personal reason"]
+  },
+  {
+    question: "Are you looking for personal support?",
+    options: ["No", "Yes, I would like to check out external resources", "Yes, I would like to check out internal resources"]
   }
 ]
 
@@ -35,6 +39,14 @@ const Quiz = () => {
       }
     } else{
       alert("Select an option before continuing");
+    }
+  };
+
+  const handlePrevious = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+    } else {
+      alert("This is the first question. Please select an option and press Next to continue.");
     }
   };
 
@@ -67,20 +79,25 @@ const handleRestart = () => {
           <p className = "mb-6">{quizQuestion[currentQuestion].question}</p>
           <div className = "flex flex-col gap-3 mb-10">
             {quizQuestion[currentQuestion].options?.map((option) => (
-              <button 
+              <Button
                 key = {option}
                 onClick = {() => handleOptionClick(option)}
                 className = {`p-2 rounded border 
-                  ${selectedOption == option ? "bg-stone-700 text-white" : "bg-white text-[#2D3B4E] hover:bg-gray-100"}
+                  ${selectedOption === option ? "bg-stone-700 text-white" : "bg-white text-[#2D3B4E] hover:bg-gray-100"}
                   transition`}
                   >
                     {option}
-                  </button>
+                  </Button>
             ))}
           </div>
-          <Button variant="default" size="lg" onClick={handleNext}>
-            {currentQuestion < quizQuestion.length - 1 ? "Next" : "Finish"}
-          </Button>
+          <div className = "flex justify-between">
+            <Button variant="default" size="lg" onClick={handlePrevious}>
+              Previous
+            </Button>
+            <Button variant="default" size="lg" onClick={handleNext}>
+              {currentQuestion < quizQuestion.length - 1 ? "Next" : "Finish"}
+            </Button>
+          </div>
         </>
       )}
 
