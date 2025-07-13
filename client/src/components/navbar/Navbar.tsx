@@ -169,6 +169,7 @@ const defaultNavConfig: NavConfig = {
     {
       label: 'Contacts',
       items: [
+        { label: 'Contact Us', href: '/contact' },
         { label: 'General Enquiries', href: '/contact/general' },
         { label: 'Student Support', href: '/contact/support' },
         { label: 'Academic Affairs', href: '/contact/academic' },

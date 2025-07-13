@@ -75,6 +75,7 @@ const ContactForm = () => {
               'Events',
               'Collaboration & Partnerships',
               'Wellbeing',
+              'Other',
             ]}
             placeholder="Select enquiry type"
           />
