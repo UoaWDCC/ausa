@@ -1,4 +1,11 @@
+'use client'
+
 import ContactForm from '@/components/contact-form/ContactForm'
+import Link from 'next/link'
+import Image from 'next/image'
+import facebook from '../../app/assets/icons/facebook.svg'
+import instagram from '../../app/assets/icons/instagram.svg'
+import linkedin from '../../app/assets/icons/linkedin.svg'
 
 const Contact = () => {
   return (
@@ -27,11 +34,28 @@ const Contact = () => {
                   students at the University of Auckland.
                 </p>
               </div>
-              <div className="flex flex-row gap-4 text-lg text-white xl:flex-col xl:text-xl">
-                <span className="text-md">phone</span>
-                <span className="text-md">insta</span>
+
+              <div className="flex flex-row gap-4 xl:flex-col">
+                <div className="h-[40px] w-[40px]">
+                  <Link href="https://facebook.com" target="_blank">
+                    <Image src={facebook} alt="Facebook" />
+                  </Link>
+                </div>
+
+                <div className="h-[40px] w-[40px]">
+                  <Link href="https://instagram.com" target="_blank">
+                    <Image src={instagram} alt="Instagram" />
+                  </Link>
+                </div>
+
+                <div className="h-[40px] w-[40px]">
+                  <Link href="https://linkedin.com" target="_blank">
+                    <Image src={linkedin} alt="LinkedIn" />
+                  </Link>
+                </div>
               </div>
             </div>
+
             <div>
               <ContactForm />
             </div>
@@ -43,4 +67,3 @@ const Contact = () => {
 }
 
 export default Contact
-
