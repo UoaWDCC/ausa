@@ -4,6 +4,10 @@ import emailjs from '@emailjs/browser'
 import { useState } from 'react'
 import DropdownInput from '../dropdown-input/DropdownInput'
 
+const isValidEmail = (email: string) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
+}
+
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,6 +22,11 @@ const ContactForm = () => {
     e.preventDefault()
     if (!formData.name || !formData.email_from || !formData.message) {
       alert('Please fill in all fields before submitting!')
+      setClicked(false)
+      return
+    }
+    if (!isValidEmail(formData.email_from)) {
+      alert('Please enter a valid email address!')
       setClicked(false)
       return
     }
