@@ -166,6 +166,7 @@ const defaultNavConfig: NavConfig = {
         { label: 'Emergency Support', href: '/faq/emergency-support' },
       ],
     },
+    { label: 'Quiz', href: '/quiz' },
     {
       label: 'Contacts',
       items: [

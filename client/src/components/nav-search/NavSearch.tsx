@@ -50,6 +50,12 @@ const INITIAL_PAGES: PageInfo[] = [
     keywords: ['external', 'resources'],
   },
   {
+    title: 'Quiz',
+    description: 'Test your knowledge with interactive quizzes',
+    href: '/quiz',
+    keywords: ['quiz', 'test', 'questions', 'knowledge'],
+  },
+  {
     title: 'Contact',
     description: 'Stuff about Contact',
     href: '/contact',
