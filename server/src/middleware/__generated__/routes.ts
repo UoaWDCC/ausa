@@ -342,7 +342,7 @@ export function RegisterRoutes(app: Router) {
         const argsUserController_deleteUser: Record<string, TsoaRoute.ParameterSchema> = {
                 userId: {"in":"query","name":"userId","required":true,"dataType":"string"},
         };
-        app.delete('/users',
+        app.delete('/users/by-userId',
             ...(fetchMiddlewares<RequestHandler>(UserController)),
             ...(fetchMiddlewares<RequestHandler>(UserController.prototype.deleteUser)),
 

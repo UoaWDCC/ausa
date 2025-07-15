@@ -474,7 +474,9 @@
 						}
 					}
 				}
-			},
+			}
+		},
+		"/users/by-userId": {
 			"delete": {
 				"operationId": "DeleteUser",
 				"responses": {
@@ -482,7 +484,14 @@
 						"description": "Deleted",
 						"content": {
 							"application/json": {
-								"schema": {}
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
 							}
 						}
 					}
