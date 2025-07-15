@@ -19,9 +19,12 @@ export class UserService{
             name: params.name
         }
         await userRef.set({
+            id: userRef.id,
+            username: params.username,
             email: params.email,
             name: params.name
         });
+        console.log(newUser)
         return newUser
     }
 
