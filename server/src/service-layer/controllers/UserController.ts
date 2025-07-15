@@ -19,7 +19,7 @@ import {
 @Route('users')
 export class UserController extends Controller {
   @SuccessResponse('200', 'Found')
-  @Get("by-username")
+  @Get('by-username')
   public async getUserByUsername(
     @Query() username: string,
   ): Promise<User | null> {
@@ -34,8 +34,7 @@ export class UserController extends Controller {
 
   @SuccessResponse('200', 'Found')
   @Get()
-  public async getUsers(
-  ): Promise <User[]>{
+  public async getUsers(): Promise<User[]> {
     return new UserService().getAllUsers()
   }
 
@@ -50,10 +49,7 @@ export class UserController extends Controller {
 
   @SuccessResponse('200', 'Deleted')
   @Delete('by-userId')
-  public async deleteUser(
-    @Query() userId: string
-
-  ): Promise<User | null> {
+  public async deleteUser(@Query() userId: string): Promise<User | null> {
     return new UserService().deleteUser(userId)
   }
 }

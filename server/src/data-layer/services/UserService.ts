@@ -41,20 +41,22 @@ export class UserService {
   }
 
   /**
-   * 
+   *
    * @returns a list of users
    */
   async getAllUsers(): Promise<User[]> {
     const snapShot = await FirestoreCollections.users.get()
-    const userList: User[] = snapShot.docs.map(doc => ({
-        id: doc.id,
-        name: doc.data().name,
-        username: doc.data().email,
-        email: doc.data().email
+    const userList: User[] = snapShot.docs.map((doc) => ({
+      id: doc.id,
+      name: doc.data().name,
+      username: doc.data().email,
+      email: doc.data().email,
     }))
-    console.log(userList.map(user => {
+    console.log(
+      userList.map((user) => {
         user
-    }))
+      }),
+    )
     return userList
   }
 
@@ -80,18 +82,18 @@ export class UserService {
     console.log(newUser)
     return newUser
   }
-  
+
   /**
-   * 
+   *
    * @param userId - receive userid to delete user
-   * @returns the deleted user 
+   * @returns the deleted user
    */
   async deleteUser(userId: string): Promise<User | null> {
     const userRef = await FirestoreCollections.users.doc(userId)
     const doc = await userRef.get()
-    if (!doc.exists){
-        console.log(`User - ${userId} is not found`)
-        return null
+    if (!doc.exists) {
+      console.log(`User - ${userId} is not found`)
+      return null
     }
     await userRef.delete()
     const user = doc.data()
