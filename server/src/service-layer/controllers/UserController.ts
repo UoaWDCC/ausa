@@ -31,6 +31,13 @@ export class UserController extends Controller {
     return new UserService().getUser(userId)
   }
 
+  @SuccessResponse('200', 'Found')
+  @Get()
+  public async getUsers(
+  ): Promise <User[]>{
+    return new UserService().getAllUsers()
+  }
+
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
   public async createUser(
