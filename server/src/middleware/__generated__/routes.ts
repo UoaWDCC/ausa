@@ -220,27 +220,55 @@ export function RegisterRoutes(app: Router) {
 
 
     
-        const argsUserController_getUser: Record<string, TsoaRoute.ParameterSchema> = {
+        const argsUserController_getUserById: Record<string, TsoaRoute.ParameterSchema> = {
                 userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
-                username: {"in":"query","name":"username","dataType":"string"},
-                name: {"in":"query","name":"name","dataType":"string"},
         };
         app.get('/users/:userId',
             ...(fetchMiddlewares<RequestHandler>(UserController)),
-            ...(fetchMiddlewares<RequestHandler>(UserController.prototype.getUser)),
+            ...(fetchMiddlewares<RequestHandler>(UserController.prototype.getUserById)),
 
-            async function UserController_getUser(request: ExRequest, response: ExResponse, next: any) {
+            async function UserController_getUserById(request: ExRequest, response: ExResponse, next: any) {
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
             let validatedArgs: any[] = [];
             try {
-                validatedArgs = templateService.getValidatedArgs({ args: argsUserController_getUser, request, response });
+                validatedArgs = templateService.getValidatedArgs({ args: argsUserController_getUserById, request, response });
 
                 const controller = new UserController();
 
               await templateService.apiHandler({
-                methodName: 'getUser',
+                methodName: 'getUserById',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsUserController_getUserByUsername: Record<string, TsoaRoute.ParameterSchema> = {
+                username: {"in":"query","name":"username","required":true,"dataType":"string"},
+        };
+        app.get('/users',
+            ...(fetchMiddlewares<RequestHandler>(UserController)),
+            ...(fetchMiddlewares<RequestHandler>(UserController.prototype.getUserByUsername)),
+
+            async function UserController_getUserByUsername(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsUserController_getUserByUsername, request, response });
+
+                const controller = new UserController();
+
+              await templateService.apiHandler({
+                methodName: 'getUserByUsername',
                 controller,
                 response,
                 next,

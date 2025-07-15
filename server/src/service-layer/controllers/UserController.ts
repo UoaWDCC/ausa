@@ -7,30 +7,30 @@ import {
 import {
   Controller,
   Get,
-  Path,
   Query,
   Route,
   Post,
   SuccessResponse,
-  Body
+  Body,
+  Path
 } from "tsoa";
 
 @Route("users")
 export class UserController extends Controller {
     @SuccessResponse("200", "Found")
-    @Get ("{userId}")
-    public async getUser(
-        @Path() userId?: string,
-        @Query() username?: string,
-        @Query() name?: string
+    @Get("{userId}")
+    public async getUserById(
+        @Path() userId: string,
     ): Promise<User | null>{
-        if (userId) {
-            return new UserService().getUser(userId)
-        }
-        if (username) {
-            return new UserService().getUser(username)
-        }
-        return null
+        return new UserService().getUser(userId)
+    }
+
+    @SuccessResponse("200", "Found")
+    @Get()
+    public async getUserByUsername(
+        @Query() username: string
+    ): Promise<User | null> {
+        return new UserService().getUser(username)
     }
 
     @SuccessResponse("201", "Created") // Custom success response
