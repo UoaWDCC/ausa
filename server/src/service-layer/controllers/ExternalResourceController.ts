@@ -1,6 +1,6 @@
 import { ExternalResourceDataService } from 'data-layer/services/ExternalResourceDataService'
 import { StatusCodes } from 'http-status-codes'
-import {
+import type {
   createExternalResourceRequest,
   updateExternalResourceRequest,
 } from 'service-layer/request-models/ExternalResourceRequests'

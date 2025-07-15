@@ -1,11 +1,11 @@
 import { FaqCategoryDataService } from 'data-layer/services/FaqCategoryDataService'
 import { FaqDataService } from 'data-layer/services/FaqDataService'
 import { StatusCodes } from 'http-status-codes'
-import {
+import type {
   createFaqRequest,
   updateFaqRequest,
 } from 'service-layer/request-models/FaqRequests'
-import {
+import type {
   GetAllFaqResponse,
   GetFaqResponse,
 } from 'service-layer/response-models/FaqResponses'

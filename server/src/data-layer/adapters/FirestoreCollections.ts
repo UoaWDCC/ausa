@@ -9,7 +9,7 @@ import {
   USERS_COLLECTION,
 } from './CollectionNames'
 import firestore from './Firestore'
-import { FaqCategory } from 'data-layer/models/FaqCategories'
+import type { FaqCategory } from 'data-layer/models/FaqCategories'
 
 const FirestoreCollections = {
   externalResources: firestore.collection<ExternalResource>(

@@ -1,6 +1,6 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import type { ExternalResource } from 'data-layer/models/ExternalResource'
-import {
+import type {
   createExternalResourceRequest,
   updateExternalResourceRequest,
 } from 'service-layer/request-models/ExternalResourceRequests'

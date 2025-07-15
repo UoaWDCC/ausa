@@ -1,7 +1,7 @@
-import { User } from 'data-layer/models/User'
+import type { User } from 'data-layer/models/User'
 
 import {
-  UserCreationParams,
+  type UserCreationParams,
   UserService,
 } from '../../data-layer/services/UserService'
 import {
