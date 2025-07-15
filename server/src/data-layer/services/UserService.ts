@@ -10,14 +10,34 @@ export class UserService{
      * @param id - using id to find a user in the db
      * @returns A user of type User
      */
-    async getUser(identifier: string): Promise<User| null> {
-        const userRef = FirestoreCollections.users.doc(identifier)
+    async getUser(id: string): Promise<User| null> {
+        const userRef = FirestoreCollections.users.doc(id)
         const user = await userRef.get()
         if(!user.exists){
-            console.log(`User - ${identifier} is not found`)
+            console.log(`User - ${id} is not found`)
             return null
         } 
         console.log(user.data())
+        return user.data() as User
+    }
+    
+    /**
+     * 
+     * @param username - using username to find a user in the db
+     * @returns A user of type User
+     */
+    async getUserByUsername(username: string): Promise<User | null> {
+        const snapShot = await FirestoreCollections.users.
+        where("username", "==", username)
+        .limit(1)
+        .get();
+
+        if(snapShot.empty) {
+            console.log(`User - ${username} not found`)
+            return null;
+        }
+        
+        const user = snapShot.docs[0]
         return user.data() as User
     }
 
