@@ -361,7 +361,7 @@
 		"contact": {}
 	},
 	"paths": {
-		"/users": {
+		"/users/by-username": {
 			"get": {
 				"operationId": "GetUserByUsername",
 				"responses": {
@@ -392,6 +392,61 @@
 						}
 					}
 				]
+			}
+		},
+		"/users/{userId}": {
+			"get": {
+				"operationId": "GetUserById",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users": {
+			"get": {
+				"operationId": "GetUsers",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/User"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
 			},
 			"post": {
 				"operationId": "CreateUser",
@@ -419,24 +474,15 @@
 						}
 					}
 				}
-			}
-		},
-		"/users/{userId}": {
-			"get": {
-				"operationId": "GetUserById",
+			},
+			"delete": {
+				"operationId": "DeleteUser",
 				"responses": {
 					"200": {
-						"description": "Found",
+						"description": "Deleted",
 						"content": {
 							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
+								"schema": {}
 							}
 						}
 					}
@@ -444,7 +490,7 @@
 				"security": [],
 				"parameters": [
 					{
-						"in": "path",
+						"in": "query",
 						"name": "userId",
 						"required": true,
 						"schema": {

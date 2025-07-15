@@ -13,12 +13,13 @@ import {
   SuccessResponse,
   Body,
   Path,
+  Delete,
 } from 'tsoa'
 
 @Route('users')
 export class UserController extends Controller {
   @SuccessResponse('200', 'Found')
-  @Get()
+  @Get("by-username")
   public async getUserByUsername(
     @Query() username: string,
   ): Promise<User | null> {
@@ -45,5 +46,14 @@ export class UserController extends Controller {
   ): Promise<User> {
     this.setStatus(201)
     return new UserService().createUser(requestBody)
+  }
+
+  @SuccessResponse('200', 'Deleted')
+  @Delete('by-userId')
+  public async deleteUser(
+    @Query() userId: string
+
+  ): Promise<User | null> {
+    return new UserService().deleteUser(userId)
   }
 }

@@ -80,4 +80,22 @@ export class UserService {
     console.log(newUser)
     return newUser
   }
+  
+  /**
+   * 
+   * @param userId - receive userid to delete user
+   * @returns the deleted user 
+   */
+  async deleteUser(userId: string): Promise<User | null> {
+    const userRef = await FirestoreCollections.users.doc(userId)
+    const doc = await userRef.get()
+    if (!doc.exists){
+        console.log(`User - ${userId} is not found`)
+        return null
+    }
+    await userRef.delete()
+    const user = doc.data()
+    console.log(`User - ${userId} deleted`)
+    return user
+  }
 }
