@@ -221,8 +221,8 @@ export function RegisterRoutes(app: Router) {
 
     
         const argsUserController_getUser: Record<string, TsoaRoute.ParameterSchema> = {
-                userId: {"in":"path","name":"userId","required":true,"dataType":"double"},
-                username: {"in":"query","name":"username","required":true,"dataType":"string"},
+                userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
+                username: {"in":"query","name":"username","dataType":"string"},
                 name: {"in":"query","name":"name","dataType":"string"},
         };
         app.get('/users/:userId',
@@ -245,7 +245,7 @@ export function RegisterRoutes(app: Router) {
                 response,
                 next,
                 validatedArgs,
-                successStatus: undefined,
+                successStatus: 200,
               });
             } catch (err) {
                 return next(err);

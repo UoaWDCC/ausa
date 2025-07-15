@@ -17,14 +17,20 @@ import {
 
 @Route("users")
 export class UserController extends Controller {
+    @SuccessResponse("200", "Found")
     @Get ("{userId}")
     public async getUser(
-        @Path() userId: number,
-        @Query() username: string,
+        @Path() userId?: string,
+        @Query() username?: string,
         @Query() name?: string
-
-    ): Promise<User>{
-        return new UserService().getUser(userId, name);
+    ): Promise<User | null>{
+        if (userId) {
+            return new UserService().getUser(userId)
+        }
+        if (username) {
+            return new UserService().getUser(username)
+        }
+        return null
     }
 
     @SuccessResponse("201", "Created") // Custom success response

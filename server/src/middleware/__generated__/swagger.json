@@ -366,11 +366,16 @@
 				"operationId": "GetUser",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Found",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/User"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
 								}
 							}
 						}
@@ -383,14 +388,13 @@
 						"name": "userId",
 						"required": true,
 						"schema": {
-							"format": "double",
-							"type": "number"
+							"type": "string"
 						}
 					},
 					{
 						"in": "query",
 						"name": "username",
-						"required": true,
+						"required": false,
 						"schema": {
 							"type": "string"
 						}

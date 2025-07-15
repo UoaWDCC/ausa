@@ -6,6 +6,22 @@ export type UserCreationParams = Pick<User, "email" | "name" | "username">
 export class UserService{
 
     /**
+     * 
+     * @param id - using id to find a user in the db
+     * @returns A user of type User
+     */
+    async getUser(identifier: string): Promise<User| null> {
+        const userRef = FirestoreCollections.users.doc(identifier)
+        const user = await userRef.get()
+        if(!user.exists){
+            console.log(`User - ${identifier} is not found`)
+            return null
+        } 
+        console.log(user.data())
+        return user.data() as User
+    }
+
+    /**
      * Creates a new user with the parameters provided without passing in the id
      * @param params - The parameters for creating a user.
      * @returns A promise that resolves to the created user.
@@ -26,9 +42,5 @@ export class UserService{
         });
         console.log(newUser)
         return newUser
-    }
-
-    async getUser(userId:number, name?:string): Promise<User>{
-       return null
     }
 }
