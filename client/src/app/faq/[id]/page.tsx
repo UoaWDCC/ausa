@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from '@/shadcn_components/ui/accordion'
-import { Faq, FaqCategory } from '@/types/types'
+import type { Faq, FaqCategory } from '@/types/types'
 import { redirect } from 'next/navigation'
 
 interface FAQProps {

@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/carousel/Carousel'
-import Footer from '@/components/footer/Footer'
+// import Footer from '@/components/footer/Footer'
 
 const Resources = () => {
   return (
