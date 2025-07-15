@@ -1,5 +1,5 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
-import { Faq } from 'data-layer/models/Faq'
+import type { Faq } from 'data-layer/models/Faq'
 
 export class FaqDataService {
   /**

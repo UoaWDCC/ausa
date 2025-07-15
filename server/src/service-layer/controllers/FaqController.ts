@@ -1,4 +1,4 @@
-import { Faq } from 'data-layer/models/Faq'
+import type { Faq } from 'data-layer/models/Faq'
 import { FaqDataService } from 'data-layer/services/FaqDataService'
 import { Body, Controller, Get, Post, Delete, Route, Path } from 'tsoa'
 
