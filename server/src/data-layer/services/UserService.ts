@@ -1,7 +1,7 @@
 import type { User } from "data-layer/models/User";
 import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
 
-export type UserCreationParams = Pick<User, "email" | "name"> 
+export type UserCreationParams = Pick<User, "email" | "name" | "username"> 
 
 export class UserService{
 
@@ -14,6 +14,7 @@ export class UserService{
         const userRef = await FirestoreCollections.users.doc();
         const newUser: User = {
             id: userRef.id,
+            username: params.username,
             email: params.email,
             name: params.name
         }

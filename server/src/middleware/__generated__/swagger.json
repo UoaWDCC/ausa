@@ -15,6 +15,9 @@
 					"email": {
 						"type": "string"
 					},
+					"username": {
+						"type": "string"
+					},
 					"id": {
 						"type": "string"
 					}
@@ -22,28 +25,33 @@
 				"required": [
 					"name",
 					"email",
+					"username",
 					"id"
 				],
 				"type": "object"
 			},
-			"Pick_User.email-or-name_": {
+			"Pick_User.email-or-name-or-username_": {
 				"properties": {
 					"email": {
 						"type": "string"
 					},
 					"name": {
 						"type": "string"
+					},
+					"username": {
+						"type": "string"
 					}
 				},
 				"required": [
 					"email",
-					"name"
+					"name",
+					"username"
 				],
 				"type": "object",
 				"description": "From T, pick a set of properties whose keys are in the union K"
 			},
 			"UserCreationParams": {
-				"$ref": "#/components/schemas/Pick_User.email-or-name_"
+				"$ref": "#/components/schemas/Pick_User.email-or-name-or-username_"
 			},
 			"Faq": {
 				"properties": {
@@ -377,6 +385,14 @@
 						"schema": {
 							"format": "double",
 							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "username",
+						"required": true,
+						"schema": {
+							"type": "string"
 						}
 					},
 					{

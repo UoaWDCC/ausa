@@ -20,6 +20,7 @@ export class UserController extends Controller {
     @Get ("{userId}")
     public async getUser(
         @Path() userId: number,
+        @Query() username: string,
         @Query() name?: string
 
     ): Promise<User>{
