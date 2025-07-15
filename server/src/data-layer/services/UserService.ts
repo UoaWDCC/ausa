@@ -12,15 +12,16 @@ export class UserService{
      */
     async createUser(params: UserCreationParams): Promise<User> {
         const userRef = await FirestoreCollections.users.doc();
-        await userRef.set({
-            id: userRef.id,
-            ...params,
-        });
-        return {
+        const newUser: User = {
             id: userRef.id,
             email: params.email,
-            name: params.name,
-        };
+            name: params.name
+        }
+        await userRef.set({
+            email: params.email,
+            name: params.name
+        });
+        return newUser
     }
 
     async getUser(userId:number, name?:string): Promise<User>{
