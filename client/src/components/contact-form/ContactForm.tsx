@@ -50,7 +50,7 @@ const ContactForm = () => {
       })
   }
   return (
-    <div className="w-[300px] rounded-[32px] bg-white p-5 text-black shadow-md drop-shadow-sm duration-300 hover:scale-105 md:w-[700px]">
+    <div className="w-[300px] rounded-md bg-white p-5 text-black shadow-md drop-shadow-sm duration-300 hover:scale-105 md:w-[700px]">
       <form onSubmit={sendEmail} className="flex flex-col gap-4">
         <label className="flex flex-col font-bold">
           Full Name
@@ -60,7 +60,7 @@ const ContactForm = () => {
             type="text"
             name="name"
             placeholder="Name"
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-md bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
           />
         </label>
         <label className="flex flex-col font-bold">
@@ -73,7 +73,7 @@ const ContactForm = () => {
             type="text"
             name="email_from"
             placeholder="example@mail.com"
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-md bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
           />
         </label>
         <label className="flex flex-col font-bold">
@@ -99,7 +99,7 @@ const ContactForm = () => {
             name="message"
             rows={6}
             placeholder="Write enquiry here"
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-md bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
           />
         </label>
         <button

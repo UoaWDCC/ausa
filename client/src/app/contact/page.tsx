@@ -1,22 +1,21 @@
 'use client'
 
-import ContactForm from '@/components/contact-form/ContactForm'
-import Link from 'next/link'
 import Image from 'next/image'
+import Link from 'next/link'
+import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
+import ContactForm from '@/components/contact-form/ContactForm'
 import facebook from '../../app/assets/icons/facebook.svg'
 import instagram from '../../app/assets/icons/instagram.svg'
 import linkedin from '../../app/assets/icons/linkedin.svg'
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 
 const Contact = () => {
   return (
     <div className="font-RG pt-20">
       <div className="font-RK">
         <div className="min-h-screen flex flex-col items-center overflow-hidden mb-0 pb-0">
-          <div className="relative mt-2 flex w-[90%] flex-col items-center gap-10 rounded-[55px] bg-[#2C2C2C] p-8 md:w-[95%] md:justify-center lg:max-w-[1500px] xl:max-w-[1800px] xl:flex-row xl:p-10 overflow-hidden">
-
+          <div className="relative mt-2 flex w-[90%] flex-col items-center gap-10 rounded-md bg-[#2C2C2C] p-8 md:w-[95%] md:justify-center lg:max-w-[1500px] xl:max-w-[1800px] xl:flex-row xl:p-10 overflow-hidden">
             {/* Background inside black box */}
-            <div className="absolute inset-0 z-0 rounded-[55px] overflow-hidden">
+            <div className="absolute inset-0 z-0 rounded-md overflow-hidden">
               <TiledAusaBackground />
             </div>
 
