@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
 import Image from 'next/image'
-import NavigationBar from '@/components/navbar/Navbar'
 import Footer from '@/components/footer/Footer'
+import NavigationBar from '@/components/navbar/Navbar'
 
 export const metadata: Metadata = {
   title: 'AUSA',
@@ -33,7 +33,7 @@ export default function RootLayout({
             {children}
           </div>
         </main>
-        <footer className="relative z-20 mt-auto bg-white">
+        <footer className="relative z-20 mt-auto">
           <Footer />
         </footer>
       </body>

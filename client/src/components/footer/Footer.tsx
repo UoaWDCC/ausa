@@ -9,52 +9,18 @@ import phone from '../../app/assets/icons/phone.svg'
 
 const Footer = () => {
   return (
-    <div>
+    <div className="bg-transparent backdrop-blur-md">
       {/* Links */}
-      <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-6 text-white bg-slate-900/95 backdrop-blur-md flex flex-col md:grid md:grid-cols-[1fr_0.35fr_0.35fr_0.35fr] md:gap-x-6">
-        {/* Logo */}
+      <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out py-6 px-30 text-white flex flex-col md:grid md:grid-cols-[0.35fr_0.25fr_0.25fr_0.25fr_0.25fr] md:gap-x-6">
+        {/* About Us */}
         <div className="flex flex-col ">
           <div className="flex flex-col gap-4 p-2">
-            {/* <div className="relative flex-shrink-0 md:mt-0 md:block md:h-25 md:w-25">
-            <Image src={ausa} alt="TRK AUSA" className="rounded-md" fill/>
-          </div> */}
-            <div className="flex flex-row gap-2">
-              <Image src={gps} alt="Facebook" className="h-[20px] w-[20px]" />4
-              Alfred Street, Auckland Central, Auckland 1010
-            </div>
-            <div className="flex flex-row gap-2">
-              <Image src={phone} alt="Facebook" className="h-[20px] w-[20px]" />
-              09 309 0789
-            </div>
-            {/* Social Media */}
-            <div className="flex flex-row items-center gap-4 mt-2">
-              {/* Facebook */}
-              <div className="flex flex-row mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-                <Link href="#" className="">
-                  <Image src={facebook} alt="Facebook" className="" />
-                </Link>
-              </div>
-              {/* Instagram */}
-              <div className="flex flex-row mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-                <Link href="#" className="">
-                  <Image
-                    src={instagram}
-                    alt="Instagram"
-                    className="mb-4 h-[20px] w-[20px] md:mb-0"
-                  />
-                </Link>
-              </div>
-              {/* LinkedIn */}
-              <div className="flex flex-row mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-                <Link href="#" className="">
-                  <Image
-                    src={linkedin}
-                    alt="LinkedIn"
-                    className="mb-4 h-[20px] w-[20px] md:mb-0"
-                  />
-                </Link>
-              </div>
-            </div>
+            <h1 className="text-2xl font-bold">AUSA</h1>
+            <span className="border-white">
+              This is a description of the TRK-AUSA organisation. Our mission is
+              to *insert here*, and we plan on doing this alongside our values
+              *insert here*.
+            </span>
           </div>
         </div>
         {/* About Us */}
@@ -108,13 +74,56 @@ const Footer = () => {
             </Link>
           </div>
         </div>
+        {/* Logo */}
+        <div className="flex flex-col ">
+          <div className="flex flex-col gap-4 p-2">
+            {/* <div className="relative flex-shrink-0 md:mt-0 md:block md:h-25 md:w-25">
+            <Image src={ausa} alt="TRK AUSA" className="rounded-md" fill/>
+          </div> */}
+            <div className="flex flex-row gap-2">
+              <Image src={gps} alt="Facebook" className="h-[20px] w-[20px]" />4
+              Alfred Street, Auckland Central, Auckland 1010
+            </div>
+            <div className="flex flex-row gap-2">
+              <Image src={phone} alt="Facebook" className="h-[20px] w-[20px]" />
+              09 309 0789
+            </div>
+          </div>
+        </div>
       </div>
       {/* Copyright */}
-      <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-6 text-white bg-slate-900/95 backdrop-blur-md flex flex-col md:grid md:grid-cols-[1fr] md:gap-x-6">
-        <div className="flex md:justify-center">
-          <div className="flex flex-col gap-4 p-2">
-            © Te Rōpū Kahikatea - Auckland University Students’ Association
-            2025. All Rights Reserved.
+      <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out p-6 text-white flex flex-col md:grid md:grid-cols-[0.95fr_0.075fr] md:gap-x-6">
+        <div className="flex flex-col gap-4 p-2">
+          © Te Rōpū Kahikatea - Auckland University Students’ Association 2025.
+          All Rights Reserved.
+        </div>
+        {/* Social Media */}
+        <div className="flex flex-row items-center gap-4 mt-2">
+          {/* Facebook */}
+          <div className="flex flex-row mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
+            <Link href="#" className="">
+              <Image src={facebook} alt="Facebook" className="" />
+            </Link>
+          </div>
+          {/* Instagram */}
+          <div className="flex flex-row mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
+            <Link href="#" className="">
+              <Image
+                src={instagram}
+                alt="Instagram"
+                className="mb-4 h-[20px] w-[20px] md:mb-0"
+              />
+            </Link>
+          </div>
+          {/* LinkedIn */}
+          <div className="flex flex-row mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
+            <Link href="#" className="">
+              <Image
+                src={linkedin}
+                alt="LinkedIn"
+                className="mb-4 h-[20px] w-[20px] md:mb-0"
+              />
+            </Link>
           </div>
         </div>
       </div>
