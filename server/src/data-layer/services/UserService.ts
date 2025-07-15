@@ -41,6 +41,24 @@ export class UserService {
   }
 
   /**
+   * 
+   * @returns a list of users
+   */
+  async getAllUsers(): Promise<User[]> {
+    const snapShot = await FirestoreCollections.users.get()
+    const userList: User[] = snapShot.docs.map(doc => ({
+        id: doc.id,
+        name: doc.data().name,
+        username: doc.data().email,
+        email: doc.data().email
+    }))
+    console.log(userList.map(user => {
+        user
+    }))
+    return userList
+  }
+
+  /**
    * Creates a new user with the parameters provided without passing in the id
    * @param params - The parameters for creating a user.
    * @returns A promise that resolves to the created user.
