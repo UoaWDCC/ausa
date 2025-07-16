@@ -1,6 +1,7 @@
 import type { ExternalResource } from 'data-layer/models/ExternalResource'
 import type { Faq } from 'data-layer/models/Faq'
-import type { UserAdditionalInfo } from 'data-layer/models/User'
+import type { User } from 'data-layer/models/User'
+
 import {
   EXTERNAL_RESOURCES_COLLECTION,
   FAQ_CATEGORIES_COLLECTION,
@@ -8,7 +9,7 @@ import {
   USERS_COLLECTION,
 } from './CollectionNames'
 import firestore from './Firestore'
-import { FaqCategory } from 'data-layer/models/FaqCategories'
+import type { FaqCategory } from 'data-layer/models/FaqCategories'
 
 const FirestoreCollections = {
   externalResources: firestore.collection<ExternalResource>(
@@ -16,7 +17,7 @@ const FirestoreCollections = {
   ),
   faq: firestore.collection<Faq>(FAQ_COLLECTION),
   faqCategories: firestore.collection<FaqCategory>(FAQ_CATEGORIES_COLLECTION),
-  users: firestore.collection<UserAdditionalInfo>(USERS_COLLECTION),
+  users: firestore.collection<User>(USERS_COLLECTION),
 } as const
 
 export default FirestoreCollections
