@@ -101,16 +101,18 @@ export class UserService {
     return user
   }
 
-  async updateUser(userId:string, updates: UpdateUserPackage): Promise<User | null> {
+  async updateUser(
+    userId: string,
+    updates: UpdateUserPackage,
+  ): Promise<User | null> {
     const userRef = await FirestoreCollections.users.doc(userId)
     const doc = await userRef.get()
     if (!doc.exists) {
       console.log(`User - ${userId} is not found`)
       return null
     }
-    await userRef.set(updates, {merge: true})
+    await userRef.set(updates, { merge: true })
     const updatedUser = await userRef.get()
     return updatedUser.data() as User
   }
 }
-

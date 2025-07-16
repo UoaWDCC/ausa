@@ -58,7 +58,7 @@ export class UserController extends Controller {
   @Patch('{userId}')
   public async updateUser(
     @Query() userId: string,
-    @Body() updates: UpdateUserPackage
+    @Body() updates: UpdateUserPackage,
   ): Promise<User | null> {
     return new UserService().updateUser(userId, updates)
   }

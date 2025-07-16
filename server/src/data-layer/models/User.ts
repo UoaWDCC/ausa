@@ -5,9 +5,8 @@ export type User = {
   name: string
 }
 
-export interface UpdateUserPackage{
-  username?: string,
-  name?: string,
+export interface UpdateUserPackage {
+  username?: string
+  name?: string
   email?: string
 }
-
