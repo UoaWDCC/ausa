@@ -1,4 +1,4 @@
-import type { User } from 'data-layer/models/User'
+import type { User, UpdateUserPackage } from 'data-layer/models/User'
 
 import {
   type UserCreationParams,
@@ -14,6 +14,7 @@ import {
   Body,
   Path,
   Delete,
+  Put,
 } from 'tsoa'
 
 @Route('users')
@@ -51,5 +52,14 @@ export class UserController extends Controller {
   @Delete('by-userId')
   public async deleteUser(@Query() userId: string): Promise<User | null> {
     return new UserService().deleteUser(userId)
+  }
+
+  @SuccessResponse('200', 'Updated')
+  @Put()
+  public async updateUser(
+    @Query() userId: string,
+    @Body() updates: UpdateUserPackage
+  ): Promise<User | null> {
+    return new UserService().updateUser(userId, updates)
   }
 }
