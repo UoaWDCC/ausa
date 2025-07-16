@@ -53,6 +53,21 @@
 			"UserCreationParams": {
 				"$ref": "#/components/schemas/Pick_User.email-or-name-or-username_"
 			},
+			"UpdateUserPackage": {
+				"properties": {
+					"username": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Faq": {
 				"properties": {
 					"id": {
@@ -425,6 +440,47 @@
 						}
 					}
 				]
+			},
+			"patch": {
+				"operationId": "UpdateUser",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateUserPackage"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/users": {

@@ -14,7 +14,7 @@ import {
   Body,
   Path,
   Delete,
-  Put,
+  Patch,
 } from 'tsoa'
 
 @Route('users')
@@ -55,7 +55,7 @@ export class UserController extends Controller {
   }
 
   @SuccessResponse('200', 'Updated')
-  @Put()
+  @Patch('{userId}')
   public async updateUser(
     @Query() userId: string,
     @Body() updates: UpdateUserPackage
