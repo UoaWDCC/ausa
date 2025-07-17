@@ -11,7 +11,7 @@ const Footer = () => {
   return (
     <div className="bg-transparent backdrop-blur-md">
       {/* Links */}
-      <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out py-6 px-30 text-white flex flex-col md:grid md:grid-cols-[0.35fr_0.25fr_0.25fr_0.25fr_0.25fr] md:gap-x-6">
+      <div className="bottom-0 left-0 z-50 w-full transition-all duration-500 ease-out py-6 px-30 text-white flex flex-col md:grid md:grid-cols-[0.35fr_0.20fr_0.20fr_0.20fr_0.35fr] md:gap-x-10">
         {/* About Us */}
         <div className="flex flex-col ">
           <div className="flex flex-col gap-4 p-2">
