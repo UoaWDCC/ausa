@@ -182,4 +182,8 @@
   body {
     @apply bg-background text-foreground;
   }
+  ::-webkit-scrollbar { /* Only works on Google Chrome? */
+    display: none;
+  }
 }
+
