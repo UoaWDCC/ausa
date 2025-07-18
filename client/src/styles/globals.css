@@ -184,7 +184,7 @@
     overflow-x: hidden;
   }
   ::-webkit-scrollbar {
-    /* Only works on some browsers */
+    /* styling scroll bar - webkit only works on some browsers */
     width: 8px;
     background: #11192d;
     overflow-x: hidden;
