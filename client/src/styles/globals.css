@@ -181,9 +181,19 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
   }
-  ::-webkit-scrollbar { /* Only works on Google Chrome? */
-    display: none;
+  ::-webkit-scrollbar {
+    /* Only works on some browsers */
+    width: 8px;
+    background: #11192d;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar-track {
+    background: #11192d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #222b3d;
+    border-radius: 10px;
   }
 }
-
