@@ -15,7 +15,8 @@
       "!**/node_modules",
       "!build",
       "!**/__generated__",
-      "!.github"
+      "!.github",
+      "!.turbo"
     ],
     "ignoreUnknown": true
   },
