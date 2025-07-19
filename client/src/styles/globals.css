@@ -194,6 +194,6 @@
   }
   ::-webkit-scrollbar-thumb {
     background: #222b3d;
-    border-radius: 10px;
+    border-radius: 0px;
   }
 }
