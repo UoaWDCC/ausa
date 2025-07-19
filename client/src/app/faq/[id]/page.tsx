@@ -119,17 +119,12 @@ export default async function FAQ({ params }: FAQProps) {
           <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
-              {faqCategoryMap[faqCategory.data[0].id]?.map(
-                (faq: Faq) => (
-                  console.log('faq', faq),
-                  (
-                    <AccordionItem value={`item-${faq.id}`} key={faq.id}>
-                      <AccordionTrigger>{faq.question}</AccordionTrigger>
-                      <AccordionContent>{faq.answer}</AccordionContent>
-                    </AccordionItem>
-                  )
-                ),
-              )}
+              {faqCategoryMap[faqCategory.data[0].id]?.map((faq: Faq) => (
+                <AccordionItem value={`item-${faq.id}`} key={faq.id}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </div>
         </div>
