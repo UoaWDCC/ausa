@@ -98,11 +98,22 @@ export default async function FAQ({ params }: FAQProps) {
         >
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
             How Can We Help?
-
           </h1>
-          <FaqBox icon = {ausa} title = {faqCategories.data[0].name} content = "blahblahblah"/>
-          <FaqBox icon = {ausa} title = {faqCategories.data[1].name} content = "blahblahblah"/>
-          <FaqBox icon = {ausa} title = {faqCategories.data[2].name} content = "blahblahblah"/>
+          <FaqBox
+            icon={ausa}
+            title={faqCategories.data[0].name}
+            content="blahblahblah"
+          />
+          <FaqBox
+            icon={ausa}
+            title={faqCategories.data[1].name}
+            content="blahblahblah"
+          />
+          <FaqBox
+            icon={ausa}
+            title={faqCategories.data[2].name}
+            content="blahblahblah"
+          />
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
               key={category.id}
@@ -117,7 +128,7 @@ export default async function FAQ({ params }: FAQProps) {
             </div>
           ))} */}
         </div>
-          
+
         <div
           className="flex flex-col gap-8 border bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
           id="section-right"
