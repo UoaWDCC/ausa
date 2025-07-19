@@ -181,5 +181,19 @@
   }
   body {
     @apply bg-background text-foreground;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar {
+    /* styling scroll bar - webkit only works on some browsers */
+    width: 8px;
+    background: #11192d;
+    overflow-x: hidden;
+  }
+  ::-webkit-scrollbar-track {
+    background: #11192d;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #222b3d;
+    border-radius: 0px;
   }
 }
