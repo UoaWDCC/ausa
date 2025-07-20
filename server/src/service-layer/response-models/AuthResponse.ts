@@ -1,5 +1,7 @@
 // import type { CommonResponse } from './CommonResponse'
 
+import { User } from "data-layer/models/User";
+
 export interface AuthUserData {
   uid: string;
   email: string;
@@ -13,5 +15,11 @@ export interface VerifyResponse {
     email: string;
     displayName: string;
   }
+  error?: string;
+}
+
+export interface SignupResponse{
+  success: boolean;
+  user?: User;
   error?: string;
 }

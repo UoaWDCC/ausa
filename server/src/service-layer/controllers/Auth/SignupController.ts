@@ -5,6 +5,6 @@ import { User } from "data-layer/models/User"
 import { Controller, Route, Post, SuccessResponse, Body } from "tsoa"
 @Route("auth")
 export class SignupController extends Controller {
-
+    
 
 }
