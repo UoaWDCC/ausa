@@ -1,4 +1,4 @@
-import type { CommonResponse } from './CommonResponse'
+// import type { CommonResponse } from './CommonResponse'
 
 export interface AuthUserData {
   uid: string;
@@ -6,12 +6,12 @@ export interface AuthUserData {
   displayName?: string;
 }
 
-export interface LoginResponse extends CommonResponse {
-  token?: string;
-  user?: AuthUserData;
-}
-
-export interface RegisterResponse extends CommonResponse {
-  token?: string;
-  user?: AuthUserData;
+export interface VerifyResponse {
+  success: boolean;
+  user?: {
+    uid: string;
+    email: string;
+    displayName: string;
+  }
+  error?: string;
 }

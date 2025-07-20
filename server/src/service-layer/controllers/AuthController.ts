@@ -8,34 +8,34 @@ import {
   Request,
   Get,
 } from "tsoa";
-import { auth, admin } from "server/src/business-layer/security/Firebase"
+import { auth } from "server/src/business-layer/security/Firebase"
 import { StatusCodes } from "http-status-codes";
-import type { LoginRequest } from "server/src/service-layer/request-models/AuthRequest";
-import type { LoginResponse } from "server/src/service-layer/response-models/AuthResponse";
+import type { VerifyRequest } from "server/src/service-layer/request-models/AuthRequest";
+import type { VerifyResponse } from "server/src/service-layer/response-models/AuthResponse";
 
 @Route("auth")
 @Tags("auth")
 export class AuthController extends Controller {
-  @Post("login")
-  public async login(@Body() requestBody: LoginRequest): Promise<LoginResponse> {
+  @Post("verify")
+  public async verify(@Body() requestBody: VerifyRequest): Promise<VerifyResponse> {
     try {
-      const userCredential = await admin.auth().getUserByEmail(requestBody.email);
-      const token = await admin.auth().createCustomToken(userCredential.uid);
+      const decodedToken = await auth.verifyIdToken(requestBody.idToken);
 
       return {
-        token,
+        success: true,
         user: {
-          uid: userCredential.uid,
-          email: userCredential.email,
-          displayName: userCredential.displayName,
+          uid: decodedToken.uid,
+          email: decodedToken.email,
+          displayName: decodedToken.displayName,
         }
       }
     } catch (error) {
-      console.error("login error:", error)
+      console.error("Token verification failed:", error)
       this.setStatus(StatusCodes.UNAUTHORIZED)
       return {
+        success: false,
         error: "Invalid email or password"
-      }
+      };
     }
   }
 }
