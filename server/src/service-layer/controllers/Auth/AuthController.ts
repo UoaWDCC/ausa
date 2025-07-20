@@ -16,6 +16,11 @@ import type { VerifyResponse } from "server/src/service-layer/response-models/Au
 @Route("auth")
 @Tags("auth")
 export class AuthController extends Controller {
+  @Get() 
+  public async getAuthStatus(): Promise<{ authenticated: boolean }> {
+    console.log("checking status")
+    return { authenticated: false }; // Replace with actual authentication logic if needed
+  }
   @Post("verify")
   public async verify(@Body() requestBody: VerifyRequest): Promise<VerifyResponse> {
     try {
