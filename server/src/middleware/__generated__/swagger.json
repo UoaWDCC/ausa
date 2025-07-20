@@ -360,6 +360,94 @@
 			},
 			"updateExternalResourceRequest": {
 				"$ref": "#/components/schemas/Partial_createExternalResourceRequest_"
+			},
+			"SignupResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"user": {
+						"$ref": "#/components/schemas/User"
+					},
+					"error": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"success"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SignupRequest": {
+				"properties": {
+					"email": {
+						"type": "string"
+					},
+					"password": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"email",
+					"password",
+					"name",
+					"username"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"VerifyResponse": {
+				"properties": {
+					"success": {
+						"type": "boolean"
+					},
+					"user": {
+						"properties": {
+							"displayName": {
+								"type": "string"
+							},
+							"email": {
+								"type": "string"
+							},
+							"uid": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"displayName",
+							"email",
+							"uid"
+						],
+						"type": "object"
+					},
+					"error": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"success"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"VerifyRequest": {
+				"properties": {
+					"idToken": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"idToken"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {
@@ -1026,6 +1114,97 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/updateExternalResourceRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/signup": {
+			"post": {
+				"operationId": "Signup",
+				"responses": {
+					"201": {
+						"description": "Signed up and created user",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SignupResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SignupRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth": {
+			"get": {
+				"operationId": "GetAuthStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"authenticated": {
+											"type": "boolean"
+										}
+									},
+									"required": [
+										"authenticated"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"auth"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/auth/verify": {
+			"post": {
+				"operationId": "Verify",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/VerifyResponse"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"auth"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/VerifyRequest"
 							}
 						}
 					}
