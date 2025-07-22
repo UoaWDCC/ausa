@@ -15,6 +15,7 @@ import {
   Patch,
   Path,
   Post,
+  Query,
   Route,
   Security,
   SuccessResponse,
@@ -23,8 +24,17 @@ import {
 @Route('external-resources')
 export class ExternalResourceController extends Controller {
   @Get()
-  public async getAllExternalResources(): Promise<GetAllExternalResourceResponse> {
+  public async getAllExternalResources(
+    @Query('category') category?: string,
+  ): Promise<GetAllExternalResourceResponse> {
     try {
+      if (category) {
+        const res = await ExternalResourceDataService.getByCategoryId(category)
+        if (res) {
+          return { data: res }
+        }
+        return { data: [] }
+      }
       const externalResources =
         await ExternalResourceDataService.getAllExternalResources()
       return { data: externalResources }

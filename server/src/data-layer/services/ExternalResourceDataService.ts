@@ -60,4 +60,22 @@ export class ExternalResourceDataService {
     const docRef = FirestoreCollections.externalResources.doc(id)
     await docRef.delete()
   }
+
+  public static async deleteByCategoryId(categoryId: string): Promise<void> {
+    const faqSnapshots = await FirestoreCollections.externalResources
+      .where('categoryId', '==', categoryId)
+      .get()
+    for (const doc of faqSnapshots.docs) {
+      await doc.ref.delete()
+    }
+  }
+
+  public static async getByCategoryId(
+    categoryId: string,
+  ): Promise<ExternalResource[]> {
+    const faqSnapshots = await FirestoreCollections.externalResources
+      .where('categoryId', '==', categoryId)
+      .get()
+    return faqSnapshots.docs.map((doc) => doc.data())
+  }
 }
