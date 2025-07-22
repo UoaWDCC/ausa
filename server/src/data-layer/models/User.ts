@@ -1,5 +1,12 @@
-import type { Timestamp } from 'firebase-admin/firestore'
+export type User = {
+  id: string
+  username: string
+  email: string
+  name: string
+}
 
-export type UserAdditionalInfo = {
-  date_of_birth: Timestamp
+export interface UpdateUserPackage {
+  username?: string
+  name?: string
+  email?: string
 }

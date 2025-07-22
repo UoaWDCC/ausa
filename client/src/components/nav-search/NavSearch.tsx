@@ -134,7 +134,7 @@ const NavSearch: React.FC = () => {
 
   return (
     <Dialog open={open} onOpenChange={handleToggle}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button
           variant="outline"
           className="group cursor-pointer relative flex w-48 items-center gap-3  bg-slate-800/50 px-3 shadow-sm backdrop-blur-sm transition-all duration-200  hover:bg-slate-800/70 hover:text-slate-300 focus:border-purple-800 focus:ring-2 focus:ring-blue-500/20"
