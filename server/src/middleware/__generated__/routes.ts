@@ -11,6 +11,8 @@ import { FaqController } from './../../service-layer/controllers/FaqController';
 import { FaqCategoryController } from './../../service-layer/controllers/FaqCategoryController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ExternalResourceController } from './../../service-layer/controllers/ExternalResourceController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { ExternalResourceCategoryController } from './../../service-layer/controllers/ExternalResourceCategoryController';
 import { expressAuthentication } from './../../business-layer/security/Authentication';
 // @ts-ignore - no great way to install types from subpackage
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
@@ -164,6 +166,7 @@ const models: TsoaRoute.Models = {
             "title": {"dataType":"string","required":true},
             "url": {"dataType":"string","required":true},
             "description": {"dataType":"string"},
+            "categoryId": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -190,7 +193,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"url":{"dataType":"string","required":true},"title":{"dataType":"string","required":true},"description":{"dataType":"string"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"categoryId":{"dataType":"string","required":true},"url":{"dataType":"string","required":true},"title":{"dataType":"string","required":true},"description":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Omit_ExternalResource.id_": {
@@ -205,12 +208,66 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Partial_createExternalResourceRequest_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"url":{"dataType":"string"},"title":{"dataType":"string"},"description":{"dataType":"string"}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"categoryId":{"dataType":"string"},"url":{"dataType":"string"},"title":{"dataType":"string"},"description":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "updateExternalResourceRequest": {
         "dataType": "refAlias",
         "type": {"ref":"Partial_createExternalResourceRequest_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ExternalResourceCategory": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "name": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetAllExternalResourceCategoryResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"dataType":"array","array":{"dataType":"refObject","ref":"ExternalResourceCategory"}},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetExternalResourceCategoryResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"ref":"ExternalResourceCategory"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Omit_ExternalResourceCategory.id_": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "createExternalResourceCategoryRequest": {
+        "dataType": "refAlias",
+        "type": {"ref":"Omit_ExternalResourceCategory.id_","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Partial_createExternalResourceCategoryRequest_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"name":{"dataType":"string"}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "updateExternalResourceCategoryRequest": {
+        "dataType": "refAlias",
+        "type": {"ref":"Partial_createExternalResourceCategoryRequest_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -751,6 +808,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsExternalResourceController_getAllExternalResources: Record<string, TsoaRoute.ParameterSchema> = {
+                category: {"in":"query","name":"category","dataType":"string"},
         };
         app.get('/external-resources',
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
@@ -866,6 +924,160 @@ export function RegisterRoutes(app: Router) {
                 next,
                 validatedArgs,
                 successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceCategoryController_getAllCategories: Record<string, TsoaRoute.ParameterSchema> = {
+                name: {"in":"query","name":"name","dataType":"string"},
+        };
+        app.get('/external-resource-category',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController.prototype.getAllCategories)),
+
+            async function ExternalResourceCategoryController_getAllCategories(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceCategoryController_getAllCategories, request, response });
+
+                const controller = new ExternalResourceCategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'getAllCategories',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceCategoryController_getCategory: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.get('/external-resource-category/:id',
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController.prototype.getCategory)),
+
+            async function ExternalResourceCategoryController_getCategory(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceCategoryController_getCategory, request, response });
+
+                const controller = new ExternalResourceCategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'getCategory',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: undefined,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceCategoryController_createCategory: Record<string, TsoaRoute.ParameterSchema> = {
+                category: {"in":"body","name":"category","required":true,"ref":"createExternalResourceCategoryRequest"},
+        };
+        app.post('/external-resource-category',
+            authenticateMiddleware([{"jwt":["admin"]}]),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController.prototype.createCategory)),
+
+            async function ExternalResourceCategoryController_createCategory(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceCategoryController_createCategory, request, response });
+
+                const controller = new ExternalResourceCategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'createCategory',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceCategoryController_updateCategory: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+                faqCategory: {"in":"body","name":"faqCategory","required":true,"ref":"updateExternalResourceCategoryRequest"},
+        };
+        app.patch('/external-resource-category/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController.prototype.updateCategory)),
+
+            async function ExternalResourceCategoryController_updateCategory(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceCategoryController_updateCategory, request, response });
+
+                const controller = new ExternalResourceCategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'updateCategory',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceCategoryController_deleteCategory: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.delete('/external-resource-category/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController.prototype.deleteCategory)),
+
+            async function ExternalResourceCategoryController_deleteCategory(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceCategoryController_deleteCategory, request, response });
+
+                const controller = new ExternalResourceCategoryController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteCategory',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 204,
               });
             } catch (err) {
                 return next(err);
