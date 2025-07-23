@@ -379,11 +379,15 @@
 					},
 					"name": {
 						"type": "string"
+					},
+					"description": {
+						"type": "string"
 					}
 				},
 				"required": [
 					"id",
-					"name"
+					"name",
+					"description"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -425,10 +429,14 @@
 				"properties": {
 					"name": {
 						"type": "string"
+					},
+					"description": {
+						"type": "string"
 					}
 				},
 				"required": [
-					"name"
+					"name",
+					"description"
 				],
 				"type": "object",
 				"description": "From T, pick a set of properties whose keys are in the union K"
@@ -443,6 +451,9 @@
 			"Partial_createExternalResourceCategoryRequest_": {
 				"properties": {
 					"name": {
+						"type": "string"
+					},
+					"description": {
 						"type": "string"
 					}
 				},
