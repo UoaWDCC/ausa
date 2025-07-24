@@ -2,16 +2,41 @@
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
-import { auth } from '@/lib/firebase'
+import { GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
+import { auth,db } from '@/lib/firebase'
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+
 
 const Signup = () => {
+
+    const saveUser = async (user:any) => {
+        try {
+            const userRef = doc(db, 'users', user.id);
+            const userDoc = await getDoc(userRef);
+            if (!userDoc.exists()) {
+                await setDoc(userRef, {
+                    id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    name: user.name
+                });
+                console.log("User saved successfully");
+            } else {
+                console.log("User already exists");
+            }
+
+        }catch (error) {
+            console.error("Error saving user:", error);
+        }
+    }
 
     const handleGoogleSignIn = async()=>{
         const provider = new GoogleAuthProvider();
         try{
-            await signInWithRedirect(auth, provider);
-            console.log("Redirecting...")
+            const res = await signInWithPopup(auth, provider);
+            const user = res.user;
+            const idToken = await user.getIdToken();
+            await saveUser(user)
 
         }catch (error:any) {
             const err = error.code;
