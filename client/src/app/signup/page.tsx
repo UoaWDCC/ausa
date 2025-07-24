@@ -1,8 +1,26 @@
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 
-const Login = () => {
+const Signup = () => {
+
+    const handleGoogleSignIn = async()=>{
+        const auth = getAuth();
+        const provider = new GoogleAuthProvider();
+        try{
+            const result = await signInWithPopup(auth, provider);
+            const user = result.user;
+            console.log("User signed in:", user);
+            alert(`Sign in successful! Welcome ${user.displayName || user.email}`);
+
+        }catch (error:any) {
+            const err = error.code;
+            const errmsg = error.message;
+            console.error("Error during sign-in:", err, errmsg);
+        }
+    }
+
   return (
     <div className="relative z-10 overflow-hidden py-40 text-center text-white">
       <div className="relative z-10 mx-auto max-w-md sm:px-4">
@@ -45,6 +63,7 @@ const Login = () => {
               <a
                 href="/signup"
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                onClick={handleGoogleSignIn}
               >
                 Sign up with Google
               </a>
@@ -62,4 +81,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signup
