@@ -2,18 +2,16 @@
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithRedirect } from 'firebase/auth';
+import { auth } from '@/lib/firebase'
 
 const Signup = () => {
 
     const handleGoogleSignIn = async()=>{
-        const auth = getAuth();
         const provider = new GoogleAuthProvider();
         try{
-            const result = await signInWithPopup(auth, provider);
-            const user = result.user;
-            console.log("User signed in:", user);
-            alert(`Sign in successful! Welcome ${user.displayName || user.email}`);
+            await signInWithRedirect(auth, provider);
+            console.log("Redirecting...")
 
         }catch (error:any) {
             const err = error.code;
@@ -62,6 +60,7 @@ const Signup = () => {
             <Button className="w-full">Submit</Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
+                type='button'
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
                 onClick={handleGoogleSignIn}
               >
