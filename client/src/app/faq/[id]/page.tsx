@@ -6,6 +6,8 @@ import {
 } from '@/shadcn_components/ui/accordion'
 import type { Faq, FaqCategory } from '@/types/types'
 import { redirect } from 'next/navigation'
+import FaqBox from '../../../components/faq-box/FaqBox'
+import ausa from '../../assets/icons/ausa.svg'
 
 interface FAQProps {
   params: Promise<{ id: string }>
@@ -97,8 +99,23 @@ export default async function FAQ({ params }: FAQProps) {
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
             How Can We Help?
           </h1>
-          {faqCategories.data.map((category: FaqCategory) => (
-            <div
+          <FaqBox
+            icon={ausa}
+            title={faqCategories.data[0].name}
+            content="blahblahblah"
+          />
+          <FaqBox
+            icon={ausa}
+            title={faqCategories.data[1].name}
+            content="blahblahblah"
+          />
+          <FaqBox
+            icon={ausa}
+            title={faqCategories.data[2].name}
+            content="blahblahblah"
+          />
+          {/* {faqCategories.data.map((category: FaqCategory) => (
+             <div
               key={category.id}
               className="mb-4 flex flex-col items-center gap-2"
             >
@@ -109,8 +126,9 @@ export default async function FAQ({ params }: FAQProps) {
                 ))}
               </ul>
             </div>
-          ))}
+          ))} */}
         </div>
+
         <div
           className="flex flex-col gap-8 border bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
           id="section-right"
@@ -119,17 +137,12 @@ export default async function FAQ({ params }: FAQProps) {
           <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
-              {faqCategoryMap[faqCategory.data[0].id]?.map(
-                (faq: Faq) => (
-                  console.log('faq', faq),
-                  (
-                    <AccordionItem value={`item-${faq.id}`} key={faq.id}>
-                      <AccordionTrigger>{faq.question}</AccordionTrigger>
-                      <AccordionContent>{faq.answer}</AccordionContent>
-                    </AccordionItem>
-                  )
-                ),
-              )}
+              {faqCategoryMap[faqCategory.data[0].id]?.map((faq: Faq) => (
+                <AccordionItem value={`item-${faq.id}`} key={faq.id}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
             </Accordion>
           </div>
         </div>
