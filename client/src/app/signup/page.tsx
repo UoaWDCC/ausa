@@ -1,3 +1,4 @@
+"use client";
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -60,13 +61,12 @@ const Signup = () => {
             </div>
             <Button className="w-full">Submit</Button>
             <div className="flex justify-between text-sm text-white/80">
-              <a
-                href="/signup"
+              <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
                 onClick={handleGoogleSignIn}
               >
                 Sign up with Google
-              </a>
+              </button>
               <a
                 href="/forgot-password"
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
