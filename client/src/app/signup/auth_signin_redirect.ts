@@ -1,4 +1,4 @@
-import {getAuth, signInWithRedirect} from "firebase/auth";
+import { getAuth, signInWithRedirect } from 'firebase/auth'
 
-const auth = getAuth();
+const auth = getAuth()
 signInWithRedirect(auth, provider)

@@ -1,6 +1,6 @@
-import {initializeApp} from 'firebase/app';
-import {getAuth} from 'firebase/auth';
+import { initializeApp } from 'firebase/app'
+import { getAuth } from 'firebase/auth'
 
-const app = initializeApp();
+const app = initializeApp()
 
-export const auth = getAuth(app);
+export const auth = getAuth(app)

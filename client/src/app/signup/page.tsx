@@ -1,49 +1,45 @@
-"use client";
+'use client'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { GoogleAuthProvider, signInWithPopup} from 'firebase/auth';
-import { auth,db } from '@/lib/firebase'
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { auth, db } from '@/lib/firebase'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
 
 const Signup = () => {
-
-    const saveUser = async (user:any) => {
-        try {
-            const userRef = doc(db, 'users', user.id);
-            const userDoc = await getDoc(userRef);
-            if (!userDoc.exists()) {
-                await setDoc(userRef, {
-                    id: user.id,
-                    username: user.username,
-                    email: user.email,
-                    name: user.name
-                });
-                console.log("User saved successfully");
-            } else {
-                console.log("User already exists");
-            }
-
-        }catch (error) {
-            console.error("Error saving user:", error);
-        }
+  const saveUser = async (user: any) => {
+    try {
+      const userRef = doc(db, 'users', user.id)
+      const userDoc = await getDoc(userRef)
+      if (!userDoc.exists()) {
+        await setDoc(userRef, {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+          name: user.name,
+        })
+        console.log('User saved successfully')
+      } else {
+        console.log('User already exists')
+      }
+    } catch (error) {
+      console.error('Error saving user:', error)
     }
+  }
 
-    const handleGoogleSignIn = async()=>{
-        const provider = new GoogleAuthProvider();
-        try{
-            const res = await signInWithPopup(auth, provider);
-            const user = res.user;
-            const idToken = await user.getIdToken();
-            await saveUser(user)
-
-        }catch (error:any) {
-            const err = error.code;
-            const errmsg = error.message;
-            console.error("Error during sign-in:", err, errmsg);
-        }
+  const handleGoogleSignIn = async () => {
+    const provider = new GoogleAuthProvider()
+    try {
+      const res = await signInWithPopup(auth, provider)
+      const user = res.user
+      // const idToken = await user.getIdToken();
+      await saveUser(user)
+    } catch (error: any) {
+      const err = error.code
+      const errmsg = error.message
+      console.error('Error during sign-in:', err, errmsg)
     }
+  }
 
   return (
     <div className="relative z-10 overflow-hidden py-40 text-center text-white">
@@ -85,7 +81,7 @@ const Signup = () => {
             <Button className="w-full">Submit</Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
-                type='button'
+                type="button"
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
                 onClick={handleGoogleSignIn}
               >
