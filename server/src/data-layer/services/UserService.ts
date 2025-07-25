@@ -2,7 +2,10 @@ import type { User, UpdateUserPackage } from 'data-layer/models/User'
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import { Body } from 'tsoa'
 
-export type UserCreationParams = Pick<User, 'id' | 'email' | 'name' | 'username'>
+export type UserCreationParams = Pick<
+  User,
+  'id' | 'email' | 'name' | 'username'
+>
 
 export class UserService {
   /**

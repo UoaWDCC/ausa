@@ -3,15 +3,12 @@ import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { auth, db } from '@/lib/firebase'
-import { doc, getDoc, setDoc } from 'firebase/firestore'
-import {User} from '@/types/types'
+import { auth } from '@/lib/firebase'
+import type { User } from '@/types/types'
 
 const Signup = () => {
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
   const convertToUser = (user: any): User => {
-
-
     return {
       id: user.uid,
       username: user.displayName,
@@ -31,13 +28,16 @@ const Signup = () => {
       //     email: user.email,
       //     name: user.name,
       //   })
-      console.log('Sending user to backend:', JSON.stringify({...newUser, id: user.uid}))
+      console.log(
+        'Sending user to backend:',
+        JSON.stringify({ ...newUser, id: user.uid }),
+      )
       const response = await fetch(`${url}/users`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({...newUser, id: user.uid}),
+        body: JSON.stringify({ ...newUser, id: user.uid }),
       })
       let responseBody: any
       try {
@@ -48,9 +48,9 @@ const Signup = () => {
       console.log('Status:', response.status)
       console.log('Response body:', responseBody)
       console.log('User saved successfully')
-      } catch (error) {
-        console.log('User already exists')
-      }
+    } catch (error) {
+      console.log('User already exists')
+    }
   }
 
   const handleGoogleSignIn = async () => {
