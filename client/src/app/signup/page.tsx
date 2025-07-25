@@ -20,6 +20,7 @@ const Signup = () => {
   }
   const saveUser = async (user: any) => {
     try {
+      const newUser = convertToUser(user)
       const userRef = doc(db, 'users', user.uid)
       const userDoc = await getDoc(userRef)
       if (!userDoc.exists()) {
@@ -29,15 +30,14 @@ const Signup = () => {
           email: user.email,
           name: user.name,
         })
-        const new_user = convertToUser(user)
         const response = await fetch(`${url}/users`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(new_user),
+          body: JSON.stringify({...newUser, id: user.uid}),
         })
-        console.log(response)
+        console.log(response.status, await response.json())
         
         console.log('User saved successfully')
       } else {
