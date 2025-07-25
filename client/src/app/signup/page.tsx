@@ -22,31 +22,35 @@ const Signup = () => {
   const saveUser = async (user: any) => {
     try {
       const newUser = convertToUser(user)
-      const userRef = doc(db, 'users', user.uid)
-      const userDoc = await getDoc(userRef)
-      if (!userDoc.exists()) {
-        await setDoc(userRef, {
-          id: user.uid,
-          username: user.username,
-          email: user.email,
-          name: user.name,
-        })
-        const response = await fetch(`${url}/users`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({...newUser, id: user.uid}),
-        })
-        console.log(response.status, await response.json())
-        
-        console.log('User saved successfully')
-      } else {
+      // const userRef = doc(db, 'users', user.uid)
+      // const userDoc = await getDoc(userRef)
+      // if (!userDoc.exists()) {
+      //   await setDoc(userRef, {
+      //     id: user.uid,
+      //     username: user.username,
+      //     email: user.email,
+      //     name: user.name,
+      //   })
+      console.log('Sending user to backend:', JSON.stringify({...newUser, id: user.uid}))
+      const response = await fetch(`${url}/users`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({...newUser, id: user.uid}),
+      })
+      let responseBody: any
+      try {
+        responseBody = await response.json()
+      } catch (err) {
+        responseBody = await response.text()
+      }
+      console.log('Status:', response.status)
+      console.log('Response body:', responseBody)
+      console.log('User saved successfully')
+      } catch (error) {
         console.log('User already exists')
       }
-    } catch (error) {
-      console.error('Error saving user:', error)
-    }
   }
 
   const handleGoogleSignIn = async () => {
