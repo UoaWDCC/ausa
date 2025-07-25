@@ -5,19 +5,40 @@ import { Input } from '@/components/ui/input'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { auth, db } from '@/lib/firebase'
 import { doc, getDoc, setDoc } from 'firebase/firestore'
+import {User} from '@/types/types'
 
 const Signup = () => {
+  const url = process.env.BACKEND_URL || 'http://localhost:8000'
+  const convertToUser = (user: any): User => {
+
+
+    return {
+      username: user.displayName,
+      email: user.email,
+      name: user.displayName,
+    }
+  }
   const saveUser = async (user: any) => {
     try {
-      const userRef = doc(db, 'users', user.id)
+      const userRef = doc(db, 'users', user.uid)
       const userDoc = await getDoc(userRef)
       if (!userDoc.exists()) {
         await setDoc(userRef, {
-          id: user.id,
+          id: user.uid,
           username: user.username,
           email: user.email,
           name: user.name,
         })
+        const new_user = convertToUser(user)
+        const response = await fetch(`${url}/users`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(new_user),
+        })
+        console.log(response)
+        
         console.log('User saved successfully')
       } else {
         console.log('User already exists')
