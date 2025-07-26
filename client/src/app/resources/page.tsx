@@ -36,6 +36,7 @@ export default async function Resources() {
     }),
   )
 
+  // test comment
   const categories = Object.keys(externalResourceMap)
 
   return (
