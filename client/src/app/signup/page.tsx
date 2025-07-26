@@ -43,12 +43,14 @@ const Signup = () => {
       try {
         responseBody = await response.json()
       } catch (err) {
+        console.log(err)
         responseBody = await response.text()
       }
       console.log('Status:', response.status)
       console.log('Response body:', responseBody)
       console.log('User saved successfully')
     } catch (error) {
+      console.error('Error saving user:', error)
       console.log('User already exists')
     }
   }
