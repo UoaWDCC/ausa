@@ -1,13 +1,13 @@
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import NavSearch from '@/components/nav-search/NavSearch'
 import { cn } from '@/lib/utils'
 import {
   isNavDropdown,
   type NavConfig,
   type NavItem,
 } from '@/types/navbar.types'
-import NavSearch from '@/components/nav-search/NavSearch'
 
 interface MobileDrawerProps {
   isOpen: boolean
@@ -61,17 +61,17 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           <div className="mb-6 flex items-center justify-between">
             <Link href={config.logo.href} onClick={onClose}>
               <Image
-                src={config.logo.src}
-                width={config.logo.width * 0.8}
-                height={config.logo.height * 0.8}
                 alt={config.logo.alt}
                 className="drop-shadow-md"
+                height={config.logo.height * 0.8}
+                src={config.logo.src}
+                width={config.logo.width * 0.8}
               />
             </Link>
             <button
-              type="button"
-              onClick={onClose}
               className="rounded-md p-2 text-gray-600 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+              onClick={onClose}
+              type="button"
             >
               <X className="h-6 w-6" />
             </button>
@@ -88,12 +88,12 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           <nav className="flex flex-col space-y-1 flex-1">
             {mobileItems.map((item, index) => (
               <Link
-                key={`mobile-${item.href}-${index}`}
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                onClick={onClose}
                 className="group flex items-center gap-3 rounded-md px-3 py-3 text-gray-700 font-medium transition-all duration-200 hover:bg-purple-50 hover:text-purple-900 hover:translate-x-1"
+                href={item.href}
+                key={`mobile-${item.href}-${index}`}
+                onClick={onClose}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                target={item.external ? '_blank' : undefined}
               >
                 {item.icon && (
                   <item.icon className="h-5 w-5 text-gray-500 group-hover:text-purple-600" />
@@ -109,12 +109,12 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
               <div className="space-y-2">
                 {config.actionButtons.map((button, index) => (
                   <Link
-                    key={`mobile-action-${button.href}-${index}`}
-                    href={button.href}
-                    target={button.external ? '_blank' : undefined}
-                    rel={button.external ? 'noopener noreferrer' : undefined}
-                    onClick={onClose}
                     className="flex w-full items-center justify-center gap-2 rounded-lg bg-purple-600 px-4 py-3 text-white font-semibold shadow-lg hover:bg-purple-700 hover:shadow-xl transition-all duration-200"
+                    href={button.href}
+                    key={`mobile-action-${button.href}-${index}`}
+                    onClick={onClose}
+                    rel={button.external ? 'noopener noreferrer' : undefined}
+                    target={button.external ? '_blank' : undefined}
                   >
                     {button.icon && <button.icon className="h-4 w-4" />}
                     {button.label}

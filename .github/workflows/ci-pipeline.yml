@@ -32,8 +32,9 @@ jobs:
             !**.md
             !.gitignore
             !.gitattributes
-            !.github/**
             !.vscode/**
+            !.idea/**
+            !.zed/**
             !.env.example
 
   setup:
@@ -208,6 +209,8 @@ jobs:
     if: ${{ needs.check_changes.outputs.exists == 'true' }}
     name: Build
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
     steps:
       - uses: actions/checkout@v4
 
