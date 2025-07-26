@@ -1,7 +1,11 @@
 import type { User, UpdateUserPackage } from 'data-layer/models/User'
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
+import { Body } from 'tsoa'
 
-export type UserCreationParams = Pick<User, 'email' | 'name' | 'username'>
+export type UserCreationParams = Pick<
+  User,
+  'id' | 'email' | 'name' | 'username'
+>
 
 export class UserService {
   /**
@@ -65,16 +69,16 @@ export class UserService {
    * @param params - The parameters for creating a user.
    * @returns A promise that resolves to the created user.
    */
-  async createUser(params: UserCreationParams): Promise<User> {
-    const userRef = await FirestoreCollections.users.doc()
+  async createUser(@Body() params: UserCreationParams): Promise<User> {
+    const userRef = await FirestoreCollections.users.doc(params.id)
     const newUser: User = {
-      id: userRef.id,
+      id: params.id,
       username: params.username,
       email: params.email,
       name: params.name,
     }
     await userRef.set({
-      id: userRef.id,
+      id: params.id,
       username: params.username,
       email: params.email,
       name: params.name,

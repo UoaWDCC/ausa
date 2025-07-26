@@ -30,8 +30,11 @@
 				],
 				"type": "object"
 			},
-			"Pick_User.email-or-name-or-username_": {
+			"Pick_User.id-or-email-or-name-or-username_": {
 				"properties": {
+					"id": {
+						"type": "string"
+					},
 					"email": {
 						"type": "string"
 					},
@@ -43,6 +46,7 @@
 					}
 				},
 				"required": [
+					"id",
 					"email",
 					"name",
 					"username"
@@ -51,7 +55,7 @@
 				"description": "From T, pick a set of properties whose keys are in the union K"
 			},
 			"UserCreationParams": {
-				"$ref": "#/components/schemas/Pick_User.email-or-name-or-username_"
+				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username_"
 			},
 			"UpdateUserPackage": {
 				"properties": {
