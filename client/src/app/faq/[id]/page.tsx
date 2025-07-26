@@ -22,7 +22,7 @@ const Banner = () => {
             <div className="flex items-center text-base md:text-2xl">
               Support Available 24/7
             </div>
-            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]"></div>
+            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
           </div>{' '}
         </div>
         <div className="animate-infinite-scrolling flex w-full flex-none gap-2 transition-transform">
@@ -31,7 +31,7 @@ const Banner = () => {
             <div className="flex items-center text-base md:text-2xl">
               Support Available 24/7
             </div>
-            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]"></div>
+            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
           </div>{' '}
         </div>
       </div>
