@@ -32,8 +32,9 @@ jobs:
             !**.md
             !.gitignore
             !.gitattributes
-            !.github/**
             !.vscode/**
+            !.idea/**
+            !.zed/**
             !.env.example
 
   setup:
