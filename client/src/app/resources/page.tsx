@@ -7,9 +7,41 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/carousel/Carousel'
+import type { ExternalResource } from '@/types/types'
+
 // import Footer from '@/components/footer/Footer'
 
-const Resources = () => {
+const Resources = async () => {
+  const externalResourceMap: Record<string, ExternalResource[]> = {}
+
+  const url = process.env.BACKEND_URL || 'http://localhost:8000'
+  const res = await fetch(`${url}/external-resource-category`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+    mode: 'cors',
+  })
+  const externalResourceCategories = await res.json()
+
+  await Promise.all(
+    externalResourceCategories.data.map(async (category: ExternalResource) => {
+      const res = await fetch(
+        `${url}/external-resources?category=${category.id}`,
+        {
+          headers: { 'Content-Type': 'application/json' },
+          method: 'GET',
+          mode: 'cors',
+        },
+      )
+      const externalResourceData = await res.json()
+      externalResourceMap[category.id] = externalResourceData.data.sort(
+        (a: ExternalResource, b: ExternalResource) =>
+          a.title.localeCompare(b.title),
+      )
+    }),
+  )
+
   return (
     <div>
       {/* Financial */}
