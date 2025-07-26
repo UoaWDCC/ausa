@@ -1,3 +1,4 @@
+import { ExternalResourceCategoryDataService } from 'data-layer/services/ExternalResourceCategoriesDataService'
 import { ExternalResourceDataService } from 'data-layer/services/ExternalResourceDataService'
 import { StatusCodes } from 'http-status-codes'
 import type {
@@ -11,6 +12,7 @@ import type {
 import {
   Body,
   Controller,
+  Delete,
   Get,
   Patch,
   Path,
@@ -73,6 +75,14 @@ export class ExternalResourceController extends Controller {
     @Body() externalResource: createExternalResourceRequest,
   ): Promise<GetExternalResourceResponse> {
     try {
+      const existingCategory =
+        await ExternalResourceCategoryDataService.getCategoryById(
+          externalResource.categoryId,
+        )
+      if (!existingCategory) {
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'External Resource Category not found' }
+      }
       const createdResource =
         await ExternalResourceDataService.createExternalResource(
           externalResource,
@@ -110,6 +120,56 @@ export class ExternalResourceController extends Controller {
       console.error('Error updating external resource:', error)
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
       return { error: 'Failed to update external resource' }
+    }
+  }
+
+  @Security('jwt', ['admin'])
+  @Delete('{id}')
+  @SuccessResponse(
+    StatusCodes.NO_CONTENT,
+    'Successfully deleted External Resource',
+  )
+  public async deleteExternalResource(@Path() id: string): Promise<void> {
+    try {
+      const existingResource =
+        await ExternalResourceDataService.getExternalResourceById(id)
+      if (!existingResource) {
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return
+      }
+      await ExternalResourceDataService.deleteExternalResource(id)
+    } catch (error) {
+      console.error('Error deleting external resource:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+    }
+  }
+
+  @Security('jwt', ['admin'])
+  @Delete()
+  @SuccessResponse(
+    StatusCodes.NO_CONTENT,
+    'Successfully deleted all External Resources',
+  )
+  public async deleteAllExternalResources(
+    @Query('categoryId') categoryId?: string,
+  ): Promise<void> {
+    try {
+      if (categoryId) {
+        const existingCategory =
+          await ExternalResourceCategoryDataService.getCategoryById(categoryId)
+        if (!existingCategory) {
+          this.setStatus(StatusCodes.NOT_FOUND)
+          return
+        }
+        await ExternalResourceDataService.deleteByCategoryId(categoryId)
+        this.setStatus(StatusCodes.NO_CONTENT)
+        return
+      }
+      await ExternalResourceDataService.deleteAllExternalResources()
+      this.setStatus(StatusCodes.NO_CONTENT)
+    } catch (error) {
+      console.error('Error deleting all External Resources:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
     }
   }
 }

@@ -1071,6 +1071,31 @@
 						}
 					}
 				}
+			},
+			"delete": {
+				"operationId": "DeleteAllExternalResources",
+				"responses": {
+					"204": {
+						"description": "Successfully deleted all External Resources"
+					}
+				},
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "categoryId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/external-resources/{id}": {
@@ -1141,6 +1166,31 @@
 						}
 					}
 				}
+			},
+			"delete": {
+				"operationId": "DeleteExternalResource",
+				"responses": {
+					"204": {
+						"description": "Successfully deleted External Resource"
+					}
+				},
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/external-resource-category": {
@@ -1184,13 +1234,7 @@
 						}
 					}
 				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
+				"security": [],
 				"parameters": [],
 				"requestBody": {
 					"required": true,

@@ -931,6 +931,68 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_deleteExternalResource: Record<string, TsoaRoute.ParameterSchema> = {
+                id: {"in":"path","name":"id","required":true,"dataType":"string"},
+        };
+        app.delete('/external-resources/:id',
+            authenticateMiddleware([{"jwt":["admin"]}]),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.deleteExternalResource)),
+
+            async function ExternalResourceController_deleteExternalResource(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_deleteExternalResource, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteExternalResource',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 204,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsExternalResourceController_deleteAllExternalResources: Record<string, TsoaRoute.ParameterSchema> = {
+                categoryId: {"in":"query","name":"categoryId","dataType":"string"},
+        };
+        app.delete('/external-resources',
+            authenticateMiddleware([{"jwt":["admin"]}]),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController)),
+            ...(fetchMiddlewares<RequestHandler>(ExternalResourceController.prototype.deleteAllExternalResources)),
+
+            async function ExternalResourceController_deleteAllExternalResources(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsExternalResourceController_deleteAllExternalResources, request, response });
+
+                const controller = new ExternalResourceController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteAllExternalResources',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 204,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsExternalResourceCategoryController_getAllCategories: Record<string, TsoaRoute.ParameterSchema> = {
                 name: {"in":"query","name":"name","dataType":"string"},
         };
@@ -995,7 +1057,6 @@ export function RegisterRoutes(app: Router) {
                 category: {"in":"body","name":"category","required":true,"ref":"createExternalResourceCategoryRequest"},
         };
         app.post('/external-resource-category',
-            authenticateMiddleware([{"jwt":["admin"]}]),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController)),
             ...(fetchMiddlewares<RequestHandler>(ExternalResourceCategoryController.prototype.createCategory)),
 

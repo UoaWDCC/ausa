@@ -78,4 +78,12 @@ export class ExternalResourceDataService {
       .get()
     return faqSnapshots.docs.map((doc) => doc.data())
   }
+
+  public static async deleteAllExternalResources(): Promise<void> {
+    const faqSnapshots =
+      await FirestoreCollections.externalResourceCategories.get()
+    for (const doc of faqSnapshots.docs) {
+      await doc.ref.delete()
+    }
+  }
 }

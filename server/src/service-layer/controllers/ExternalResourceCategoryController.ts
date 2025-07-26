@@ -66,7 +66,7 @@ export class ExternalResourceCategoryController extends Controller {
     }
   }
 
-  @Security('jwt', ['admin'])
+  //@Security('jwt', ['admin'])
   @Post()
   @SuccessResponse(
     StatusCodes.CREATED,
