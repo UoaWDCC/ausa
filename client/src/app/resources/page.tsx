@@ -5,7 +5,7 @@ import type { ExternalResource } from '@/types/types'
 
 // import Footer from '@/components/footer/Footer'
 
-const Resources = async () => {
+export default async function Resources() {
   const externalResourceMap: Record<string, ExternalResource[]> = {}
 
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
@@ -66,5 +66,3 @@ const Resources = async () => {
     </div>
   )
 }
-
-export default Resources
