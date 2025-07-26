@@ -1,8 +1,8 @@
 'use client'
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import type { User } from '@/types/types'
 
@@ -78,46 +78,46 @@ const Signup = () => {
           <form className="space-y-6 text-left text-black">
             <div>
               <label
-                htmlFor="email"
                 className="block text-sm font-medium text-white mb-1"
+                htmlFor="email"
               >
                 Email address
               </label>
               <Input
-                type="email"
+                aria-invalid={false}
                 id="email"
                 placeholder="email@example.com"
                 required
-                aria-invalid={false}
+                type="email"
               />
             </div>
             <div>
               <label
-                htmlFor="password"
                 className="block text-sm font-medium text-white mb-1"
+                htmlFor="password"
               >
                 Password
               </label>
               <Input
-                type="password"
+                aria-invalid={false}
                 id="password"
                 placeholder="••••••••••"
                 required
-                aria-invalid={false}
+                type="password"
               />
             </div>
             <Button className="w-full">Submit</Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
-                type="button"
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
                 onClick={handleGoogleSignIn}
+                type="button"
               >
                 Sign up with Google
               </button>
               <a
-                href="/forgot-password"
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                href="/forgot-password"
               >
                 Forgot your password?
               </a>
