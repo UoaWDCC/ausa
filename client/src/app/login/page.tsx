@@ -1,8 +1,40 @@
+'use client'
+
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useState } from 'react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { auth } from '@/lib/firebase';
 
 const Login = () => {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+
+  const handleLogin = async (e: React.FormEvent) => {
+    // Prevent default form submission
+    e.preventDefault();
+
+    try {
+      // firebase authentication 
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
+      const user = userCredential.user;
+      const token = await user.getIdToken();
+
+      console.log('Logged in as:', user.email);
+      alert('Login successful!');
+    } catch (err: any) {
+      console.error('Login error:', err.code, err.message);
+      alert('Invalid email or password.');
+    }
+  };
+
   return (
     <div className="relative z-10 overflow-hidden py-40 text-center text-white">
       <div className="relative z-10 mx-auto max-w-md sm:px-4">
@@ -12,45 +44,49 @@ const Login = () => {
           <form className="space-y-6 text-left text-black">
             <div>
               <label
-                htmlFor="email"
                 className="block text-sm font-medium text-white mb-1"
+                htmlFor="email"
               >
                 Email address
               </label>
               <Input
-                type="email"
+                aria-invalid={false}
                 id="email"
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="email@example.com"
                 required
-                aria-invalid={false}
+                type="email"
               />
             </div>
             <div>
               <label
-                htmlFor="password"
                 className="block text-sm font-medium text-white mb-1"
+                htmlFor="password"
               >
                 Password
               </label>
               <Input
-                type="password"
+                aria-invalid={false}
                 id="password"
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••••"
                 required
-                aria-invalid={false}
+                type="password"
               />
             </div>
-            <Button className="w-full">Submit</Button>
+            <Button onClick={handleLogin} className="w-full">Submit</Button>
             <div className="flex justify-between text-sm text-white/80">
               <a
-                href="/signup"
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                href="/signup"
               >
                 Sign up
               </a>
               <a
-                href="/forgot-password"
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                href="/forgot-password"
               >
                 Forgot your password?
               </a>
