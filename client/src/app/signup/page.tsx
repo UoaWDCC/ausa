@@ -1,93 +1,86 @@
-'use client'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { auth } from '@/lib/firebase'
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+"use client";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { TiledAusaBackground } from "@/components/ausa/TiledAusaBackground";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { auth } from "@/lib/firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 
-import { useState } from 'react'
+import { useState } from "react";
 
 const Signup = () => {
-  const url = process.env.BACKEND_URL || 'http://localhost:8000'
-  const [form,setForm] = useState({
-    email: '',
-    username: '',
-    password: '',
-    name: '',
-  })
-
-  const saveUser = async (
-  user: any,
-  name?: string,
-  username?: string
-) => {
-  const newUser = {
-    id: user.uid,
-    email: user.email,
-    name: name ?? user.displayName ?? 'Unknown',
-    username: username ?? user.displayName ?? 'Unknown',
-  };
-
-  console.log('Sending user to backend:', JSON.stringify(newUser));
-
-  const response = await fetch(`${url}/users`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(newUser),
+  const url = process.env.BACKEND_URL || "http://localhost:8000";
+  const [form, setForm] = useState({
+    email: "",
+    username: "",
+    password: "",
+    name: "",
   });
 
-  let responseBody: any;
-  try {
-    responseBody = await response.json();
-  } catch (err) {
-    console.log(err);
-    responseBody = await response.text();
-  }
+  const saveUser = async (user: any, name?: string, username?: string) => {
+    const newUser = {
+      id: user.uid,
+      email: user.email,
+      name: name ?? user.displayName ?? "Unknown",
+      username: username ?? user.displayName ?? "Unknown",
+    };
 
-  console.log('Status:', response.status);
-  console.log('Response body:', responseBody);
-  console.log('User saved successfully');
-};
+    console.log("Sending user to backend:", JSON.stringify(newUser));
+
+    const response = await fetch(`${url}/users`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    });
+
+    let responseBody: any;
+    try {
+      responseBody = await response.json();
+    } catch (err) {
+      console.log(err);
+      responseBody = await response.text();
+    }
+
+    console.log("Status:", response.status);
+    console.log("Response body:", responseBody);
+    console.log("User saved successfully");
+  };
 
   const handleSignup = async (e: React.FormEvent) => {
-  e.preventDefault(); 
+    e.preventDefault();
 
-  try {
- 
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      form.email,
-      form.password
-    );
-    const user = userCredential.user;
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      );
+      const user = userCredential.user;
 
+      await saveUser(user, form.name, form.username);
 
-    await saveUser(user, form.name, form.username);
-
-    alert('Sign-up successful!');
-    
-  } catch (err: any) {
-    console.error('Signup error:', err.code, err.message);
-    alert('Something went wrong: ' + err.message);
-  }
-};
+      alert("Sign-up successful!");
+    } catch (err: any) {
+      console.error("Signup error:", err.code, err.message);
+      alert("Something went wrong: " + err.message);
+    }
+  };
 
   const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider()
+    const provider = new GoogleAuthProvider();
     try {
-      const res = await signInWithPopup(auth, provider)
-      const user = res.user
+      const res = await signInWithPopup(auth, provider);
+      const user = res.user;
       // const idToken = await user.getIdToken();
-      await saveUser(user)
+      await saveUser(user);
     } catch (error: any) {
-      const err = error.code
-      const errmsg = error.message
-      console.error('Error during sign-in:', err, errmsg)
+      const err = error.code;
+      const errmsg = error.message;
+      console.error("Error during sign-in:", err, errmsg);
     }
-  }
+  };
 
   return (
     <div className="relative z-10 overflow-hidden py-40 text-center text-white">
@@ -113,7 +106,7 @@ const Signup = () => {
                 type="text"
               />
             </div>
-       
+
             <div>
               <label
                 className="block text-sm font-medium text-white mb-1"
@@ -124,7 +117,7 @@ const Signup = () => {
               <Input
                 aria-invalid={false}
                 id="email"
-                value = {form.email}
+                value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="email@example.com"
                 required
@@ -141,8 +134,8 @@ const Signup = () => {
               <Input
                 aria-invalid={false}
                 id="username"
-                value = {form.username}
-                onChange = {(e) => setForm({...form, username:e.target.value})}
+                value={form.username}
+                onChange={(e) => setForm({ ...form, username: e.target.value })}
                 placeholder="Your username"
                 required
                 type="text"
@@ -158,14 +151,16 @@ const Signup = () => {
               <Input
                 aria-invalid={false}
                 id="password"
-                value = {form.password}
-                onChange={(e) => setForm({...form, password: e.target.value})}
+                value={form.password}
+                onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••••"
                 required
                 type="password"
               />
             </div>
-            <Button className="w-full" onClick={handleSignup}>Submit</Button>
+            <Button className="w-full" onClick={handleSignup}>
+              Submit
+            </Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
@@ -185,7 +180,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Signup
+export default Signup;
