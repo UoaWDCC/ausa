@@ -4,56 +4,76 @@ import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
-import type { User } from '@/types/types'
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+
+import { useState } from 'react'
 
 const Signup = () => {
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
-  const convertToUser = (user: any): User => {
-    return {
-      id: user.uid,
-      username: user.displayName,
-      email: user.email,
-      name: user.displayName,
-    }
+  const [form,setForm] = useState({
+    email: '',
+    username: '',
+    password: '',
+    name: '',
+  })
+
+  const saveUser = async (
+  user: any,
+  name?: string,
+  username?: string
+) => {
+  const newUser = {
+    id: user.uid,
+    email: user.email,
+    name: name ?? user.displayName ?? 'Unknown',
+    username: username ?? user.displayName ?? 'Unknown',
+  };
+
+  console.log('Sending user to backend:', JSON.stringify(newUser));
+
+  const response = await fetch(`${url}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newUser),
+  });
+
+  let responseBody: any;
+  try {
+    responseBody = await response.json();
+  } catch (err) {
+    console.log(err);
+    responseBody = await response.text();
   }
-  const saveUser = async (user: any) => {
-    try {
-      const newUser = convertToUser(user)
-      // const userRef = doc(db, 'users', user.uid)
-      // const userDoc = await getDoc(userRef)
-      // if (!userDoc.exists()) {
-      //   await setDoc(userRef, {
-      //     id: user.uid,
-      //     username: user.username,
-      //     email: user.email,
-      //     name: user.name,
-      //   })
-      console.log(
-        'Sending user to backend:',
-        JSON.stringify({ ...newUser, id: user.uid }),
-      )
-      const response = await fetch(`${url}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...newUser, id: user.uid }),
-      })
-      let responseBody: any
-      try {
-        responseBody = await response.json()
-      } catch (err) {
-        console.log(err)
-        responseBody = await response.text()
-      }
-      console.log('Status:', response.status)
-      console.log('Response body:', responseBody)
-      console.log('User saved successfully')
-    } catch (error) {
-      console.error('Error saving user:', error)
-      console.log('User already exists')
-    }
+
+  console.log('Status:', response.status);
+  console.log('Response body:', responseBody);
+  console.log('User saved successfully');
+};
+
+  const handleSignup = async (e: React.FormEvent) => {
+  e.preventDefault(); 
+
+  try {
+ 
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      form.email,
+      form.password
+    );
+    const user = userCredential.user;
+
+
+    await saveUser(user, form.name, form.username);
+
+    alert('Sign-up successful!');
+    
+  } catch (err: any) {
+    console.error('Signup error:', err.code, err.message);
+    alert('Something went wrong: ' + err.message);
   }
+};
 
   const handleGoogleSignIn = async () => {
     const provider = new GoogleAuthProvider()
@@ -79,6 +99,24 @@ const Signup = () => {
             <div>
               <label
                 className="block text-sm font-medium text-white mb-1"
+                htmlFor="name"
+              >
+                Name
+              </label>
+              <Input
+                aria-invalid={false}
+                id="name"
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                placeholder="Your name"
+                required
+                type="text"
+              />
+            </div>
+       
+            <div>
+              <label
+                className="block text-sm font-medium text-white mb-1"
                 htmlFor="email"
               >
                 Email address
@@ -86,9 +124,28 @@ const Signup = () => {
               <Input
                 aria-invalid={false}
                 id="email"
+                value = {form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="email@example.com"
                 required
                 type="email"
+              />
+            </div>
+            <div>
+              <label
+                className="block text-sm font-medium text-white mb-1"
+                htmlFor="username"
+              >
+                Username
+              </label>
+              <Input
+                aria-invalid={false}
+                id="username"
+                value = {form.username}
+                onChange = {(e) => setForm({...form, username:e.target.value})}
+                placeholder="Your username"
+                required
+                type="text"
               />
             </div>
             <div>
@@ -101,12 +158,14 @@ const Signup = () => {
               <Input
                 aria-invalid={false}
                 id="password"
+                value = {form.password}
+                onChange={(e) => setForm({...form, password: e.target.value})}
                 placeholder="••••••••••"
                 required
                 type="password"
               />
             </div>
-            <Button className="w-full">Submit</Button>
+            <Button className="w-full" onClick={handleSignup}>Submit</Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
