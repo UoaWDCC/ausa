@@ -20,4 +20,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - run: flyctl deploy --remote-only --config server/fly.server.toml
+
+      - name: Set secrets
+        run: flyctl secrets set --config server/fly.server.toml "FIREBASE_SERVICE_ACCOUNT_JSON=$(echo ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }} | base64 --decode)"
+
+      - name: Deploy secrets to server
+        run: flyctl secrets deploy --config server/fly.server.toml
+
+      - name: Deploy server to Fly
+        run: flyctl deploy --remote-only --config server/fly.server.toml
