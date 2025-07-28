@@ -3,31 +3,38 @@
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useState } from 'react';
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
+import { useRouter } from 'next/navigation'
 
 const Login = () => {
+  const router = useRouter()
+  const { user } = useAuth()
   const [form, setForm] = useState({
     email: '',
     password: '',
   });
+
+  useEffect(() => {
+    if (user) {
+      router.push('/');
+    }
+  }, [user, router]);
 
   const handleLogin = async (e: React.FormEvent) => {
     // Prevent default form submission
     e.preventDefault();
 
     try {
-      // firebase authentication 
-      const userCredential = await signInWithEmailAndPassword(
+      // firebase authentication
+      await signInWithEmailAndPassword(
         auth,
         form.email,
         form.password
       );
-      const user = userCredential.user;
-      const token = await user.getIdToken();
 
-      console.log('Logged in as:', user.email);
       alert('Login successful!');
     } catch (err: any) {
       console.error('Login error:', err.code, err.message);
