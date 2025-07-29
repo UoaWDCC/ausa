@@ -9388,6 +9388,7 @@ __metadata:
     "@biomejs/biome": "npm:2.0.6"
     "@types/node": "npm:^20"
     globals: "npm:^16.0.0"
+    react-icons: "npm:^5.5.0"
     turbo: "npm:^2.5.4"
     typescript: "npm:5.8.3"
   languageName: unknown

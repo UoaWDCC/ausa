@@ -1,3 +1,4 @@
+import { redirect } from 'next/navigation'
 import {
   Accordion,
   AccordionContent,
@@ -5,7 +6,6 @@ import {
   AccordionTrigger,
 } from '@/shadcn_components/ui/accordion'
 import type { Faq, FaqCategory } from '@/types/types'
-import { redirect } from 'next/navigation'
 import FaqBox from '../../../components/faq-box/FaqBox'
 import ausa from '../../assets/icons/ausa.svg'
 
@@ -100,19 +100,19 @@ export default async function FAQ({ params }: FAQProps) {
             How Can We Help?
           </h1>
           <FaqBox
+            content="blahblahblah"
             icon={ausa}
             title={faqCategories.data[0].name}
-            content="blahblahblah"
           />
           <FaqBox
+            content="blahblahblah"
             icon={ausa}
             title={faqCategories.data[1].name}
-            content="blahblahblah"
           />
           <FaqBox
+            content="blahblahblah"
             icon={ausa}
             title={faqCategories.data[2].name}
-            content="blahblahblah"
           />
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
@@ -136,9 +136,9 @@ export default async function FAQ({ params }: FAQProps) {
           <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
           <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
-            <Accordion type="single" collapsible className="w-full">
+            <Accordion className="w-full" collapsible type="single">
               {faqCategoryMap[faqCategory.data[0].id]?.map((faq: Faq) => (
-                <AccordionItem value={`item-${faq.id}`} key={faq.id}>
+                <AccordionItem key={faq.id} value={`item-${faq.id}`}>
                   <AccordionTrigger>{faq.question}</AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
                 </AccordionItem>

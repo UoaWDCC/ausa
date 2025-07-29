@@ -21,6 +21,7 @@
     "build": "turbo run build"
   },
   "dependencies": {
+    "react-icons": "^5.5.0",
     "typescript": "5.8.3"
   },
   "devDependencies": {
