@@ -3,6 +3,7 @@
 import emailjs from '@emailjs/browser'
 import { useState } from 'react'
 import DropdownInput from '../dropdown-input/DropdownInput'
+import {Button} from '../ui/button'
 
 const isValidEmail = (email: string) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -50,7 +51,7 @@ const ContactForm = () => {
       })
   }
   return (
-    <div className="w-[300px] rounded-md bg-white p-5 text-black shadow-md drop-shadow-sm duration-300 hover:scale-105 md:w-[700px]">
+    <div className="w-[300px] rounded-md bg-[#272B31]/80 p-5 text-white shadow-2xl md:w-[700px]">
       <form onSubmit={sendEmail} className="flex flex-col gap-4">
         <label className="flex flex-col font-bold">
           Full Name
@@ -60,7 +61,7 @@ const ContactForm = () => {
             type="text"
             name="name"
             placeholder="Name"
-            className="mt-1 rounded-md bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-sm bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
           />
         </label>
         <label className="flex flex-col font-bold">
@@ -73,7 +74,7 @@ const ContactForm = () => {
             type="text"
             name="email_from"
             placeholder="example@mail.com"
-            className="mt-1 rounded-md bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-md bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
           />
         </label>
         <label className="flex flex-col font-bold">
@@ -99,16 +100,12 @@ const ContactForm = () => {
             name="message"
             rows={6}
             placeholder="Write enquiry here"
-            className="mt-1 rounded-md bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-md bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
           />
         </label>
-        <button
-          onClick={handleClick}
-          type="submit"
-          className={`ml-auto w-35 rounded-full px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed bg-gray-200 text-gray-300' : 'bg-[#D9D9D9] hover:outline-2'} flex justify-center font-bold hover:outline-black`}
-        >
-          Submit
-        </button>
+        <Button type="submit" onClick={handleClick} className={`ml-auto w-35 rounded-md px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed' : ''} flex justify-center`}>
+          SUBMIT
+        </Button>
       </form>
     </div>
   )
