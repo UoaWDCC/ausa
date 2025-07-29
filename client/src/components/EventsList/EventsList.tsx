@@ -16,7 +16,9 @@ const EventsList: React.FC<EventsListProps> = React.memo(({ events }) => {
     <div className="w-full max-w-xl mx-auto p-4 bg-white rounded-lg shadow-md">
       <h2 className="text-xl font-semibold mb-2">Events List</h2>
       {events.map((event) => (
-        <EventsCard event={event} key={event.id} />
+        <div className="my-2" key={event.id}>
+          <EventsCard event={event} />
+        </div>
       ))}
     </div>
   )
