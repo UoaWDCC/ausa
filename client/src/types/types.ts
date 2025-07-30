@@ -17,3 +17,10 @@ export interface ExternalResource {
   url: string
   description?: string
 }
+
+export interface User {
+  id: string
+  username: string
+  email: string
+  name: string
+}

@@ -76,27 +76,27 @@ const Footer = () => {
         {/* icon links to socials (instagram, linkedin, facebook) */}
         <div className="col-span-2 mt-4 flex max-h-[160px] flex-shrink-0 justify-start gap-3 md:col-span-1 md:m-0 md:grid md:justify-end">
           <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-            <Link href="#" className="">
-              <Image src={facebook} alt="Facebook" className="" />
+            <Link className="" href="#">
+              <Image alt="Facebook" className="" src={facebook} />
             </Link>
           </div>
 
           <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-            <Link href="#" className="">
+            <Link className="" href="#">
               <Image
-                src={instagram}
                 alt="Instagram"
                 className="mb-4 h-[20px] w-[20px] md:mb-0"
+                src={instagram}
               />
             </Link>
           </div>
 
           <div className="mb-4 h-[20px] w-[20px] flex-shrink-0 md:mb-0">
-            <Link href="#" className="">
+            <Link className="" href="#">
               <Image
-                src={linkedin}
                 alt="LinkedIn"
                 className="mb-4 h-[40px] w-[40px] md:mb-0"
+                src={linkedin}
               />
             </Link>
           </div>

@@ -19,12 +19,12 @@ export default function RootLayout({
         <NavigationBar />
         <div className="pointer-events-none fixed inset-0 -z-10 brightness-35">
           <Image
-            src={'/static/backgrounds/uoa-background.jpg'}
             alt="Univeristy of Auckland"
-            fill
             className="object-cover object-center"
+            fill
             priority
             sizes="100vw"
+            src={'/static/backgrounds/uoa-background.jpg'}
           />
         </div>
         <main className="relative z-10 w-full max-w-full flex-1 overflow-x-hidden">

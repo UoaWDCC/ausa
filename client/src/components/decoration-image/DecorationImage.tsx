@@ -84,12 +84,12 @@ export function DecorationImage({
         style={{ transform: `rotate(${rotation}deg)` }}
       >
         <Image
-          src={src}
-          width={500}
-          height={500}
           alt={alt}
           className="h-full w-full object-cover"
           draggable={false}
+          height={500}
+          src={src}
+          width={500}
         />
       </div>
     </div>
