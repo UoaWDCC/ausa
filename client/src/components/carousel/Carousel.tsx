@@ -134,10 +134,10 @@ const Carousel = React.forwardRef<
         }}
       >
         <section
-          ref={ref}
-          onKeyDownCapture={handleKeyDown}
-          className={cn('relative', className)}
           aria-roledescription="carousel"
+          className={cn('relative', className)}
+          onKeyDownCapture={handleKeyDown}
+          ref={ref}
           {...props}
         >
           {children}
@@ -155,14 +155,14 @@ const CarouselContent = React.forwardRef<
   const { carouselRef, orientation } = useCarousel()
 
   return (
-    <div ref={carouselRef} className="overflow">
+    <div className="overflow" ref={carouselRef}>
       <div
-        ref={ref}
         className={cn(
           'mx-auto mb-10 flex justify-start',
           orientation === 'horizontal' ? '-ml-4' : '-mt-4 flex-col',
           className,
         )}
+        ref={ref}
         {...props}
       />
     </div>
@@ -180,13 +180,13 @@ const CarouselItem = React.forwardRef<HTMLFieldSetElement, CarouselItemProps>(
 
     return (
       <fieldset
-        ref={ref}
         aria-roledescription="slide"
         className={cn(
           'relative mx-auto mb-2 flex min-w-0 shrink-0 grow-0 basis-full justify-center xl:basis-1/2',
           orientation === 'horizontal' ? 'pl-4' : 'pt-4',
           className,
         )}
+        ref={ref}
         {...props}
       >
         <div className="max-h-fit w-full overflow-hidden rounded-sm bg-slate-900/55  p-4">
@@ -197,7 +197,7 @@ const CarouselItem = React.forwardRef<HTMLFieldSetElement, CarouselItemProps>(
           )}
           {children}
           <span className="absolute right-3 z-10 mt-auto drop-shadow-lg">
-            <AusaDecorationImage size="sm" rotation={5} />
+            <AusaDecorationImage rotation={5} size="sm" />
           </span>
         </div>
       </fieldset>
@@ -214,9 +214,6 @@ const CarouselPrevious = React.forwardRef<
 
   return (
     <Button
-      ref={ref}
-      variant={variant}
-      size={size}
       className={cn(
         'absolute h-8 w-8 rounded-full',
         orientation === 'horizontal'
@@ -226,6 +223,9 @@ const CarouselPrevious = React.forwardRef<
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
+      ref={ref}
+      size={size}
+      variant={variant}
       {...props}
     >
       <ArrowLeft className="h-4 w-4" />
@@ -243,9 +243,6 @@ const CarouselNext = React.forwardRef<
 
   return (
     <Button
-      ref={ref}
-      variant={variant}
-      size={size}
       className={cn(
         'absolute h-8 w-8 rounded-full',
         orientation === 'horizontal'
@@ -255,6 +252,9 @@ const CarouselNext = React.forwardRef<
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}
+      ref={ref}
+      size={size}
+      variant={variant}
       {...props}
     >
       <ArrowRight className="h-4 w-4" />

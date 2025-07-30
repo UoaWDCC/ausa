@@ -2,6 +2,13 @@ export interface Faq {
   id: string
   question: string
   answer: string
+  categoryId: string
+}
+
+export interface FaqCategory {
+  id: string
+  name: string
+  url: string
 }
 
 export interface ExternalResource {
@@ -9,4 +16,11 @@ export interface ExternalResource {
   title: string
   url: string
   description?: string
+}
+
+export interface User {
+  id: string
+  username: string
+  email: string
+  name: string
 }

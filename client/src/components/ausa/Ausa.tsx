@@ -1,10 +1,10 @@
 import {
-  DecorationImage,
   type CustomisableDecorationImageProps,
+  DecorationImage,
 } from '@/components/decoration-image/DecorationImage'
 
 export default function AusaDecorationImage(
   props: CustomisableDecorationImageProps,
 ) {
-  return <DecorationImage src="/static/icons/ausa.svg" alt="" {...props} />
+  return <DecorationImage alt="" src="/static/icons/ausa.svg" {...props} />
 }

@@ -42,29 +42,29 @@ const ContactForm = () => {
   }
   return (
     <div className="w-[300px] rounded-[32px] bg-white p-5 text-black shadow-md drop-shadow-sm duration-300 hover:scale-105 md:w-[700px]">
-      <form onSubmit={sendEmail} className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4" onSubmit={sendEmail}>
         <label className="flex flex-col font-bold">
           Full Name
           <input
-            value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-            type="text"
-            name="name"
-            placeholder="Ray Zhao 🥵🥵🥵🥵😩"
             className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            name="name"
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            placeholder="Ray Zhao 🥵🥵🥵🥵😩"
+            type="text"
+            value={formData.name}
           />
         </label>
         <label className="flex flex-col font-bold">
           Email
           <input
-            value={formData.email_from}
+            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            name="email_from"
             onChange={(e) =>
               setFormData({ ...formData, email_from: e.target.value })
             }
-            type="text"
-            name="email_from"
             placeholder="example@mail.com"
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            type="text"
+            value={formData.email_from}
           />
         </label>
         <label className="flex flex-col font-bold">
@@ -82,20 +82,20 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Message
           <textarea
-            value={formData.message}
+            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            name="message"
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
             }
-            name="message"
-            rows={6}
             placeholder="Write enquiry here"
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            rows={6}
+            value={formData.message}
           />
         </label>
         <button
+          className={`ml-auto w-35 rounded-full px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed bg-gray-200 text-gray-300' : 'bg-[#D9D9D9] hover:outline-2'} flex justify-center font-bold hover:outline-black`}
           onClick={handleClick}
           type="submit"
-          className={`ml-auto w-35 rounded-full px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed bg-gray-200 text-gray-300' : 'bg-[#D9D9D9] hover:outline-2'} flex justify-center font-bold hover:outline-black`}
         >
           Submit
         </button>

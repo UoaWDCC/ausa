@@ -32,8 +32,9 @@ jobs:
             !**.md
             !.gitignore
             !.gitattributes
-            !.github/**
             !.vscode/**
+            !.idea/**
+            !.zed/**
             !.env.example
 
   setup:
@@ -129,7 +130,7 @@ jobs:
         run: yarn
 
       - name: Check formatting
-        run: yarn format:ci
+        run: yarn format:ci --error-on-warnings
 
   lint:
     needs: [check_changes, setup]
@@ -176,7 +177,7 @@ jobs:
             turbo-${{ runner.os }}-
 
       - name: Run linting
-        run: yarn lint:ci
+        run: yarn lint:ci --error-on-warnings
 
   codegen:
     needs: [check_changes, setup]
@@ -245,6 +246,8 @@ jobs:
     if: ${{ needs.check_changes.outputs.exists == 'true' }}
     name: Build
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
     steps:
       - uses: actions/checkout@v4
 
