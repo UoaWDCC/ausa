@@ -4,13 +4,13 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type React from 'react'
 import { useEffect, useState } from 'react'
+import NavSearch from '@/components/nav-search/NavSearch'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import type { NavConfig } from '@/types/navbar.types'
 import { isNavDropdown } from '@/types/navbar.types'
 import { MobileDrawer } from './MobileDrawer'
 import { NavDropdownMenu, NavLinkItem } from './NavItems'
-import NavSearch from '@/components/nav-search/NavSearch'
 
 interface NavigationBarProps {
   config: NavConfig
@@ -61,14 +61,14 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
         <div className="flex h-14 sm:h-16 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
           <div className="flex-shrink-0 min-w-0">
-            <Link href={config.logo.href} className="block">
+            <Link className="block" href={config.logo.href}>
               <Image
-                src={config.logo.src}
-                width={config.logo.width}
-                height={config.logo.height}
                 alt={config.logo.alt}
                 className="drop-shadow-lg transition-transform duration-200 hover:scale-105"
+                height={config.logo.height}
                 priority
+                src={config.logo.src}
+                width={config.logo.width}
               />
             </Link>
           </div>
@@ -100,16 +100,16 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
             <div className="hidden sm:flex sm:items-center sm:gap-2">
               {config.actionButtons?.map((button, index) => (
                 <Button
-                  key={`action-${button.href}-${index}`}
                   asChild
-                  variant="default"
                   className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
+                  key={`action-${button.href}-${index}`}
+                  variant="default"
                 >
                   <Link
-                    href={button.href}
-                    target={button.external ? '_blank' : undefined}
-                    rel={button.external ? 'noopener noreferrer' : undefined}
                     className="flex items-center gap-1 sm:gap-2"
+                    href={button.href}
+                    rel={button.external ? 'noopener noreferrer' : undefined}
+                    target={button.external ? '_blank' : undefined}
                   >
                     {button.icon && (
                       <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -123,12 +123,12 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
             {/* Mobile/Tablet Menu Button */}
             <div className="md:hidden">
               <Button
-                variant="ghost"
-                type="button"
-                onClick={toggleMobileMenu}
-                className="rounded-md p-1.5 sm:p-2 text-white hover:bg-white/10 transition-colors"
                 aria-expanded={isMobileMenuOpen}
                 aria-label="Toggle navigation menu"
+                className="rounded-md p-1.5 sm:p-2 text-white hover:bg-white/10 transition-colors"
+                onClick={toggleMobileMenu}
+                type="button"
+                variant="ghost"
               >
                 <Menu className="h-5 w-5 sm:h-6 sm:w-6" />
               </Button>
@@ -139,9 +139,9 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
 
       {/* Mobile/Tablet Drawer */}
       <MobileDrawer
+        config={config}
         isOpen={isMobileMenuOpen}
         onClose={() => setIsMobileMenuOpen(false)}
-        config={config}
       />
     </nav>
   )

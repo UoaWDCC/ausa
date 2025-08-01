@@ -1,21 +1,20 @@
-import type { User, UpdateUserPackage } from 'data-layer/models/User'
-
+import type { UpdateUserPackage, User } from 'data-layer/models/User'
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Patch,
+  Path,
+  Post,
+  Query,
+  Route,
+  SuccessResponse,
+} from 'tsoa'
 import {
   type UserCreationParams,
   UserService,
 } from '../../data-layer/services/UserService'
-import {
-  Controller,
-  Get,
-  Query,
-  Route,
-  Post,
-  SuccessResponse,
-  Body,
-  Path,
-  Delete,
-  Patch,
-} from 'tsoa'
 
 @Route('users')
 export class UserController extends Controller {

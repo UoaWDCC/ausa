@@ -1,14 +1,14 @@
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import {
   Menu as HeadlessMenu,
   MenuButton,
   MenuItem,
   MenuItems,
 } from '@headlessui/react'
+import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
+import type React from 'react'
 import { cn } from '@/lib/utils'
 import type { NavDropdown, NavItem } from '@/types/navbar.types'
-import type React from 'react'
 
 // Reusable background effects component
 const BackgroundEffects: React.FC<{ className?: string }> = ({ className }) => (
@@ -92,30 +92,30 @@ export const NavDropdownMenu: React.FC<NavDropdownMenuProps> = ({
         <AnimatedText>{dropdown.label}</AnimatedText>
 
         <ChevronDownIcon
-          className="relative z-10 h-4 w-4 text-white/70 transition-all duration-300 group-hover:text-white"
           aria-hidden="true"
+          className="relative z-10 h-4 w-4 text-white/70 transition-all duration-300 group-hover:text-white"
         />
       </MenuButton>
 
       <MenuItems
-        transition
         className="absolute right-0 z-10 mt-2 w-56 origin-top-right overflow-hidden rounded-lg border border-slate-700/50 bg-slate-900/95 backdrop-blur-xl shadow-xl shadow-slate-900/25 ring-1 ring-slate-700/30 transition focus:outline-none data-closed:scale-95 data-closed:transform data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+        transition
       >
         <div className="py-2">
           {dropdown.items.map((item, index) => (
             <MenuItem key={`${item.href}-${index}`}>
               <Link
-                href={item.href}
-                target={item.external ? '_blank' : undefined}
-                rel={item.external ? 'noopener noreferrer' : undefined}
                 className="group relative flex items-center gap-3 px-4 py-3 text-sm text-slate-200 transition-all duration-200 overflow-hidden data-focus:bg-gradient-to-r data-focus:from-blue-500/10 data-focus:via-purple-500/10 data-focus:to-pink-500/10 data-focus:text-white hover:bg-gradient-to-r hover:from-blue-500/10 hover:via-purple-500/10 hover:to-pink-500/10 hover:text-white"
+                href={item.href}
+                rel={item.external ? 'noopener noreferrer' : undefined}
+                target={item.external ? '_blank' : undefined}
               >
                 <BackgroundEffects className="transition-opacity duration-200" />
 
                 {item.icon && (
                   <AnimatedIcon
-                    icon={item.icon}
                     className="text-slate-400 transition-all duration-200 group-hover:text-white group-hover:scale-105"
+                    icon={item.icon}
                   />
                 )}
                 <span className="relative z-10">{item.label}</span>
@@ -139,10 +139,10 @@ export const NavLinkItem: React.FC<NavLinkItemProps> = ({
 }) => {
   return (
     <Link
-      href={item.href}
-      target={item.external ? '_blank' : undefined}
-      rel={item.external ? 'noopener noreferrer' : undefined}
       className={cn(getBaseNavItemClasses(), 'gap-2', className)}
+      href={item.href}
+      rel={item.external ? 'noopener noreferrer' : undefined}
+      target={item.external ? '_blank' : undefined}
     >
       <BackgroundEffects />
 

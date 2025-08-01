@@ -1,7 +1,7 @@
+import Image from 'next/image'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import Image from 'next/image'
 
 /**
  * Props for the HeroSection component
@@ -65,11 +65,11 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
           {/* Featured AUSA logo */}
           <div className="mb-8 flex justify-center">
             <Image
-              src="/static/icons/logo.svg"
-              width={400}
-              height={300}
               alt="AUSA Logo"
               className="h-20 w-auto drop-shadow-lg sm:h-24 lg:h-28"
+              height={300}
+              src="/static/icons/logo.svg"
+              width={400}
             />
           </div>
 
@@ -88,7 +88,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
             <Button asChild size="lg">
               <a href={primaryButton.href}>{primaryButton.text}</a>
             </Button>
-            <Button asChild variant="outline" size="lg">
+            <Button asChild size="lg" variant="outline">
               <a href={secondaryButton.href}>{secondaryButton.text}</a>
             </Button>
           </nav>

@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button'
+import Image from 'next/image'
 import {
   Carousel,
   CarouselContent,
@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/carousel/Carousel'
-import Image from 'next/image'
+import { Button } from '@/components/ui/button'
 
 /**
  * Data structure for a single carousel item
@@ -97,16 +97,16 @@ export const HomeCarousel: React.FC<HomeCarouselProps> = ({
         <CarouselContent>
           {items.map((item) => (
             <CarouselItem
-              key={item.id}
               heroImage={
                 <Image
-                  width={400}
-                  height={200}
-                  src={item.heroImage.src}
                   alt={item.heroImage.alt}
                   className="h-48 w-full object-cover"
+                  height={200}
+                  src={item.heroImage.src}
+                  width={400}
                 />
               }
+              key={item.id}
             >
               <div className="space-y-3">
                 <h3 className="text-xl font-bold text-gray-100">
