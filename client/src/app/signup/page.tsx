@@ -4,18 +4,37 @@ import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
+import { useAuth } from '@/auth/AuthContext'
+import { useRouter } from 'next/router'
 import type { User } from '@/types/types'
+import { useEffect, useState } from 'react'
 
 const Signup = () => {
+  const router = useRouter()
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
-  const convertToUser = (user: any): User => {
-    return {
-      id: user.uid,
-      username: user.displayName,
-      email: user.email,
-      name: user.displayName,
+  const {user} = useAuth()
+  const [form, setForm] = useState({
+    name: '',
+    email: '',
+    password: '',
+  })
+  const [loading, setLoading] = useState(false)
+
+  useEffect(()=>{
+    if(user) {
+      router.push('/portal')
     }
-  }
+  }, [user, router])
+
+  const convertToUser = (user: any): User => {
+      return {
+        id: user.uid,
+        username: user.displayName,
+        email: user.email,
+        name: user.displayName,
+      }
+    }
+
   const saveUser = async (user: any) => {
     try {
       const newUser = convertToUser(user)
