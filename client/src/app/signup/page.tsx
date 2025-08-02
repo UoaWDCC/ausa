@@ -153,26 +153,27 @@ const Signup = () => {
                 }
                 disabled={loading}
               />
+              <div>
+                <label
+                  className="block text-sm font-medium text-white mb-1"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+                <Input
+                  aria-invalid={false}
+                  id="password"
+                  placeholder="••••••••••"
+                  required
+                  type="password"
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.currentTarget.value })
+                  }
+                  disabled={loading}
+                />
+              </div>
             </div>
-            <div>
-              <label
-                className="block text-sm font-medium text-white mb-1"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <Input
-                aria-invalid={false}
-                id="password"
-                placeholder="••••••••••"
-                required
-                type="password"
-                onChange={(e) =>
-                  setForm({ ...form, password: e.currentTarget.value })
-                }
-                disabled={loading}
-              />
-            </div>
+
             <Button
               type="submit"
               disabled={loading}

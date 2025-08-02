@@ -41,7 +41,7 @@ const Portal = () => {
           </div>
 
           <div className="relative z-10 flex justify-center gap-4">
-            <Link href="/signup"> 
+            <Link href="/signup">
               <Button size="lg" variant="default">
                 SIGN UP
               </Button>
