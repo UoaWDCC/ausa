@@ -73,7 +73,7 @@ const Signup = () => {
     e.preventDefault()
     console.log(`${JSON.stringify(form)}`)
     if (!form.name || !form.email || !form.password) {
-      console.error('Please fill in all required fields!')
+      alert('Please fill in all required fields!')
       return
     }
 
