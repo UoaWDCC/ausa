@@ -3,6 +3,7 @@ import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import PortalItem1 from '@/components/portal/portal-item/portal-item'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import Link from 'next/link'
 
 const Portal = () => {
   return (
@@ -40,12 +41,16 @@ const Portal = () => {
           </div>
 
           <div className="relative z-10 flex justify-center gap-4">
-            <Button size="lg" variant="default">
-              SIGN UP
-            </Button>
-            <Button size="lg" variant="secondary">
-              LOGIN
-            </Button>
+            <Link href="/signup"> 
+              <Button size="lg" variant="default">
+                SIGN UP
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button size="lg" variant="secondary">
+                LOGIN
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
