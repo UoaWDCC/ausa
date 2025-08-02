@@ -87,7 +87,7 @@ const Login = () => {
               type="submit"
               disabled={loading}
             >
-              {loading ? "LOGGING IN..." : "LOGIN"}
+              {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <a
