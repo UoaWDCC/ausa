@@ -14,7 +14,6 @@ import { useState } from 'react'
 import client from '@/services/fetch-client'
 
 const Signup = () => {
-  const url = process.env.BACKEND_URL || 'http://localhost:8000'
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -47,7 +46,7 @@ const Signup = () => {
         'Sending user to backend:',
         JSON.stringify({ ...newUser, id: user.uid }),
       )
-      const {data: responseBody, response} = await client.POST('/users', {
+      const { data: responseBody, response } = await client.POST('/users', {
         body: { ...newUser, id: user.uid },
       })
       console.log('Response status:', response.status)
