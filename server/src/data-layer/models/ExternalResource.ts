@@ -3,4 +3,5 @@ export interface ExternalResource {
   title: string
   url: string
   description?: string
+  categoryId: string
 }
