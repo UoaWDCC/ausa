@@ -9,13 +9,11 @@ import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
-import { useAuth } from '@/auth/AuthContext'
 import type { User } from '@/types/types'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 const Signup = () => {
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
-  const { user } = useAuth()
   const [form, setForm] = useState({
     name: '',
     email: '',
