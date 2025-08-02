@@ -1,5 +1,5 @@
 'use client'
-import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -71,6 +71,41 @@ const Signup = () => {
     } catch (error) {
       console.error('Error saving user:', error)
       console.log('User already exists')
+    }
+  }
+
+  const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault()
+      if(!form.name || !form.email || !form.password) {
+        console.error('Please fill in all required fields!')
+        return 
+    }
+    setLoading(true)
+    try{
+      const userCred = await createUserWithEmailAndPassword(
+        auth,
+        form.email,
+        form.password
+      )
+      await updateProfile(userCred.user, {
+        displayName: form.name
+      })
+      await saveUser(userCred.user)
+      alert('Account created successfully!')
+    }catch(error: any){
+      console.error('Signup error:', error)
+      
+      if (error.code === 'auth/email-already-in-use') {
+        alert('This email is already registered. Please use a different email or try logging in.')
+      } else if (error.code === 'auth/weak-password') {
+        alert('Password is too weak. Please use at least 6 characters.')
+      } else if (error.code === 'auth/invalid-email') {
+        alert('Invalid email address.')
+      } else {
+        alert('Failed to create account. Please try again.')
+      }
+    } finally {
+      setLoading(false)
     }
   }
 
