@@ -11,9 +11,9 @@ import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
 import type { User } from '@/types/types'
 import { useState } from 'react'
+import client from '@/services/fetch-client'
 
 const Signup = () => {
-  const url = process.env.BACKEND_URL || 'http://localhost:8000'
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -46,21 +46,10 @@ const Signup = () => {
         'Sending user to backend:',
         JSON.stringify({ ...newUser, id: user.uid }),
       )
-      const response = await fetch(`${url}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...newUser, id: user.uid }),
+      const { data: responseBody, response } = await client.POST('/users', {
+        body: { ...newUser, id: user.uid },
       })
-      let responseBody: any
-      try {
-        responseBody = await response.json()
-      } catch (err) {
-        console.log(err)
-        responseBody = await response.text()
-      }
-      console.log('Status:', response.status)
+      console.log('Response status:', response.status)
       console.log('Response body:', responseBody)
       console.log('User saved successfully')
     } catch (error) {
@@ -133,7 +122,7 @@ const Signup = () => {
           >
             <div>
               <label
-                className="block text-sm font-medium text-white mb-1"
+                className="block text-sm font-medium text-white mt-4"
                 htmlFor="name"
               >
                 Full Name
@@ -148,7 +137,7 @@ const Signup = () => {
                 disabled={loading}
               />
               <label
-                className="block text-sm font-medium text-white mb-1"
+                className="block text-sm font-medium text-white mt-4"
                 htmlFor="email"
               >
                 Email address
@@ -164,26 +153,27 @@ const Signup = () => {
                 }
                 disabled={loading}
               />
+              <div>
+                <label
+                  className="block text-sm font-medium text-white mt-4"
+                  htmlFor="password"
+                >
+                  Password
+                </label>
+                <Input
+                  aria-invalid={false}
+                  id="password"
+                  placeholder="••••••••••"
+                  required
+                  type="password"
+                  onChange={(e) =>
+                    setForm({ ...form, password: e.currentTarget.value })
+                  }
+                  disabled={loading}
+                />
+              </div>
             </div>
-            <div>
-              <label
-                className="block text-sm font-medium text-white mb-1"
-                htmlFor="password"
-              >
-                Password
-              </label>
-              <Input
-                aria-invalid={false}
-                id="password"
-                placeholder="••••••••••"
-                required
-                type="password"
-                onChange={(e) =>
-                  setForm({ ...form, password: e.currentTarget.value })
-                }
-                disabled={loading}
-              />
-            </div>
+
             <Button
               type="submit"
               disabled={loading}
@@ -193,7 +183,7 @@ const Signup = () => {
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
-                className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
                 onClick={handleGoogleSignIn}
                 type="button"
                 disabled={loading}

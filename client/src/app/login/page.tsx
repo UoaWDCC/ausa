@@ -10,6 +10,7 @@ import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 
 const Login = () => {
+  const [loading, setLoading] = useState(false)
   const router = useRouter()
   const { user } = useAuth()
   const [form, setForm] = useState({
@@ -29,10 +30,11 @@ const Login = () => {
 
     try {
       // firebase authentication
+      setLoading(true)
       await signInWithEmailAndPassword(auth, form.email, form.password)
-
       alert('Login successful!')
     } catch (err: any) {
+      setLoading(false)
       console.error('Login error:', err.code, err.message)
       alert('Invalid email or password.')
     }
@@ -79,18 +81,23 @@ const Login = () => {
                 type="password"
               />
             </div>
-            <Button onClick={handleLogin} className="w-full">
-              Submit
+            <Button
+              onClick={handleLogin}
+              className="w-full cursor-pointer"
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <a
-                className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
                 href="/signup"
               >
                 Sign up
               </a>
               <a
-                className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
                 href="/forgot-password"
               >
                 Forgot your password?
