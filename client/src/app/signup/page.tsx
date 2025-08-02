@@ -1,5 +1,10 @@
 'use client'
-import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, updateProfile } from 'firebase/auth'
+import {
+  createUserWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  updateProfile,
+} from 'firebase/auth'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -10,7 +15,7 @@ import { useEffect, useState } from 'react'
 
 const Signup = () => {
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
-  const {user} = useAuth()
+  const { user } = useAuth()
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -19,13 +24,13 @@ const Signup = () => {
   const [loading, setLoading] = useState(false)
 
   const convertToUser = (user: any): User => {
-      return {
-        id: user.uid,
-        username: user.displayName,
-        email: user.email,
-        name: user.displayName,
-      }
+    return {
+      id: user.uid,
+      username: user.displayName,
+      email: user.email,
+      name: user.displayName,
     }
+  }
 
   const saveUser = async (user: any) => {
     try {
@@ -67,28 +72,32 @@ const Signup = () => {
   }
 
   const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault()
-      if(!form.name || !form.email || !form.password) {
-        console.error('Please fill in all required fields!')
-        return 
+    e.preventDefault()
+    console.log(`${JSON.stringify(form)}`)
+    if (!form.name || !form.email || !form.password) {
+      console.error('Please fill in all required fields!')
+      return
     }
+
     setLoading(true)
-    try{
+    try {
       const userCred = await createUserWithEmailAndPassword(
         auth,
         form.email,
-        form.password
+        form.password,
       )
       await updateProfile(userCred.user, {
-        displayName: form.name
+        displayName: form.name,
       })
       await saveUser(userCred.user)
       alert('Account created successfully!')
-    }catch(error: any){
+    } catch (error: any) {
       console.error('Signup error:', error)
-      
+
       if (error.code === 'auth/email-already-in-use') {
-        alert('This email is already registered. Please use a different email or try logging in.')
+        alert(
+          'This email is already registered. Please use a different email or try logging in.',
+        )
       } else if (error.code === 'auth/weak-password') {
         alert('Password is too weak. Please use at least 6 characters.')
       } else if (error.code === 'auth/invalid-email') {
@@ -121,7 +130,10 @@ const Signup = () => {
         <div className="overflow-hidden rounded-md border border-white/20 bg-black/40 py-10 px-6 sm:px-8 shadow-2xl backdrop-blur-sm">
           <TiledAusaBackground />
           <h1 className="mb-6 text-3xl font-semibold">Sign Up To AUSA!</h1>
-          <form onSubmit={handleEmailSignUp} className="space-y-6 text-left text-black">
+          <form
+            onSubmit={handleEmailSignUp}
+            className="space-y-6 text-left text-black"
+          >
             <div>
               <label
                 className="block text-sm font-medium text-white mb-1"
@@ -134,7 +146,7 @@ const Signup = () => {
                 id="name"
                 placeholder="Becky Cheng"
                 required
-                onChange={(e)=>setForm({...form, name: e.target.value})}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
                 type="text"
                 disabled={loading}
               />
@@ -150,7 +162,9 @@ const Signup = () => {
                 placeholder="email@example.com"
                 required
                 type="email"
-                onChange={(e)=>setForm({...form, name: e.target.value})}
+                onChange={(e) =>
+                  setForm({ ...form, email: e.currentTarget.value })
+                }
                 disabled={loading}
               />
             </div>
@@ -167,11 +181,19 @@ const Signup = () => {
                 placeholder="••••••••••"
                 required
                 type="password"
-                onChange={(e)=>setForm({...form, name: e.target.value})}
+                onChange={(e) =>
+                  setForm({ ...form, password: e.currentTarget.value })
+                }
                 disabled={loading}
               />
             </div>
-            <Button type='submit' disabled={loading} className="w-full cursor-pointer">{loading ? 'Creating account' : 'Create Account' }</Button>
+            <Button
+              type="submit"
+              disabled={loading}
+              className="w-full cursor-pointer"
+            >
+              {loading ? 'Creating account' : 'Create Account'}
+            </Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"

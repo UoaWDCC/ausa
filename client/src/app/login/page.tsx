@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/auth/AuthContext'
-import { signInWithEmailAndPassword } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 
 const Login = () => {
@@ -15,32 +15,28 @@ const Login = () => {
   const [form, setForm] = useState({
     email: '',
     password: '',
-  });
+  })
 
   useEffect(() => {
     if (user) {
-      router.push('/');
+      router.push('/')
     }
-  }, [user, router]);
+  }, [user, router])
 
   const handleLogin = async (e: React.FormEvent) => {
     // Prevent default form submission
-    e.preventDefault();
+    e.preventDefault()
 
     try {
       // firebase authentication
-      await signInWithEmailAndPassword(
-        auth,
-        form.email,
-        form.password
-      );
+      await signInWithEmailAndPassword(auth, form.email, form.password)
 
-      alert('Login successful!');
+      alert('Login successful!')
     } catch (err: any) {
-      console.error('Login error:', err.code, err.message);
-      alert('Invalid email or password.');
+      console.error('Login error:', err.code, err.message)
+      alert('Invalid email or password.')
     }
-  };
+  }
 
   return (
     <div className="relative z-10 overflow-hidden py-40 text-center text-white">
@@ -83,7 +79,9 @@ const Login = () => {
                 type="password"
               />
             </div>
-            <Button onClick={handleLogin} className="w-full">Submit</Button>
+            <Button onClick={handleLogin} className="w-full">
+              Submit
+            </Button>
             <div className="flex justify-between text-sm text-white/80">
               <a
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
