@@ -129,8 +129,23 @@ const Signup = () => {
         <div className="overflow-hidden rounded-md border border-white/20 bg-black/40 py-10 px-6 sm:px-8 shadow-2xl backdrop-blur-sm">
           <TiledAusaBackground />
           <h1 className="mb-6 text-3xl font-semibold">Sign Up To AUSA!</h1>
-          <form className="space-y-6 text-left text-black">
+          <form onSubmit={handleEmailSignUp} className="space-y-6 text-left text-black">
             <div>
+              <label
+                className="block text-sm font-medium text-white mb-1"
+                htmlFor="name"
+              >
+                Full Name
+              </label>
+              <Input
+                aria-invalid={false}
+                id="name"
+                placeholder="Becky Cheng"
+                required
+                onChange={(e)=>setForm({...form, name: e.target.value})}
+                type="text"
+                disabled={loading}
+              />
               <label
                 className="block text-sm font-medium text-white mb-1"
                 htmlFor="email"
@@ -143,6 +158,8 @@ const Signup = () => {
                 placeholder="email@example.com"
                 required
                 type="email"
+                onChange={(e)=>setForm({...form, name: e.target.value})}
+                disabled={loading}
               />
             </div>
             <div>
@@ -158,14 +175,17 @@ const Signup = () => {
                 placeholder="••••••••••"
                 required
                 type="password"
+                onChange={(e)=>setForm({...form, name: e.target.value})}
+                disabled={loading}
               />
             </div>
-            <Button className="w-full">Submit</Button>
+            <Button type='submit' disabled={loading} className="w-full">{loading ? 'Creating account' : 'Create Account' }</Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
                 onClick={handleGoogleSignIn}
                 type="button"
+                disabled={loading}
               >
                 Sign up with Google
               </button>
