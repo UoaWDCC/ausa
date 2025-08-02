@@ -71,7 +71,6 @@ const Signup = () => {
 
   const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(`${JSON.stringify(form)}`)
     if (!form.name || !form.email || !form.password) {
       alert('Please fill in all required fields!')
       return
