@@ -11,6 +11,7 @@ import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
 import type { User } from '@/types/types'
 import { useState } from 'react'
+import client from '@/services/fetch-client'
 
 const Signup = () => {
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
@@ -46,21 +47,10 @@ const Signup = () => {
         'Sending user to backend:',
         JSON.stringify({ ...newUser, id: user.uid }),
       )
-      const response = await fetch(`${url}/users`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ ...newUser, id: user.uid }),
+      const {data: responseBody, response} = await client.POST('/users', {
+        body: { ...newUser, id: user.uid },
       })
-      let responseBody: any
-      try {
-        responseBody = await response.json()
-      } catch (err) {
-        console.log(err)
-        responseBody = await response.text()
-      }
-      console.log('Status:', response.status)
+      console.log('Response status:', response.status)
       console.log('Response body:', responseBody)
       console.log('User saved successfully')
     } catch (error) {
