@@ -5,12 +5,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
 import { useAuth } from '@/auth/AuthContext'
-import { useRouter } from 'next/router'
 import type { User } from '@/types/types'
 import { useEffect, useState } from 'react'
 
 const Signup = () => {
-  const router = useRouter()
   const url = process.env.BACKEND_URL || 'http://localhost:8000'
   const {user} = useAuth()
   const [form, setForm] = useState({
@@ -19,12 +17,6 @@ const Signup = () => {
     password: '',
   })
   const [loading, setLoading] = useState(false)
-
-  useEffect(()=>{
-    if(user) {
-      router.push('/portal')
-    }
-  }, [user, router])
 
   const convertToUser = (user: any): User => {
       return {
@@ -179,7 +171,7 @@ const Signup = () => {
                 disabled={loading}
               />
             </div>
-            <Button type='submit' disabled={loading} className="w-full">{loading ? 'Creating account' : 'Create Account' }</Button>
+            <Button type='submit' disabled={loading} className="w-full cursor-pointer">{loading ? 'Creating account' : 'Create Account' }</Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2"
