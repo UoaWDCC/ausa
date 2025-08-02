@@ -122,7 +122,7 @@ const Signup = () => {
           >
             <div>
               <label
-                className="block text-sm font-medium text-white mb-1"
+                className="block text-sm font-medium text-white mt-4"
                 htmlFor="name"
               >
                 Full Name
@@ -137,7 +137,7 @@ const Signup = () => {
                 disabled={loading}
               />
               <label
-                className="block text-sm font-medium text-white mb-1"
+                className="block text-sm font-medium text-white mt-4"
                 htmlFor="email"
               >
                 Email address
@@ -155,7 +155,7 @@ const Signup = () => {
               />
               <div>
                 <label
-                  className="block text-sm font-medium text-white mb-1"
+                  className="block text-sm font-medium text-white mt-4"
                   htmlFor="password"
                 >
                   Password
@@ -183,7 +183,7 @@ const Signup = () => {
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
-                className="text-sm text-white/80 hover:text-white underline underline-offset-2"
+                className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
                 onClick={handleGoogleSignIn}
                 type="button"
                 disabled={loading}
