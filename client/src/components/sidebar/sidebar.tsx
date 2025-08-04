@@ -16,7 +16,7 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({links}) => {
         <div className="space-y-2">
             {links.map((link) => (
                 <React.Fragment key={link.label}>
-                    <div className="grid grid-cols-4 items-center text-xl">
+                    <div className="grid grid-cols-5 items-center text-xl">
                     {link.icon && <link.icon/>}
                     <a href={link.href} className="hover:underline col-start-2">
                         {link.label}
