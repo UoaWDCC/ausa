@@ -3,6 +3,7 @@ import { IoMdPerson } from "react-icons/io";
 import { FaBell } from "react-icons/fa";
 import { MdLock } from "react-icons/md";
 import { TbWorld } from "react-icons/tb";
+import { LuMessageCircleQuestion } from "react-icons/lu";
 
 export default async function Me() {
   /*return (
@@ -37,7 +38,7 @@ export default async function Me() {
     { label: 'Notifications', href: '/me/notifications', icon: FaBell },
     { label: 'Privacy', href: '/me/privacy', icon: MdLock },
     { label: 'Language', href: '/me/languages', icon: TbWorld },
-    { label: 'Help', href: '/me/events' },
+    { label: 'Help', href: '/me/events', icon: LuMessageCircleQuestion},
   ];
   return (
     <div className="w-full min-h-[100vh] h-full">

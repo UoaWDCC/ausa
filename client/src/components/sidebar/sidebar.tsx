@@ -1,5 +1,6 @@
 import React from "react";
 import { IconType } from "react-icons/lib";
+import { IoLogOut } from "react-icons/io5";
 
 interface SidebarLink {
     label: string;
@@ -12,7 +13,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = React.memo(({links}) => {
     return (
-        <div className="w-64 py-30 h-full min-h-[100vh] bg-[#7BB8E4] text-white px-10">
+        <div className="w-64 pt-30 pb-10 h-full min-h-[100vh] bg-[#7BB8E4] text-white px-10 flex flex-col justify-between">
         <div className="space-y-2">
             {links.map((link) => (
                 <React.Fragment key={link.label}>
@@ -24,6 +25,12 @@ const Sidebar: React.FC<SidebarProps> = React.memo(({links}) => {
                     </div>
                 </React.Fragment>
             ))}
+        </div>
+        <div>
+            <div className="grid grid-cols-5 items-center text-xl">
+                <IoLogOut className="col-start-1" />
+                <a href="/logout" className="hover:underline col-start-2">Logout</a>
+            </div>
         </div>
         </div>
     );
