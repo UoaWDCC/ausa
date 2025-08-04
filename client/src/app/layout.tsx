@@ -28,7 +28,7 @@ export default function RootLayout({
           />
         </div>
         <main className="relative z-10 w-full max-w-full flex-1 overflow-x-hidden">
-          <div className="container mx-auto px-4 pb-16 sm:px-6 lg:px-8">
+          <div className="container mx-auto">
             {children}
           </div>
         </main>
