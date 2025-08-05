@@ -1,17 +1,17 @@
-import {signInWithPopup, GoogleAuthProvider} from 'firebase/auth'
+import {GoogleAuthProvider, signInWithRedirect} from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 
-const provider = new GoogleAuthProvider()
 
 const handleGoogleLogin = async() => {
     try {
-        const res = await signInWithPopup(auth, provider)
-        const user = res.user 
-        return user
+        const provider = new GoogleAuthProvider()
+        provider.addScope('profile')
+        provider.addScope('email')
+        await signInWithRedirect(auth, provider)
+        
     }catch(err: any){
         console.error('Google login error:', err.code, err.message)
         alert('Failed to login with Google. Please try again.')
-        return 
     }
     
 }

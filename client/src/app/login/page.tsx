@@ -6,7 +6,7 @@ import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/auth/AuthContext'
 import { signInWithEmailAndPassword} from 'firebase/auth'
-
+import handleGoogleLogin from './google/loginHandler'
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 
@@ -89,6 +89,14 @@ const Login = () => {
               disabled={loading}
             >
               {loading ? 'LOGGING IN...' : 'LOGIN'}
+            </Button>
+            <Button
+              onClick={handleGoogleLogin}
+              className="w-full cursor-pointer"
+              type="button"
+              disabled={loading}
+            >
+              {loading ? 'LOGGING IN...' : 'LOGIN WITH GOOGLE'}
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <a
