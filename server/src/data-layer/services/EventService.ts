@@ -8,6 +8,11 @@ export type EventCreationParams = Pick<
 >
 
 export class EventService {
+  /**
+   * Retrieves an event by its ID.
+   * @param id - Using id find an event in the database
+   * @returns An event of type Event
+   */
   async getEvent(id: string): Promise<Event | null> {
     const eventRef = FirestoreCollections.events.doc(id)
     const event = await eventRef.get()
@@ -19,6 +24,11 @@ export class EventService {
     return event.data() as Event
   }
 
+  /**
+   * Retrieves an event by its name.
+   * @param name Using the event name find the event in the database
+   * @returns An event of type Event
+   */
   async getEventByName(name: string): Promise<Event | null> {
     const snapShot = await FirestoreCollections.events
       .where('name', '==', name)
@@ -34,6 +44,10 @@ export class EventService {
     return event.data() as Event
   }
 
+  /**
+   *
+   * @returns A list of events
+   */
   async getAllEvents(): Promise<Event[]> {
     const snapShot = await FirestoreCollections.events.get()
     const eventList: Event[] = snapShot.docs.map((doc) => ({
@@ -50,6 +64,11 @@ export class EventService {
     return eventList
   }
 
+  /**
+   * Creates a new event with the parameters provided without passing in the id
+   * @param params - The parameters for creating an event.
+   * @returns A promise that resolves to the created event.
+   */
   async createEvent(@Body() params: EventCreationParams): Promise<Event> {
     const eventRef = await FirestoreCollections.events.doc(params.id)
     const newEvent: Event = {
@@ -68,6 +87,11 @@ export class EventService {
     return newEvent
   }
 
+  /**
+   * Deletes an event by its ID.
+   * @param eventId  - The ID of the event to delete
+   * @returns  A promise that resolves to the deleted event or null if not found.
+   */
   async deleteEvent(eventId: string): Promise<Event | null> {
     const eventRef = await FirestoreCollections.events.doc(eventId)
     const doc = await eventRef.get()
@@ -81,6 +105,12 @@ export class EventService {
     return event
   }
 
+  /**
+   * Updates an existing event.
+   * @param eventId - The ID of the event to update.
+   * @param updates - The updates to apply to the event.
+   * @returns A promise that resolves to the updated event or null if not found.
+   */
   async updateEvent(
     eventId: string,
     updates: UpdateEventPackage,
