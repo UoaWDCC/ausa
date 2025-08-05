@@ -18,10 +18,12 @@ const DropdownInput = ({ options, ...props }: IDropdownInput) => {
   return (
     <div className="relative">
       <div
-        className="mt-1 cursor-pointer rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D]"
+        className="mt-1 rounded-sm bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
         onClick={toggleDropdown}
       >
-        <span className={selectedOption ? 'font-bold text-white' : 'text-[#9D9D9D]'}>
+        <span
+          className={selectedOption ? 'font-bold text-white' : 'text-[#9D9D9D]'}
+        >
           {selectedOption || { ...props }.placeholder}
         </span>
       </div>
@@ -34,9 +36,7 @@ const DropdownInput = ({ options, ...props }: IDropdownInput) => {
               onClick={() => handleOptionClick(option)}
             >
               {option}
-              {selectedOption === option && (
-                <Check className="text-white"/>
-              )}
+              {selectedOption === option && <Check className="text-white" />}
             </div>
           ))}
         </div>

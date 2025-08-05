@@ -29,9 +29,9 @@ const Contact = () => {
                     We're Here to Support You!
                   </h2>
                   <p className="text-md text-white xl:text-xl">
-                    AUSA Independent Student Advice offers free, confidential, and
-                    professional support, advice, and information to all current
-                    students at the University of Auckland.
+                    AUSA Independent Student Advice offers free, confidential,
+                    and professional support, advice, and information to all
+                    current students at the University of Auckland.
                   </p>
                 </div>
 

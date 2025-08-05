@@ -3,7 +3,7 @@
 import emailjs from '@emailjs/browser'
 import { useState } from 'react'
 import DropdownInput from '../dropdown-input/DropdownInput'
-import {Button} from '../ui/button'
+import { Button } from '../ui/button'
 
 const isValidEmail = (email: string) => {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)
@@ -67,7 +67,7 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Email
           <input
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-sm bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
             name="email_from"
             onChange={(e) =>
               setFormData({ ...formData, email_from: e.target.value })
@@ -91,7 +91,7 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Message
           <textarea
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-sm bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
             name="message"
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
@@ -99,7 +99,11 @@ const ContactForm = () => {
             placeholder="Write enquiry here"
           />
         </label>
-        <Button type="submit" onClick={handleClick} className={`ml-auto w-35 rounded-md px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed' : ''} flex justify-center`}>
+        <Button
+          type="submit"
+          onClick={handleClick}
+          className={`ml-auto w-35 rounded-md px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed' : ''} flex justify-center`}
+        >
           SUBMIT
         </Button>
       </form>
