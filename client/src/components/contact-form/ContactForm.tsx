@@ -73,7 +73,6 @@ const ContactForm = () => {
               setFormData({ ...formData, email_from: e.target.value })
             }
             placeholder="example@mail.com"
-            className="mt-1 rounded-md bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
           />
         </label>
         <label className="flex flex-col font-bold">
