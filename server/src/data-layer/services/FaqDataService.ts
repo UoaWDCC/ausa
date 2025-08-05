@@ -1,6 +1,6 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import type { Faq } from 'data-layer/models/Faq'
-import {
+import type {
   createFaqRequest,
   updateFaqRequest,
 } from 'service-layer/request-models/FaqRequests'

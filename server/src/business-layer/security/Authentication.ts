@@ -25,7 +25,7 @@ export function expressAuthentication(
           auth
             .getUser(uid)
             .then((user) => {
-              for (const scope of scopes!) {
+              for (const scope of scopes) {
                 if (user.customClaims === undefined) {
                   throw new FireBaseError(
                     'Authentication Error',

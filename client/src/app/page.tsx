@@ -1,5 +1,5 @@
-import { HomePageContentService } from '@/services/content-services/HomePageContentService'
 import { HeroSection, HomeCarousel } from '@/components/page-specific/home'
+import { HomePageContentService } from '@/services/content-services/HomePageContentService'
 
 const Home = () => {
   const heroData = HomePageContentService.getMockHeroData()
@@ -8,10 +8,10 @@ const Home = () => {
   return (
     <div className="">
       <HeroSection
-        title={heroData.title}
         description={heroData.description}
         primaryButton={heroData.primaryButton}
         secondaryButton={heroData.secondaryButton}
+        title={heroData.title}
       />
       <HomeCarousel items={carouselData} />
     </div>

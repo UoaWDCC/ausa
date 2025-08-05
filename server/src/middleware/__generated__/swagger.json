@@ -7,6 +7,71 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"User": {
+				"properties": {
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"name",
+					"email",
+					"username",
+					"id"
+				],
+				"type": "object"
+			},
+			"Pick_User.id-or-email-or-name-or-username_": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"username": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id",
+					"email",
+					"name",
+					"username"
+				],
+				"type": "object",
+				"description": "From T, pick a set of properties whose keys are in the union K"
+			},
+			"UserCreationParams": {
+				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username_"
+			},
+			"UpdateUserPackage": {
+				"properties": {
+					"username": {
+						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"email": {
+						"type": "string"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Faq": {
 				"properties": {
 					"id": {
@@ -299,139 +364,6 @@
 			},
 			"updateExternalResourceRequest": {
 				"$ref": "#/components/schemas/Partial_createExternalResourceRequest_"
-			},
-			"CommonResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"FirebaseFirestore.Timestamp": {
-				"description": "A Timestamp represents a point in time independent of any time zone or\ncalendar, represented as seconds and fractions of seconds at nanosecond\nresolution in UTC Epoch time. It is encoded using the Proleptic Gregorian\nCalendar which extends the Gregorian calendar backwards to year one. It is\nencoded assuming all minutes are 60 seconds long, i.e. leap seconds are\n\"smeared\" so that no leap second table is needed for interpretation. Range\nis from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z.",
-				"properties": {
-					"seconds": {
-						"type": "number",
-						"format": "double",
-						"description": "The number of seconds of UTC time since Unix epoch 1970-01-01T00:00:00Z."
-					},
-					"nanoseconds": {
-						"type": "number",
-						"format": "double",
-						"description": "The non-negative fractions of a second at nanosecond resolution."
-					}
-				},
-				"required": [
-					"seconds",
-					"nanoseconds"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"UserAdditionalInfo": {
-				"properties": {
-					"date_of_birth": {
-						"$ref": "#/components/schemas/FirebaseFirestore.Timestamp"
-					}
-				},
-				"required": [
-					"date_of_birth"
-				],
-				"type": "object"
-			},
-			"CreateUserRequest": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"user": {
-						"$ref": "#/components/schemas/UserAdditionalInfo"
-					}
-				},
-				"required": [
-					"id",
-					"user"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"DocumentDataWithUid_UserAdditionalInfo_": {
-				"allOf": [
-					{
-						"$ref": "#/components/schemas/UserAdditionalInfo"
-					},
-					{
-						"properties": {
-							"id": {
-								"type": "string",
-								"description": "The ID of the document for which this document contains data."
-							}
-						},
-						"required": [
-							"id"
-						],
-						"type": "object"
-					}
-				]
-			},
-			"GetAllUsersResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"items": {
-							"$ref": "#/components/schemas/DocumentDataWithUid_UserAdditionalInfo_"
-						},
-						"type": "array"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GetUserResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"$ref": "#/components/schemas/DocumentDataWithUid_UserAdditionalInfo_"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Partial_UserAdditionalInfo_": {
-				"properties": {
-					"date_of_birth": {
-						"$ref": "#/components/schemas/FirebaseFirestore.Timestamp"
-					}
-				},
-				"type": "object",
-				"description": "Make all properties in T optional"
-			},
-			"UpdateUserRequest": {
-				"properties": {
-					"user": {
-						"$ref": "#/components/schemas/Partial_UserAdditionalInfo_"
-					}
-				},
-				"required": [
-					"user"
-				],
-				"type": "object",
-				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {
@@ -448,6 +380,228 @@
 		"contact": {}
 	},
 	"paths": {
+		"/users/by-username": {
+			"get": {
+				"operationId": "GetUserByUsername",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "username",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users/by-email": {
+			"get": {
+				"operationId": "GetUserByEmail",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "email",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users/{userId}": {
+			"get": {
+				"operationId": "GetUserById",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "UpdateUser",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateUserPackage"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users": {
+			"get": {
+				"operationId": "GetUsers",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/User"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserCreationParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/by-userId": {
+			"delete": {
+				"operationId": "DeleteUser",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/faq": {
 			"get": {
 				"operationId": "GetAllFaqs",
@@ -913,178 +1067,6 @@
 						}
 					}
 				}
-			}
-		},
-		"/admin/users": {
-			"post": {
-				"operationId": "CreateUser",
-				"responses": {
-					"201": {
-						"description": "Successfully created user",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/CommonResponse"
-								}
-							}
-						}
-					}
-				},
-				"description": "Creates a new user.",
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [],
-				"requestBody": {
-					"description": "The data for the new user.",
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/CreateUserRequest",
-								"description": "The data for the new user."
-							}
-						}
-					}
-				}
-			},
-			"get": {
-				"operationId": "GetAllUsers",
-				"responses": {
-					"200": {
-						"description": "Successfully fetched all users",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GetAllUsersResponse"
-								}
-							}
-						}
-					}
-				},
-				"description": "Retrieves all users.",
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": []
-			}
-		},
-		"/admin/users/{id}": {
-			"get": {
-				"operationId": "GetUser",
-				"responses": {
-					"200": {
-						"description": "Successfully fetched user",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/GetUserResponse"
-								}
-							}
-						}
-					}
-				},
-				"description": "Retrieves a user by ID.",
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"description": "The ID of the user to retrieve.",
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			},
-			"patch": {
-				"operationId": "UpdateUser",
-				"responses": {
-					"200": {
-						"description": "Successfully updated user",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/CommonResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateUserRequest"
-							}
-						}
-					}
-				}
-			},
-			"delete": {
-				"operationId": "DeleteUser",
-				"responses": {
-					"204": {
-						"description": "Successfully deleted user",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/CommonResponse"
-								}
-							}
-						}
-					}
-				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "id",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
 			}
 		}
 	},

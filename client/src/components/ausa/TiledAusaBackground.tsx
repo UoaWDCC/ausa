@@ -36,7 +36,7 @@ export const TiledAusaBackground = ({
         flipped ? '-rotate-6' : 'rotate-6',
       )}
       style={{
-        backgroundImage: `url(/static/icons/logo.svg)`,
+        backgroundImage: 'url(/static/icons/logo.svg)',
         backgroundSize: '140px 50px',
         backgroundRepeat: 'space',
         backgroundPosition: 'center',

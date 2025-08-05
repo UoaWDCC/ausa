@@ -1,5 +1,3 @@
-# See https://fly.io/docs/app-guides/continuous-deployment-with-github-actions/
-
 name: Fly Deploy Client
 on:
   push:
@@ -18,7 +16,10 @@ jobs:
     concurrency:
       group: deploy-client
       cancel-in-progress: true
+    env:
+      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
     steps:
       - uses: actions/checkout@v4
       - uses: superfly/flyctl-actions/setup-flyctl@master
       - run: flyctl deploy --remote-only --config client/fly.client.toml
+

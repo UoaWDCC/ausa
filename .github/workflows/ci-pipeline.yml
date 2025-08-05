@@ -32,8 +32,9 @@ jobs:
             !**.md
             !.gitignore
             !.gitattributes
-            !.github/**
             !.vscode/**
+            !.idea/**
+            !.zed/**
             !.env.example
 
   setup:
@@ -43,6 +44,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      ##cache turborepo
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+          key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+          restore-keys: |
+            turbo-${{ runner.os }}-
+
 
       - name: Cache node_modules
         uses: actions/cache@v4
@@ -116,7 +130,7 @@ jobs:
         run: yarn
 
       - name: Check formatting
-        run: yarn format:ci
+        run: yarn format:ci --error-on-warnings
 
   lint:
     needs: [check_changes, setup]
@@ -149,9 +163,21 @@ jobs:
       - name: Install dependencies if cache misses
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn
+      ##cache turborepo
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+          key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+          restore-keys: |
+            turbo-${{ runner.os }}-
 
       - name: Run linting
-        run: yarn lint:ci
+        run: yarn lint:ci --error-on-warnings
 
   codegen:
     needs: [check_changes, setup]
@@ -184,6 +210,18 @@ jobs:
       - name: Install dependencies if cache misses
         if: steps.cache-node-modules.outputs.cache-hit != 'true'
         run: yarn
+        ##cache for turborepo
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+          key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+          restore-keys: |
+            turbo-${{ runner.os }}-
 
       - name: Generate typing
         run: yarn workspace server tsoa spec-and-routes
@@ -208,6 +246,8 @@ jobs:
     if: ${{ needs.check_changes.outputs.exists == 'true' }}
     name: Build
     runs-on: ubuntu-latest
+    env:
+      NEXT_PUBLIC_API_URL: ${{ vars.NEXT_PUBLIC_API_URL }}
     steps:
       - uses: actions/checkout@v4
 
@@ -218,6 +258,18 @@ jobs:
 
       - name: Install yarn
         run: corepack enable yarn
+      ##cache turbo repo
+      - name: Cache TurboRepo cache
+        uses: actions/cache@v4
+        id: cache-turbo
+        with:
+          path: |
+            .turbo
+            client/.turbo
+            server/.turbo
+          key: turbo-${{ runner.os }}-${{ hashFiles('**/yarn.lock', 'turbo.json', 'tsconfig.json') }}
+          restore-keys: |
+            turbo-${{ runner.os }}-
 
       # Restore cached node_modules
       - name: Restore node_modules

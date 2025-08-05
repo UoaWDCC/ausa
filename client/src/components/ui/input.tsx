@@ -5,8 +5,6 @@ import { cn } from '@/lib/utils'
 function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
   return (
     <input
-      type={type}
-      data-slot="input"
       className={cn(
         // Base layout and sizing
         'flex h-9 w-full min-w-0',
@@ -40,6 +38,8 @@ function Input({ className, type, ...props }: React.ComponentProps<'input'>) {
 
         className,
       )}
+      data-slot="input"
+      type={type}
       {...props}
     />
   )

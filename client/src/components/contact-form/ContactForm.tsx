@@ -67,12 +67,11 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Email
           <input
-            value={formData.email_from}
+            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            name="email_from"
             onChange={(e) =>
               setFormData({ ...formData, email_from: e.target.value })
             }
-            type="text"
-            name="email_from"
             placeholder="example@mail.com"
             className="mt-1 rounded-md bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
           />
@@ -93,14 +92,12 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Message
           <textarea
-            value={formData.message}
+            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            name="message"
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
             }
-            name="message"
-            rows={6}
             placeholder="Write enquiry here"
-            className="mt-1 rounded-md bg-white/10 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-white"
           />
         </label>
         <Button type="submit" onClick={handleClick} className={`ml-auto w-35 rounded-md px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed' : ''} flex justify-center`}>

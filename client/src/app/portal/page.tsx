@@ -1,8 +1,9 @@
-import PortalItem1 from '@/components/portal/portal-item/portal-item'
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
+import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
+import PortalItem1 from '@/components/portal/portal-item/portal-item'
+import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
+import Link from 'next/link'
 
 const Portal = () => {
   return (
@@ -13,11 +14,11 @@ const Portal = () => {
 
           <div className="relative z-10 mb-6 flex justify-center">
             <Image
-              src="/static/icons/logo.svg"
               alt="AUSA Logo"
-              width={300}
-              height={100}
               className="h-20 w-auto drop-shadow-lg sm:h-24"
+              height={100}
+              src="/static/icons/logo.svg"
+              width={300}
             />
           </div>
 
@@ -30,22 +31,26 @@ const Portal = () => {
           </h1>
 
           <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
-            <PortalItem1 title="Home" content="Go to Home Page" link="/" />
+            <PortalItem1 content="Go to Home Page" link="/" title="Home" />
             <PortalItem1
-              title="Support"
               content="Contact Support"
               link="/support"
+              title="Support"
             />
-            <PortalItem1 title="Quiz" content="Take online quiz" link="/quiz" />
+            <PortalItem1 content="Take online quiz" link="/quiz" title="Quiz" />
           </div>
 
           <div className="relative z-10 flex justify-center gap-4">
-            <Button variant="default" size="lg">
-              SIGN UP
-            </Button>
-            <Button variant="secondary" size="lg">
-              LOGIN
-            </Button>
+            <Link href="/signup">
+              <Button size="lg" variant="default">
+                SIGN UP
+              </Button>
+            </Link>
+            <Link href="/login">
+              <Button size="lg" variant="secondary">
+                LOGIN
+              </Button>
+            </Link>
           </div>
         </div>
       </div>

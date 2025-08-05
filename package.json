@@ -18,9 +18,12 @@
     "dev:server": "turbo run dev --filter server",
     "storybook": "yarn workspace client storybook",
     "vsc-setup": "code install-extension bradlc.vscode-tailwindcss",
-    "build": "turbo run build"
+    "build": "turbo run build",
+    "generate:types": "turbo run generate:types"
   },
   "dependencies": {
+    "openapi-fetch": "^0.14.0",
+    "openapi-typescript": "^7.8.0",
     "typescript": "5.8.3"
   },
   "devDependencies": {
