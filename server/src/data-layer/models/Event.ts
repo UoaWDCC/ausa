@@ -1,6 +1,16 @@
 export type Event = {
   id: string
   title: string
-  info: string
-  picture?: string
+  heroImage?: {
+    src: string
+    alt: string
+  }
+  content: {
+    subtitle?: string
+    body: string
+    callToAction?: {
+      text: string
+      href: string
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import type { Event } from 'data-layer/models/Event'
+import { createEventRequest } from 'service-layer/request-models/EventRequests'
 
 export class EventService {
   /**
@@ -20,5 +21,17 @@ export class EventService {
    public static async getEventById(id: string): Promise<Event> {
      const eventSnapshot = await FirestoreCollections.events.doc(id).get()
      return eventSnapshot.data()
+   }
+
+   /**
+    * Creates a new event in the Firestore collection.
+    * @param event The event data to create.
+    * @returns A promise that resolves to the created event.
+    */
+   public static async createEvent(event: createEventRequest): Promise<Event> {
+    const docRef = FirestoreCollections.events.doc()
+    await docRef.set({ id: docRef.id, ...event })
+    const createdEventSnapshot = await docRef.get()
+    return createdEventSnapshot.data()
    }
 }
