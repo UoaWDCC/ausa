@@ -5,7 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/auth/AuthContext'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithEmailAndPassword} from 'firebase/auth'
+
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 
