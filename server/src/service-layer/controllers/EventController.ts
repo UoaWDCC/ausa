@@ -1,25 +1,14 @@
 import { EventService } from 'data-layer/services/EventService'
 import { StatusCodes } from 'http-status-codes'
 import type {
-  createEventRequest,
-  updateEventRequest,
-} from 'service-layer/request-models/EventRequests'
-import type {
   GetAllEventsResponse,
   GetEventResponse,
 } from 'service-layer/response-models/EventResponses'
 import {
-  Body,
   Controller,
-  Delete,
   Get,
-  Patch,
   Path,
-  Post,
-  Query,
   Route,
-  Security,
-  SuccessResponse,
 } from 'tsoa'
 
 @Route('events')

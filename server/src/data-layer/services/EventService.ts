@@ -1,9 +1,5 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import type { Event } from 'data-layer/models/Event'
-import type {
-  createEventRequest,
-  updateEventRequest,
-} from 'service-layer/request-models/EventRequests'
 
 export class EventService {
   /**
