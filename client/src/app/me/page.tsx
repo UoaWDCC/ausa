@@ -25,7 +25,7 @@ export default function Me() {
   return (
     <div className="w-full min-h-[100vh] h-full flex">
       <Sidebar links={links} />
-      <div className="flex-1 px-8 pt-40 bg-[#FAF7F2]">
+      <div className="flex-1 pl-72 pr-8 pt-20 bg-[#FAF7F2]">
         <h1 className="text-4xl font-semibold text-black mb-4">Account Settings</h1>
         {/* black line */}
         <div className="w-full h-px bg-black mb-10"></div>

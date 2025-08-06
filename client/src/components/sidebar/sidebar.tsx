@@ -13,7 +13,7 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = React.memo(({links}) => {
     return (
-        <div className="w-64 pt-30 pb-10 h-full min-h-[100vh] bg-[#7BB8E4] text-white px-10 flex flex-col justify-between">
+        <div className="fixed left-0 top-0 w-64 pt-30 pb-10 h-full min-h-[100vh] bg-[#7BB8E4] text-white px-10 flex flex-col justify-between">
         <div className="space-y-2">
             {links.map((link) => (
                 <React.Fragment key={link.label}>
