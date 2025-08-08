@@ -12,7 +12,7 @@ export interface UpdateUserPackage {
   email?: string
 }
 
-export interface admin extends User {
+export interface Admin extends User {
   role: 'admin'
   permissions: string[]
 }
