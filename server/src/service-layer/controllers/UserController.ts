@@ -47,7 +47,9 @@ export class UserController extends Controller {
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
   public async createUser(
-    @Body() requestBody: UserCreationParams,
+    @Body() requestBody: UserCreationParams
+
+
   ): Promise<User> {
     this.setStatus(201)
     return new UserService().createUser(requestBody)

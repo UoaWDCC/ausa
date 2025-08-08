@@ -9,28 +9,36 @@
 		"schemas": {
 			"User": {
 				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"email": {
+					"id": {
 						"type": "string"
 					},
 					"username": {
 						"type": "string"
 					},
-					"id": {
+					"email": {
 						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"role": {
+						"type": "string",
+						"enum": [
+							"user",
+							"admin"
+						]
 					}
 				},
 				"required": [
-					"name",
-					"email",
+					"id",
 					"username",
-					"id"
+					"email",
+					"name"
 				],
-				"type": "object"
+				"type": "object",
+				"additionalProperties": false
 			},
-			"Pick_User.id-or-email-or-name-or-username_": {
+			"Pick_User.id-or-email-or-name-or-username-or-role_": {
 				"properties": {
 					"id": {
 						"type": "string"
@@ -43,6 +51,13 @@
 					},
 					"username": {
 						"type": "string"
+					},
+					"role": {
+						"type": "string",
+						"enum": [
+							"user",
+							"admin"
+						]
 					}
 				},
 				"required": [
@@ -55,7 +70,7 @@
 				"description": "From T, pick a set of properties whose keys are in the union K"
 			},
 			"UserCreationParams": {
-				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username_"
+				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username-or-role_"
 			},
 			"UpdateUserPackage": {
 				"properties": {

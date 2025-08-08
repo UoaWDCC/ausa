@@ -4,7 +4,7 @@ import { Body } from 'tsoa'
 
 export type UserCreationParams = Pick<
   User,
-  'id' | 'email' | 'name' | 'username'
+  'id' | 'email' | 'name' | 'username' | 'role'
 >
 
 export class UserService {
@@ -96,12 +96,14 @@ export class UserService {
       username: params.username,
       email: params.email,
       name: params.name,
+      role: params.role || 'user', 
     }
     await userRef.set({
       id: params.id,
       username: params.username,
       email: params.email,
       name: params.name,
+      role: params.role || 'user',
     })
     console.log(newUser)
     return newUser
@@ -139,4 +141,27 @@ export class UserService {
     const updatedUser = await userRef.get()
     return updatedUser.data() as User
   }
+
+  async adminAddUser(
+    userId: string,
+    username: string,
+    email: string,
+    name: string,
+    // admin shouldnt be able to create other admins, fix this.
+    role: 'admin' | 'user',
+  ): Promise<User | null> {
+    const params: UserCreationParams = {
+      id: userId,
+      username: username,
+      email: email,
+      name: name,
+      role: role,
+  };
+  const newUser = this.createUser(params)
+  if (!newUser){
+    console.log("user failed on creation")
+    return null
+  }
+  return newUser
+}
 }
