@@ -46,6 +46,26 @@ export class UserService {
 
   /**
    *
+   * @param email - using email to find a user in the db
+   * @returns A user of type User
+   */
+  async getUserByEmail(email: string): Promise<User | null> {
+    const snapShot = await FirestoreCollections.users
+      .where('email', '==', email)
+      .limit(1)
+      .get()
+
+    if (snapShot.empty) {
+      console.log(`User - ${email} not found`)
+      return null
+    }
+
+    const user = snapShot.docs[0]
+    return user.data() as User
+  }
+
+  /**
+   *
    * @returns a list of users
    */
   async getAllUsers(): Promise<User[]> {

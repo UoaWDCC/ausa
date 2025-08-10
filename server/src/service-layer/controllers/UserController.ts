@@ -27,6 +27,12 @@ export class UserController extends Controller {
   }
 
   @SuccessResponse('200', 'Found')
+  @Get('by-email')
+  public async getUserByEmail(@Query() email: string): Promise<User | null> {
+    return new UserService().getUserByEmail(email)
+  }
+
+  @SuccessResponse('200', 'Found')
   @Get('{userId}')
   public async getUserById(@Path() userId: string): Promise<User | null> {
     return new UserService().getUser(userId)
