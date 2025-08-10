@@ -1,3 +1,5 @@
+'use client'
+
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -8,6 +10,8 @@ import {
   type NavConfig,
   type NavItem,
 } from '@/types/navbar.types'
+import { useAuth } from '@/auth/AuthContext'
+import { LogoutButton } from '@/components/auth/LogOutButton'
 
 interface MobileDrawerProps {
   isOpen: boolean
@@ -22,6 +26,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   config,
   className,
 }) => {
+  const { user } = useAuth()
+  
   const mobileItems =
     config.mobileNavItems ||
     (() => {
@@ -104,25 +110,38 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           </nav>
 
           {/* Action Buttons */}
-          {config.actionButtons && config.actionButtons.length > 0 && (
-            <div className="mt-auto pt-6 border-t border-gray-200">
-              <div className="space-y-2">
-                {config.actionButtons.map((button, index) => (
-                  <Link
-                    className="flex w-full items-center justify-center gap-2 rounded-lg bg-purple-600 px-4 py-3 text-white font-semibold shadow-lg hover:bg-purple-700 hover:shadow-xl transition-all duration-200"
-                    href={button.href}
-                    key={`mobile-action-${button.href}-${index}`}
-                    onClick={onClose}
-                    rel={button.external ? 'noopener noreferrer' : undefined}
-                    target={button.external ? '_blank' : undefined}
-                  >
-                    {button.icon && <button.icon className="h-4 w-4" />}
-                    {button.label}
-                  </Link>
-                ))}
+          <div className="mt-auto pt-6 border-t border-gray-200">
+            {user ? (
+              // Show user info and logout when authenticated
+              <div className="space-y-3">
+                <div className="text-center">
+                  <p className="text-gray-700 font-medium">
+                    Hello, {user.displayName || user.email?.split('@')[0] || 'User'}
+                  </p>
+                </div>
+                <LogoutButton />
               </div>
-            </div>
-          )}
+            ) : (
+              // Show login button when not authenticated
+              config.actionButtons && config.actionButtons.length > 0 && (
+                <div className="space-y-2">
+                  {config.actionButtons.map((button, index) => (
+                    <Link
+                      className="flex w-full items-center justify-center gap-2 rounded-lg bg-purple-600 px-4 py-3 text-white font-semibold shadow-lg hover:bg-purple-700 hover:shadow-xl transition-all duration-200"
+                      href={button.href}
+                      key={`mobile-action-${button.href}-${index}`}
+                      onClick={onClose}
+                      rel={button.external ? 'noopener noreferrer' : undefined}
+                      target={button.external ? '_blank' : undefined}
+                    >
+                      {button.icon && <button.icon className="h-4 w-4" />}
+                      {button.label}
+                    </Link>
+                  ))}
+                </div>
+              )
+            )}
+          </div>
         </div>
       </div>
     </>

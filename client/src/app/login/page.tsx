@@ -3,41 +3,47 @@
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useEffect, useState } from 'react'
 import { useAuth } from '@/auth/AuthContext'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
+import { useState, useEffect } from 'react'
 
 const Login = () => {
-  const [loading, setLoading] = useState(false)
-  const router = useRouter()
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
   const { user } = useAuth()
-  const [form, setForm] = useState({
-    email: '',
-    password: '',
-  })
+  const router = useRouter()
 
+  // Redirect if already logged in
   useEffect(() => {
     if (user) {
       router.push('/')
     }
   }, [user, router])
 
-  const handleLogin = async (e: React.FormEvent) => {
-    // Prevent default form submission
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
+    setIsLoading(true)
+    setError('')
 
     try {
-      // firebase authentication
-      setLoading(true)
-      await signInWithEmailAndPassword(auth, form.email, form.password)
+      await signInWithEmailAndPassword(auth, email, password)
+      // Redirect will happen automatically due to the useEffect above
       alert('Login successful!')
-    } catch (err: any) {
-      setLoading(false)
-      console.error('Login error:', err.code, err.message)
-      alert('Invalid email or password.')
+      
+    } catch (error: any) {
+      setError(error.message || 'Failed to log in')
+    } finally {
+      setIsLoading(false)
     }
+  }
+
+  // Don't render the form if user is already logged in
+  if (user) {
+    return null
   }
 
   return (
@@ -46,7 +52,12 @@ const Login = () => {
         <div className="overflow-hidden rounded-md border border-white/20 bg-black/40 py-10 px-6 sm:px-8 shadow-2xl backdrop-blur-sm">
           <TiledAusaBackground />
           <h1 className="mb-6 text-3xl font-semibold">Welcome Back</h1>
-          <form className="space-y-6 text-left text-black">
+          <form className="space-y-6 text-left text-black" onSubmit={handleSubmit}>
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-3 py-2 rounded text-sm">
+                {error}
+              </div>
+            )}
             <div>
               <label
                 className="block text-sm font-medium text-white mb-1"
@@ -57,11 +68,11 @@ const Login = () => {
               <Input
                 aria-invalid={false}
                 id="email"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="email@example.com"
                 required
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </div>
             <div>
@@ -74,30 +85,25 @@ const Login = () => {
               <Input
                 aria-invalid={false}
                 id="password"
-                value={form.password}
-                onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••••"
                 required
                 type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <Button
-              onClick={handleLogin}
-              className="w-full cursor-pointer"
-              type="submit"
-              disabled={loading}
-            >
-              {loading ? 'LOGGING IN...' : 'LOGIN'}
+            <Button className="w-full" type="submit" disabled={isLoading}>
+              {isLoading ? 'Signing in...' : 'Submit'}
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <a
-                className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
+                className="text-sm text-white/80 hover:text-white underline underline-offset-2"
                 href="/signup"
               >
                 Sign up
               </a>
               <a
-                className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
+                className="text-sm text-white/80 hover:text-white underline underline-offset-2"
                 href="/forgot-password"
               >
                 Forgot your password?
