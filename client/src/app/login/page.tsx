@@ -5,8 +5,8 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/auth/AuthContext'
-import { signInWithEmailAndPassword} from 'firebase/auth'
-import handleGoogleLogin from './google/loginHandler'
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { handleGoogleLogin } from './google/loginHandler'
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
 
@@ -91,7 +91,10 @@ const Login = () => {
               {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
             <Button
-              onClick={handleGoogleLogin}
+              onClick={(e) => {
+                e.preventDefault()
+                handleGoogleLogin()
+              }}
               className="w-full cursor-pointer"
               type="button"
               disabled={loading}
