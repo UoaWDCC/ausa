@@ -7,7 +7,7 @@ const handleGoogleLogin = async () => {
     provider.addScope('profile')
     provider.addScope('email')
     await signInWithPopup(auth, provider)
-    alert("Login Successful!")
+    alert('Login Successful!')
   } catch (err: any) {
     console.error('Google login error:', err.code, err.message)
     alert('Failed to login with Google. Please try again.')
