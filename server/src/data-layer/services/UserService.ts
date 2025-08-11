@@ -147,21 +147,57 @@ export class UserService {
     username: string,
     email: string,
     name: string,
-    // admin shouldnt be able to create other admins, fix this.
-    role: 'admin' | 'user',
+    requestingUserId: string,
+    // role: 'admin' | 'user',
   ): Promise<User | null> {
+    const requestingUser = await this.getUser(requestingUserId)
+    if (!requestingUserId) {
+      console.log("Requesting user - ${requestingUserId} not found")
+      return null
+    }
+    if (requestingUser.role !== "admin"){
+      console.log("Requesting user - ${requestingUserId} is not authorised to create users.")
+      return null
+    }
     const params: UserCreationParams = {
       id: userId,
       username: username,
       email: email,
       name: name,
-      role: role,
+      role: 'user',
   };
-  const newUser = this.createUser(params)
+  const newUser = await this.createUser(params)
   if (!newUser){
     console.log("user failed on creation")
     return null
   }
   return newUser
-}
+  }
+
+
+  async adminDeleteUser(
+    requestingUserId: string,
+    userToDeleteId: string,
+  ): Promise<User | null>{
+    // checking if user exists and/or is admin
+    const requestingUser = await this.getUser(requestingUserId)
+    if (!requestingUser) {
+      console.log("Requesting user - ${requestingUserId} not found")
+      return null
+    }
+    if(requestingUser.role !== "admin"){
+      console.log("Requesting user - ${requestingUserId} is not an admin")
+      return null
+    }
+    
+    // checking if user to delete exists and deleting it if it does by calling deleteUser
+    const userToDelete = await this.deleteUser(userToDeleteId)
+    if (!userToDelete) {
+      console.log("User - ${userId} not found for deletion")
+      return null
+    }
+
+    console.log("User - ${userToDeleteId} deleted by admin - ${requestingUserId}")
+    return userToDelete
+  }
 }
