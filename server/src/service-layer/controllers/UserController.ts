@@ -48,15 +48,14 @@ export class UserController extends Controller {
   @Post()
   public async createUser(
     @Query() requestingUserId: string,
-    @Body() requestBody: UserCreationParams
-
+    @Body() requestBody: UserCreationParams,
   ): Promise<User> {
     const requestingUser = await new UserService().getUser(requestingUserId)
     if (!requestingUser) {
       this.setStatus(400) // Bad Request if requesting user not found
       return null
-    } 
-    if (requestingUser.role !== "admin"){
+    }
+    if (requestingUser.role !== 'admin') {
       this.setStatus(403) // Forbidden if requesting user is not an admin
       return null
     }
@@ -70,7 +69,10 @@ export class UserController extends Controller {
     @Query() requestingUserId: string,
     @Query() userToDeleteId: string,
   ): Promise<User | null> {
-    const deletedUser = await new UserService().adminDeleteUser(requestingUserId, userToDeleteId)
+    const deletedUser = await new UserService().adminDeleteUser(
+      requestingUserId,
+      userToDeleteId,
+    )
     if (!deletedUser) {
       this.setStatus(400) // Bad Request if user not found or not deleted
       return null

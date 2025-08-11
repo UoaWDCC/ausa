@@ -96,7 +96,7 @@ export class UserService {
       username: params.username,
       email: params.email,
       name: params.name,
-      role: params.role || 'user', 
+      role: params.role || 'user',
     }
     await userRef.set({
       id: params.id,
@@ -152,11 +152,13 @@ export class UserService {
   ): Promise<User | null> {
     const requestingUser = await this.getUser(requestingUserId)
     if (!requestingUserId) {
-      console.log("Requesting user - ${requestingUserId} not found")
+      console.log(`Requesting user - ${requestingUserId} not found`)
       return null
     }
-    if (requestingUser.role !== "admin"){
-      console.log("Requesting user - ${requestingUserId} is not authorised to create users.")
+    if (requestingUser.role !== 'admin') {
+      console.log(
+        `Requesting user - ${requestingUserId} is not authorised to create users.`,
+      )
       return null
     }
     const params: UserCreationParams = {
@@ -165,39 +167,40 @@ export class UserService {
       email: email,
       name: name,
       role: 'user',
-  };
-  const newUser = await this.createUser(params)
-  if (!newUser){
-    console.log("user failed on creation")
-    return null
+    }
+    const newUser = await this.createUser(params)
+    if (!newUser) {
+      console.log('user failed on creation')
+      return null
+    }
+    return newUser
   }
-  return newUser
-  }
-
 
   async adminDeleteUser(
     requestingUserId: string,
     userToDeleteId: string,
-  ): Promise<User | null>{
+  ): Promise<User | null> {
     // checking if user exists and/or is admin
     const requestingUser = await this.getUser(requestingUserId)
     if (!requestingUser) {
-      console.log("Requesting user - ${requestingUserId} not found")
+      console.log(`Requesting user - ${requestingUserId} not found`)
       return null
     }
-    if(requestingUser.role !== "admin"){
-      console.log("Requesting user - ${requestingUserId} is not an admin")
-      return null
-    }
-    
-    // checking if user to delete exists and deleting it if it does by calling deleteUser
-    const userToDelete = await this.deleteUser(userToDeleteId)
-    if (!userToDelete) {
-      console.log("User - ${userId} not found for deletion")
+    if (requestingUser.role !== 'admin') {
+      console.log(`Requesting user - ${requestingUserId} is not an admin`)
       return null
     }
 
-    console.log("User - ${userToDeleteId} deleted by admin - ${requestingUserId}")
+    // checking if user to delete exists and deleting it if it does by calling deleteUser
+    const userToDelete = await this.deleteUser(userToDeleteId)
+    if (!userToDelete) {
+      console.log(`User - ${userToDeleteId} not found for deletion`)
+      return null
+    }
+
+    console.log(
+      `User - ${userToDeleteId} deleted by admin - ${requestingUserId}`,
+    )
     return userToDelete
   }
 }
