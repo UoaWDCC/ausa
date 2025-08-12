@@ -25,3 +25,9 @@ export interface User {
   email: string
   name: string
 }
+
+export interface ExternalResourceCategory {
+  id: string
+  name: string
+  description: string
+}

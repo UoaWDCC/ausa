@@ -1,39 +1,31 @@
 import React from 'react'
 import { ResourcesCarousel } from '@/components/ResourcesCarousel/ResourcesCarousel'
 import { ResourcesTitle } from '@/components/ResourcesTitle/ResourcesTitle'
-import type { ExternalResource } from '@/types/types'
+import client from '@/services/fetch-client'
+import type { ExternalResource, ExternalResourceCategory } from '@/types/types'
 
 // import Footer from '@/components/footer/Footer'
 
 export default async function Resources() {
   const externalResourceMap: Record<string, ExternalResource[]> = {}
 
-  const url = process.env.BACKEND_URL || 'http://localhost:8000'
-  const res = await fetch(`${url}/external-resource-category`, {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    method: 'GET',
-    mode: 'cors',
-  })
-  const externalResourceCategories = await res.json()
+  const res = await client.GET('/external-resource-category')
+
+  const externalResourceCategories = res.data?.data || []
 
   await Promise.all(
-    externalResourceCategories.data.map(async (category: ExternalResource) => {
-      const res = await fetch(
-        `${url}/external-resources?category=${category.id}`,
-        {
-          headers: { 'Content-Type': 'application/json' },
-          method: 'GET',
-          mode: 'cors',
-        },
-      )
-      const externalResourceData = await res.json()
-      externalResourceMap[category.id] = externalResourceData.data.sort(
-        (a: ExternalResource, b: ExternalResource) =>
-          a.title.localeCompare(b.title),
-      )
-    }),
+    externalResourceCategories.map(
+      async (category: ExternalResourceCategory) => {
+        const res = await client.GET('/external-resources', {
+          params: { query: { category: category.id } },
+        })
+        const externalResourceData = res.data?.data || []
+        externalResourceMap[category.id] = externalResourceData.sort(
+          (a: ExternalResource, b: ExternalResource) =>
+            a.title.localeCompare(b.title),
+        )
+      },
+    ),
   )
 
   // test comment
@@ -46,15 +38,15 @@ export default async function Resources() {
         {categories.map((categoryId) => {
           const resources = externalResourceMap[categoryId]
           if (resources.length === 0) return null
-          const category = externalResourceCategories.data.find(
-            (cat: ExternalResource) => cat.id === categoryId,
+          const category = externalResourceCategories.find(
+            (cat: ExternalResourceCategory) => cat.id === categoryId,
           )
           if (!category) return null
           return (
             <React.Fragment key={categoryId}>
               <ResourcesTitle
-                title={category.name}
                 description={category.description}
+                title={category.name}
               />
               <ResourcesCarousel resources={resources} />
             </React.Fragment>
