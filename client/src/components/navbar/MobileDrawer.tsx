@@ -3,6 +3,8 @@
 import { X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useAuth } from '@/auth/AuthContext'
+import { LogoutButton } from '@/components/auth/LogOutButton'
 import NavSearch from '@/components/nav-search/NavSearch'
 import { cn } from '@/lib/utils'
 import {
@@ -10,8 +12,6 @@ import {
   type NavConfig,
   type NavItem,
 } from '@/types/navbar.types'
-import { useAuth } from '@/auth/AuthContext'
-import { LogoutButton } from '@/components/auth/LogOutButton'
 
 interface MobileDrawerProps {
   isOpen: boolean
@@ -27,7 +27,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   className,
 }) => {
   const { user } = useAuth()
-  
+
   const mobileItems =
     config.mobileNavItems ||
     (() => {
@@ -116,14 +116,23 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
               <div className="space-y-3">
                 <div className="text-center">
                   <p className="text-gray-700 font-medium">
-                    Hello, {user.displayName || user.email?.split('@')[0] || 'User'}
+                    Hello,{' '}
+                    {user.displayName || user.email?.split('@')[0] || 'User'}
                   </p>
                 </div>
+                <Link
+                  className="flex w-full items-center justify-center gap-2 rounded-lg bg-purple-600 px-4 py-3 text-white font-semibold shadow-lg hover:bg-purple-700 hover:shadow-xl transition-all duration-200"
+                  href="/me"
+                  onClick={onClose}
+                >
+                  Profile
+                </Link>
                 <LogoutButton />
               </div>
             ) : (
               // Show login button when not authenticated
-              config.actionButtons && config.actionButtons.length > 0 && (
+              config.actionButtons &&
+              config.actionButtons.length > 0 && (
                 <div className="space-y-2">
                   {config.actionButtons.map((button, index) => (
                     <Link

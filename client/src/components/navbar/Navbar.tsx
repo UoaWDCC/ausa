@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type React from 'react'
 import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
+import { LogoutButton } from '@/components/auth/LogOutButton'
 import NavSearch from '@/components/nav-search/NavSearch'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -11,8 +13,6 @@ import type { NavConfig } from '@/types/navbar.types'
 import { isNavDropdown } from '@/types/navbar.types'
 import { MobileDrawer } from './MobileDrawer'
 import { NavDropdownMenu, NavLinkItem } from './NavItems'
-import { useAuth } from '@/auth/AuthContext'
-import { LogoutButton } from '@/components/auth/LogOutButton'
 
 interface NavigationBarProps {
   config: NavConfig
@@ -104,12 +104,20 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
               {user ? (
                 // Show user info and logout when authenticated
                 <div className="flex items-center gap-2">
-                  <Link 
-                    href="/me"
+                  <Link
                     className="text-white text-sm hover:text-blue-300 transition-colors cursor-pointer"
+                    href="/me"
                   >
-                    Hello, {user.displayName || user.email?.split('@')[0] || 'User'}
+                    Hello,{' '}
+                    {user.displayName || user.email?.split('@')[0] || 'User'}
                   </Link>
+                  <Button
+                    asChild
+                    className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
+                    variant="secondary"
+                  >
+                    <Link href="/me">Profile</Link>
+                  </Button>
                   <LogoutButton />
                 </div>
               ) : (
