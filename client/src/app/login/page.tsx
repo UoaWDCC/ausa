@@ -8,6 +8,7 @@ import { useAuth } from '@/auth/AuthContext'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
+import { handleGoogleSignIn } from '@/services/login/handleGoogleSignIn'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)

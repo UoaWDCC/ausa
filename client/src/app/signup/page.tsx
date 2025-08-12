@@ -1,17 +1,15 @@
 'use client'
 import {
   createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
   updateProfile,
 } from 'firebase/auth'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
-import type { User } from '@/types/types'
 import { useState } from 'react'
-import client from '@/services/fetch-client'
+import { saveUser } from '@/services/login/SaveUser'
+import { handleGoogleSignIn } from '@/services/login/handleGoogleSignIn'
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -20,43 +18,6 @@ const Signup = () => {
     password: '',
   })
   const [loading, setLoading] = useState(false)
-
-  const convertToUser = (user: any): User => {
-    return {
-      id: user.uid,
-      username: user.displayName,
-      email: user.email,
-      name: user.displayName,
-    }
-  }
-
-  const saveUser = async (user: any) => {
-    try {
-      const newUser = convertToUser(user)
-      // const userRef = doc(db, 'users', user.uid)
-      // const userDoc = await getDoc(userRef)
-      // if (!userDoc.exists()) {
-      //   await setDoc(userRef, {
-      //     id: user.uid,
-      //     username: user.username,
-      //     email: user.email,
-      //     name: user.name,
-      //   })
-      console.log(
-        'Sending user to backend:',
-        JSON.stringify({ ...newUser, id: user.uid }),
-      )
-      const { data: responseBody, response } = await client.POST('/users', {
-        body: { ...newUser, id: user.uid },
-      })
-      console.log('Response status:', response.status)
-      console.log('Response body:', responseBody)
-      console.log('User saved successfully')
-    } catch (error) {
-      console.error('Error saving user:', error)
-      console.log('User already exists')
-    }
-  }
 
   const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -93,20 +54,6 @@ const Signup = () => {
       }
     } finally {
       setLoading(false)
-    }
-  }
-
-  const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider()
-    try {
-      const res = await signInWithPopup(auth, provider)
-      const user = res.user
-      // const idToken = await user.getIdToken();
-      await saveUser(user)
-    } catch (error: any) {
-      const err = error.code
-      const errmsg = error.message
-      console.error('Error during sign-in:', err, errmsg)
     }
   }
 
