@@ -24,3 +24,20 @@ export interface User {
   email: string
   name: string
 }
+
+export interface Event {
+  id: string
+  title: string
+  heroImage?: {
+    src: string
+    alt: string
+  }
+  content: {
+    subtitle?: string
+    body: string
+    callToAction?: {
+      text: string
+      href: string
+    }
+  }
+}
