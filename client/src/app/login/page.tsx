@@ -90,21 +90,13 @@ const Login = () => {
             >
               {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
-            <Button
-              onClick={handleGoogleSignIn}
-              className="w-full cursor-pointer"
-              type="button"
-              disabled={loading}
-            >
-              {loading ? 'LOGGING IN...' : 'LOGIN WITH GOOGLE'}
-            </Button>
             <div className="flex justify-between text-sm text-white/80">
-              <a
+              <div
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
-                href="/signup"
+                onClick={handleGoogleSignIn}
               >
-                Sign up
-              </a>
+                Sign in with Google
+              </div>
               <a
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
                 href="/forgot-password"

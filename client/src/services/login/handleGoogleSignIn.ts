@@ -9,6 +9,7 @@ const handleGoogleSignIn = async () => {
     const user = res.user
     // const idToken = await user.getIdToken();
     await saveUser(user)
+    alert("Logged in successfully")
   } catch (error: any) {
     const err = error.code
     const errmsg = error.message
