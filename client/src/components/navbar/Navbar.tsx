@@ -104,9 +104,12 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
               {user ? (
                 // Show user info and logout when authenticated
                 <div className="flex items-center gap-2">
-                  <span className="text-white text-sm">
+                  <Link 
+                    href="/me"
+                    className="text-white text-sm hover:text-blue-300 transition-colors cursor-pointer"
+                  >
                     Hello, {user.displayName || user.email?.split('@')[0] || 'User'}
-                  </span>
+                  </Link>
                   <LogoutButton />
                 </div>
               ) : (
