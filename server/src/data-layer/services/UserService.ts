@@ -4,7 +4,7 @@ import { Body } from 'tsoa'
 
 export type UserCreationParams = Pick<
   User,
-  'id' | 'email' | 'name' | 'username'
+  'id' | 'email' | 'name' | 'username' | 'role'
 >
 
 export class UserService {
@@ -46,6 +46,26 @@ export class UserService {
 
   /**
    *
+   * @param email - using email to find a user in the db
+   * @returns A user of type User
+   */
+  async getUserByEmail(email: string): Promise<User | null> {
+    const snapShot = await FirestoreCollections.users
+      .where('email', '==', email)
+      .limit(1)
+      .get()
+
+    if (snapShot.empty) {
+      console.log(`User - ${email} not found`)
+      return null
+    }
+
+    const user = snapShot.docs[0]
+    return user.data() as User
+  }
+
+  /**
+   *
    * @returns a list of users
    */
   async getAllUsers(): Promise<User[]> {
@@ -76,12 +96,14 @@ export class UserService {
       username: params.username,
       email: params.email,
       name: params.name,
+      role: params.role || 'user',
     }
     await userRef.set({
       id: params.id,
       username: params.username,
       email: params.email,
       name: params.name,
+      role: params.role || 'user',
     })
     console.log(newUser)
     return newUser
@@ -118,5 +140,67 @@ export class UserService {
     await userRef.set(updates, { merge: true })
     const updatedUser = await userRef.get()
     return updatedUser.data() as User
+  }
+
+  async adminAddUser(
+    userId: string,
+    username: string,
+    email: string,
+    name: string,
+    requestingUserId: string,
+    // role: 'admin' | 'user',
+  ): Promise<User | null> {
+    const requestingUser = await this.getUser(requestingUserId)
+    if (!requestingUserId) {
+      console.log(`Requesting user - ${requestingUserId} not found`)
+      return null
+    }
+    if (requestingUser.role !== 'admin') {
+      console.log(
+        `Requesting user - ${requestingUserId} is not authorised to create users.`,
+      )
+      return null
+    }
+    const params: UserCreationParams = {
+      id: userId,
+      username: username,
+      email: email,
+      name: name,
+      role: 'user',
+    }
+    const newUser = await this.createUser(params)
+    if (!newUser) {
+      console.log('user failed on creation')
+      return null
+    }
+    return newUser
+  }
+
+  async adminDeleteUser(
+    requestingUserId: string,
+    userToDeleteId: string,
+  ): Promise<User | null> {
+    // checking if user exists and/or is admin
+    const requestingUser = await this.getUser(requestingUserId)
+    if (!requestingUser) {
+      console.log(`Requesting user - ${requestingUserId} not found`)
+      return null
+    }
+    if (requestingUser.role !== 'admin') {
+      console.log(`Requesting user - ${requestingUserId} is not an admin`)
+      return null
+    }
+
+    // checking if user to delete exists and deleting it if it does by calling deleteUser
+    const userToDelete = await this.deleteUser(userToDeleteId)
+    if (!userToDelete) {
+      console.log(`User - ${userToDeleteId} not found for deletion`)
+      return null
+    }
+
+    console.log(
+      `User - ${userToDeleteId} deleted by admin - ${requestingUserId}`,
+    )
+    return userToDelete
   }
 }
