@@ -6,7 +6,7 @@ export interface User {
   role?: 'user' | 'admin'
 }
 
-// for patch
+// for patch 
 export interface UpdateUserPackage {
   username?: string
   name?: string
