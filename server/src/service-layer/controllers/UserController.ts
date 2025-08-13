@@ -47,18 +47,8 @@ export class UserController extends Controller {
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
   public async createUser(
-    @Query() requestingUserId: string,
     @Body() requestBody: UserCreationParams,
   ): Promise<User> {
-    const requestingUser = await new UserService().getUser(requestingUserId)
-    if (!requestingUser) {
-      this.setStatus(400) // Bad Request if requesting user not found
-      return null
-    }
-    if (requestingUser.role !== 'admin') {
-      this.setStatus(403) // Forbidden if requesting user is not an admin
-      return null
-    }
     this.setStatus(201)
     return new UserService().createUser(requestBody)
   }
@@ -77,7 +67,7 @@ export class UserController extends Controller {
       this.setStatus(400) // Bad Request if user not found or not deleted
       return null
     }
-    return new UserService().adminDeleteUser(requestingUserId, userToDeleteId)
+    return deletedUser
   }
 
   @SuccessResponse('200', 'Updated')
@@ -87,5 +77,27 @@ export class UserController extends Controller {
     @Body() updates: UpdateUserPackage,
   ): Promise<User | null> {
     return new UserService().updateUser(userId, updates)
+  }
+}
+
+@Route('admin')
+export class AdminController extends Controller {
+  @SuccessResponse('201', 'Created') // Custom success response
+  @Post()
+  public async createUser(
+    @Query() requestingUserId: string,
+    @Body() requestBody: UserCreationParams,
+  ): Promise<User> {
+    const requestingUser = await new UserService().getUser(requestingUserId)
+    if (!requestingUser) {
+      this.setStatus(400) // Bad Request if requesting user not found
+      return null
+    }
+    if (requestingUser.role !== 'admin') {
+      this.setStatus(403) // Forbidden if requesting user is not an admin
+      return null
+    }
+    this.setStatus(201)
+    return new UserService().createUser(requestBody)
   }
 }

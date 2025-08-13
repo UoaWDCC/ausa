@@ -84,6 +84,22 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/admin": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["CreateUser"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/faq": {
         parameters: {
             query?: never;
@@ -185,19 +201,23 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         User: {
-            name: string;
-            email: string;
-            username: string;
             id: string;
+            username: string;
+            email: string;
+            name: string;
+            /** @enum {string} */
+            role?: "user" | "admin";
         };
         /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_User.id-or-email-or-name-or-username_": {
+        "Pick_User.id-or-email-or-name-or-username-or-role_": {
             id: string;
             email: string;
             name: string;
             username: string;
+            /** @enum {string} */
+            role?: "user" | "admin";
         };
-        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username_"];
+        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username-or-role_"];
         UpdateUserPackage: {
             username?: string;
             name?: string;
@@ -444,7 +464,8 @@ export interface operations {
     DeleteUser: {
         parameters: {
             query: {
-                userId: string;
+                requestingUserId: string;
+                userToDeleteId: string;
             };
             header?: never;
             path?: never;
@@ -459,6 +480,32 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["User"] | null;
+                };
+            };
+        };
+    };
+    CreateUser: {
+        parameters: {
+            query: {
+                requestingUserId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserCreationParams"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["User"];
                 };
             };
         };
