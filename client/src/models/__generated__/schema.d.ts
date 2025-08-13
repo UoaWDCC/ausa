@@ -185,19 +185,23 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         User: {
-            name: string;
-            email: string;
-            username: string;
             id: string;
+            username: string;
+            email: string;
+            name: string;
+            /** @enum {string} */
+            role?: "user" | "admin";
         };
         /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_User.id-or-email-or-name-or-username_": {
+        "Pick_User.id-or-email-or-name-or-username-or-role_": {
             id: string;
             email: string;
             name: string;
             username: string;
+            /** @enum {string} */
+            role?: "user" | "admin";
         };
-        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username_"];
+        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username-or-role_"];
         UpdateUserPackage: {
             username?: string;
             name?: string;
@@ -419,7 +423,9 @@ export interface operations {
     };
     CreateUser: {
         parameters: {
-            query?: never;
+            query: {
+                requestingUserId: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -444,7 +450,8 @@ export interface operations {
     DeleteUser: {
         parameters: {
             query: {
-                userId: string;
+                requestingUserId: string;
+                userToDeleteId: string;
             };
             header?: never;
             path?: never;
