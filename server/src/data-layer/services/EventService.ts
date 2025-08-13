@@ -4,7 +4,7 @@ import { Body } from 'tsoa'
 
 export type EventCreationParams = Pick<
   Event,
-  'id' | 'name' | 'location' | 'date'
+  'id' | 'title' | 'description' | 'date' | 'link'
 >
 
 export class EventService {
@@ -52,8 +52,8 @@ export class EventService {
     const snapShot = await FirestoreCollections.events.get()
     const eventList: Event[] = snapShot.docs.map((doc) => ({
       id: doc.id,
-      name: doc.data().name,
-      location: doc.data().location,
+      title: doc.data().title,
+      description: doc.data().description,
       date: doc.data().date,
     }))
     console.log(
@@ -73,14 +73,14 @@ export class EventService {
     const eventRef = await FirestoreCollections.events.doc(params.id)
     const newEvent: Event = {
       id: params.id,
-      name: params.name,
-      location: params.location,
+      title: params.title,
+      description: params.description,
       date: params.date,
     }
     await eventRef.set({
       id: params.id,
-      name: params.name,
-      location: params.location,
+      title: params.title,
+      description: params.description,
       date: params.date,
     })
     console.log(newEvent)

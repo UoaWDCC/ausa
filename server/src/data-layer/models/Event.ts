@@ -1,12 +1,14 @@
 export type Event = {
   id: string
-  name: string
-  location: string
+  title: string
+  description: string
   date: string
+  link?: string
 }
 
 export interface UpdateEventPackage {
-  name?: string
-  location?: string
+  title?: string
+  description?: string
   date?: string
+  link?: string
 }
