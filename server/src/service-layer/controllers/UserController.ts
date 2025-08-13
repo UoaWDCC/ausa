@@ -52,8 +52,6 @@ export class UserController extends Controller {
     this.setStatus(201)
     return new UserService().createUser(requestBody)
   }
-    
-  
 
   @SuccessResponse('200', 'Deleted')
   @Delete('by-userId')
