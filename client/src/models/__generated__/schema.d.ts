@@ -180,24 +180,92 @@ export interface paths {
         patch: operations["UpdateExternalResource"];
         trace?: never;
     };
+    "/events/by-name": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetEventByName"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/events/{eventId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetEventById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["UpdateEvent"];
+        trace?: never;
+    };
+    "/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetEvents"];
+        put?: never;
+        post: operations["CreateEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/events/by-eventId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["DeleteEvent"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         User: {
-            name: string;
-            email: string;
-            username: string;
             id: string;
+            username: string;
+            email: string;
+            name: string;
+            /** @enum {string} */
+            role?: "user" | "admin";
         };
         /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_User.id-or-email-or-name-or-username_": {
+        "Pick_User.id-or-email-or-name-or-username-or-role_": {
             id: string;
             email: string;
             name: string;
             username: string;
+            /** @enum {string} */
+            role?: "user" | "admin";
         };
-        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username_"];
+        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username-or-role_"];
         UpdateUserPackage: {
             username?: string;
             name?: string;
@@ -296,6 +364,28 @@ export interface components {
             description?: string;
         };
         updateExternalResourceRequest: components["schemas"]["Partial_createExternalResourceRequest_"];
+        Event: {
+            link?: string;
+            date: string;
+            description: string;
+            title: string;
+            id: string;
+        };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_Event.id-or-title-or-description-or-date-or-link_": {
+            id: string;
+            title: string;
+            description: string;
+            date: string;
+            link?: string;
+        };
+        EventCreationParams: components["schemas"]["Pick_Event.id-or-title-or-description-or-date-or-link_"];
+        UpdateEventPackage: {
+            title?: string;
+            description?: string;
+            date?: string;
+            link?: string;
+        };
     };
     responses: never;
     parameters: never;
@@ -419,7 +509,9 @@ export interface operations {
     };
     CreateUser: {
         parameters: {
-            query?: never;
+            query: {
+                requestingUserId: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -444,7 +536,8 @@ export interface operations {
     DeleteUser: {
         parameters: {
             query: {
-                userId: string;
+                requestingUserId: string;
+                userToDeleteId: string;
             };
             header?: never;
             path?: never;
@@ -800,6 +893,142 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["GetExternalResourceResponse"];
+                };
+            };
+        };
+    };
+    GetEventByName: {
+        parameters: {
+            query: {
+                name: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    GetEventById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    UpdateEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateEventPackage"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    GetEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"][];
+                };
+            };
+        };
+    };
+    CreateEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["EventCreationParams"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"];
+                };
+            };
+        };
+    };
+    DeleteEvent: {
+        parameters: {
+            query: {
+                eventId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
                 };
             };
         };

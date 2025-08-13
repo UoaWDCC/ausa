@@ -224,25 +224,26 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Event": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"date":{"dataType":"string","required":true},"location":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"link":{"dataType":"string"},"date":{"dataType":"string","required":true},"description":{"dataType":"string","required":true},"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_Event.id-or-name-or-location-or-date_": {
+    "Pick_Event.id-or-title-or-description-or-date-or-link_": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"location":{"dataType":"string","required":true},"date":{"dataType":"string","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true},"title":{"dataType":"string","required":true},"description":{"dataType":"string","required":true},"date":{"dataType":"string","required":true},"link":{"dataType":"string"}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "EventCreationParams": {
         "dataType": "refAlias",
-        "type": {"ref":"Pick_Event.id-or-name-or-location-or-date_","validators":{}},
+        "type": {"ref":"Pick_Event.id-or-title-or-description-or-date-or-link_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UpdateEventPackage": {
         "dataType": "refObject",
         "properties": {
-            "name": {"dataType":"string"},
-            "location": {"dataType":"string"},
+            "title": {"dataType":"string"},
+            "description": {"dataType":"string"},
             "date": {"dataType":"string"},
+            "link": {"dataType":"string"},
         },
         "additionalProperties": false,
     },

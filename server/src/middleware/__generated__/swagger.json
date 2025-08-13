@@ -382,13 +382,16 @@
 			},
 			"Event": {
 				"properties": {
+					"link": {
+						"type": "string"
+					},
 					"date": {
 						"type": "string"
 					},
-					"location": {
+					"description": {
 						"type": "string"
 					},
-					"name": {
+					"title": {
 						"type": "string"
 					},
 					"id": {
@@ -397,48 +400,54 @@
 				},
 				"required": [
 					"date",
-					"location",
-					"name",
+					"description",
+					"title",
 					"id"
 				],
 				"type": "object"
 			},
-			"Pick_Event.id-or-name-or-location-or-date_": {
+			"Pick_Event.id-or-title-or-description-or-date-or-link_": {
 				"properties": {
 					"id": {
 						"type": "string"
 					},
-					"name": {
+					"title": {
 						"type": "string"
 					},
-					"location": {
+					"description": {
 						"type": "string"
 					},
 					"date": {
+						"type": "string"
+					},
+					"link": {
 						"type": "string"
 					}
 				},
 				"required": [
 					"id",
-					"name",
-					"location",
+					"title",
+					"description",
 					"date"
 				],
 				"type": "object",
 				"description": "From T, pick a set of properties whose keys are in the union K"
 			},
 			"EventCreationParams": {
-				"$ref": "#/components/schemas/Pick_Event.id-or-name-or-location-or-date_"
+				"$ref": "#/components/schemas/Pick_Event.id-or-title-or-description-or-date-or-link_"
 			},
 			"UpdateEventPackage": {
 				"properties": {
-					"name": {
+					"title": {
 						"type": "string"
 					},
-					"location": {
+					"description": {
 						"type": "string"
 					},
 					"date": {
+						"type": "string"
+					},
+					"link": {
 						"type": "string"
 					}
 				},
