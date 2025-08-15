@@ -478,26 +478,26 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        const argsAdminController_createUser: Record<string, TsoaRoute.ParameterSchema> = {
+        const argsAdminController_adminCreateUser: Record<string, TsoaRoute.ParameterSchema> = {
                 requestingUserId: {"in":"query","name":"requestingUserId","required":true,"dataType":"string"},
                 requestBody: {"in":"body","name":"requestBody","required":true,"ref":"UserCreationParams"},
         };
         app.post('/admin',
             ...(fetchMiddlewares<RequestHandler>(AdminController)),
-            ...(fetchMiddlewares<RequestHandler>(AdminController.prototype.createUser)),
+            ...(fetchMiddlewares<RequestHandler>(AdminController.prototype.adminCreateUser)),
 
-            async function AdminController_createUser(request: ExRequest, response: ExResponse, next: any) {
+            async function AdminController_adminCreateUser(request: ExRequest, response: ExResponse, next: any) {
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
             let validatedArgs: any[] = [];
             try {
-                validatedArgs = templateService.getValidatedArgs({ args: argsAdminController_createUser, request, response });
+                validatedArgs = templateService.getValidatedArgs({ args: argsAdminController_adminCreateUser, request, response });
 
                 const controller = new AdminController();
 
               await templateService.apiHandler({
-                methodName: 'createUser',
+                methodName: 'adminCreateUser',
                 controller,
                 response,
                 next,

@@ -84,7 +84,7 @@ export class UserController extends Controller {
 export class AdminController extends Controller {
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
-  public async createUser(
+  public async adminCreateUser(
     @Query() requestingUserId: string,
     @Body() requestBody: UserCreationParams,
   ): Promise<User> {

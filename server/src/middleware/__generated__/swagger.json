@@ -701,7 +701,7 @@
 		},
 		"/admin": {
 			"post": {
-				"operationId": "CreateUser",
+				"operationId": "AdminCreateUser",
 				"responses": {
 					"201": {
 						"description": "Created",

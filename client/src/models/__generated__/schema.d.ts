@@ -525,9 +525,7 @@ export interface operations {
     };
     CreateUser: {
         parameters: {
-            query: {
-                requestingUserId: string;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
