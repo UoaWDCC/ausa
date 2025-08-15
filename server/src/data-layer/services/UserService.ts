@@ -2,11 +2,6 @@ import type { User, UpdateUserPackage } from 'data-layer/models/User'
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import { Body } from 'tsoa'
 
-export type UserCreationParams = Pick<
-  User,
-  'id' | 'email' | 'name' | 'username' | 'role'
->
-
 export class UserService {
   /**
    *
@@ -89,22 +84,9 @@ export class UserService {
    * @param params - The parameters for creating a user.
    * @returns A promise that resolves to the created user.
    */
-  async createUser(@Body() params: UserCreationParams): Promise<User> {
-    const userRef = await FirestoreCollections.users.doc(params.id)
-    const newUser: User = {
-      id: params.id,
-      username: params.username,
-      email: params.email,
-      name: params.name,
-      role: params.role || 'user',
-    }
-    await userRef.set({
-      id: params.id,
-      username: params.username,
-      email: params.email,
-      name: params.name,
-      role: params.role || 'user',
-    })
+  async createUser(id:string, newUser:User): Promise<User> {
+    const userRef = await FirestoreCollections.users.doc(id)
+    await userRef.set(newUser)
     console.log(newUser)
     return newUser
   }
@@ -148,11 +130,9 @@ export class UserService {
    * @returns the new user
    */
   async adminAddUser(
-    userId: string,
-    username: string,
-    email: string,
-    name: string,
-    requestingUserId: string,
+    newUser:User,
+    id: string,
+    requestingUserId: string
     // role: 'admin' | 'user',
   ): Promise<User | null> {
     const requestingUser = await this.getUser(requestingUserId)
@@ -166,19 +146,13 @@ export class UserService {
       )
       return null
     }
-    const params: UserCreationParams = {
-      id: userId,
-      username: username,
-      email: email,
-      name: name,
-      role: 'user',
-    }
-    const newUser = await this.createUser(params)
-    if (!newUser) {
+  
+    const createdUser = await this.createUser(id, newUser);
+    if (!createdUser) {
       console.log('user failed on creation')
       return null
     }
-    return newUser
+    return createdUser;
   }
 
   async adminDeleteUser(
