@@ -41,12 +41,12 @@ const ContactForm = () => {
       })
   }
   return (
-    <div className="w-[300px] rounded-[32px] bg-white p-5 text-black shadow-md drop-shadow-sm duration-300 hover:scale-105 md:w-[700px]">
+    <div className="w-[300px] rounded-[32px] bg-blue-300/30 p-5 text-white shadow-md drop-shadow-sm duration-300 hover:scale-105 md:w-[700px]">
       <form className="flex flex-col gap-4" onSubmit={sendEmail}>
         <label className="flex flex-col font-bold">
           Full Name
           <input
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-lg bg-white text-neutral-600 p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-blue-300"
             name="name"
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             placeholder="Ray Zhao 🥵🥵🥵🥵😩"
@@ -57,7 +57,7 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Email
           <input
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-lg bg-white p-2 text-neutral-600 placeholder-[#9D9D9D] hover:outline-2 hover:outline-blue-300"
             name="email_from"
             onChange={(e) =>
               setFormData({ ...formData, email_from: e.target.value })
@@ -82,7 +82,7 @@ const ContactForm = () => {
         <label className="flex flex-col font-bold">
           Message
           <textarea
-            className="mt-1 rounded-lg bg-[#E2E2E2] p-2 placeholder-[#9D9D9D] hover:outline-2 hover:outline-black"
+            className="mt-1 rounded-lg bg-white p-2 text-neutral-600 placeholder-[#9D9D9D] hover:outline-2 hover:outline-blue-300"
             name="message"
             onChange={(e) =>
               setFormData({ ...formData, message: e.target.value })
@@ -93,7 +93,7 @@ const ContactForm = () => {
           />
         </label>
         <button
-          className={`ml-auto w-35 rounded-full px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed bg-gray-200 text-gray-300' : 'bg-[#D9D9D9] hover:outline-2'} flex justify-center font-bold hover:outline-black`}
+          className={`ml-auto w-35 rounded-full px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed bg-gray-500 text-gray-300' : 'bg-gray-700 hover:outline-2'} flex justify-center font-bold hover:outline-blue-300 hover:bg-gray-600`}
           onClick={handleClick}
           type="submit"
         >
