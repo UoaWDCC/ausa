@@ -13,7 +13,6 @@ import {
   UserService,
 } from '../../../data-layer/services/UserService'
 
-
 @Route('admin')
 export class AdminController extends Controller {
   @SuccessResponse('201', 'Created') // Custom success response
@@ -52,4 +51,3 @@ export class AdminController extends Controller {
     return deletedUser
   }
 }
-

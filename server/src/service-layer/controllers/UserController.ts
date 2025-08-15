@@ -58,9 +58,7 @@ export class UserController extends Controller {
   public async deleteUser(
     @Query() userToDeleteId: string,
   ): Promise<User | null> {
-    const deletedUser = await new UserService().deleteUser(
-      userToDeleteId,
-    )
+    const deletedUser = await new UserService().deleteUser(userToDeleteId)
     if (!deletedUser) {
       this.setStatus(400)
       return null
@@ -77,4 +75,3 @@ export class UserController extends Controller {
     return new UserService().updateUser(userId, updates)
   }
 }
-
