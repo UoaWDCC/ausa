@@ -1,10 +1,5 @@
 'use client'
-import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  updateProfile,
-} from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -12,6 +7,7 @@ import { auth } from '@/lib/firebase'
 import type { User } from '@/types/types'
 import { useState } from 'react'
 import client from '@/services/fetch-client'
+import { handleGoogleSignIn } from 'services/GoogleLogin'
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -93,20 +89,6 @@ const Signup = () => {
       }
     } finally {
       setLoading(false)
-    }
-  }
-
-  const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider()
-    try {
-      const res = await signInWithPopup(auth, provider)
-      const user = res.user
-      // const idToken = await user.getIdToken();
-      await saveUser(user)
-    } catch (error: any) {
-      const err = error.code
-      const errmsg = error.message
-      console.error('Error during sign-in:', err, errmsg)
     }
   }
 
