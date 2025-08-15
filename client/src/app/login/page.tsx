@@ -8,6 +8,7 @@ import { useAuth } from '@/auth/AuthContext'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
+import { handleGoogleSignIn } from 'services/GoogleLogin'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
@@ -88,6 +89,13 @@ const Login = () => {
               disabled={loading}
             >
               {loading ? 'LOGGING IN...' : 'LOGIN'}
+            </Button>
+            <Button
+              onClick={handleGoogleSignIn}
+              className="w-full cursor-pointer"
+              type="button"
+            >
+              Sign in with Google
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <a

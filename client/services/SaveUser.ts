@@ -23,9 +23,11 @@ const saveUser = async (user: any) => {
       console.log('Response status:', response.status)
       console.log('Response body:', responseBody)
       console.log('User saved successfully')
+      alert("Signed in successfully")
+      return newUser
     } catch (error) {
       console.error('Error saving user:', error)
-      console.log('User already exists')
+      return error
     }
   }
 
