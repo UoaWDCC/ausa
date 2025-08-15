@@ -6,8 +6,6 @@ import {  fetchMiddlewares, ExpressTemplateService } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { UserController } from './../../service-layer/controllers/UserController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { AdminController } from './../../service-layer/controllers/UserController';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { FaqController } from './../../service-layer/controllers/FaqController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { FaqCategoryController } from './../../service-layer/controllers/FaqCategoryController';
@@ -15,6 +13,8 @@ import { FaqCategoryController } from './../../service-layer/controllers/FaqCate
 import { ExternalResourceController } from './../../service-layer/controllers/ExternalResourceController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { EventController } from './../../service-layer/controllers/EventController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { AdminController } from './../../service-layer/controllers/AdminController/AdminController';
 import { expressAuthentication } from './../../business-layer/security/Authentication';
 // @ts-ignore - no great way to install types from subpackage
 import type { Request as ExRequest, Response as ExResponse, RequestHandler, Router } from 'express';
@@ -417,7 +417,6 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsUserController_deleteUser: Record<string, TsoaRoute.ParameterSchema> = {
-                requestingUserId: {"in":"query","name":"requestingUserId","required":true,"dataType":"string"},
                 userToDeleteId: {"in":"query","name":"userToDeleteId","required":true,"dataType":"string"},
         };
         app.delete('/users/by-userId',
@@ -472,37 +471,6 @@ export function RegisterRoutes(app: Router) {
                 next,
                 validatedArgs,
                 successStatus: 200,
-              });
-            } catch (err) {
-                return next(err);
-            }
-        });
-        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-        const argsAdminController_adminCreateUser: Record<string, TsoaRoute.ParameterSchema> = {
-                requestingUserId: {"in":"query","name":"requestingUserId","required":true,"dataType":"string"},
-                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"UserCreationParams"},
-        };
-        app.post('/admin',
-            ...(fetchMiddlewares<RequestHandler>(AdminController)),
-            ...(fetchMiddlewares<RequestHandler>(AdminController.prototype.adminCreateUser)),
-
-            async function AdminController_adminCreateUser(request: ExRequest, response: ExResponse, next: any) {
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = templateService.getValidatedArgs({ args: argsAdminController_adminCreateUser, request, response });
-
-                const controller = new AdminController();
-
-              await templateService.apiHandler({
-                methodName: 'adminCreateUser',
-                controller,
-                response,
-                next,
-                validatedArgs,
-                successStatus: 201,
               });
             } catch (err) {
                 return next(err);
@@ -1140,6 +1108,68 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'updateEvent',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsAdminController_adminCreateUser: Record<string, TsoaRoute.ParameterSchema> = {
+                requestingUserId: {"in":"query","name":"requestingUserId","required":true,"dataType":"string"},
+                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"UserCreationParams"},
+        };
+        app.post('/admin',
+            ...(fetchMiddlewares<RequestHandler>(AdminController)),
+            ...(fetchMiddlewares<RequestHandler>(AdminController.prototype.adminCreateUser)),
+
+            async function AdminController_adminCreateUser(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsAdminController_adminCreateUser, request, response });
+
+                const controller = new AdminController();
+
+              await templateService.apiHandler({
+                methodName: 'adminCreateUser',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsAdminController_deleteUser: Record<string, TsoaRoute.ParameterSchema> = {
+                requestingUserId: {"in":"query","name":"requestingUserId","required":true,"dataType":"string"},
+                userToDeleteId: {"in":"query","name":"userToDeleteId","required":true,"dataType":"string"},
+        };
+        app.delete('/admin/by-userId',
+            ...(fetchMiddlewares<RequestHandler>(AdminController)),
+            ...(fetchMiddlewares<RequestHandler>(AdminController.prototype.deleteUser)),
+
+            async function AdminController_deleteUser(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsAdminController_deleteUser, request, response });
+
+                const controller = new AdminController();
+
+              await templateService.apiHandler({
+                methodName: 'deleteUser',
                 controller,
                 response,
                 next,

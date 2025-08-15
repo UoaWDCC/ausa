@@ -78,24 +78,3 @@ export class UserController extends Controller {
   }
 }
 
-@Route('admin')
-export class AdminController extends Controller {
-  @SuccessResponse('201', 'Created') // Custom success response
-  @Post()
-  public async adminCreateUser(
-    @Query() requestingUserId: string,
-    @Body() requestBody: UserCreationParams,
-  ): Promise<User> {
-    const requestingUser = await new UserService().getUser(requestingUserId)
-    if (!requestingUser) {
-      this.setStatus(400) // Bad Request if requesting user not found
-      return null
-    }
-    if (requestingUser.role !== 'admin') {
-      this.setStatus(403) // Forbidden if requesting user is not an admin
-      return null
-    }
-    this.setStatus(201)
-    return new UserService().createUser(requestBody)
-  }
-}
