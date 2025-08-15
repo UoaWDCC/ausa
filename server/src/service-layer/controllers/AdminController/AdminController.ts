@@ -12,6 +12,7 @@ import {
   type UserCreationParams,
   UserService,
 } from '../../../data-layer/services/UserService'
+import { AdminService } from '../../../data-layer/services/AdminService'
 
 @Route('admin')
 export class AdminController extends Controller {
@@ -40,7 +41,7 @@ export class AdminController extends Controller {
     @Query() requestingUserId: string,
     @Query() userToDeleteId: string,
   ): Promise<User | null> {
-    const deletedUser = await new UserService().adminDeleteUser(
+    const deletedUser = await new AdminService().adminDeleteUser(
       requestingUserId,
       userToDeleteId,
     )
