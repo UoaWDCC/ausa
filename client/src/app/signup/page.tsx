@@ -1,8 +1,5 @@
 'use client'
-import {
-  createUserWithEmailAndPassword,
-  updateProfile,
-} from 'firebase/auth'
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'

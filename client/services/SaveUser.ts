@@ -1,34 +1,35 @@
-import { convertToUser } from "./ConvertToUser"
-import client from "@/services/fetch-client"
+import { convertToUser } from './ConvertToUser'
+import client from '@/services/fetch-client'
 
 const saveUser = async (user: any) => {
-    try {
-      const newUser = convertToUser(user)
-      // const userRef = doc(db, 'users', user.uid)
-      // const userDoc = await getDoc(userRef)
-      // if (!userDoc.exists()) {
-      //   await setDoc(userRef, {
-      //     id: user.uid,
-      //     username: user.username,
-      //     email: user.email,
-      //     name: user.name,
-      //   })
-      console.log(
-        'Sending user to backend:',
-        JSON.stringify({ ...newUser, id: user.uid }),
-      )
-      const { data: responseBody, response } = await client.POST('/users', {
-        body: { ...newUser, id: user.uid },
-      })
-      console.log('Response status:', response.status)
-      console.log('Response body:', responseBody)
-      console.log('User saved successfully')
-      alert("Signed in successfully")
-      return newUser
-    } catch (error) {
-      console.error('Error saving user:', error)
-      return error
-    }
+  try {
+    const newUser = convertToUser(user)
+    // const userRef = doc(db, 'users', user.uid)
+    // const userDoc = await getDoc(userRef)
+    // if (!userDoc.exists()) {
+    //   await setDoc(userRef, {
+    //     id: user.uid,
+    //     username: user.username,
+    //     email: user.email,
+    //     name: user.name,
+    //   })
+    console.log(
+      'Sending user to backend:',
+      JSON.stringify({ ...newUser, id: user.uid }),
+    )
+    const { data: responseBody, response } = await client.POST('/users', {
+      body: { ...newUser, id: user.uid },
+    })
+    console.log('Response status:', response.status)
+    console.log('Response body:', responseBody)
+    console.log('User saved successfully')
+    alert('Signed in successfully')
+    return newUser
+  } catch (error) {
+    console.error('Error saving user:', error)
+    alert('Error when signing in!')
+    return error
   }
+}
 
-export {saveUser}
+export { saveUser }
