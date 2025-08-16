@@ -158,7 +158,7 @@ export interface paths {
         get: operations["GetAllExternalResources"];
         put?: never;
         post: operations["CreateExternalResource"];
-        delete?: never;
+        delete: operations["DeleteAllExternalResources"];
         options?: never;
         head?: never;
         patch?: never;
@@ -174,7 +174,7 @@ export interface paths {
         get: operations["GetExternalResource"];
         put?: never;
         post?: never;
-        delete?: never;
+        delete: operations["DeleteExternalResource"];
         options?: never;
         head?: never;
         patch: operations["UpdateExternalResource"];
@@ -369,6 +369,7 @@ export interface components {
             title: string;
             url: string;
             description?: string;
+            categoryId: string;
         };
         GetAllExternalResourceResponse: {
             error?: string;
@@ -382,6 +383,7 @@ export interface components {
         };
         /** @description From T, pick a set of properties whose keys are in the union K */
         "Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
+            categoryId: string;
             url: string;
             title: string;
             description?: string;
@@ -391,6 +393,7 @@ export interface components {
         createExternalResourceRequest: components["schemas"]["Omit_ExternalResource.id_"];
         /** @description Make all properties in T optional */
         Partial_createExternalResourceRequest_: {
+            categoryId?: string;
             url?: string;
             title?: string;
             description?: string;
@@ -541,7 +544,9 @@ export interface operations {
     };
     CreateUser: {
         parameters: {
-            query?: never;
+            query: {
+                requestingUserId: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -836,7 +841,9 @@ export interface operations {
     };
     GetAllExternalResources: {
         parameters: {
-            query?: never;
+            query?: {
+                category?: string;
+            };
             header?: never;
             path?: never;
             cookie?: never;
@@ -878,6 +885,26 @@ export interface operations {
             };
         };
     };
+    DeleteAllExternalResources: {
+        parameters: {
+            query?: {
+                categoryId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted all External Resources */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     GetExternalResource: {
         parameters: {
             query?: never;
@@ -897,6 +924,26 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["GetExternalResourceResponse"];
                 };
+            };
+        };
+    };
+    DeleteExternalResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted External Resource */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
         };
     };
@@ -930,6 +977,7 @@ export interface operations {
         parameters: {
             query: {
                 name: string;
+
             };
             header?: never;
             path?: never;

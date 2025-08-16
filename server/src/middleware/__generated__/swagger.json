@@ -293,12 +293,16 @@
 					},
 					"description": {
 						"type": "string"
+					},
+					"categoryId": {
+						"type": "string"
 					}
 				},
 				"required": [
 					"id",
 					"title",
-					"url"
+					"url",
+					"categoryId"
 				],
 				"type": "object",
 				"additionalProperties": false
@@ -338,6 +342,9 @@
 			},
 			"Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
 				"properties": {
+					"categoryId": {
+						"type": "string"
+					},
 					"url": {
 						"type": "string"
 					},
@@ -349,6 +356,7 @@
 					}
 				},
 				"required": [
+					"categoryId",
 					"url",
 					"title"
 				],
@@ -364,6 +372,9 @@
 			},
 			"Partial_createExternalResourceRequest_": {
 				"properties": {
+					"categoryId": {
+						"type": "string"
+					},
 					"url": {
 						"type": "string"
 					},
@@ -1052,7 +1063,16 @@
 					}
 				},
 				"security": [],
-				"parameters": []
+				"parameters": [
+					{
+						"in": "query",
+						"name": "category",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			},
 			"post": {
 				"operationId": "CreateExternalResource",
@@ -1086,6 +1106,31 @@
 						}
 					}
 				}
+			},
+			"delete": {
+				"operationId": "DeleteAllExternalResources",
+				"responses": {
+					"204": {
+						"description": "Successfully deleted all External Resources"
+					}
+				},
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "categoryId",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/external-resources/{id}": {
@@ -1156,6 +1201,181 @@
 						}
 					}
 				}
+			},
+			"delete": {
+				"operationId": "DeleteExternalResource",
+				"responses": {
+					"204": {
+						"description": "Successfully deleted External Resource"
+					}
+				},
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/external-resource-category": {
+			"get": {
+				"operationId": "GetAllCategories",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetAllExternalResourceCategoryResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "name",
+						"required": false,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateCategory",
+				"responses": {
+					"201": {
+						"description": "Successfully created External Resource Category",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetExternalResourceCategoryResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/createExternalResourceCategoryRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/external-resource-category/{id}": {
+			"get": {
+				"operationId": "GetCategory",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetExternalResourceCategoryResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "UpdateCategory",
+				"responses": {
+					"200": {
+						"description": "Successfully updated FAQ category",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetExternalResourceCategoryResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/updateExternalResourceCategoryRequest"
+							}
+						}
+					}
+				}
+			},
+			"delete": {
+				"operationId": "DeleteCategory",
+				"responses": {
+					"204": {
+						"description": "Successfully deleted FAQ category"
+					}
+				},
+				"security": [
+					{
+						"jwt": [
+							"admin"
+						]
+					}
+				],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			}
 		},
 		"/events/by-name": {

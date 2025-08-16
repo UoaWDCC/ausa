@@ -16,6 +16,7 @@ export interface ExternalResource {
   title: string
   url: string
   description?: string
+  categoryId: string
 }
 
 export interface User {
@@ -23,4 +24,10 @@ export interface User {
   username: string
   email: string
   name: string
+}
+
+export interface ExternalResourceCategory {
+  id: string
+  name: string
+  description: string
 }
