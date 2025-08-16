@@ -142,6 +142,11 @@ export class UserService {
     return updatedUser.data() as User
   }
 
+  /**
+   *
+   * @param UserCreationParams - get user creation parameters
+   * @returns the new user
+   */
   async adminAddUser(
     userId: string,
     username: string,
