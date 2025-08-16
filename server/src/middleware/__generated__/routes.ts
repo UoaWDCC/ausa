@@ -229,14 +229,14 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_Event.id-or-title-or-heroImage-or-content_": {
+    "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true},"title":{"dataType":"string","required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "EventCreationParams": {
+    "Omit_EventCreationParams.id_": {
         "dataType": "refAlias",
-        "type": {"ref":"Pick_Event.id-or-title-or-heroImage-or-content_","validators":{}},
+        "type": {"ref":"Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UpdateEventPackage": {
@@ -248,6 +248,16 @@ const models: TsoaRoute.Models = {
             "content": {"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string"},"text":{"dataType":"string"}}},"body":{"dataType":"string"},"subtitle":{"dataType":"string"}}},
         },
         "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_Event.id-or-title-or-heroImage-or-content_": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true},"title":{"dataType":"string","required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "EventCreationParams": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_Event.id-or-title-or-heroImage-or-content_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };
@@ -940,7 +950,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsEventController_getEventByName: Record<string, TsoaRoute.ParameterSchema> = {
-                name: {"in":"query","name":"name","required":true,"dataType":"string"},
+                title: {"in":"query","name":"title","required":true,"dataType":"string"},
         };
         app.get('/events/by-name',
             ...(fetchMiddlewares<RequestHandler>(EventController)),
@@ -1029,7 +1039,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsEventController_createEvent: Record<string, TsoaRoute.ParameterSchema> = {
-                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"EventCreationParams"},
+                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"Omit_EventCreationParams.id_"},
         };
         app.post('/events',
             ...(fetchMiddlewares<RequestHandler>(EventController)),

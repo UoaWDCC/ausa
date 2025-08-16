@@ -1,6 +1,6 @@
 import type { User } from 'data-layer/models/User'
 import { UserService } from './UserService' // 假设你的 UserService 在这里
-import {UserCreationParams} from 'data-layer/services/UserService' 
+import {UserCreationParams} from 'data-layer/services/UserService'
 import {EventService} from 'data-layer/services/EventService'
 import type { Event } from 'data-layer/models/Event'
 
@@ -53,12 +53,15 @@ export class AdminService {
   }
 
   async adminAddEvent(
-    // requestingUserId: string,
     eventId: string,
-    eventTitle: string, 
-    eventDescription: string,
-    eventDate: string,  
-    eventLink: string,
+    eventTitle: string,
+    eventDate: string,
+    eventBody: string,
+    eventSubtitle?: string,
+    callToActionText?: string,
+    callToActionHref?: string,
+    heroImageSrc?: string,
+    heroImageAlt?: string,
   ): Promise<Event | null> {
     const eventService = new EventService()
     // const userService = new UserService()
@@ -69,10 +72,19 @@ export class AdminService {
     // }
     const EventCreationParams = {
       id: eventId,
-      title: eventTitle,
-      description: eventDescription,
-      date: eventDate,
-      link: eventLink,
+          title: eventTitle,
+          content: {
+            body: eventBody,
+            subtitle: eventSubtitle,
+            callToAction: callToActionText && callToActionHref ? {
+              text: callToActionText,
+              href: callToActionHref
+            } : undefined
+          },
+          heroImage: heroImageSrc ? {
+            src: heroImageSrc,
+            alt: heroImageAlt || eventTitle
+          } : undefined
     }
     const newEvent = await eventService.createEvent(EventCreationParams)
     if (!newEvent) {
@@ -94,6 +106,6 @@ export class AdminService {
     console.log(`Event - ${eventId} deleted by admin`)
     return eventToDelete
   }
-  
+
 
 }
