@@ -2,7 +2,7 @@ import type { User } from 'data-layer/models/User'
 import { UserService } from './UserService' // 假设你的 UserService 在这里
 import {UserCreationParams} from 'data-layer/services/UserService' 
 import {EventService} from 'data-layer/services/EventService'
-import type { Event, UpdateEventPackage } from 'data-layer/models/Event'
+import type { Event } from 'data-layer/models/Event'
 
 
 export class AdminService {
@@ -53,7 +53,7 @@ export class AdminService {
   }
 
   async adminAddEvent(
-    requestingUserId: string,
+    // requestingUserId: string,
     eventId: string,
     eventTitle: string, 
     eventDescription: string,
@@ -61,12 +61,12 @@ export class AdminService {
     eventLink: string,
   ): Promise<Event | null> {
     const eventService = new EventService()
-    const userService = new UserService()
-    const requestingUser = await userService.getUser(requestingUserId)
-    if (!requestingUser || requestingUser.role !== 'admin') {
-      console.log(`Requesting user - ${requestingUserId} not found`)
-      return null
-    }
+    // const userService = new UserService()
+    // const requestingUser = await userService.getUser(requestingUserId)
+    // if (!requestingUser || requestingUser.role !== 'admin') {
+    //   console.log(`Requesting user - ${requestingUserId} not found`)
+    //   return null
+    // }
     const EventCreationParams = {
       id: eventId,
       title: eventTitle,
@@ -81,5 +81,19 @@ export class AdminService {
     }
     return newEvent
   }
+
+  async AdminDeleteEvent(
+    eventId: string,
+  ): Promise<Event | null>{
+    const eventService = new EventService()
+    const eventToDelete = await eventService.deleteEvent(eventId)
+    if (!eventToDelete) {
+      console.log(`Event - ${eventId} not found for deletion`)
+      return null
+    }
+    console.log(`Event - ${eventId} deleted by admin`)
+    return eventToDelete
+  }
+  
 
 }

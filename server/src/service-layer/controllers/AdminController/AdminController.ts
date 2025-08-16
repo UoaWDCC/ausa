@@ -14,7 +14,7 @@ import {
 } from '../../../data-layer/services/UserService'
 import { AdminService } from '../../../data-layer/services/AdminService'
 import {type EventCreationParams, EventService} from '../../../data-layer/services/EventService'
-import {Event, UpdateEventPackage} from 'data-layer/models/Event'
+import {Event} from 'data-layer/models/Event'
 
 @Route('admin')
 export class AdminController extends Controller {
@@ -45,19 +45,34 @@ export class AdminController extends Controller {
   @SuccessResponse('201', 'Created') 
   @Post('create-event')
   public async adminCreateEvent(
-    @Query() requestingUserId: string,
+    // @Query() requestingUserId: string,
     @Body() requestBody: EventCreationParams,
   ): Promise<Event> {
-    const requestingUser = await new UserService().getUser(requestingUserId)
-    if (!requestingUser) {
-      this.setStatus(400) 
-      return null
-    }
-    if (requestingUser.role !== 'admin') {
-      this.setStatus(403) 
-      return null
-    }
+    // const requestingUser = await new UserService().getUser(requestingUserId)
+    // if (!requestingUser) {
+    //   this.setStatus(400) 
+    //   return null
+    // }
+    // if (requestingUser.role !== 'admin') {
+    //   this.setStatus(403) 
+    //   return null
+    // }
     this.setStatus(201)
     return new EventService().createEvent(requestBody)
   }
+
+  @SuccessResponse('200', 'Deleted')
+  @Delete('by-eventId')
+  public async adminDeleteEvent(
+    @Query() eventId: string,
+  ): Promise<Event | null> {
+    const deletedEvent = await new EventService().deleteEvent(eventId)
+    if (!deletedEvent) {
+      this.setStatus(400) 
+      return null
+    }
+    return deletedEvent
+  }
 }
+
+
