@@ -100,19 +100,19 @@ export default async function FAQ({ params }: FAQProps) {
             How Can We Help?
           </h1>
           <FaqBox
+            content="Resources & Services"
             icon={ausa}
             title={faqCategories.data[0].name}
-            content="blahblahblah"
           />
           <FaqBox
+            content="Immediate & Urgent"
             icon={ausa}
             title={faqCategories.data[1].name}
-            content="blahblahblah"
           />
           <FaqBox
+            content="Communities & Local"
             icon={ausa}
             title={faqCategories.data[2].name}
-            content="blahblahblah"
           />
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
