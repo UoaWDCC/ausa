@@ -9,28 +9,36 @@
 		"schemas": {
 			"User": {
 				"properties": {
-					"name": {
-						"type": "string"
-					},
-					"email": {
+					"id": {
 						"type": "string"
 					},
 					"username": {
 						"type": "string"
 					},
-					"id": {
+					"email": {
 						"type": "string"
+					},
+					"name": {
+						"type": "string"
+					},
+					"role": {
+						"type": "string",
+						"enum": [
+							"user",
+							"admin"
+						]
 					}
 				},
 				"required": [
-					"name",
-					"email",
+					"id",
 					"username",
-					"id"
+					"email",
+					"name"
 				],
-				"type": "object"
+				"type": "object",
+				"additionalProperties": false
 			},
-			"Pick_User.id-or-email-or-name-or-username_": {
+			"Pick_User.id-or-email-or-name-or-username-or-role_": {
 				"properties": {
 					"id": {
 						"type": "string"
@@ -43,6 +51,13 @@
 					},
 					"username": {
 						"type": "string"
+					},
+					"role": {
+						"type": "string",
+						"enum": [
+							"user",
+							"admin"
+						]
 					}
 				},
 				"required": [
@@ -55,7 +70,7 @@
 				"description": "From T, pick a set of properties whose keys are in the union K"
 			},
 			"UserCreationParams": {
-				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username_"
+				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username-or-role_"
 			},
 			"UpdateUserPackage": {
 				"properties": {
@@ -425,41 +440,11 @@
 				],
 				"type": "object"
 			},
-			"GetAllEventsResponse": {
+			"Pick_Event.id-or-title-or-heroImage-or-content_": {
 				"properties": {
-					"error": {
+					"id": {
 						"type": "string"
 					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"items": {
-							"$ref": "#/components/schemas/Event"
-						},
-						"type": "array"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"GetEventResponse": {
-				"properties": {
-					"error": {
-						"type": "string"
-					},
-					"message": {
-						"type": "string"
-					},
-					"data": {
-						"$ref": "#/components/schemas/Event"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Pick_Event.Exclude_keyofEvent.id__": {
-				"properties": {
 					"title": {
 						"type": "string"
 					},
@@ -509,18 +494,63 @@
 					}
 				},
 				"required": [
+					"id",
 					"title",
 					"content"
 				],
 				"type": "object",
 				"description": "From T, pick a set of properties whose keys are in the union K"
 			},
-			"Omit_Event.id_": {
-				"$ref": "#/components/schemas/Pick_Event.Exclude_keyofEvent.id__",
-				"description": "Construct a type with the properties of T except for those in type K."
+			"EventCreationParams": {
+				"$ref": "#/components/schemas/Pick_Event.id-or-title-or-heroImage-or-content_"
 			},
-			"createEventRequest": {
-				"$ref": "#/components/schemas/Omit_Event.id_"
+			"UpdateEventPackage": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"heroImage": {
+						"properties": {
+							"alt": {
+								"type": "string"
+							},
+							"src": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"src"
+						],
+						"type": "object"
+					},
+					"content": {
+						"properties": {
+							"callToAction": {
+								"properties": {
+									"href": {
+										"type": "string"
+									},
+									"text": {
+										"type": "string"
+									}
+								},
+								"type": "object"
+							},
+							"body": {
+								"type": "string"
+							},
+							"subtitle": {
+								"type": "string"
+							}
+						},
+						"type": "object"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {
@@ -750,7 +780,7 @@
 				"parameters": [
 					{
 						"in": "query",
-						"name": "userId",
+						"name": "userToDeleteId",
 						"required": true,
 						"schema": {
 							"type": "string"
@@ -1226,16 +1256,126 @@
 				}
 			}
 		},
-		"/events": {
+		"/events/by-name": {
 			"get": {
-				"operationId": "GetAllEvents",
+				"operationId": "GetEventByName",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Found",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/GetAllEventsResponse"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Event"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "name",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/events/{eventId}": {
+			"get": {
+				"operationId": "GetEventById",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Event"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "eventId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"patch": {
+				"operationId": "UpdateEvent",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Event"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "eventId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateEventPackage"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/events": {
+			"get": {
+				"operationId": "GetEvents",
+				"responses": {
+					"200": {
+						"description": "Found",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/Event"
+									},
+									"type": "array"
 								}
 							}
 						}
@@ -1248,46 +1388,45 @@
 				"operationId": "CreateEvent",
 				"responses": {
 					"201": {
-						"description": "Event successfully created",
+						"description": "Created",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/GetEventResponse"
+									"$ref": "#/components/schemas/Event"
 								}
 							}
 						}
 					}
 				},
-				"security": [
-					{
-						"jwt": [
-							"admin"
-						]
-					}
-				],
+				"security": [],
 				"parameters": [],
 				"requestBody": {
 					"required": true,
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/createEventRequest"
+								"$ref": "#/components/schemas/EventCreationParams"
 							}
 						}
 					}
 				}
 			}
 		},
-		"/events/{id}": {
-			"get": {
-				"operationId": "GetEventById",
+		"/events/by-eventId": {
+			"delete": {
+				"operationId": "DeleteEvent",
 				"responses": {
 					"200": {
-						"description": "Ok",
+						"description": "Deleted",
 						"content": {
 							"application/json": {
 								"schema": {
-									"$ref": "#/components/schemas/GetEventResponse"
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Event"
+										}
+									],
+									"nullable": true
 								}
 							}
 						}
@@ -1296,8 +1435,87 @@
 				"security": [],
 				"parameters": [
 					{
-						"in": "path",
-						"name": "id",
+						"in": "query",
+						"name": "eventId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/admin": {
+			"post": {
+				"operationId": "AdminCreateUser",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/User"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "requestingUserId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UserCreationParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/by-userId": {
+			"delete": {
+				"operationId": "DeleteUser",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/User"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "requestingUserId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "userToDeleteId",
 						"required": true,
 						"schema": {
 							"type": "string"

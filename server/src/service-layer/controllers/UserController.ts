@@ -55,8 +55,15 @@ export class UserController extends Controller {
 
   @SuccessResponse('200', 'Deleted')
   @Delete('by-userId')
-  public async deleteUser(@Query() userId: string): Promise<User | null> {
-    return new UserService().deleteUser(userId)
+  public async deleteUser(
+    @Query() userToDeleteId: string,
+  ): Promise<User | null> {
+    const deletedUser = await new UserService().deleteUser(userToDeleteId)
+    if (!deletedUser) {
+      this.setStatus(400)
+      return null
+    }
+    return deletedUser
   }
 
   @SuccessResponse('200', 'Updated')

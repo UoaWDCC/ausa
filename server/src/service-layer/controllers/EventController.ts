@@ -1,58 +1,62 @@
-import { EventService } from 'data-layer/services/EventService'
-import { StatusCodes } from 'http-status-codes'
-import { createEventRequest } from 'service-layer/request-models/EventRequests'
-import type {
-  GetAllEventsResponse,
-  GetEventResponse,
-} from 'service-layer/response-models/EventResponses'
+import type { Event, UpdateEventPackage } from 'data-layer/models/Event'
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  Patch,
   Path,
   Post,
+  Query,
   Route,
-  Security,
   SuccessResponse,
 } from 'tsoa'
+import {
+  type EventCreationParams,
+  EventService,
+} from '../../data-layer/services/EventService'
 
 @Route('events')
 export class EventController extends Controller {
+  @SuccessResponse('200', 'Found')
+  @Get('by-name')
+  public async getEventByName(@Query() name: string): Promise<Event | null> {
+    return new EventService().getEventByName(name)
+  }
+
+  @SuccessResponse('200', 'Found')
+  @Get('{eventId}')
+  public async getEventById(@Path() eventId: string): Promise<Event | null> {
+    return new EventService().getEvent(eventId)
+  }
+
+  @SuccessResponse('200', 'Found')
   @Get()
-  public async getAllEvents(): Promise<GetAllEventsResponse> {
-    try {
-      const events = await EventService.getAllEvents()
-      return { data: events }
-    } catch (error) {
-      console.error('Error retrieving events:', error)
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
-      return { error: 'Failed to retrieve events' }
-    }
+  public async getEvents(): Promise<Event[]> {
+    return new EventService().getAllEvents()
   }
 
-  @Get('{id}')
-  public async getEventById(@Path() id: string): Promise<GetEventResponse> {
-    try {
-      const event = await EventService.getEventById(id)
-      return { data: event }
-    } catch (error) {
-      console.error('Error retrieving event:', error)
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
-      return { error: 'Failed to retrieve event' }
-    }
-  }
-
-  @Security('jwt', ['admin'])
+  @SuccessResponse('201', 'Created')
   @Post()
-  @SuccessResponse(StatusCodes.CREATED, 'Event successfully created')
-  public async createEvent(@Body() event: createEventRequest): Promise<GetEventResponse> {
-    try {
-      const createdEvent = await EventService.createEvent(event)
-      return { data: createdEvent }
-    } catch (error) {
-      console.error('Error creating event:', error)
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
-      return { error: 'Failed to create event' }
-    }
+  public async createEvent(
+    @Body() requestBody: EventCreationParams,
+  ): Promise<Event> {
+    this.setStatus(201)
+    return new EventService().createEvent(requestBody)
+  }
+
+  @SuccessResponse('200', 'Deleted')
+  @Delete('by-eventId')
+  public async deleteEvent(@Query() eventId: string): Promise<Event | null> {
+    return new EventService().deleteEvent(eventId)
+  }
+
+  @SuccessResponse('200', 'Updated')
+  @Patch('{eventId}')
+  public async updateEvent(
+    @Path() eventId: string,
+    @Body() updates: UpdateEventPackage,
+  ): Promise<Event | null> {
+    return new EventService().updateEvent(eventId, updates)
   }
 }
