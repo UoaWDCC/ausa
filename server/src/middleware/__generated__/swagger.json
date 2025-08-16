@@ -1461,16 +1461,7 @@
 					}
 				},
 				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "requestingUserId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
+				"parameters": [],
 				"requestBody": {
 					"required": true,
 					"content": {
@@ -1507,15 +1498,62 @@
 				"parameters": [
 					{
 						"in": "query",
-						"name": "requestingUserId",
+						"name": "userToDeleteId",
 						"required": true,
 						"schema": {
 							"type": "string"
 						}
-					},
+					}
+				]
+			}
+		},
+		"/admin/create-event": {
+			"post": {
+				"operationId": "AdminCreateEvent",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/Event"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/EventCreationParams"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/by-eventId": {
+			"delete": {
+				"operationId": "AdminDeleteEvent",
+				"responses": {
+					"200": {
+						"description": "Deleted",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
 					{
 						"in": "query",
-						"name": "userToDeleteId",
+						"name": "eventId",
 						"required": true,
 						"schema": {
 							"type": "string"
