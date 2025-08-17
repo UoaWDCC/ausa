@@ -18,8 +18,14 @@ const saveUser = async (user: any) => {
       JSON.stringify({ ...newUser, id: user.uid }),
     )
     const { data: responseBody, response } = await client.POST('/users', {
-      body: { ...newUser, id: user.uid },
+    body: { 
+      id: newUser.id, 
+      data: {
+        ...newUser
+      }
+    } as any
     })
+    console.log(newUser)
     console.log('Response status:', response.status)
     console.log('Response body:', responseBody)
     console.log('User saved successfully')
@@ -31,5 +37,4 @@ const saveUser = async (user: any) => {
     return error
   }
 }
-
 export { saveUser }
