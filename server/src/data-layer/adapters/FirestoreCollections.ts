@@ -6,6 +6,7 @@ import type { FaqCategory } from 'data-layer/models/FaqCategories'
 import type { User } from 'data-layer/models/User'
 import {
   EVENTS_COLLECTION,
+  EXTERNAL_RESOURCES_CATEGORIES_COLLECTION,
   EXTERNAL_RESOURCES_COLLECTION,
   FAQ_CATEGORIES_COLLECTION,
   FAQ_COLLECTION,
