@@ -1,4 +1,5 @@
 import { redirect } from 'next/navigation'
+import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import client from '@/services/fetch-client'
 import {
   Accordion,
@@ -81,27 +82,24 @@ export default async function FAQ({ params }: FAQProps) {
     <div className="mt-[70px] flex min-h-[100vh] flex-col">
       <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
         <div
-          className="hidden md:flex flex-col col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
+          className="md:flex flex-col col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
           id="section-left"
         >
-          <h1 className="mb-2 flex justify-center text-2xl font-bold">
+          <h1 className="mb-2 flex justify-center text-3xl font-bold">
             How Can We Help?
           </h1>
           <FaqBox
-            content="blahblahblah"
+            content="becky cheng"
             icon={ausa}
             title={faqCategories[0].name}
           />
           <FaqBox
-            content="blahblahblah"
+            content="nicky tian"
             icon={ausa}
             title={faqCategories[1].name}
           />
-          <FaqBox
-            content="blahblahblah"
-            icon={ausa}
-            title={faqCategories[2].name}
-          />
+          <FaqBox content="eve lee" icon={ausa} title={faqCategories[2].name} />
+
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
               key={category.id}
@@ -118,7 +116,7 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
 
         <div
-          className="flex flex-col gap-8 border bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
+          className="relative border-r-2 border-slate-900 rounded-tr-lg flex flex-col gap-8 bg-slate-800/55 px-[5%] py-[15%] text-white md:col-span-2 lg:col-span-3"
           id="section-right"
         >
           <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>

@@ -8,13 +8,13 @@ type FaqBoxProps = {
 
 const FaqBox = ({ icon, content, title }: FaqBoxProps) => {
   return (
-    <div className="flex gap-4 w-[250px] border-neutral-400 border-3 rounded-md p-2 m-4 bg-neutral-200 hover:bg-white transition-all duration-300 font-ReemKufi">
+    <div className="flex gap-4 w-[250px] border rounded-md p-2 bg-slate-500/70 hover:bg-slate-500/80 transition-all duration-300 font-ReemKufi">
       <div>
         <Image alt="" height={20} src={icon} width={20} />
       </div>
-      <div className="text-black">
+      <div className="text-slate-200">
         <h1 className="text-lg ">{title}</h1>
-        <p className="text-[#2D3B4E]">{content}</p>
+        <p className="text-slate-400">{content}</p>
       </div>
     </div>
   )
