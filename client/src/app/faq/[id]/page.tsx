@@ -90,8 +90,8 @@ export default async function FAQ({ params }: FAQProps) {
   //console.log('faqCategoryMap', faqCategoryMap)
 
   return (
-    <div className="mt-[70px] flex min-h-[100vh] flex-col">
-      <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-[65px] flex flex-col min-h-screen w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] ">
+      <div className="flex  w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4 flex-1">
         <div
           className="hidden md:flex flex-col col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
           id="section-left"
@@ -99,6 +99,7 @@ export default async function FAQ({ params }: FAQProps) {
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
             How Can We Help?
           </h1>
+          <div className = "flex flex-col items-center gap-4 md:gap-8">
           <FaqBox
             content="Resources & Services"
             icon={ausa}
@@ -113,7 +114,9 @@ export default async function FAQ({ params }: FAQProps) {
             content="Communities & Local"
             icon={ausa}
             title={faqCategories.data[2].name}
+            
           />
+          </div>
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
               key={category.id}
@@ -130,7 +133,7 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
 
         <div
-          className="flex flex-col gap-8 border bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
+          className="flex flex-col gap-8 bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
           id="section-right"
         >
           <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
