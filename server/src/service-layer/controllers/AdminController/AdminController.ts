@@ -1,3 +1,4 @@
+/* 
 import type { User } from 'data-layer/models/User'
 import type { CreateUserRequestBody } from 'service-layer/request-models/UserRequests'
 import {
@@ -35,3 +36,4 @@ export class AdminController extends Controller {
     return deletedUser
   }
 }
+*/

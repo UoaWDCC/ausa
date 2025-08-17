@@ -1,5 +1,5 @@
-import type { User, UpdateUserPackage } from 'data-layer/models/User'
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
+import type { UpdateUserPackage, User } from 'data-layer/models/User'
 
 export class UserService {
   /**
@@ -62,28 +62,28 @@ export class UserService {
    *
    * @returns a list of users
    */
-  async getAllUsers(): Promise<User[]> {
-    const snapShot = await FirestoreCollections.users.get()
-    const userList: User[] = snapShot.docs.map((doc) => ({
-      id: doc.id,
-      name: doc.data().name,
-      username: doc.data().email,
-      email: doc.data().email,
-    }))
-    console.log(
-      userList.map((user) => {
-        user
-      }),
-    )
-    return userList
-  }
+  // async getAllUsers(): Promise<User[]> {
+  //   const snapShot = await FirestoreCollections.users.get()
+  //   const userList: User[] = snapShot.docs.map((doc) => ({
+  //     id: doc.id,
+  //     name: doc.data().name,
+  //     username: doc.data().email,
+  //     email: doc.data().email,
+  //   }))
+  //   console.log(
+  //     userList.map((user) => {
+  //       user
+  //     }),
+  //   )
+  //   return userList
+  // }
 
   /**
    * Creates a new user with the parameters provided without passing in the id
    * @param params - The parameters for creating a user.
    * @returns A promise that resolves to the created user.
    */
-  async createUser(id:string, newUser:User): Promise<User> {
+  async createUser(id: string, newUser: User): Promise<User> {
     const userRef = await FirestoreCollections.users.doc(id)
     await userRef.set(newUser)
     console.log(newUser)
@@ -108,37 +108,35 @@ export class UserService {
     return user
   }
 
-  async updateUser(
-    userId: string,
-    updates: UpdateUserPackage,
-  ): Promise<User | null> {
-    const userRef = await FirestoreCollections.users.doc(userId)
-    const doc = await userRef.get()
-    if (!doc.exists) {
-      console.log(`User - ${userId} is not found`)
-      return null
-    }
-    await userRef.set(updates, { merge: true })
-    const updatedUser = await userRef.get()
-    return updatedUser.data() as User
-  }
+  // async updateUser(
+  //   userId: string,
+  //   updates: UpdateUserPackage,
+  // ): Promise<User | null> {
+  //   const userRef = await FirestoreCollections.users.doc(userId)
+  //   const doc = await userRef.get()
+  //   if (!doc.exists) {
+  //     console.log(`User - ${userId} is not found`)
+  //     return null
+  //   }
+  //   await userRef.set(updates, { merge: true })
+  //   const updatedUser = await userRef.get()
+  //   return updatedUser.data() as User
+  // }
 
   async adminAddUser(
-    newUser:User,
+    newUser: User,
     id: string,
     // role: 'admin' | 'user',
   ): Promise<User | null> {
-    const createdUser = await this.createUser(id, newUser);
+    const createdUser = await this.createUser(id, newUser)
     if (!createdUser) {
       console.log('user failed on creation')
       return null
     }
-    return createdUser;
+    return createdUser
   }
 
-  async adminDeleteUser(
-    userToDeleteId: string,
-  ): Promise<User | null> {
+  async adminDeleteUser(userToDeleteId: string): Promise<User | null> {
     // checking if user exists and/or is admin
     // checking if user to delete exists and deleting it if it does by calling deleteUser
     const userToDelete = await this.deleteUser(userToDeleteId)

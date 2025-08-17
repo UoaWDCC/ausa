@@ -1,77 +1,33 @@
 'use client'
-import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth'
+import { useState } from 'react'
+import AuthService from 'services/AuthService'
+import { handleGoogleSignIn } from 'services/GoogleLogin'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { auth } from '@/lib/firebase'
-import type { User } from '@/types/types'
-import { useState } from 'react'
-import client from '@/services/fetch-client'
-import { handleGoogleSignIn } from 'services/GoogleLogin'
 
 const Signup = () => {
   const [form, setForm] = useState({
-    name: '',
+    firstname: '',
+    lastname: '',
     email: '',
     password: '',
   })
   const [loading, setLoading] = useState(false)
 
-  const convertToUser = (user: any): User => {
-    return {
-      id: user.uid,
-      username: user.displayName,
-      email: user.email,
-      name: user.displayName,
-    }
-  }
-
-  const saveUser = async (user: any) => {
-    try {
-      const newUser = convertToUser(user)
-      // const userRef = doc(db, 'users', user.uid)
-      // const userDoc = await getDoc(userRef)
-      // if (!userDoc.exists()) {
-      //   await setDoc(userRef, {
-      //     id: user.uid,
-      //     username: user.username,
-      //     email: user.email,
-      //     name: user.name,
-      //   })
-      console.log(
-        'Sending user to backend:',
-        JSON.stringify({ ...newUser, id: user.uid }),
-      )
-      const { data: responseBody, response } = await client.POST('/users', {
-        body: { ...newUser, id: user.uid },
-      })
-      console.log('Response status:', response.status)
-      console.log('Response body:', responseBody)
-      console.log('User saved successfully')
-    } catch (error) {
-      console.error('Error saving user:', error)
-      console.log('User already exists')
-    }
-  }
-
   const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (!form.name || !form.email || !form.password) {
+    if (!form.firstname || form.lastname || !form.email || !form.password) {
       alert('Please fill in all required fields!')
       return
     }
 
     setLoading(true)
     try {
-      const userCred = await createUserWithEmailAndPassword(
-        auth,
-        form.email,
-        form.password,
-      )
-      await updateProfile(userCred.user, {
-        displayName: form.name,
+      await AuthService.signUpUser(form.email, form.password, {
+        firstname: form.firstname,
+        lastname: form.lastname,
       })
-      await saveUser(userCred.user)
       alert('Account created successfully!')
     } catch (error: any) {
       console.error('Signup error:', error)
@@ -99,24 +55,41 @@ const Signup = () => {
           <TiledAusaBackground />
           <h1 className="mb-6 text-3xl font-semibold">Sign Up To AUSA!</h1>
           <form
-            onSubmit={handleEmailSignUp}
             className="space-y-6 text-left text-black"
+            onSubmit={handleEmailSignUp}
           >
             <div>
               <label
                 className="block text-sm font-medium text-white mt-4"
                 htmlFor="name"
               >
-                Full Name
+                First Name
               </label>
               <Input
                 aria-invalid={false}
-                id="name"
-                placeholder="Becky Cheng"
-                required
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                type="text"
                 disabled={loading}
+                id="firstname"
+                onChange={(e) =>
+                  setForm({ ...form, firstname: e.target.value })
+                }
+                placeholder="Becky"
+                required
+                type="text"
+              />
+              <label
+                className="block text-sm font-medium text-white mt-4"
+                htmlFor="name"
+              >
+                Last Name
+              </label>
+              <Input
+                aria-invalid={false}
+                disabled={loading}
+                id="lastname"
+                onChange={(e) => setForm({ ...form, lastname: e.target.value })}
+                placeholder="Cheng"
+                required
+                type="text"
               />
               <label
                 className="block text-sm font-medium text-white mt-4"
@@ -126,14 +99,14 @@ const Signup = () => {
               </label>
               <Input
                 aria-invalid={false}
+                disabled={loading}
                 id="email"
-                placeholder="email@example.com"
-                required
-                type="email"
                 onChange={(e) =>
                   setForm({ ...form, email: e.currentTarget.value })
                 }
-                disabled={loading}
+                placeholder="email@example.com"
+                required
+                type="email"
               />
               <div>
                 <label
@@ -144,31 +117,31 @@ const Signup = () => {
                 </label>
                 <Input
                   aria-invalid={false}
+                  disabled={loading}
                   id="password"
-                  placeholder="••••••••••"
-                  required
-                  type="password"
                   onChange={(e) =>
                     setForm({ ...form, password: e.currentTarget.value })
                   }
-                  disabled={loading}
+                  placeholder="••••••••••"
+                  required
+                  type="password"
                 />
               </div>
             </div>
 
             <Button
-              type="submit"
-              disabled={loading}
               className="w-full cursor-pointer"
+              disabled={loading}
+              type="submit"
             >
               {loading ? 'Creating account' : 'Create Account'}
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
+                disabled={loading}
                 onClick={handleGoogleSignIn}
                 type="button"
-                disabled={loading}
               >
                 Sign up with Google
               </button>

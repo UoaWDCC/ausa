@@ -9,9 +9,6 @@
 		"schemas": {
 			"User": {
 				"properties": {
-					"username": {
-						"type": "string"
-					},
 					"firstname": {
 						"type": "string"
 					},
@@ -27,7 +24,6 @@
 					}
 				},
 				"required": [
-					"username",
 					"firstname",
 					"lastname"
 				],
@@ -51,21 +47,6 @@
 					"email",
 					"password"
 				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"UpdateUserPackage": {
-				"properties": {
-					"username": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					}
-				},
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -548,70 +529,9 @@
 						}
 					}
 				]
-			},
-			"patch": {
-				"operationId": "UpdateUser",
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateUserPackage"
-							}
-						}
-					}
-				}
 			}
 		},
 		"/users": {
-			"get": {
-				"operationId": "GetUsers",
-				"responses": {
-					"200": {
-						"description": "Found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/User"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": []
-			},
 			"post": {
 				"operationId": "CreateUser",
 				"responses": {
@@ -1321,68 +1241,6 @@
 					{
 						"in": "query",
 						"name": "eventId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/admin": {
-			"post": {
-				"operationId": "AdminCreateUser",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/User"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/CreateUserRequestBody"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/by-userId": {
-			"delete": {
-				"operationId": "DeleteUser",
-				"responses": {
-					"200": {
-						"description": "Deleted",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "userToDeleteId",
 						"required": true,
 						"schema": {
 							"type": "string"

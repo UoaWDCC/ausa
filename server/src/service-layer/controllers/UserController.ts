@@ -1,12 +1,11 @@
 import AuthService from 'business-layer/services/AuthService'
-import type { UpdateUserPackage, User } from 'data-layer/models/User'
+import type { User } from 'data-layer/models/User'
 import type { CreateUserRequestBody } from 'service-layer/request-models/UserRequests'
 import {
   Body,
   Controller,
   Delete,
   Get,
-  Patch,
   Path,
   Post,
   Query,
@@ -37,11 +36,11 @@ export class UserController extends Controller {
     return new UserService().getUser(userId)
   }
 
-  @SuccessResponse('200', 'Found')
-  @Get()
-  public async getUsers(): Promise<User[]> {
-    return new UserService().getAllUsers()
-  }
+  // @SuccessResponse('200', 'Found')
+  // @Get()
+  // public async getUsers(): Promise<User[]> {
+  //   return new UserService().getAllUsers()
+  // }
 
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
@@ -69,12 +68,12 @@ export class UserController extends Controller {
     return deletedUser
   }
 
-  @SuccessResponse('200', 'Updated')
-  @Patch('{userId}')
-  public async updateUser(
-    @Query() userId: string,
-    @Body() updates: UpdateUserPackage,
-  ): Promise<User | null> {
-    return new UserService().updateUser(userId, updates)
-  }
+  // @SuccessResponse('200', 'Updated')
+  // @Patch('{userId}')
+  // public async updateUser(
+  //   @Query() userId: string,
+  //   @Body() updates: UpdateUserPackage,
+  // ): Promise<User | null> {
+  //   return new UserService().updateUser(userId, updates)
+  // }
 }
