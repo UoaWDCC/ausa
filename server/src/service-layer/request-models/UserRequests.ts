@@ -1,6 +1,7 @@
 import type { User } from 'data-layer/models/User'
 
 export interface CreateUserRequestBody {
-  id: string
   data: User
+  email: string
+  password: string
 }

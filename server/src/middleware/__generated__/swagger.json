@@ -9,16 +9,13 @@
 		"schemas": {
 			"User": {
 				"properties": {
-					"id": {
-						"type": "string"
-					},
 					"username": {
 						"type": "string"
 					},
-					"email": {
+					"firstname": {
 						"type": "string"
 					},
-					"name": {
+					"lastname": {
 						"type": "string"
 					},
 					"role": {
@@ -30,47 +27,32 @@
 					}
 				},
 				"required": [
-					"id",
 					"username",
-					"email",
-					"name"
+					"firstname",
+					"lastname"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_User.id-or-email-or-name-or-username-or-role_": {
+			"CreateUserRequestBody": {
 				"properties": {
-					"id": {
-						"type": "string"
+					"data": {
+						"$ref": "#/components/schemas/User"
 					},
 					"email": {
 						"type": "string"
 					},
-					"name": {
+					"password": {
 						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"role": {
-						"type": "string",
-						"enum": [
-							"user",
-							"admin"
-						]
 					}
 				},
 				"required": [
-					"id",
+					"data",
 					"email",
-					"name",
-					"username"
+					"password"
 				],
 				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"UserCreationParams": {
-				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username-or-role_"
+				"additionalProperties": false
 			},
 			"UpdateUserPackage": {
 				"properties": {
@@ -651,7 +633,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/UserCreationParams"
+								"$ref": "#/components/schemas/CreateUserRequestBody"
 							}
 						}
 					}
@@ -1363,22 +1345,13 @@
 					}
 				},
 				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "requestingUserId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
+				"parameters": [],
 				"requestBody": {
 					"required": true,
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/UserCreationParams"
+								"$ref": "#/components/schemas/CreateUserRequestBody"
 							}
 						}
 					}
@@ -1407,14 +1380,6 @@
 				},
 				"security": [],
 				"parameters": [
-					{
-						"in": "query",
-						"name": "requestingUserId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
 					{
 						"in": "query",
 						"name": "userToDeleteId",

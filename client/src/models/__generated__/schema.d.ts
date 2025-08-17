@@ -281,23 +281,17 @@ export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
         User: {
-            id: string;
             username: string;
-            email: string;
-            name: string;
+            firstname: string;
+            lastname: string;
             /** @enum {string} */
             role?: "user" | "admin";
         };
-        /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_User.id-or-email-or-name-or-username-or-role_": {
-            id: string;
+        CreateUserRequestBody: {
+            data: components["schemas"]["User"];
             email: string;
-            name: string;
-            username: string;
-            /** @enum {string} */
-            role?: "user" | "admin";
+            password: string;
         };
-        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username-or-role_"];
         UpdateUserPackage: {
             username?: string;
             name?: string;
@@ -548,7 +542,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["UserCreationParams"];
+                "application/json": components["schemas"]["CreateUserRequestBody"];
             };
         };
         responses: {
@@ -1064,16 +1058,14 @@ export interface operations {
     };
     AdminCreateUser: {
         parameters: {
-            query: {
-                requestingUserId: string;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["UserCreationParams"];
+                "application/json": components["schemas"]["CreateUserRequestBody"];
             };
         };
         responses: {
@@ -1091,7 +1083,6 @@ export interface operations {
     DeleteUser: {
         parameters: {
             query: {
-                requestingUserId: string;
                 userToDeleteId: string;
             };
             header?: never;

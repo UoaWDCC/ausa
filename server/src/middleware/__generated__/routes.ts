@@ -28,23 +28,22 @@ const models: TsoaRoute.Models = {
     "User": {
         "dataType": "refObject",
         "properties": {
-            "id": {"dataType":"string","required":true},
             "username": {"dataType":"string","required":true},
-            "email": {"dataType":"string","required":true},
-            "name": {"dataType":"string","required":true},
+            "firstname": {"dataType":"string","required":true},
+            "lastname": {"dataType":"string","required":true},
             "role": {"dataType":"union","subSchemas":[{"dataType":"enum","enums":["user"]},{"dataType":"enum","enums":["admin"]}]},
         },
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_User.id-or-email-or-name-or-username-or-role_": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"id":{"dataType":"string","required":true},"email":{"dataType":"string","required":true},"name":{"dataType":"string","required":true},"username":{"dataType":"string","required":true},"role":{"dataType":"union","subSchemas":[{"dataType":"enum","enums":["user"]},{"dataType":"enum","enums":["admin"]}]}},"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "UserCreationParams": {
-        "dataType": "refAlias",
-        "type": {"ref":"Pick_User.id-or-email-or-name-or-username-or-role_","validators":{}},
+    "CreateUserRequestBody": {
+        "dataType": "refObject",
+        "properties": {
+            "data": {"ref":"User","required":true},
+            "email": {"dataType":"string","required":true},
+            "password": {"dataType":"string","required":true},
+        },
+        "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UpdateUserPackage": {
@@ -387,7 +386,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsUserController_createUser: Record<string, TsoaRoute.ParameterSchema> = {
-                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"UserCreationParams"},
+                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"CreateUserRequestBody"},
         };
         app.post('/users',
             ...(fetchMiddlewares<RequestHandler>(UserController)),
@@ -1120,8 +1119,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsAdminController_adminCreateUser: Record<string, TsoaRoute.ParameterSchema> = {
-                requestingUserId: {"in":"query","name":"requestingUserId","required":true,"dataType":"string"},
-                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"UserCreationParams"},
+                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"CreateUserRequestBody"},
         };
         app.post('/admin',
             ...(fetchMiddlewares<RequestHandler>(AdminController)),
@@ -1151,7 +1149,6 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsAdminController_deleteUser: Record<string, TsoaRoute.ParameterSchema> = {
-                requestingUserId: {"in":"query","name":"requestingUserId","required":true,"dataType":"string"},
                 userToDeleteId: {"in":"query","name":"userToDeleteId","required":true,"dataType":"string"},
         };
         app.delete('/admin/by-userId',

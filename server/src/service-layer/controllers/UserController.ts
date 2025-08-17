@@ -1,3 +1,4 @@
+import AuthService from 'business-layer/services/AuthService'
 import type { UpdateUserPackage, User } from 'data-layer/models/User'
 import type { CreateUserRequestBody } from 'service-layer/request-models/UserRequests'
 import {
@@ -12,9 +13,7 @@ import {
   Route,
   SuccessResponse,
 } from 'tsoa'
-import {
-  UserService,
-} from '../../data-layer/services/UserService'
+import { UserService } from '../../data-layer/services/UserService'
 
 @Route('users')
 export class UserController extends Controller {
@@ -49,8 +48,12 @@ export class UserController extends Controller {
   public async createUser(
     @Body() requestBody: CreateUserRequestBody,
   ): Promise<User> {
+    const userRecord = await new AuthService().createUser(
+      requestBody.email,
+      requestBody.password,
+    )
     this.setStatus(201)
-    return new UserService().createUser(requestBody.id, requestBody.data)
+    return new UserService().createUser(userRecord.uid, requestBody.data)
   }
 
   @SuccessResponse('200', 'Deleted')
