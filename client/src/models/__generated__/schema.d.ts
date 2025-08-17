@@ -180,6 +180,38 @@ export interface paths {
         patch: operations["UpdateExternalResource"];
         trace?: never;
     };
+    "/external-resource-category": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetAllCategories"];
+        put?: never;
+        post: operations["CreateCategory"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/external-resource-category/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetCategory"];
+        put?: never;
+        post?: never;
+        delete: operations["DeleteCategory"];
+        options?: never;
+        head?: never;
+        patch: operations["UpdateCategory"];
+        trace?: never;
+    };
     "/events/by-name": {
         parameters: {
             query?: never;
@@ -399,6 +431,35 @@ export interface components {
             description?: string;
         };
         updateExternalResourceRequest: components["schemas"]["Partial_createExternalResourceRequest_"];
+        ExternalResourceCategory: {
+            id: string;
+            name: string;
+            description: string;
+        };
+        GetAllExternalResourceCategoryResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["ExternalResourceCategory"][];
+        };
+        GetExternalResourceCategoryResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["ExternalResourceCategory"];
+        };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__": {
+            name: string;
+            description: string;
+        };
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_ExternalResourceCategory.id_": components["schemas"]["Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__"];
+        createExternalResourceCategoryRequest: components["schemas"]["Omit_ExternalResourceCategory.id_"];
+        /** @description Make all properties in T optional */
+        Partial_createExternalResourceCategoryRequest_: {
+            name?: string;
+            description?: string;
+        };
+        updateExternalResourceCategoryRequest: components["schemas"]["Partial_createExternalResourceCategoryRequest_"];
         Event: {
             link?: string;
             date: string;
@@ -544,9 +605,7 @@ export interface operations {
     };
     CreateUser: {
         parameters: {
-            query: {
-                requestingUserId: string;
-            };
+            query?: never;
             header?: never;
             path?: never;
             cookie?: never;
@@ -973,11 +1032,124 @@ export interface operations {
             };
         };
     };
+    GetAllCategories: {
+        parameters: {
+            query?: {
+                name?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetAllExternalResourceCategoryResponse"];
+                };
+            };
+        };
+    };
+    CreateCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["createExternalResourceCategoryRequest"];
+            };
+        };
+        responses: {
+            /** @description Successfully created External Resource Category */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                };
+            };
+        };
+    };
+    GetCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                };
+            };
+        };
+    };
+    DeleteCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted FAQ category */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
+    UpdateCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["updateExternalResourceCategoryRequest"];
+            };
+        };
+        responses: {
+            /** @description Successfully updated FAQ category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                };
+            };
+        };
+    };
     GetEventByName: {
         parameters: {
             query: {
                 name: string;
-
             };
             header?: never;
             path?: never;
