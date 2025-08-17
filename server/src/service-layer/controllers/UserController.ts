@@ -1,4 +1,5 @@
 import type { UpdateUserPackage, User } from 'data-layer/models/User'
+import type { CreateUserRequestBody } from 'service-layer/request-models/UserRequests'
 import {
   Body,
   Controller,
@@ -12,7 +13,6 @@ import {
   SuccessResponse,
 } from 'tsoa'
 import {
-  type UserCreationParams,
   UserService,
 } from '../../data-layer/services/UserService'
 
@@ -47,10 +47,10 @@ export class UserController extends Controller {
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
   public async createUser(
-    @Body() requestBody: UserCreationParams,
+    @Body() requestBody: CreateUserRequestBody,
   ): Promise<User> {
     this.setStatus(201)
-    return new UserService().createUser(requestBody)
+    return new UserService().createUser(requestBody.id, requestBody.data)
   }
 
   @SuccessResponse('200', 'Deleted')
