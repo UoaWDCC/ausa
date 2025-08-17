@@ -9,16 +9,10 @@
 		"schemas": {
 			"User": {
 				"properties": {
-					"id": {
+					"firstname": {
 						"type": "string"
 					},
-					"username": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"name": {
+					"lastname": {
 						"type": "string"
 					},
 					"role": {
@@ -30,60 +24,29 @@
 					}
 				},
 				"required": [
-					"id",
-					"username",
-					"email",
-					"name"
+					"firstname",
+					"lastname"
 				],
 				"type": "object",
 				"additionalProperties": false
 			},
-			"Pick_User.id-or-email-or-name-or-username-or-role_": {
+			"CreateUserRequestBody": {
 				"properties": {
-					"id": {
-						"type": "string"
+					"data": {
+						"$ref": "#/components/schemas/User"
 					},
 					"email": {
 						"type": "string"
 					},
-					"name": {
+					"password": {
 						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"role": {
-						"type": "string",
-						"enum": [
-							"user",
-							"admin"
-						]
 					}
 				},
 				"required": [
-					"id",
+					"data",
 					"email",
-					"name",
-					"username"
+					"password"
 				],
-				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"UserCreationParams": {
-				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username-or-role_"
-			},
-			"UpdateUserPackage": {
-				"properties": {
-					"username": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					}
-				},
 				"type": "object",
 				"additionalProperties": false
 			},
@@ -566,70 +529,9 @@
 						}
 					}
 				]
-			},
-			"patch": {
-				"operationId": "UpdateUser",
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateUserPackage"
-							}
-						}
-					}
-				}
 			}
 		},
 		"/users": {
-			"get": {
-				"operationId": "GetUsers",
-				"responses": {
-					"200": {
-						"description": "Found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/User"
-									},
-									"type": "array"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": []
-			},
 			"post": {
 				"operationId": "CreateUser",
 				"responses": {
@@ -651,7 +553,7 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/UserCreationParams"
+								"$ref": "#/components/schemas/CreateUserRequestBody"
 							}
 						}
 					}
@@ -1339,85 +1241,6 @@
 					{
 						"in": "query",
 						"name": "eventId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/admin": {
-			"post": {
-				"operationId": "AdminCreateUser",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/User"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "requestingUserId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserCreationParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/by-userId": {
-			"delete": {
-				"operationId": "DeleteUser",
-				"responses": {
-					"200": {
-						"description": "Deleted",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "requestingUserId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "query",
-						"name": "userToDeleteId",
 						"required": true,
 						"schema": {
 							"type": "string"

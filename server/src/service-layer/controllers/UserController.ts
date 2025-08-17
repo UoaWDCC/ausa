@@ -1,20 +1,18 @@
-import type { UpdateUserPackage, User } from 'data-layer/models/User'
+import AuthService from 'business-layer/services/AuthService'
+import type { User } from 'data-layer/models/User'
+import type { CreateUserRequestBody } from 'service-layer/request-models/UserRequests'
 import {
   Body,
   Controller,
   Delete,
   Get,
-  Patch,
   Path,
   Post,
   Query,
   Route,
   SuccessResponse,
 } from 'tsoa'
-import {
-  type UserCreationParams,
-  UserService,
-} from '../../data-layer/services/UserService'
+import { UserService } from '../../data-layer/services/UserService'
 
 @Route('users')
 export class UserController extends Controller {
@@ -38,19 +36,23 @@ export class UserController extends Controller {
     return new UserService().getUser(userId)
   }
 
-  @SuccessResponse('200', 'Found')
-  @Get()
-  public async getUsers(): Promise<User[]> {
-    return new UserService().getAllUsers()
-  }
+  // @SuccessResponse('200', 'Found')
+  // @Get()
+  // public async getUsers(): Promise<User[]> {
+  //   return new UserService().getAllUsers()
+  // }
 
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
   public async createUser(
-    @Body() requestBody: UserCreationParams,
+    @Body() requestBody: CreateUserRequestBody,
   ): Promise<User> {
+    const userRecord = await new AuthService().createUser(
+      requestBody.email,
+      requestBody.password,
+    )
     this.setStatus(201)
-    return new UserService().createUser(requestBody)
+    return new UserService().createUser(userRecord.uid, requestBody.data)
   }
 
   @SuccessResponse('200', 'Deleted')
@@ -66,12 +68,12 @@ export class UserController extends Controller {
     return deletedUser
   }
 
-  @SuccessResponse('200', 'Updated')
-  @Patch('{userId}')
-  public async updateUser(
-    @Query() userId: string,
-    @Body() updates: UpdateUserPackage,
-  ): Promise<User | null> {
-    return new UserService().updateUser(userId, updates)
-  }
+  // @SuccessResponse('200', 'Updated')
+  // @Patch('{userId}')
+  // public async updateUser(
+  //   @Query() userId: string,
+  //   @Body() updates: UpdateUserPackage,
+  // ): Promise<User | null> {
+  //   return new UserService().updateUser(userId, updates)
+  // }
 }

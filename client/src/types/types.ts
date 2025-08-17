@@ -1,3 +1,5 @@
+import type { components } from '@/models/__generated__/schema'
+
 export interface Faq {
   id: string
   question: string
@@ -18,9 +20,4 @@ export interface ExternalResource {
   description?: string
 }
 
-export interface User {
-  id: string
-  username: string
-  email: string
-  name: string
-}
+export type User = components['schemas']['User']
