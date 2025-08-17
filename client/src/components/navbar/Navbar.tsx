@@ -157,7 +157,6 @@ const defaultNavConfig: NavConfig = {
   },
   navItems: [
     { label: 'Home', href: '/' },
-    { label: 'Support', href: '/support' },
     { label: 'Quiz', href: '/quiz' },
     {
       label: 'FAQs',
@@ -169,12 +168,7 @@ const defaultNavConfig: NavConfig = {
     },
     {
       label: 'Contacts',
-      items: [
-        { label: 'General Enquiries', href: '/contact/general' },
-        { label: 'Student Support', href: '/contact/support' },
-        { label: 'Academic Affairs', href: '/contact/academic' },
-        { label: 'Events', href: '/contact/events' },
-      ],
+      items: [{ label: 'General Enquiries', href: '/contact' }],
     },
   ],
   actionButtons: [{ label: 'Login', href: '/login' }],
