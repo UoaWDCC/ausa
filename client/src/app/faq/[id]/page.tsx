@@ -91,9 +91,9 @@ export default async function FAQ({ params }: FAQProps) {
 
   return (
     <div className="mt-[65px] flex flex-col min-h-screen w-screen ml-[calc(-50vw+50%)]">
-      <div className="flex  w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4 flex-1">
+      <div className="flex flex-1 w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4 flex-1">
         <div
-          className="hidden md:flex flex-col col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
+          className="hidden md:flex flex-col md:col-span-1 lg:col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
           id="section-left"
         >
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
