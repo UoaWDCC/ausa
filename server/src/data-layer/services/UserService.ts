@@ -1,6 +1,5 @@
 import type { User, UpdateUserPackage } from 'data-layer/models/User'
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
-import { Body } from 'tsoa'
 
 export class UserService {
   /**
