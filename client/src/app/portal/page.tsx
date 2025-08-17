@@ -1,9 +1,9 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import PortalItem1 from '@/components/portal/portal-item/portal-item'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import Link from 'next/link'
 
 const Portal = () => {
   return (
@@ -32,22 +32,22 @@ const Portal = () => {
 
           <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <PortalItem1 content="Go to Home Page" link="/" title="Home" />
+            <PortalItem1 content="Contact Support" link="/faq" title="FAQ" />
             <PortalItem1
-              content="Contact Support"
-              link="/support"
-              title="Support"
+              content="Take online quiz"
+              link="/contact"
+              title="Contact"
             />
-            <PortalItem1 content="Take online quiz" link="/quiz" title="Quiz" />
           </div>
 
           <div className="relative z-10 flex justify-center gap-4">
             <Link href="/signup">
-              <Button size="lg" variant="default">
+              <Button className="cursor-pointer" size="lg" variant="default">
                 SIGN UP
               </Button>
             </Link>
             <Link href="/login">
-              <Button size="lg" variant="secondary">
+              <Button className="cursor-pointer" size="lg" variant="secondary">
                 LOGIN
               </Button>
             </Link>
