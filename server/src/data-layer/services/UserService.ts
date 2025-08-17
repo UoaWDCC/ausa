@@ -84,7 +84,7 @@ export class UserService {
    * @param params - The parameters for creating a user.
    * @returns A promise that resolves to the created user.
    */
-  async createUser(id:string, newUser:User): Promise<User> {
+  async createUser(id: string, newUser: User): Promise<User> {
     const userRef = await FirestoreCollections.users.doc(id)
     await userRef.set(newUser)
     console.log(newUser)
@@ -130,9 +130,9 @@ export class UserService {
    * @returns the new user
    */
   async adminAddUser(
-    newUser:User,
+    newUser: User,
     id: string,
-    requestingUserId: string
+    requestingUserId: string,
     // role: 'admin' | 'user',
   ): Promise<User | null> {
     const requestingUser = await this.getUser(requestingUserId)
@@ -146,13 +146,13 @@ export class UserService {
       )
       return null
     }
-  
-    const createdUser = await this.createUser(id, newUser);
+
+    const createdUser = await this.createUser(id, newUser)
     if (!createdUser) {
       console.log('user failed on creation')
       return null
     }
-    return createdUser;
+    return createdUser
   }
 
   async adminDeleteUser(
