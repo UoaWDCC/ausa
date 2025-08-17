@@ -180,36 +180,100 @@ export interface paths {
         patch: operations["UpdateExternalResource"];
         trace?: never;
     };
-    "/external-resource-category": {
+    "/events/by-name": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["GetAllCategories"];
+        get: operations["GetEventByName"];
         put?: never;
-        post: operations["CreateCategory"];
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
         patch?: never;
         trace?: never;
     };
-    "/external-resource-category/{id}": {
+    "/events/{eventId}": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["GetCategory"];
+        get: operations["GetEventById"];
         put?: never;
         post?: never;
-        delete: operations["DeleteCategory"];
+        delete?: never;
         options?: never;
         head?: never;
-        patch: operations["UpdateCategory"];
+        patch: operations["UpdateEvent"];
+        trace?: never;
+    };
+    "/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetEvents"];
+        put?: never;
+        post: operations["CreateEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/events/by-eventId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["DeleteEvent"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["AdminCreateUser"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/admin/by-userId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["DeleteUser"];
+        options?: never;
+        head?: never;
+        patch?: never;
         trace?: never;
     };
 }
@@ -335,35 +399,28 @@ export interface components {
             description?: string;
         };
         updateExternalResourceRequest: components["schemas"]["Partial_createExternalResourceRequest_"];
-        ExternalResourceCategory: {
-            id: string;
-            name: string;
+        Event: {
+            link?: string;
+            date: string;
             description: string;
-        };
-        GetAllExternalResourceCategoryResponse: {
-            error?: string;
-            message?: string;
-            data?: components["schemas"]["ExternalResourceCategory"][];
-        };
-        GetExternalResourceCategoryResponse: {
-            error?: string;
-            message?: string;
-            data?: components["schemas"]["ExternalResourceCategory"];
+            title: string;
+            id: string;
         };
         /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__": {
-            name: string;
+        "Pick_Event.id-or-title-or-description-or-date-or-link_": {
+            id: string;
+            title: string;
             description: string;
+            date: string;
+            link?: string;
         };
-        /** @description Construct a type with the properties of T except for those in type K. */
-        "Omit_ExternalResourceCategory.id_": components["schemas"]["Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__"];
-        createExternalResourceCategoryRequest: components["schemas"]["Omit_ExternalResourceCategory.id_"];
-        /** @description Make all properties in T optional */
-        Partial_createExternalResourceCategoryRequest_: {
-            name?: string;
+        EventCreationParams: components["schemas"]["Pick_Event.id-or-title-or-description-or-date-or-link_"];
+        UpdateEventPackage: {
+            title?: string;
             description?: string;
+            date?: string;
+            link?: string;
         };
-        updateExternalResourceCategoryRequest: components["schemas"]["Partial_createExternalResourceCategoryRequest_"];
     };
     responses: never;
     parameters: never;
@@ -514,7 +571,6 @@ export interface operations {
     DeleteUser: {
         parameters: {
             query: {
-                requestingUserId: string;
                 userToDeleteId: string;
             };
             header?: never;
@@ -917,10 +973,11 @@ export interface operations {
             };
         };
     };
-    GetAllCategories: {
+    GetEventByName: {
         parameters: {
-            query?: {
-                name?: string;
+            query: {
+                name: string;
+
             };
             header?: never;
             path?: never;
@@ -928,18 +985,86 @@ export interface operations {
         };
         requestBody?: never;
         responses: {
-            /** @description Ok */
+            /** @description Found */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["GetAllExternalResourceCategoryResponse"];
+                    "application/json": components["schemas"]["Event"] | null;
                 };
             };
         };
     };
-    CreateCategory: {
+    GetEventById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    UpdateEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateEventPackage"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    GetEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"][];
+                };
+            };
+        };
+    };
+    CreateEvent: {
         parameters: {
             query?: never;
             header?: never;
@@ -948,85 +1073,88 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["createExternalResourceCategoryRequest"];
+                "application/json": components["schemas"]["EventCreationParams"];
             };
         };
         responses: {
-            /** @description Successfully created External Resource Category */
+            /** @description Created */
             201: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                    "application/json": components["schemas"]["Event"];
                 };
             };
         };
     };
-    GetCategory: {
+    DeleteEvent: {
         parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
+            query: {
+                eventId: string;
             };
+            header?: never;
+            path?: never;
             cookie?: never;
         };
         requestBody?: never;
         responses: {
-            /** @description Ok */
+            /** @description Deleted */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                    "application/json": components["schemas"]["Event"] | null;
                 };
             };
         };
     };
-    DeleteCategory: {
+    AdminCreateUser: {
         parameters: {
-            query?: never;
+            query: {
+                requestingUserId: string;
+            };
             header?: never;
-            path: {
-                id: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Successfully deleted FAQ category */
-            204: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content?: never;
-            };
-        };
-    };
-    UpdateCategory: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                id: string;
-            };
+            path?: never;
             cookie?: never;
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["updateExternalResourceCategoryRequest"];
+                "application/json": components["schemas"]["UserCreationParams"];
             };
         };
         responses: {
-            /** @description Successfully updated FAQ category */
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["User"];
+                };
+            };
+        };
+    };
+    DeleteUser: {
+        parameters: {
+            query: {
+                requestingUserId: string;
+                userToDeleteId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
             200: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                    "application/json": components["schemas"]["User"] | null;
                 };
             };
         };
