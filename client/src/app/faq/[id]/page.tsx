@@ -90,7 +90,7 @@ export default async function FAQ({ params }: FAQProps) {
   //console.log('faqCategoryMap', faqCategoryMap)
 
   return (
-    <div className="mt-[65px] flex flex-col min-h-screen w-screen relative left-1/2 right-1/2 -ml-[50vw] -mr-[50vw] ">
+    <div className="mt-[65px] flex flex-col min-h-screen w-screen ml-[calc(-50vw+50%)]">
       <div className="flex  w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4 flex-1">
         <div
           className="hidden md:flex flex-col col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
@@ -133,10 +133,10 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
 
         <div
-          className="flex flex-col gap-8 bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
+          className="flex flex-col flex-1 gap-8 bg-[#FAF7F2] px-[5%] py-[20%] text-[#2D3B4E] md:col-span-2 lg:col-span-3 "
           id="section-right"
         >
-          <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
+          <h1 className="text-2xl text-4xl">Frequently Asked Questions</h1>
           <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
