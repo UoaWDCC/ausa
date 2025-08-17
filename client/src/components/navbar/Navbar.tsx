@@ -157,8 +157,10 @@ const defaultNavConfig: NavConfig = {
   },
   navItems: [
     { label: 'Home', href: '/' },
-    { label: 'Events', href: '/events' },
     { label: 'Resources', href: '/resources' },
+    { label: 'Support', href: '/support' },
+    { label: 'Quiz', href: '/quiz' },
+    { label: 'Events', href: '/events' },
     {
       label: 'FAQs',
       items: [
