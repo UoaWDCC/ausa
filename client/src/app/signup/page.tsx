@@ -48,6 +48,9 @@ const Signup = () => {
       )
       const { data: responseBody, response } = await client.POST('/users', {
         body: { ...newUser, id: user.uid },
+        params: {
+          query: { requestingUserId: user.uid },
+        },
       })
       console.log('Response status:', response.status)
       console.log('Response body:', responseBody)
