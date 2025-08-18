@@ -12,24 +12,20 @@ import {
   type UserCreationParams,
   UserService,
 } from '../../../data-layer/services/UserService'
+import { AdminService } from '../../../data-layer/services/AdminService'
+import {
+  type EventCreationParams,
+  EventService,
+} from '../../../data-layer/services/EventService'
+import { Event } from 'data-layer/models/Event'
 
 @Route('admin')
 export class AdminController extends Controller {
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
   public async adminCreateUser(
-    @Query() requestingUserId: string,
     @Body() requestBody: UserCreationParams,
   ): Promise<User> {
-    const requestingUser = await new UserService().getUser(requestingUserId)
-    if (!requestingUser) {
-      this.setStatus(400) // Bad Request if requesting user not found
-      return null
-    }
-    if (requestingUser.role !== 'admin') {
-      this.setStatus(403) // Forbidden if requesting user is not an admin
-      return null
-    }
     this.setStatus(201)
     return new UserService().createUser(requestBody)
   }
@@ -37,17 +33,45 @@ export class AdminController extends Controller {
   @SuccessResponse('200', 'Deleted')
   @Delete('by-userId')
   public async deleteUser(
-    @Query() requestingUserId: string,
     @Query() userToDeleteId: string,
   ): Promise<User | null> {
-    const deletedUser = await new UserService().adminDeleteUser(
-      requestingUserId,
-      userToDeleteId,
-    )
+    const deletedUser = await new AdminService().adminDeleteUser(userToDeleteId)
     if (!deletedUser) {
-      this.setStatus(400) // Bad Request if user not found or not deleted
+      this.setStatus(400)
       return null
     }
     return deletedUser
+  }
+
+  @SuccessResponse('201', 'Created')
+  @Post('create-event')
+  public async adminCreateEvent(
+    // @Query() requestingUserId: string,
+    @Body() requestBody: EventCreationParams,
+  ): Promise<Event> {
+    // const requestingUser = await new UserService().getUser(requestingUserId)
+    // if (!requestingUser) {
+    //   this.setStatus(400)
+    //   return null
+    // }
+    // if (requestingUser.role !== 'admin') {
+    //   this.setStatus(403)
+    //   return null
+    // }
+    this.setStatus(201)
+    return new EventService().createEvent(requestBody)
+  }
+
+  @SuccessResponse('200', 'Deleted')
+  @Delete('by-eventId')
+  public async adminDeleteEvent(
+    @Query() eventId: string,
+  ): Promise<Event | null> {
+    const deletedEvent = await new EventService().deleteEvent(eventId)
+    if (!deletedEvent) {
+      this.setStatus(400)
+      return null
+    }
+    return deletedEvent
   }
 }
