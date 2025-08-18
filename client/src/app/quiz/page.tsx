@@ -138,8 +138,8 @@ const quizData: QuizData = {
     ]
   }
 };
-const Quiz :React.FC = () => {
-// State to manage the current screen displayed to the user
+const Quiz: React.FC = () => {
+  // State to manage the current screen displayed to the user
   const [currentScreenId, setCurrentScreenId] = useState<string>("start");
   // State to store the option selected by the user for the current question
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -200,7 +200,8 @@ const Quiz :React.FC = () => {
 
   return (
     <div className="min-h-screen  flex items-center justify-center p-4 font-sans">
-      <div className="bg-[#FAF7F2] text-[#2D3B4E] rounded-xl shadow-lg p-8 w-full max-w-2xl mx-auto border border-gray-200">
+
+      <div className="bg-neutral-200/80 text-[#2D3B4E] rounded-xl shadow-lg p-8 w-full max-w-2xl mx-auto border border-gray-200">
         {/* Render content based on the current screen type */}
         {currentScreen.type === "intro" && (
           <div className="text-center">
@@ -218,7 +219,7 @@ const Quiz :React.FC = () => {
 
         {currentScreen.type === "question" && (
           <div>
-            <h2 className="text-3xl font-bold mb-6 text-blue-700">
+            <h2 className="text-3xl font-bold mb-6 text-blue-900">
               {(currentScreen as QuestionScreen).question}
             </h2>
             <div className="flex flex-col gap-4 mb-8">
@@ -254,7 +255,7 @@ const Quiz :React.FC = () => {
 
         {currentScreen.type === "result" && (
           <div className="text-center">
-            <h2 className="text-4xl font-extrabold mb-6 text-green-700">
+            <h2 className="text-4xl font-extrabold mb-6 text-blue-400">
               {(currentScreen as ResultScreen).title}
             </h2>
             <p className="text-lg mb-8 leading-relaxed">
