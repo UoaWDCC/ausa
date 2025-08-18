@@ -34,8 +34,8 @@ const Portal = () => {
             <PortalItem1 content="Go to Home Page" link="/" title="Home" />
             <PortalItem1
               content="Contact Support"
-              link="/faq/university-support"
-              title="FAQ"
+              link="/quiz"
+              title="Quiz"
             />
             <PortalItem1
               content="Take online quiz"

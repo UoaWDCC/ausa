@@ -77,7 +77,7 @@ export class EventService {
       content: params.content,
     }
     if (params.heroImage) {
-      newEvent.heroImage = params.heroImage;
+      newEvent.heroImage = params.heroImage
     }
     await eventRef.set(newEvent)
     console.log(newEvent)

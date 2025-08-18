@@ -43,12 +43,12 @@ export class EventController extends Controller {
     @Body() requestBody: Omit<EventCreationParams, 'id'>,
   ): Promise<Event> {
     this.setStatus(201)
-    const docRef = FirestoreCollections.events.doc();
+    const docRef = FirestoreCollections.events.doc()
 
-      return new EventService().createEvent({
-        id: docRef.id,
-        ...requestBody
-      });
+    return new EventService().createEvent({
+      id: docRef.id,
+      ...requestBody,
+    })
   }
 
   @SuccessResponse('200', 'Deleted')

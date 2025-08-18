@@ -75,4 +75,3 @@ export class UserController extends Controller {
     return new UserService().updateUser(userId, updates)
   }
 }
-

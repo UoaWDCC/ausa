@@ -99,23 +99,22 @@ export default async function FAQ({ params }: FAQProps) {
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
             How Can We Help?
           </h1>
-          <div className = "flex flex-col items-center gap-4 md:gap-8">
-          <FaqBox
-            content="Resources & Services"
-            icon={ausa}
-            title={faqCategories.data[0].name}
-          />
-          <FaqBox
-            content="Immediate & Urgent"
-            icon={ausa}
-            title={faqCategories.data[1].name}
-          />
-          <FaqBox
-            content="Communities & Local"
-            icon={ausa}
-            title={faqCategories.data[2].name}
-            
-          />
+          <div className="flex flex-col items-center gap-4 md:gap-8">
+            <FaqBox
+              content="Resources & Services"
+              icon={ausa}
+              title={faqCategories.data[0].name}
+            />
+            <FaqBox
+              content="Immediate & Urgent"
+              icon={ausa}
+              title={faqCategories.data[1].name}
+            />
+            <FaqBox
+              content="Communities & Local"
+              icon={ausa}
+              title={faqCategories.data[2].name}
+            />
           </div>
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
