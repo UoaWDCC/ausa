@@ -13,31 +13,31 @@ interface FAQProps {
   params: Promise<{ id: string }>
 }
 
-const Banner = () => {
-  return (
-    <div className="bg-slate-900/80 text-white p-2">
-      <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
-        <div className="animate-infinite-scrolling flex w-full flex-none gap-4 transition-transform">
-          <div className="font-geist flex items-center justify-center">
-            <div className="flex items-center text-base md:text-2xl">
-              Support Available 24/7
-            </div>
-            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
-          </div>{' '}
-        </div>
-        <div className="animate-infinite-scrolling flex w-full flex-none gap-2 transition-transform">
-          {' '}
-          <div className="font-geist flex items-center justify-center">
-            <div className="flex items-center text-base md:text-2xl">
-              Support Available 24/7
-            </div>
-            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
-          </div>{' '}
-        </div>
-      </div>
-    </div>
-  )
-}
+// const Banner = () => {
+//   return (
+//     <div className="bg-slate-900/80 text-white p-2">
+//       <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
+//         <div className="animate-infinite-scrolling flex w-full flex-none gap-4 transition-transform">
+//           {/* <div className="font-geist flex items-center justify-center">
+//             <div className="flex items-center text-base md:text-2xl">
+//               Support Available 24/7
+//             </div>
+//             <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
+//           </div>{' '} */}
+//         </div>
+//         {/* <div className="animate-infinite-scrolling flex w-full flex-none gap-2 transition-transform">
+//           {' '}
+//           <div className="font-geist flex items-center justify-center">
+//             <div className="flex items-center text-base md:text-2xl">
+//               Support Available 24/7
+//             </div>
+//             <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
+//           </div>{' '}
+//         </div> */}
+//       </div>
+//     </div>
+//   )
+// }
 
 export default async function FAQ({ params }: FAQProps) {
   const faqCategoryMap: Record<string, Faq[]> = {}
@@ -90,7 +90,7 @@ export default async function FAQ({ params }: FAQProps) {
   //console.log('faqCategoryMap', faqCategoryMap)
 
   return (
-    <div className="mt-[65px] flex flex-col min-h-screen w-screen ml-[calc(-50vw+50%)]">
+    <div className="flex flex-col min-h-screen w-screen ml-[calc(-50vw+50%)]">
       <div className="flex flex-1 w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4 flex-1">
         <div
           className="hidden md:flex flex-col md:col-span-1 lg:col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
@@ -132,7 +132,7 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
 
         <div
-          className="flex flex-col flex-1 gap-8 bg-neutral-700/75 px-[5%] py-[20%] text-white md:col-span-2 lg:col-span-3 "
+          className="flex flex-col flex-1 min-h-screen gap-8 bg-gray-700/75 px-[5%] py-[20%] text-white md:col-span-2 lg:col-span-3 "
           id="section-right"
         >
           <h1 className="text-2xl text-4xl">Frequently Asked Questions</h1>
@@ -149,7 +149,6 @@ export default async function FAQ({ params }: FAQProps) {
           </div>
         </div>
       </div>
-      <Banner />
     </div>
   )
 }
