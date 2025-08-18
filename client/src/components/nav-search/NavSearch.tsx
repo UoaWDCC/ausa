@@ -40,13 +40,13 @@ const INITIAL_PAGES: PageInfo[] = [
   {
     title: 'FAQ',
     description: 'Stuff about FAQ',
-    href: '/faq',
+    href: '/faq/university-support',
     keywords: ['faq', 'questions'],
   },
   {
     title: 'External Resources',
     description: 'Stuff about External Resources',
-    href: '/external-resources',
+    href: '/resources',
     keywords: ['external', 'resources'],
   },
   {
