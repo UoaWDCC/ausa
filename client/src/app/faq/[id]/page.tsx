@@ -1,6 +1,3 @@
-import { redirect } from 'next/navigation'
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
-import client from '@/services/fetch-client'
 import {
   Accordion,
   AccordionContent,
@@ -8,6 +5,7 @@ import {
   AccordionTrigger,
 } from '@/shadcn_components/ui/accordion'
 import type { Faq, FaqCategory } from '@/types/types'
+import { redirect } from 'next/navigation'
 import FaqBox from '../../../components/faq-box/FaqBox'
 import ausa from '../../assets/icons/ausa.svg'
 
@@ -45,61 +43,80 @@ export default async function FAQ({ params }: FAQProps) {
   const faqCategoryMap: Record<string, Faq[]> = {}
 
   const { id } = await params
-  const res = await client.GET('/faq-category', {
-    params: { query: { url: id } },
+  /*if (!title[id]) {
+    redirect('/404')
+  }*/
+  const url = process.env.BACKEND_URL || 'http://localhost:8000'
+  const res = await fetch(`${url}/faq-category?url=${id}`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+    mode: 'cors',
   })
+  const faqCategory = await res.json()
 
-  console.log(res)
-
-  if (res.response.status !== 200 || res.data?.data?.length === 0) {
+  if (res.status !== 200 || faqCategory.data.length === 0) {
     redirect('/404')
   }
-  const faqCategory = res.data?.data || []
 
-  const res2 = await client.GET('/faq-category')
-  if (res2.response.status !== 200) {
+  const res2 = await fetch(`${url}/faq-category`, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+    mode: 'cors',
+  })
+  const faqCategories = await res2.json()
+  if (res2.status !== 200) {
     redirect('/500') //redirect to error page?
   }
-  const faqCategories = res2.data?.data || []
 
   await Promise.all(
-    faqCategories.map(async (category: FaqCategory) => {
-      const res = await client.GET('/faq', {
-        params: { query: { category: category.id } },
+    faqCategories.data.map(async (category: FaqCategory) => {
+      const res = await fetch(`${url}/faq?category=${category.id}`, {
+        headers: { 'Content-Type': 'application/json' },
+        method: 'GET',
+        mode: 'cors',
       })
-      console.log('res', res.response.url)
-      const faqData = res.data?.data || []
-      faqCategoryMap[category.id] = faqData.sort((a: Faq, b: Faq) =>
+      const faqData = await res.json()
+      faqCategoryMap[category.id] = faqData.data.sort((a: Faq, b: Faq) =>
         a.question.localeCompare(b.question),
       )
     }),
   )
 
   //console.log("faqCategory", faqCategories)
-  console.log('faqCategoryMap', faqCategoryMap)
+  //console.log('faqCategoryMap', faqCategoryMap)
 
   return (
-    <div className="mt-[70px] flex min-h-[100vh] flex-col">
-      <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
+    <div className="mt-[65px] flex flex-col min-h-screen w-screen ml-[calc(-50vw+50%)]">
+      <div className="flex flex-1 w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4 flex-1">
         <div
-          className="md:flex flex-col col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
+          className="hidden md:flex flex-col md:col-span-1 lg:col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
           id="section-left"
         >
-          <h1 className="mb-2 flex justify-center text-3xl font-bold">
+          <h1 className="mb-2 flex justify-center text-2xl font-bold">
             How Can We Help?
           </h1>
+          <div className = "flex flex-col items-center gap-4 md:gap-8">
           <FaqBox
-            content="becky cheng"
+            content="Resources & Services"
             icon={ausa}
-            title={faqCategories[0].name}
+            title={faqCategories.data[0].name}
           />
           <FaqBox
-            content="nicky tian"
+            content="Immediate & Urgent"
             icon={ausa}
-            title={faqCategories[1].name}
+            title={faqCategories.data[1].name}
           />
-          <FaqBox content="eve lee" icon={ausa} title={faqCategories[2].name} />
-
+          <FaqBox
+            content="Communities & Local"
+            icon={ausa}
+            title={faqCategories.data[2].name}
+            
+          />
+          </div>
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
               key={category.id}
@@ -116,15 +133,15 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
 
         <div
-          className="relative border-r-2 border-slate-900 rounded-tr-lg flex flex-col gap-8 bg-slate-800/55 px-[5%] py-[15%] text-white md:col-span-2 lg:col-span-3"
+          className="flex flex-col flex-1 gap-8 bg-[#FAF7F2] px-[5%] py-[20%] text-[#2D3B4E] md:col-span-2 lg:col-span-3 "
           id="section-right"
         >
-          <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
-          <h2 className="text-2xl font-semibold">{faqCategory[0]?.name}</h2>
+          <h1 className="text-2xl text-4xl">Frequently Asked Questions</h1>
+          <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
-            <Accordion className="w-full" collapsible type="single">
-              {faqCategoryMap[faqCategory[0]?.id]?.map((faq: Faq) => (
-                <AccordionItem key={faq.id} value={`item-${faq.id}`}>
+            <Accordion type="single" collapsible className="w-full">
+              {faqCategoryMap[faqCategory.data[0].id]?.map((faq: Faq) => (
+                <AccordionItem value={`item-${faq.id}`} key={faq.id}>
                   <AccordionTrigger>{faq.question}</AccordionTrigger>
                   <AccordionContent>{faq.answer}</AccordionContent>
                 </AccordionItem>
