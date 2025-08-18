@@ -132,7 +132,7 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
 
         <div
-          className="flex flex-col flex-1 gap-8 bg-[#FAF7F2] px-[5%] py-[20%] text-[#2D3B4E] md:col-span-2 lg:col-span-3 "
+          className="flex flex-col flex-1 gap-8 bg-neutral-700/75 px-[5%] py-[20%] text-white md:col-span-2 lg:col-span-3 "
           id="section-right"
         >
           <h1 className="text-2xl text-4xl">Frequently Asked Questions</h1>
