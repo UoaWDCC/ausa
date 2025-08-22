@@ -35,7 +35,9 @@ export default function EventHeroImage({ imageUrl, title, subtitle }: EventHeroI
         alignItems: "center",
         color: "white",
         textShadow: "0 2px 8px rgba(0,0,0,0.8)",
-        position: "relative"
+        position: "relative",
+        border: "2px solid white", // <-- Added border
+        borderRadius: "12px",      // Optional: rounded corners
       }}
     >
       <h1 style={{ fontSize: "2rem", fontWeight: "bold" }}>{title}</h1>
