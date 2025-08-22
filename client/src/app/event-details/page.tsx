@@ -1,11 +1,17 @@
 "use client";
 
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import EventHeroImage from "@/components/event-details/EventHeroImage";
 import EventInfoCard from "@/components/event-details/EventInfoCard";
 import EventAboutSection from "@/components/event-details/EventAboutSection";
 
 export default function Page() {
+  // Get query params
+  const searchParams = useSearchParams();
+  const eventTitle = searchParams.get("title") || "Event";
+  const eventSubtitle = "By AUSA";
+
   // State for input fields
   const [aboutTitle, setAboutTitle] = useState("");
   const [aboutDescription, setAboutDescription] = useState("");
@@ -15,7 +21,12 @@ export default function Page() {
   const [endTime, setEndTime] = useState("");
 
   // State for showing components vs input forms
-  const [submitted, setSubmitted] = useState(false);
+  const [aboutSubmitted, setAboutSubmitted] = useState(false);
+  const [infoSubmitted, setInfoSubmitted] = useState(false);
+
+  // Hover states for input boxes
+  const [aboutHovered, setAboutHovered] = useState(false);
+  const [infoHovered, setInfoHovered] = useState(false);
 
   return (
     <main
@@ -29,8 +40,8 @@ export default function Page() {
       {/* Hero Image */}
       <EventHeroImage
         imageUrl="https://picsum.photos/1200/400?blur=2"
-        title="Scalping Pokemon TCG"
-        subtitle="By Ajith Curry Muncher"
+        title={eventTitle}
+        subtitle={eventSubtitle}
       />
 
       {/* Main content layout */}
@@ -40,19 +51,28 @@ export default function Page() {
           gap: "2rem",
           padding: "2rem",
           flexWrap: "wrap",
+          alignItems: "stretch",
         }}
       >
         {/* About section OR form */}
         <div style={{ flex: "2 1 600px" }}>
-          {!submitted ? (
+          {!aboutSubmitted ? (
             <section
               style={{
                 background: "#1e1f22",
                 padding: "1.5rem",
                 borderRadius: "12px",
                 marginTop: "1rem",
-                minHeight: "220px", // smaller height
+                minHeight: "220px",
+                boxShadow: aboutHovered
+                  ? "0 8px 24px rgba(0,0,0,0.4)"
+                  : "0 4px 12px rgba(0,0,0,0.2)",
+                transition: "transform 0.3s, box-shadow 0.3s",
+                transform: aboutHovered ? "scale(1.05)" : "scale(1)",
+                cursor: "pointer",
               }}
+              onMouseEnter={() => setAboutHovered(true)}
+              onMouseLeave={() => setAboutHovered(false)}
             >
               <h2 style={{ marginBottom: "1rem" }}>Enter About Section</h2>
               <input
@@ -85,6 +105,26 @@ export default function Page() {
                   resize: "vertical",
                 }}
               />
+              <button
+                onClick={() => setAboutSubmitted(true)}
+                style={{
+                  marginTop: "1rem",
+                  padding: "1rem 2rem",
+                  background: aboutHovered ? "#4752c4" : "#5865f2",
+                  border: "none",
+                  borderRadius: "8px",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  fontSize: "1rem",
+                  boxShadow: aboutHovered
+                    ? "0 4px 16px rgba(88,101,242,0.3)"
+                    : "none",
+                  transition: "background 0.2s, box-shadow 0.2s",
+                }}
+              >
+                Add
+              </button>
             </section>
           ) : (
             <EventAboutSection
@@ -96,14 +136,22 @@ export default function Page() {
 
         {/* Info section OR form */}
         <div style={{ flex: "1 1 250px" }}>
-          {!submitted ? (
+          {!infoSubmitted ? (
             <aside
               style={{
                 background: "#2b2d31",
                 padding: "1.2rem",
                 borderRadius: "12px",
-                minHeight: "220px", // same height as about
+                minHeight: "220px",
+                boxShadow: infoHovered
+                  ? "0 8px 24px rgba(0,0,0,0.4)"
+                  : "0 4px 12px rgba(0,0,0,0.2)",
+                transition: "transform 0.3s, box-shadow 0.3s",
+                transform: infoHovered ? "scale(1.05)" : "scale(1)",
+                cursor: "pointer",
               }}
+              onMouseEnter={() => setInfoHovered(true)}
+              onMouseLeave={() => setInfoHovered(false)}
             >
               <h2 style={{ marginBottom: "1rem" }}>Enter Event Info</h2>
               <input
@@ -166,6 +214,26 @@ export default function Page() {
                   color: "white",
                 }}
               />
+              <button
+                onClick={() => setInfoSubmitted(true)}
+                style={{
+                  marginTop: "1rem",
+                  padding: "1rem 2rem",
+                  background: infoHovered ? "#4752c4" : "#5865f2",
+                  border: "none",
+                  borderRadius: "8px",
+                  color: "white",
+                  fontWeight: "bold",
+                  cursor: "pointer",
+                  fontSize: "1rem",
+                  boxShadow: infoHovered
+                    ? "0 4px 16px rgba(88,101,242,0.3)"
+                    : "none",
+                  transition: "background 0.2s, box-shadow 0.2s",
+                }}
+              >
+                Add
+              </button>
             </aside>
           ) : (
             <EventInfoCard
@@ -177,27 +245,6 @@ export default function Page() {
           )}
         </div>
       </div>
-
-      {/* Add button */}
-      {!submitted && (
-        <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <button
-            onClick={() => setSubmitted(true)}
-            style={{
-              padding: "1rem 2rem",
-              background: "#5865f2",
-              border: "none",
-              borderRadius: "8px",
-              color: "white",
-              fontWeight: "bold",
-              cursor: "pointer",
-              fontSize: "1rem",
-            }}
-          >
-            Add
-          </button>
-        </div>
-      )}
     </main>
   );
 }
