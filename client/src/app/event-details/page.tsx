@@ -10,8 +10,8 @@ export default function Page() {
       {/* Hero Image */}
       <EventHeroImage
         imageUrl="https://picsum.photos/1200/400?blur=2"
-        title="Design Driven NYC #14"
-        subtitle="By Jonathan Doe"
+        title="Scalping Pokemon TCG"
+        subtitle="By Ajith Curry Muncher"
       />
 
       {/* Main content layout */}
@@ -19,7 +19,7 @@ export default function Page() {
         {/* About section */}
         <div style={{ flex: "2 1 600px" }}>
           <EventAboutSection
-            title="About Design Driven NYC #14"
+            title="IDK what to say here hoenstly"
             description="The idea behind this show is to provide a platform to the denim industry in this region where the entire supply chain players from mills, fiber and chemical suppliers, garment manufacturers, retailers, buying houses, brands etc could get together and help in further development of the denim industry here."
           />
         </div>

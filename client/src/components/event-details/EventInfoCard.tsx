@@ -1,4 +1,6 @@
-import React from "react";
+'use client'
+
+import React, { useState } from "react";
 
 type EventInfoCardProps = {
   date: string;
@@ -8,6 +10,8 @@ type EventInfoCardProps = {
 };
 
 export default function EventInfoCard({ date, location, startTime, endTime }: EventInfoCardProps) {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <aside
       style={{
@@ -16,8 +20,15 @@ export default function EventInfoCard({ date, location, startTime, endTime }: Ev
         padding: "1.5rem",
         borderRadius: "12px",
         maxWidth: "300px",
-        boxShadow: "0 4px 12px rgba(0,0,0,0.4)"
+        boxShadow: hovered
+          ? "0 8px 24px rgba(0,0,0,0.4)"
+          : "0 4px 12px rgba(0,0,0,0.4)",
+        transition: "transform 0.3s, box-shadow 0.3s",
+        transform: hovered ? "scale(1.05)" : "scale(1)",
+        cursor: "pointer",
       }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
       <h2 style={{ fontSize: "1.2rem", marginBottom: "0.5rem" }}>📍 When & Where</h2>
       <p style={{ margin: "0.3rem 0" }}>{date}</p>
