@@ -1,9 +1,9 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import PortalItem1 from '@/components/portal/portal-item/portal-item'
 import { Button } from '@/components/ui/button'
 import { Separator } from '@/components/ui/separator'
-import Link from 'next/link'
 
 const Portal = () => {
   return (

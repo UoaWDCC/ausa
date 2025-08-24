@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
 import ClientLayout from '@/app/ClientLayout'
+import { AuthProvider } from '@/auth/AuthContext'
 import Footer from '@/components/footer/Footer'
 
 export const metadata: Metadata = {
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <div className="">
       <html lang="en">
-        <ClientLayout>{children}</ClientLayout>
+        <AuthProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </AuthProvider>
       </html>
       <footer className="relative z-20 mt-auto">
         <Footer />

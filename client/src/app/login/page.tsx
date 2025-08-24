@@ -1,28 +1,20 @@
 'use client'
 
+import { signInWithEmailAndPassword } from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import { useState } from 'react'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useEffect, useState } from 'react'
-import { useAuth } from '@/auth/AuthContext'
-import { signInWithEmailAndPassword } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
-import { useRouter } from 'next/navigation'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
   const router = useRouter()
-  const { user } = useAuth()
   const [form, setForm] = useState({
     email: '',
     password: '',
   })
-
-  useEffect(() => {
-    if (user) {
-      router.push('/')
-    }
-  }, [user, router])
 
   const handleLogin = async (e: React.FormEvent) => {
     // Prevent default form submission
@@ -32,7 +24,7 @@ const Login = () => {
       // firebase authentication
       setLoading(true)
       await signInWithEmailAndPassword(auth, form.email, form.password)
-      alert('Login successful!')
+      router.push('/')
     } catch (err: any) {
       setLoading(false)
       console.error('Login error:', err.code, err.message)
@@ -57,11 +49,11 @@ const Login = () => {
               <Input
                 aria-invalid={false}
                 id="email"
-                value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="email@example.com"
                 required
                 type="email"
+                value={form.email}
               />
             </div>
             <div>
@@ -74,18 +66,18 @@ const Login = () => {
               <Input
                 aria-invalid={false}
                 id="password"
-                value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••••"
                 required
                 type="password"
+                value={form.password}
               />
             </div>
             <Button
-              onClick={handleLogin}
               className="w-full cursor-pointer"
-              type="submit"
               disabled={loading}
+              onClick={handleLogin}
+              type="submit"
             >
               {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
