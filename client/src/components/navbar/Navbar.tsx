@@ -102,7 +102,11 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
 
             {/* Action Buttons - Adaptive sizing */}
             {user.user && (
-              <div>
+              <div className="flex items-center gap-2">
+                {/* Avatar circle with first letter */}
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-700 text-white font-semibold">
+                  {userName.charAt(0).toUpperCase()}
+                </div>
                 <span className="text-white">{userName}</span>
               </div>
             )}
