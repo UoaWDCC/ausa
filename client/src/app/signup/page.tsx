@@ -5,6 +5,7 @@ import {
   signInWithPopup,
   updateProfile,
 } from 'firebase/auth'
+import { redirect } from 'next/navigation'
 import { useState } from 'react'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
@@ -185,7 +186,10 @@ const Signup = () => {
               <button
                 className="text-sm text-white/80 hover:text-white underline underline-offset-2 cursor-pointer"
                 disabled={loading}
-                onClick={handleGoogleSignIn}
+                onClick={async () => {
+                  await handleGoogleSignIn()
+                  redirect('/')
+                }}
                 type="button"
               >
                 Sign up with Google
