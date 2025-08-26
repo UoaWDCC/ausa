@@ -25,7 +25,9 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
         {event.content.subtitle && (
           <p className="mb-3 text-sm font-medium text-purple-600">{event.content.subtitle}</p>
         )}
-        <p className="mb-4 flex-1 text-gray-600">{event.content.body.substring(0, 100)}...</p>
+        <p className="mb-4 flex-1 text-gray-600">
+          {event.content.body ? event.content.body.substring(0, 100) : 'No description available'}...
+        </p>
         {event.content.callToAction && (
           <Link className="mt-auto inline-flex items-center justify-center rounded-md bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700" href={event.content.callToAction.href}>
             {event.content.callToAction.text}
