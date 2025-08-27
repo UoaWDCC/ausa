@@ -26,7 +26,6 @@ export default function EventInfoCard({
         color: 'white',
         padding: '1.5rem',
         borderRadius: '12px',
-        maxWidth: '300px',
         boxShadow: hovered
           ? '0 8px 24px rgba(0,0,0,0.4)'
           : '0 4px 12px rgba(0,0,0,0.4)',
