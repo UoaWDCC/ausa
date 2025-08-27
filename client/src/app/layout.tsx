@@ -14,13 +14,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="">
+    <>
       <html lang="en">
         <ClientLayout>{children}</ClientLayout>
       </html>
       <footer className="relative z-20 mt-auto">
         <Footer />
       </footer>
-    </div>
+    </>
   )
 }
