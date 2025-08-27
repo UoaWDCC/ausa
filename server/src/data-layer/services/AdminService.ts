@@ -1,12 +1,10 @@
 import type { User } from 'data-layer/models/User'
 import { UserService } from './UserService' // 假设你的 UserService 在这里
-import {UserCreationParams} from 'data-layer/services/UserService'
-import {EventService} from 'data-layer/services/EventService'
+import { UserCreationParams } from 'data-layer/services/UserService'
+import { EventService } from 'data-layer/services/EventService'
 import type { Event } from 'data-layer/models/Event'
 
-
 export class AdminService {
-
   /**
    *
    * @param UserCreationParams - get user creation parameters
@@ -35,9 +33,7 @@ export class AdminService {
     return newUser
   }
 
-  async adminDeleteUser(
-    userToDeleteId: string,
-  ): Promise<User | null> {
+  async adminDeleteUser(userToDeleteId: string): Promise<User | null> {
     const userService = new UserService()
     // checking if user to delete exists and deleting it if it does by calling deleteUser
     const userToDelete = await userService.deleteUser(userToDeleteId)
@@ -46,9 +42,7 @@ export class AdminService {
       return null
     }
 
-    console.log(
-      `User - ${userToDeleteId} deleted by admin`,
-    )
+    console.log(`User - ${userToDeleteId} deleted by admin`)
     return userToDelete
   }
 
@@ -72,19 +66,24 @@ export class AdminService {
     // }
     const EventCreationParams = {
       id: eventId,
-          title: eventTitle,
-          content: {
-            body: eventBody,
-            subtitle: eventSubtitle,
-            callToAction: callToActionText && callToActionHref ? {
-              text: callToActionText,
-              href: callToActionHref
-            } : undefined
-          },
-          heroImage: heroImageSrc ? {
+      title: eventTitle,
+      content: {
+        body: eventBody,
+        subtitle: eventSubtitle,
+        callToAction:
+          callToActionText && callToActionHref
+            ? {
+                text: callToActionText,
+                href: callToActionHref,
+              }
+            : undefined,
+      },
+      heroImage: heroImageSrc
+        ? {
             src: heroImageSrc,
-            alt: heroImageAlt || eventTitle
-          } : undefined
+            alt: heroImageAlt || eventTitle,
+          }
+        : undefined,
     }
     const newEvent = await eventService.createEvent(EventCreationParams)
     if (!newEvent) {
@@ -94,9 +93,7 @@ export class AdminService {
     return newEvent
   }
 
-  async AdminDeleteEvent(
-    eventId: string,
-  ): Promise<Event | null>{
+  async AdminDeleteEvent(eventId: string): Promise<Event | null> {
     const eventService = new EventService()
     const eventToDelete = await eventService.deleteEvent(eventId)
     if (!eventToDelete) {
@@ -106,6 +103,4 @@ export class AdminService {
     console.log(`Event - ${eventId} deleted by admin`)
     return eventToDelete
   }
-
-
 }

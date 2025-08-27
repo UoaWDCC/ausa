@@ -38,19 +38,19 @@ const Contact = () => {
                 <div className="flex flex-row gap-4 xl:flex-col">
                   <div className="h-[40px] w-[40px]">
                     <Link href="https://facebook.com" target="_blank">
-                      <Image src={facebook} alt="Facebook" />
+                      <Image alt="Facebook" src={facebook} />
                     </Link>
                   </div>
 
                   <div className="h-[40px] w-[40px]">
                     <Link href="https://instagram.com" target="_blank">
-                      <Image src={instagram} alt="Instagram" />
+                      <Image alt="Instagram" src={instagram} />
                     </Link>
                   </div>
 
                   <div className="h-[40px] w-[40px]">
                     <Link href="https://linkedin.com" target="_blank">
-                      <Image src={linkedin} alt="LinkedIn" />
+                      <Image alt="LinkedIn" src={linkedin} />
                     </Link>
                   </div>
                 </div>

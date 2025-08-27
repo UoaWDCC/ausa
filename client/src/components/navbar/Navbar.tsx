@@ -157,7 +157,7 @@ const defaultNavConfig: NavConfig = {
   },
   navItems: [
     { label: 'Home', href: '/' },
-    { label: 'Support', href: '/support' },
+    { label: 'Resources', href: '/resources' },
     { label: 'Quiz', href: '/quiz' },
     { label: 'Events', href: '/events' },
     {
@@ -166,19 +166,18 @@ const defaultNavConfig: NavConfig = {
         { label: 'University Support', href: '/faq/university-support' },
         { label: 'External Support', href: '/faq/external-support' },
         { label: 'Emergency Support', href: '/faq/emergency-support' },
+        { label: 'Quiz', href: '/quiz' },
       ],
     },
     {
       label: 'Contacts',
-      items: [
-        { label: 'General Enquiries', href: '/contact/general' },
-        { label: 'Student Support', href: '/contact/support' },
-        { label: 'Academic Affairs', href: '/contact/academic' },
-        { label: 'Events', href: '/contact/events' },
-      ],
+      items: [{ label: 'General Enquiries', href: '/contact' }],
     },
   ],
-  actionButtons: [{ label: 'Login', href: '/login' }],
+  actionButtons: [
+    { label: 'Login', href: '/login' },
+    { label: 'Sign up', href: '/signup' },
+  ],
   showSearch: true,
 }
 

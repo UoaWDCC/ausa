@@ -13,31 +13,31 @@ interface FAQProps {
   params: Promise<{ id: string }>
 }
 
-const Banner = () => {
-  return (
-    <div className="bg-slate-900/80 text-white p-2">
-      <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
-        <div className="animate-infinite-scrolling flex w-full flex-none gap-4 transition-transform">
-          <div className="font-geist flex items-center justify-center">
-            <div className="flex items-center text-base md:text-2xl">
-              Support Available 24/7
-            </div>
-            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
-          </div>{' '}
-        </div>
-        <div className="animate-infinite-scrolling flex w-full flex-none gap-2 transition-transform">
-          {' '}
-          <div className="font-geist flex items-center justify-center">
-            <div className="flex items-center text-base md:text-2xl">
-              Support Available 24/7
-            </div>
-            <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
-          </div>{' '}
-        </div>
-      </div>
-    </div>
-  )
-}
+// const Banner = () => {
+//   return (
+//     <div className="bg-slate-900/80 text-white p-2">
+//       <div className="group mx-auto flex w-full gap-[0.5rem] overflow-hidden">
+//         <div className="animate-infinite-scrolling flex w-full flex-none gap-4 transition-transform">
+//           {/* <div className="font-geist flex items-center justify-center">
+//             <div className="flex items-center text-base md:text-2xl">
+//               Support Available 24/7
+//             </div>
+//             <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
+//           </div>{' '} */}
+//         </div>
+//         {/* <div className="animate-infinite-scrolling flex w-full flex-none gap-2 transition-transform">
+//           {' '}
+//           <div className="font-geist flex items-center justify-center">
+//             <div className="flex items-center text-base md:text-2xl">
+//               Support Available 24/7
+//             </div>
+//             <div className="m-0.5 h-[20px] w-[20px] rounded-full bg-[#5A9B8C]" />
+//           </div>{' '}
+//         </div> */}
+//       </div>
+//     </div>
+//   )
+// }
 
 export default async function FAQ({ params }: FAQProps) {
   const faqCategoryMap: Record<string, Faq[]> = {}
@@ -90,30 +90,32 @@ export default async function FAQ({ params }: FAQProps) {
   //console.log('faqCategoryMap', faqCategoryMap)
 
   return (
-    <div className="mt-[70px] flex min-h-[100vh] flex-col">
-      <div className="font-geist flex min-h-[100vh] w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4">
+    <div className="flex flex-col min-h-screen w-screen ml-[calc(-50vw+50%)]">
+      <div className="flex flex-1 w-full flex-col md:grid md:grid-cols-3 lg:grid-cols-4 flex-1">
         <div
-          className="hidden md:flex flex-col col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
+          className="hidden md:flex flex-col md:col-span-1 lg:col-span-1 justify-center gap-4 bg-slate-900/50 p-8 text-white"
           id="section-left"
         >
           <h1 className="mb-2 flex justify-center text-2xl font-bold">
             How Can We Help?
           </h1>
-          <FaqBox
-            icon={ausa}
-            title={faqCategories.data[0].name}
-            content="blahblahblah"
-          />
-          <FaqBox
-            icon={ausa}
-            title={faqCategories.data[1].name}
-            content="blahblahblah"
-          />
-          <FaqBox
-            icon={ausa}
-            title={faqCategories.data[2].name}
-            content="blahblahblah"
-          />
+          <div className="flex flex-col items-center gap-4 md:gap-8">
+            <FaqBox
+              content="Resources & Services"
+              icon={ausa}
+              title={faqCategories.data[0].name}
+            />
+            <FaqBox
+              content="Immediate & Urgent"
+              icon={ausa}
+              title={faqCategories.data[1].name}
+            />
+            <FaqBox
+              content="Communities & Local"
+              icon={ausa}
+              title={faqCategories.data[2].name}
+            />
+          </div>
           {/* {faqCategories.data.map((category: FaqCategory) => (
              <div
               key={category.id}
@@ -130,10 +132,10 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
 
         <div
-          className="flex flex-col gap-8 border bg-[#FAF7F2] px-[5%] py-[15%] text-[#2D3B4E] md:col-span-2 lg:col-span-3"
+          className="flex flex-col flex-1 min-h-screen gap-8 bg-gray-700/75 px-[5%] py-[20%] text-white md:col-span-2 lg:col-span-3 "
           id="section-right"
         >
-          <h1 className="text-2xl md:text-4xl">Frequently Asked Questions</h1>
+          <h1 className="text-2xl text-4xl">Frequently Asked Questions</h1>
           <h2 className="text-2xl font-semibold">{faqCategory.data[0].name}</h2>
           <div className="">
             <Accordion type="single" collapsible className="w-full">
@@ -147,7 +149,6 @@ export default async function FAQ({ params }: FAQProps) {
           </div>
         </div>
       </div>
-      <Banner />
     </div>
   )
 }

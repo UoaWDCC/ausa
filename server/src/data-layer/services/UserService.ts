@@ -141,6 +141,4 @@ export class UserService {
     const updatedUser = await userRef.get()
     return updatedUser.data() as User
   }
-
-  
 }
