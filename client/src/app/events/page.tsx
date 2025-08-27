@@ -71,11 +71,11 @@ const mockEvents: Event[] = [
       alt: 'Students at orientation',
     },
     content: {
-      subtitle: 'March 1st',
+      subtitle: 'By AUSA',
       body: 'Join us for a week of activities, club showcases, and social events to kick off the new semester. Meet fellow students and discover everything AUSA has to offer.',
       callToAction: {
-        text: 'Register',
-        href: '',
+        text: 'View Details',
+        href: '/event-details?id=1&title=Orientation%20Week',
       },
     },
   },
@@ -87,11 +87,11 @@ const mockEvents: Event[] = [
       alt: 'End of semester celebration',
     },
     content: {
-      subtitle: 'June 24th',
+      subtitle: 'By AUSA',
       body: 'Youve made it through another semester! Join us at Shadows Bar for music, games, and a chance to unwind before the break.',
       callToAction: {
-        text: 'Register',
-        href: '',
+        text: 'View Details',
+        href: '/event-details?id=2&title=End%20of%20Semester%20Party',
       },
     },
   },
@@ -103,11 +103,11 @@ const mockEvents: Event[] = [
       alt: 'Career fair booth setup',
     },
     content: {
-      subtitle: 'April 15th',
+      subtitle: 'By AUSA',
       body: 'Meet representatives from top companies across multiple industries. Bring your CV and your questions - this is your opportunity to explore internships and graduate roles.',
       callToAction: {
-        text: 'Register',
-        href: '',
+        text: 'View Details',
+        href: '/event-details?id=3&title=Career%20Fair',
       },
     },
   },
@@ -119,11 +119,11 @@ const mockEvents: Event[] = [
       alt: 'Graduation Ceremony',
     },
     content: {
-      subtitle: 'November 15th',
+      subtitle: 'By AUSA',
       body: 'Show everyone your best self and graduate roles. This is your chance to shine and celebrate your achievements.',
       callToAction: {
-        text: 'Register',
-        href: '',
+        text: 'View Details',
+        href: '/event-details?id=4&title=Graduation%20Ceremony',
       },
     },
   },
