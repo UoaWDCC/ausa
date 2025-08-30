@@ -15,13 +15,14 @@ import {
   type EventCreationParams,
   EventService,
 } from '../../data-layer/services/EventService'
+import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 
 @Route('events')
 export class EventController extends Controller {
   @SuccessResponse('200', 'Found')
   @Get('by-name')
-  public async getEventByName(@Query() name: string): Promise<Event | null> {
-    return new EventService().getEventByName(name)
+  public async getEventByName(@Query() title: string): Promise<Event | null> {
+    return new EventService().getEventByTitle(title)
   }
 
   @SuccessResponse('200', 'Found')
@@ -39,10 +40,15 @@ export class EventController extends Controller {
   @SuccessResponse('201', 'Created')
   @Post()
   public async createEvent(
-    @Body() requestBody: EventCreationParams,
+    @Body() requestBody: Omit<EventCreationParams, 'id'>,
   ): Promise<Event> {
     this.setStatus(201)
-    return new EventService().createEvent(requestBody)
+    const docRef = FirestoreCollections.events.doc()
+
+    return new EventService().createEvent({
+      id: docRef.id,
+      ...requestBody,
+    })
   }
 
   @SuccessResponse('200', 'Deleted')
