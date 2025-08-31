@@ -56,11 +56,6 @@ export class EventService {
       heroImage: doc.data().heroImage,
       content: doc.data().content,
     }))
-    console.log(
-      eventList.map((event) => {
-        event
-      }),
-    )
     return eventList
   }
 

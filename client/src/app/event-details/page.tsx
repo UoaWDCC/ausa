@@ -2,6 +2,7 @@
 
 import { useSearchParams } from 'next/navigation'
 import React, { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import AboutInputBox from '@/components/event-details/AboutInputBox'
 import EventAboutSection from '@/components/event-details/EventAboutSection'
 import EventHeroImage from '@/components/event-details/EventHeroImage'
@@ -11,7 +12,10 @@ import InfoInputBox from '@/components/event-details/InfoInputBox'
 export default function Page() {
   // Get query params
   const searchParams = useSearchParams()
-  const eventTitle = searchParams.get('title') || 'Event'
+  const router = useRouter()
+  const mode = searchParams.get('mode')
+  const isAddMode = mode === 'add'
+  const eventTitle = isAddMode ? 'New Event' : (searchParams.get('title') || 'Event')
   const eventSubtitle = 'By AUSA'
 
   // About state
@@ -26,6 +30,45 @@ export default function Page() {
   const [endTime, setEndTime] = useState('')
   const [infoSubmitted, setInfoSubmitted] = useState(false)
 
+  const handleSaveEvent = async () => {
+    try {
+      const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000')
+
+      const eventPayload = {
+        title: aboutTitle,
+        content: {
+          subtitle: date,
+          body: aboutDescription,
+          callToAction: {
+            text: 'Register',
+            href: ''
+          }
+        },
+        heroImage: {
+          src: '/static/icons/ausa.svg',
+          alt: `${aboutTitle} event image`
+        }
+      }
+
+      const response = await fetch(`${apiUrl}/events`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(eventPayload)
+      })
+
+      if (response.ok) {
+        alert('Event created successfully!')
+        router.push('/events')
+      } else {
+        const errorText = await response.text()
+        alert(`Error creating event: ${response.status} - ${errorText}`)
+      }
+    } catch (error) {
+      console.error('Error saving event:', error)
+      alert('Error saving event. Please try again.')
+    }
+  }
+
   return (
     <main
       style={{
@@ -36,6 +79,13 @@ export default function Page() {
         fontFamily: 'sans-serif',
       }}
     >
+      {/* Header with mode indication */}
+      <div className="text-center py-4">
+        <h1 className="text-3xl font-bold">
+          {isAddMode ? 'Add New Event' : 'Event Details'}
+        </h1>
+      </div>
+
       {/* Hero Image */}
       <EventHeroImage imageUrl="" subtitle={eventSubtitle} title={eventTitle} />
 
@@ -91,6 +141,18 @@ export default function Page() {
           )}
         </div>
       </div>
+
+      {/* Save Button - Only shown after both forms are submitted*/}
+      {aboutSubmitted && infoSubmitted && (
+        <div className="text-center py-6">
+          <button
+            onClick={handleSaveEvent}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-base cursor-pointer"
+          >
+            Create Event
+          </button>
+        </div>
+      )}
     </main>
   )
 }
