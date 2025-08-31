@@ -24,7 +24,7 @@ const UserProfilePage = () => {
       </div>
 
       {/* tabs section */}
-      <div className="flex flex-col h-screen bg-white -mt-[50px] w-full relative">
+      <div className="flex flex-col bg-white -mt-[50px] w-full relative">
         <div className="text-3xl text-center mt-20 mb-15">Welcome, User!</div>
         <div className="w-full flex justify center">
           <div className="flex justify-between mb-2.5 bottom md:ml-30">
@@ -59,8 +59,8 @@ const UserProfilePage = () => {
             Edit Profile
           </Button>
         </div>
-        <div className="border border-black-900 mt-8 " />
-        <div className="border border-black-900 rounded-lg mt-8 px-6 md:mx-30">
+        <div className="border border-black-900 mt-8 px-6 md:mx-30" />
+        <div className="border border-black-900 rounded-lg mt-8 px-6 md:mx-30 mb-20">
           {activeTab == 'about' && <About />}
           {activeTab == 'quizresults' && <QuizResults />}
           {activeTab == 'events' && <Events />}
