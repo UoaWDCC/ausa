@@ -1,0 +1,1 @@
+//JWT authentication middleware, this file will contain the logic to verify and attach user information to the request object.

@@ -1,0 +1,1 @@
+//This file contains the AuthController for handling authentication-related requests.

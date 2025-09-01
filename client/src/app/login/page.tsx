@@ -24,6 +24,8 @@ const Login = () => {
     }
   }, [user, router])
 
+  
+
   const handleLogin = async (e: React.FormEvent) => {
     // Prevent default form submission
     e.preventDefault()
