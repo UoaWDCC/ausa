@@ -60,7 +60,7 @@ const UserProfilePage = () => {
           </Button>
         </div>
         <div className="border border-black-900 mt-8 px-6 md:mx-30" />
-        <div className="border border-black-900 rounded-lg mt-8 px-6 md:mx-30 mb-20">
+        <div className="rounded-lg mt-8 px-6 md:mx-30 mb-20">
           {activeTab == 'about' && <About />}
           {activeTab == 'quizresults' && <QuizResults />}
           {activeTab == 'events' && <Events />}
