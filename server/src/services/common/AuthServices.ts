@@ -1,0 +1,1 @@
+//this is where core auth logic lies, verify users email and password and generate JWT tokens with necessary claims

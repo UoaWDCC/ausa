@@ -5,9 +5,10 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useEffect, useState } from 'react'
 import { useAuth } from '@/auth/AuthContext'
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { signInWithCustomToken } from 'firebase/auth'
 import { auth } from '@/lib/firebase'
 import { useRouter } from 'next/navigation'
+import client from '@/services/fetch-client'
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
@@ -24,14 +25,32 @@ const Login = () => {
     }
   }, [user, router])
 
+  
+
   const handleLogin = async (e: React.FormEvent) => {
     // Prevent default form submission
     e.preventDefault()
 
     try {
-      // firebase authentication
+      // Send information to backend for verification
       setLoading(true)
-      await signInWithEmailAndPassword(auth, form.email, form.password)
+      const { data, error } = await client.POST('/auth/login', {
+        body: {
+          email: form.email,
+          password: form.password,
+        },
+      })
+
+      if (error) {
+        throw error
+      }
+
+      // Use the custom token to sign in the user on the frontend
+      if (typeof data.token !== 'string') {
+        throw new Error('Invalid token received from server.')
+      }
+      await signInWithCustomToken(auth, data.token)
+
       alert('Login successful!')
     } catch (err: any) {
       setLoading(false)

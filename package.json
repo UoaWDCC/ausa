@@ -22,6 +22,7 @@
     "generate:types": "turbo run generate:types"
   },
   "dependencies": {
+    "@nestjs/common": "^11.1.6",
     "openapi-fetch": "^0.14.0",
     "openapi-typescript": "^7.8.0",
     "typescript": "5.8.3"
