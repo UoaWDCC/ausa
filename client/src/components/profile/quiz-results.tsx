@@ -1,4 +1,4 @@
-import { ChartColumnIncreasing } from 'lucide-react'
+import { ChartColumnIncreasing, LibraryBig } from 'lucide-react'
 import Link from 'next/link'
 
 const ProfileQuizResults = () => {
@@ -27,7 +27,7 @@ const ProfileQuizResults = () => {
         {/* Recommended Resources */}
         <div className="shadow-sm border rounded-2xl bg-white/80 p-6">
           <div className="flex items-center gap-3 mb-4">
-            <ChartColumnIncreasing className="text-green-500 w-6 h-6" />
+            <LibraryBig className="text-green-500 w-6 h-6" />
             <h2 className="text-2xl font-semibold text-gray-800">
               Recommended Resources
             </h2>
