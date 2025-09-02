@@ -9,6 +9,7 @@ import {
   Post,
   Query,
   Route,
+  Security,
   SuccessResponse,
 } from 'tsoa'
 import {
@@ -18,47 +19,53 @@ import {
 
 @Route('users')
 export class UserController extends Controller {
+  private userRepository = new UserRepository()
+
   @SuccessResponse('200', 'Found')
   @Get('by-username')
   public async getUserByUsername(
     @Query() username: string,
   ): Promise<User | null> {
-    return new UserRepository().getUserByUsername(username)
+    return this.userRepository.getUserByUsername(username)
   }
 
+  @Security('jwt', ['admin'])
   @SuccessResponse('200', 'Found')
   @Get('by-email')
   public async getUserByEmail(@Query() email: string): Promise<User | null> {
-    return new UserRepository().getUserByEmail(email)
+    return this.userRepository.getUserByEmail(email)
   }
 
+  @Security('jwt', ['admin'])
   @SuccessResponse('200', 'Found')
   @Get('{userId}')
   public async getUserById(@Path() userId: string): Promise<User | null> {
-    return new UserRepository().getUser(userId)
+    return this.userRepository.getUser(userId)
   }
 
   @SuccessResponse('200', 'Found')
   @Get()
   public async getUsers(): Promise<User[]> {
-    return new UserRepository().getAllUsers()
+    return this.userRepository.getAllUsers()
   }
 
+  @Security('jwt', ['admin'])
   @SuccessResponse('201', 'Created') // Custom success response
   @Post()
   public async createUser(
     @Body() requestBody: UserCreationParams,
   ): Promise<User> {
     this.setStatus(201)
-    return new UserRepository().createUser(requestBody)
+    return this.userRepository.createUser(requestBody)
   }
 
+  @Security('jwt', ['admin'])
   @SuccessResponse('200', 'Deleted')
   @Delete('by-userId')
   public async deleteUser(
     @Query() userToDeleteId: string,
   ): Promise<User | null> {
-    const deletedUser = await new UserRepository().deleteUser(userToDeleteId)
+    const deletedUser = await this.userRepository.deleteUser(userToDeleteId)
     if (!deletedUser) {
       this.setStatus(400)
       return null
@@ -66,11 +73,13 @@ export class UserController extends Controller {
     return deletedUser
   }
 
+  @Security('jwt', ['admin'])
   @SuccessResponse('200', 'Updated')
   @Patch('{userId}')
   public async updateUser(
     @Query() userId: string,
     @Body() updates: UpdateUserPackage,
   ): Promise<User | null> {
-    return new UserRepository().updateUser(userId, updates)
-  }}
+    return this.userRepository.updateUser(userId, updates)
+  }
+}
