@@ -1,5 +1,5 @@
-import { FaqCategoryDataService } from 'data-access/faq/FaqCategoryDataRepository'
-import { FaqDataService } from 'data-access/faq/FaqDataRepository'
+import { FaqCategoryDataRepository } from 'data-access/faq/FaqCategoryDataRepository'
+import { FaqDataRepository } from 'data-access/faq/FaqDataRepository'
 import { StatusCodes } from 'http-status-codes'
 import type {
   createFaqRequest,
@@ -31,13 +31,13 @@ export class FaqController extends Controller {
   ): Promise<GetAllFaqResponse> {
     try {
       if (category) {
-        const faqs = await FaqDataService.getFaqsByCategoryId(category)
+        const faqs = await FaqDataRepository.getFaqsByCategoryId(category)
         if (faqs) {
           return { data: faqs }
         }
         return { data: [] }
       }
-      const faqs = await FaqDataService.getAllFaq()
+      const faqs = await FaqDataRepository.getAllFaq()
       return { data: faqs }
     } catch (error) {
       console.error('Error retrieving FAQs', error)
@@ -49,7 +49,7 @@ export class FaqController extends Controller {
   @Get('{id}')
   public async getFaqCategory(@Path() id: string): Promise<GetFaqResponse> {
     try {
-      const res = await FaqDataService.getFaq(id)
+      const res = await FaqDataRepository.getFaq(id)
       if (!res) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'FAQ not found' }
@@ -70,12 +70,12 @@ export class FaqController extends Controller {
   ): Promise<GetFaqResponse> {
     try {
       const existingFaqCategory =
-        await FaqCategoryDataService.getFaqCategoryById(faq.categoryId)
+        await FaqCategoryDataRepository.getFaqCategoryById(faq.categoryId)
       if (!existingFaqCategory) {
         this.setStatus(StatusCodes.BAD_REQUEST)
         return { error: 'Invalid FAQ category ID' }
       }
-      const createdFaq = await FaqDataService.createFaq(faq)
+      const createdFaq = await FaqDataRepository.createFaq(faq)
       this.setStatus(StatusCodes.CREATED)
       return { data: createdFaq }
     } catch (error) {
@@ -93,12 +93,12 @@ export class FaqController extends Controller {
     @Body() faq: updateFaqRequest,
   ): Promise<GetFaqResponse> {
     try {
-      const existingFaq = await FaqDataService.getFaq(id)
+      const existingFaq = await FaqDataRepository.getFaq(id)
       if (!existingFaq) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'FAQ not found' }
       }
-      const updatedFaq = await FaqDataService.updateFaq(id, faq)
+      const updatedFaq = await FaqDataRepository.updateFaq(id, faq)
       return { data: updatedFaq }
     } catch (error) {
       console.error('Error updating FAQ:', error)
@@ -112,12 +112,12 @@ export class FaqController extends Controller {
   @SuccessResponse(StatusCodes.NO_CONTENT, 'Successfully deleted FAQ')
   public async deleteFaq(@Path() id: string): Promise<void> {
     try {
-      const existingFaq = await FaqDataService.getFaq(id)
+      const existingFaq = await FaqDataRepository.getFaq(id)
       if (!existingFaq) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return
       }
-      await FaqDataService.deleteFaq(id)
+      await FaqDataRepository.deleteFaq(id)
     } catch (error) {
       console.error('Error deleting FAQ:', error)
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -133,16 +133,16 @@ export class FaqController extends Controller {
     try {
       if (categoryId) {
         const existingCategory =
-          await FaqCategoryDataService.getFaqCategoryById(categoryId)
+          await FaqCategoryDataRepository.getFaqCategoryById(categoryId)
         if (!existingCategory) {
           this.setStatus(StatusCodes.NOT_FOUND)
           return
         }
-        await FaqDataService.deleteFaqsByCategoryId(categoryId)
+        await FaqDataRepository.deleteFaqsByCategoryId(categoryId)
         this.setStatus(StatusCodes.NO_CONTENT)
         return
       }
-      await FaqDataService.deleteAllFaqs()
+      await FaqDataRepository.deleteAllFaqs()
       this.setStatus(StatusCodes.NO_CONTENT)
     } catch (error) {
       console.error('Error deleting all FAQs:', error)

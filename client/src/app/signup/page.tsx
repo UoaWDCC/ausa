@@ -1,17 +1,18 @@
 'use client'
 import {
-  createUserWithEmailAndPassword,
+  getAuth,
   GoogleAuthProvider,
+  signInWithCustomToken,
   signInWithPopup,
-  updateProfile,
 } from 'firebase/auth'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { auth } from '@/lib/firebase'
 import client from '@/services/fetch-client'
 import type { User } from '@/types/types'
+import router from 'next/router'
 
 const Signup = () => {
   const [form, setForm] = useState({
@@ -20,6 +21,7 @@ const Signup = () => {
     password: '',
   })
   const [loading, setLoading] = useState(false)
+
 
   const convertToUser = (user: any): User => {
     return {
@@ -66,31 +68,42 @@ const Signup = () => {
     }
 
     setLoading(true)
-    try {
-      const userCred = await createUserWithEmailAndPassword(
-        auth,
-        form.email,
-        form.password,
-      )
-      await updateProfile(userCred.user, {
-        displayName: form.name,
-      })
-      await saveUser(userCred.user)
-      alert('Account created successfully!')
-    } catch (error: any) {
-      console.error('Signup error:', error)
+    const auth = getAuth();
 
-      if (error.code === 'auth/email-already-in-use') {
-        alert(
-          'This email is already registered. Please use a different email or try logging in.',
-        )
-      } else if (error.code === 'auth/weak-password') {
-        alert('Password is too weak. Please use at least 6 characters.')
-      } else if (error.code === 'auth/invalid-email') {
-        alert('Invalid email address.')
-      } else {
-        alert('Failed to create account. Please try again.')
-      }
+    try {
+        const { data, error } = await client.POST('/auth/signup', {
+          body: {
+            name: form.name,
+            email: form.email,
+            password: form.password,
+          },
+        })
+
+        if (error) {
+          throw error;
+        }
+
+        // Step 1: Use the custom token to sign in the user on the frontend
+        const userCredential = await signInWithCustomToken(auth, data.customToken);
+        const user = userCredential.user;
+
+
+        // Step 3: Save the user
+        await saveUser(user);
+        alert('Account created successfully!');
+        router.push('/');
+    } catch (error: any) {
+        console.error('Signup error:', error)
+        // Check if the error object from your backend contains the code
+        if (error.code === 'auth/email-already-in-use' || error.data?.code === 'auth/email-already-in-use') {
+          alert('This email is already registered. Please use a different email or try logging in.');
+        } else if (error.code === 'auth/weak-password' || error.data?.code === 'auth/weak-password') {
+          alert('Password is too weak. Please use at least 6 characters.');
+        } else if (error.code === 'auth/invalid-email' || error.data?.code === 'auth/invalid-email') {
+          alert('Invalid email address.');
+        } else {
+          alert('Failed to create account. Please try again.');
+        }
     } finally {
       setLoading(false)
     }

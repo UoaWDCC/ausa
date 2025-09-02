@@ -73,5 +73,4 @@ export class UserController extends Controller {
     @Body() updates: UpdateUserPackage,
   ): Promise<User | null> {
     return new UserRepository().updateUser(userId, updates)
-  }
-}
+  }}

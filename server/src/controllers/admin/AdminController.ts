@@ -10,12 +10,12 @@ import {
 } from 'tsoa'
 import {
   type UserCreationParams,
-  UserService,
+  UserRepository,
 } from '../../data-access/common/UserRepository'
 import { AdminService } from '../../services/admin/AdminService'
 import {
   type EventCreationParams,
-  EventService,
+  EventRepository,
 } from '../../data-access/event/EventRepository'
 import { Event } from 'models/Event'
 
@@ -27,7 +27,7 @@ export class AdminController extends Controller {
     @Body() requestBody: UserCreationParams,
   ): Promise<User> {
     this.setStatus(201)
-    return new UserService().createUser(requestBody)
+    return new UserRepository().createUser(requestBody)
   }
 
   @SuccessResponse('200', 'Deleted')
@@ -59,7 +59,7 @@ export class AdminController extends Controller {
     //   return null
     // }
     this.setStatus(201)
-    return new EventService().createEvent(requestBody)
+    return new EventRepository().createEvent(requestBody)
   }
 
   @SuccessResponse('200', 'Deleted')
@@ -67,7 +67,7 @@ export class AdminController extends Controller {
   public async adminDeleteEvent(
     @Query() eventId: string,
   ): Promise<Event | null> {
-    const deletedEvent = await new EventService().deleteEvent(eventId)
+    const deletedEvent = await new EventRepository().deleteEvent(eventId)
     if (!deletedEvent) {
       this.setStatus(400)
       return null

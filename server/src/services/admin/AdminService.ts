@@ -1,7 +1,7 @@
 import type { User } from 'models/User'
 import { UserRepository } from '../../data-access/common/UserRepository' // 假设你的 UserService 在这里
 import { UserCreationParams } from 'data-access/common/UserRepository'
-import { EventService } from 'data-access/event/EventRepository'
+import { EventRepository } from 'data-access/event/EventRepository'
 import type { Event } from 'models/Event'
 
 export class AdminService {
@@ -57,7 +57,7 @@ export class AdminService {
     heroImageSrc?: string,
     heroImageAlt?: string,
   ): Promise<Event | null> {
-    const eventService = new EventService()
+    const eventService = new EventRepository()
     // const userService = new UserService()
     // const requestingUser = await userService.getUser(requestingUserId)
     // if (!requestingUser || requestingUser.role !== 'admin') {
@@ -94,7 +94,7 @@ export class AdminService {
   }
 
   async AdminDeleteEvent(eventId: string): Promise<Event | null> {
-    const eventService = new EventService()
+    const eventService = new EventRepository()
     const eventToDelete = await eventService.deleteEvent(eventId)
     if (!eventToDelete) {
       console.log(`Event - ${eventId} not found for deletion`)

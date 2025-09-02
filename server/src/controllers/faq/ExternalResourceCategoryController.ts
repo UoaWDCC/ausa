@@ -1,5 +1,5 @@
-import { ExternalResourceCategoryDataService } from 'data-access/faq/ExternalResourceCategoriesDataRepository'
-import { ExternalResourceDataService } from 'data-access/faq/ExternalResourceDataRepository'
+import { ExternalResourceCategoryDataRepository } from 'data-access/faq/ExternalResourceCategoriesDataRepository'
+import { ExternalResourceDataRepository } from 'data-access/faq/ExternalResourceDataRepository'
 import { StatusCodes } from 'http-status-codes'
 import type {
   createExternalResourceCategoryRequest,
@@ -32,14 +32,14 @@ export class ExternalResourceCategoryController extends Controller {
     try {
       if (name) {
         const category =
-          await ExternalResourceCategoryDataService.getCategoryByName(name)
+          await ExternalResourceCategoryDataRepository.getCategoryByName(name)
         if (category) {
           return { data: [category] }
         }
         return { data: [] }
       }
       const categories =
-        await ExternalResourceCategoryDataService.getAllCategories()
+        await ExternalResourceCategoryDataRepository.getAllCategories()
       return { data: categories }
     } catch (error) {
       console.error('Error retrieving External Resource categories:', error)
@@ -53,7 +53,7 @@ export class ExternalResourceCategoryController extends Controller {
     @Path() id: string,
   ): Promise<GetExternalResourceCategoryResponse> {
     try {
-      const res = await ExternalResourceCategoryDataService.getCategoryById(id)
+      const res = await ExternalResourceCategoryDataRepository.getCategoryById(id)
       if (!res) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'External Resource Category not found' }
@@ -77,7 +77,7 @@ export class ExternalResourceCategoryController extends Controller {
   ): Promise<GetExternalResourceCategoryResponse> {
     try {
       const existingCategory =
-        await ExternalResourceCategoryDataService.getCategoryByName(
+        await ExternalResourceCategoryDataRepository.getCategoryByName(
           category.name,
         )
       if (existingCategory) {
@@ -85,7 +85,7 @@ export class ExternalResourceCategoryController extends Controller {
         return { error: 'Category with this name already exists' }
       }
       const createdCategory =
-        await ExternalResourceCategoryDataService.createCategory(category)
+        await ExternalResourceCategoryDataRepository.createCategory(category)
       this.setStatus(StatusCodes.CREATED)
       return { data: createdCategory }
     } catch (error) {
@@ -104,13 +104,13 @@ export class ExternalResourceCategoryController extends Controller {
   ): Promise<GetExternalResourceCategoryResponse> {
     try {
       const existingCategory =
-        await ExternalResourceCategoryDataService.getCategoryById(id)
+        await ExternalResourceCategoryDataRepository.getCategoryById(id)
       if (!existingCategory) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'Category not found' }
       }
       const updatedCategory =
-        await ExternalResourceCategoryDataService.updateCategory(
+        await ExternalResourceCategoryDataRepository.updateCategory(
           id,
           faqCategory,
         )
@@ -128,13 +128,13 @@ export class ExternalResourceCategoryController extends Controller {
   public async deleteCategory(@Path() id: string): Promise<void> {
     try {
       const existingCategory =
-        await ExternalResourceCategoryDataService.getCategoryById(id)
+        await ExternalResourceCategoryDataRepository.getCategoryById(id)
       if (!existingCategory) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return
       }
-      await ExternalResourceCategoryDataService.deleteCategory(id)
-      await ExternalResourceDataService.deleteByCategoryId(id)
+      await ExternalResourceCategoryDataRepository.deleteCategory(id)
+      await ExternalResourceDataRepository.deleteByCategoryId(id)
     } catch (error) {
       console.error('Error deleting FAQ category:', error)
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)

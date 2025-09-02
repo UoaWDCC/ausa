@@ -1,5 +1,5 @@
-import { FaqCategoryDataService } from 'data-access/faq/FaqCategoryDataRepository'
-import { FaqDataService } from 'data-access/faq/FaqDataRepository'
+import { FaqCategoryDataRepository } from 'data-access/faq/FaqCategoryDataRepository'
+import { FaqDataRepository } from 'data-access/faq/FaqDataRepository'
 import { StatusCodes } from 'http-status-codes'
 import type {
   createFaqCategoryRequest,
@@ -33,7 +33,7 @@ export class FaqCategoryController extends Controller {
     try {
       if (name) {
         const faqCategory =
-          await FaqCategoryDataService.getFaqCategoryByName(name)
+          await FaqCategoryDataRepository.getFaqCategoryByName(name)
         if (faqCategory) {
           return { data: [faqCategory] }
         }
@@ -41,13 +41,13 @@ export class FaqCategoryController extends Controller {
       }
       if (url) {
         const faqCategory =
-          await FaqCategoryDataService.getFaqCategoryByURL(url)
+          await FaqCategoryDataRepository.getFaqCategoryByURL(url)
         if (faqCategory) {
           return { data: [faqCategory] }
         }
         return { data: [] }
       }
-      const faqCategories = await FaqCategoryDataService.getAllFaqCategories()
+      const faqCategories = await FaqCategoryDataRepository.getAllFaqCategories()
       return { data: faqCategories }
     } catch (error) {
       console.error('Error retrieving FAQ categories:', error)
@@ -61,7 +61,7 @@ export class FaqCategoryController extends Controller {
     @Path() id: string,
   ): Promise<GetFaqCategoryResponse> {
     try {
-      const res = await FaqCategoryDataService.getFaqCategoryById(id)
+      const res = await FaqCategoryDataRepository.getFaqCategoryById(id)
       if (!res) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'FAQ Category not found' }
@@ -82,19 +82,19 @@ export class FaqCategoryController extends Controller {
   ): Promise<GetFaqCategoryResponse> {
     try {
       const existingCategory =
-        await FaqCategoryDataService.getFaqCategoryByName(faqCategory.name)
+        await FaqCategoryDataRepository.getFaqCategoryByName(faqCategory.name)
       if (existingCategory) {
         this.setStatus(StatusCodes.CONFLICT)
         return { error: 'FAQ Category with this name already exists' }
       }
       const existingUrlCategory =
-        await FaqCategoryDataService.getFaqCategoryByURL(faqCategory.url)
+        await FaqCategoryDataRepository.getFaqCategoryByURL(faqCategory.url)
       if (existingUrlCategory) {
         this.setStatus(StatusCodes.CONFLICT)
         return { error: 'FAQ Category with this URL already exists' }
       }
       const createdCategory =
-        await FaqCategoryDataService.createFaqCategory(faqCategory)
+        await FaqCategoryDataRepository.createFaqCategory(faqCategory)
       this.setStatus(StatusCodes.CREATED)
       return { data: createdCategory }
     } catch (error) {
@@ -113,12 +113,12 @@ export class FaqCategoryController extends Controller {
   ): Promise<GetFaqCategoryResponse> {
     try {
       const existingCategory =
-        await FaqCategoryDataService.getFaqCategoryById(id)
+        await FaqCategoryDataRepository.getFaqCategoryById(id)
       if (!existingCategory) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'FAQ Category not found' }
       }
-      const updatedCategory = await FaqCategoryDataService.updateFaqCategory(
+      const updatedCategory = await FaqCategoryDataRepository.updateFaqCategory(
         id,
         faqCategory,
       )
@@ -136,13 +136,13 @@ export class FaqCategoryController extends Controller {
   public async deleteFaqCategory(@Path() id: string): Promise<void> {
     try {
       const existingCategory =
-        await FaqCategoryDataService.getFaqCategoryById(id)
+        await FaqCategoryDataRepository.getFaqCategoryById(id)
       if (!existingCategory) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return
       }
-      await FaqCategoryDataService.deleteFaqCategory(id)
-      await FaqDataService.deleteFaqsByCategoryId(id)
+      await FaqCategoryDataRepository.deleteFaqCategory(id)
+      await FaqDataRepository.deleteFaqsByCategoryId(id)
     } catch (error) {
       console.error('Error deleting FAQ category:', error)
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)

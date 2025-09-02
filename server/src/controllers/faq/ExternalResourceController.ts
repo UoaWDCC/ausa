@@ -1,5 +1,5 @@
-import { ExternalResourceCategoryDataService } from 'data-access/faq/ExternalResourceCategoriesDataRepository'
-import { ExternalResourceDataService } from 'data-access/faq/ExternalResourceDataRepository'
+import { ExternalResourceCategoryDataRepository } from 'data-access/faq/ExternalResourceCategoriesDataRepository'
+import { ExternalResourceDataRepository } from 'data-access/faq/ExternalResourceDataRepository'
 import { StatusCodes } from 'http-status-codes'
 import type {
   createExternalResourceRequest,
@@ -31,14 +31,14 @@ export class ExternalResourceController extends Controller {
   ): Promise<GetAllExternalResourceResponse> {
     try {
       if (category) {
-        const res = await ExternalResourceDataService.getByCategoryId(category)
+        const res = await ExternalResourceDataRepository.getByCategoryId(category)
         if (res) {
           return { data: res }
         }
         return { data: [] }
       }
       const externalResources =
-        await ExternalResourceDataService.getAllExternalResources()
+        await ExternalResourceDataRepository.getAllExternalResources()
       return { data: externalResources }
     } catch (error) {
       console.error('Error retrieving external resources:', error)
@@ -52,7 +52,7 @@ export class ExternalResourceController extends Controller {
     @Path() id: string,
   ): Promise<GetExternalResourceResponse> {
     try {
-      const res = await ExternalResourceDataService.getExternalResourceById(id)
+      const res = await ExternalResourceDataRepository.getExternalResourceById(id)
       if (!res) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'External Resource not found' }
@@ -76,7 +76,7 @@ export class ExternalResourceController extends Controller {
   ): Promise<GetExternalResourceResponse> {
     try {
       const existingCategory =
-        await ExternalResourceCategoryDataService.getCategoryById(
+        await ExternalResourceCategoryDataRepository.getCategoryById(
           externalResource.categoryId,
         )
       if (!existingCategory) {
@@ -84,7 +84,7 @@ export class ExternalResourceController extends Controller {
         return { error: 'External Resource Category not found' }
       }
       const createdResource =
-        await ExternalResourceDataService.createExternalResource(
+        await ExternalResourceDataRepository.createExternalResource(
           externalResource,
         )
       this.setStatus(StatusCodes.CREATED)
@@ -105,13 +105,13 @@ export class ExternalResourceController extends Controller {
   ): Promise<GetExternalResourceResponse> {
     try {
       const existingResource =
-        await ExternalResourceDataService.getExternalResourceById(id)
+        await ExternalResourceDataRepository.getExternalResourceById(id)
       if (!existingResource) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return { error: 'External Resource not found' }
       }
       const updatedResource =
-        await ExternalResourceDataService.updateExternalResource(
+        await ExternalResourceDataRepository.updateExternalResource(
           id,
           externalResource,
         )
@@ -132,12 +132,12 @@ export class ExternalResourceController extends Controller {
   public async deleteExternalResource(@Path() id: string): Promise<void> {
     try {
       const existingResource =
-        await ExternalResourceDataService.getExternalResourceById(id)
+        await ExternalResourceDataRepository.getExternalResourceById(id)
       if (!existingResource) {
         this.setStatus(StatusCodes.NOT_FOUND)
         return
       }
-      await ExternalResourceDataService.deleteExternalResource(id)
+      await ExternalResourceDataRepository.deleteExternalResource(id)
     } catch (error) {
       console.error('Error deleting external resource:', error)
       this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
@@ -156,16 +156,16 @@ export class ExternalResourceController extends Controller {
     try {
       if (categoryId) {
         const existingCategory =
-          await ExternalResourceCategoryDataService.getCategoryById(categoryId)
+          await ExternalResourceCategoryDataRepository.getCategoryById(categoryId)
         if (!existingCategory) {
           this.setStatus(StatusCodes.NOT_FOUND)
           return
         }
-        await ExternalResourceDataService.deleteByCategoryId(categoryId)
+        await ExternalResourceDataRepository.deleteByCategoryId(categoryId)
         this.setStatus(StatusCodes.NO_CONTENT)
         return
       }
-      await ExternalResourceDataService.deleteAllExternalResources()
+      await ExternalResourceDataRepository.deleteAllExternalResources()
       this.setStatus(StatusCodes.NO_CONTENT)
     } catch (error) {
       console.error('Error deleting all External Resources:', error)
