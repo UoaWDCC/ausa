@@ -15,7 +15,7 @@ export class UserService {
 
   /**
    *
-   * @param id - using id to find a user in the db
+   * @param uid - using uid to find a user in the db
    * @returns A user of type User
    */
   public async getUser(uid: string) {
@@ -24,5 +24,13 @@ export class UserService {
 
     if (data === undefined) return undefined
     return { ...userDoc.data(), uid }
+  }
+
+  /**
+   *
+   * @param uid - using uid to delete a user in db
+   */
+  public async deleteUserData(uid: string) {
+    await FirestoreCollections.users.doc(uid).delete()
   }
 }
