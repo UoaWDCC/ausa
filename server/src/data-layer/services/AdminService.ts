@@ -1,8 +1,8 @@
-import type { User } from 'data-layer/models/User'
-import { UserService } from './UserService' // 假设你的 UserService 在这里
-import { UserCreationParams } from 'data-layer/services/UserService'
-import { EventService } from 'data-layer/services/EventService'
 import type { Event } from 'data-layer/models/Event'
+import type { User } from 'data-layer/models/User'
+import { EventService } from 'data-layer/services/EventService'
+import type { UserCreationParams } from 'data-layer/services/UserDataService'
+import { UserService } from './UserDataService' // 假设你的 UserService 在这里
 
 export class AdminService {
   /**
