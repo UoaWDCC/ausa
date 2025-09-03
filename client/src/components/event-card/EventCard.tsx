@@ -30,14 +30,25 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
         <p className="mb-4 flex-1 text-gray-600">
           {event.content.body.substring(0, 100)}...
         </p>
-        {event.content.callToAction && (
+        <div className="mt-auto flex gap-2">
+          {/* Original CTA Button */}
+          {event.content.callToAction && (
+            <Link
+              className="flex-1 inline-flex items-center justify-center rounded-md bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700"
+              href={event.content.callToAction.href || '#'}
+            >
+              {event.content.callToAction.text}
+            </Link>
+          )}
+
+          {/* New Edit Button */}
           <Link
-            className="mt-auto inline-flex items-center justify-center rounded-md bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700"
-            href={event.content.callToAction.href}
+            className="inline-flex items-center justify-center rounded-md bg-gray-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700"
+            href={`/event-details?mode=edit&id=${event.id}`}
           >
-            {event.content.callToAction.text}
+            Edit
           </Link>
-        )}
+        </div>
       </div>
     </div>
   )

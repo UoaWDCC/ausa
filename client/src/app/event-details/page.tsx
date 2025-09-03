@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams } from 'next/navigation'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import AboutInputBox from '@/components/event-details/AboutInputBox'
 import EventAboutSection from '@/components/event-details/EventAboutSection'
@@ -14,7 +14,11 @@ export default function Page() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const mode = searchParams.get('mode')
+  const eventId = searchParams.get('id')
+
   const isAddMode = mode === 'add'
+  const isEditMode = mode === 'edit'
+
   const eventTitle = isAddMode ? 'New Event' : (searchParams.get('title') || 'Event')
   const eventSubtitle = 'By AUSA'
 
@@ -29,6 +33,36 @@ export default function Page() {
   const [startTime, setStartTime] = useState('')
   const [endTime, setEndTime] = useState('')
   const [infoSubmitted, setInfoSubmitted] = useState(false)
+
+  useEffect(() => {
+    if (isEditMode && eventId) {
+      fetchEventData(eventId)
+    }
+  }, [eventId, isEditMode])
+
+  const fetchEventData = async (id: string) => {
+    try {
+      const apiUrl = (process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000')
+      const response = await fetch(`${apiUrl}/events/${id}`)
+
+      if (response.ok) {
+        const event = await response.json()
+        console.log('Fetched event data:', event)
+
+        setAboutTitle(event.title)
+        setAboutDescription(event.content.body)
+        setDate(event.content.subtitle)
+
+        setAboutSubmitted(true)
+        setInfoSubmitted(true)
+      } else {
+        alert('Failed to load event data')
+      }
+    } catch (error) {
+      console.error('Error fetching event:', error)
+      alert('Error loading event data')
+    }
+  }
 
   const handleSaveEvent = async () => {
     try {
@@ -50,11 +84,20 @@ export default function Page() {
         }
       }
 
-      const response = await fetch(`${apiUrl}/events`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(eventPayload)
-      })
+      let response;
+      if (isEditMode && eventId) {
+        response = await fetch(`${apiUrl}/events/${eventId}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(eventPayload)
+        })
+      } else {
+        response = await fetch(`${apiUrl}/events`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(eventPayload)
+        })
+      }
 
       if (response.ok) {
         alert('Event created successfully!')
