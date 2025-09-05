@@ -1,16 +1,43 @@
 'use client'
-
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useEffect, useState } from 'react'
-import { useAuth } from '@/auth/AuthContext'
-import { signInWithEmailAndPassword } from 'firebase/auth'
-import { auth } from '@/lib/firebase'
-import { useRouter } from 'next/navigation'
+import { loginHandler } from './utils/Handler'
 
-const Login = () => {
+export type LoginHandlerArgs = {
+  email: string
+  password: string
+}
+
+export type HandlerResponse = {
+  success: boolean
+  successMessage?: string
+  error?: {
+    message: string
+  }
+}
+
+type MessageTypes = {
+  success?: string
+  error?: string
+  other?: string
+}
+
+interface ILogin {
+  loginHandler: ({
+    email,
+    password,
+  }: LoginHandlerArgs) => Promise<HandlerResponse>
+  successHandler?: () => void
+}
+
+const Login = ({ successHandler }: ILogin) => {
   const [loading, setLoading] = useState(false)
+  const [messages, setMessages] = useState<MessageTypes>({})
+
   const router = useRouter()
   const { user } = useAuth()
   const [form, setForm] = useState({
@@ -29,14 +56,19 @@ const Login = () => {
     e.preventDefault()
 
     try {
-      // firebase authentication
       setLoading(true)
-      await signInWithEmailAndPassword(auth, form.email, form.password)
-      alert('Login successful!')
-    } catch (err: any) {
+      const { success, error } = await loginHandler(form.email, form.password)
       setLoading(false)
-      console.error('Login error:', err.code, err.message)
-      alert('Invalid email or password.')
+      if (success) {
+        setMessages({ success: 'Logged In' })
+        if (successHandler !== undefined) successHandler()
+      } else {
+        // We want the messages to be overwritten
+        setMessages({ error: error?.message || 'Unknown Error Occured' })
+      }
+    } catch (e) {
+      console.error(e)
+      setLoading(false)
     }
   }
 
@@ -57,11 +89,11 @@ const Login = () => {
               <Input
                 aria-invalid={false}
                 id="email"
-                value={form.email}
                 onChange={(e) => setForm({ ...form, email: e.target.value })}
                 placeholder="email@example.com"
                 required
                 type="email"
+                value={form.email}
               />
             </div>
             <div>
@@ -74,18 +106,18 @@ const Login = () => {
               <Input
                 aria-invalid={false}
                 id="password"
-                value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                 placeholder="••••••••••"
                 required
                 type="password"
+                value={form.password}
               />
             </div>
             <Button
-              onClick={handleLogin}
               className="w-full cursor-pointer"
-              type="submit"
               disabled={loading}
+              onClick={handleLogin}
+              type="submit"
             >
               {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
@@ -103,6 +135,16 @@ const Login = () => {
                 Forgot your password?
               </a>
             </div>
+            {messages.success && (
+              <div className="mt-4 text-green-400 text-sm text-center">
+                {messages.success}
+              </div>
+            )}
+            {messages.error && (
+              <div className="mt-4 text-red-400 text-sm text-center">
+                {messages.error}
+              </div>
+            )}
           </form>
         </div>
       </div>

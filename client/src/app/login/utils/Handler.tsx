@@ -4,7 +4,7 @@ import {
   signInWithEmailAndPassword,
 } from 'firebase/auth'
 
-import { fireAnalytics } from '@/firebase'
+import { fireAnalytics } from '@/app/login/utils/firebase'
 
 export const loginHandler = async (
   email: string,
