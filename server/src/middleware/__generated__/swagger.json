@@ -7,86 +7,6 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
-			"User": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"role": {
-						"type": "string",
-						"enum": [
-							"user",
-							"admin"
-						]
-					}
-				},
-				"required": [
-					"id",
-					"username",
-					"email",
-					"name"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
-			"Pick_User.id-or-email-or-name-or-username-or-role_": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"username": {
-						"type": "string"
-					},
-					"role": {
-						"type": "string",
-						"enum": [
-							"user",
-							"admin"
-						]
-					}
-				},
-				"required": [
-					"id",
-					"email",
-					"name",
-					"username"
-				],
-				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"UserCreationParams": {
-				"$ref": "#/components/schemas/Pick_User.id-or-email-or-name-or-username-or-role_"
-			},
-			"UpdateUserPackage": {
-				"properties": {
-					"username": {
-						"type": "string"
-					},
-					"name": {
-						"type": "string"
-					},
-					"email": {
-						"type": "string"
-					}
-				},
-				"type": "object",
-				"additionalProperties": false
-			},
 			"Faq": {
 				"properties": {
 					"id": {
@@ -650,70 +570,6 @@
 				},
 				"type": "object",
 				"additionalProperties": false
-			},
-			"Pick_Event.id-or-title-or-heroImage-or-content_": {
-				"properties": {
-					"id": {
-						"type": "string"
-					},
-					"title": {
-						"type": "string"
-					},
-					"heroImage": {
-						"properties": {
-							"alt": {
-								"type": "string"
-							},
-							"src": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"alt",
-							"src"
-						],
-						"type": "object"
-					},
-					"content": {
-						"properties": {
-							"callToAction": {
-								"properties": {
-									"href": {
-										"type": "string"
-									},
-									"text": {
-										"type": "string"
-									}
-								},
-								"required": [
-									"href",
-									"text"
-								],
-								"type": "object"
-							},
-							"body": {
-								"type": "string"
-							},
-							"subtitle": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"body"
-						],
-						"type": "object"
-					}
-				},
-				"required": [
-					"id",
-					"title",
-					"content"
-				],
-				"type": "object",
-				"description": "From T, pick a set of properties whose keys are in the union K"
-			},
-			"EventCreationParams": {
-				"$ref": "#/components/schemas/Pick_Event.id-or-title-or-heroImage-or-content_"
 			}
 		},
 		"securitySchemes": {
@@ -730,159 +586,47 @@
 		"contact": {}
 	},
 	"paths": {
-		"/users/by-username": {
+		"/users/self": {
 			"get": {
-				"operationId": "GetUserByUsername",
+				"operationId": "GetSelf",
 				"responses": {
 					"200": {
 						"description": "Found",
 						"content": {
 							"application/json": {
 								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
+									"properties": {
+										"role": {
+											"type": "string",
+											"enum": [
+												"user",
+												"admin"
+											]
+										},
+										"name": {
+											"type": "string"
+										},
+										"email": {
+											"type": "string"
+										},
+										"username": {
+											"type": "string"
+										},
+										"id": {
+											"type": "string"
+										},
+										"uid": {
+											"type": "string"
 										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "username",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/users/by-email": {
-			"get": {
-				"operationId": "GetUserByEmail",
-				"responses": {
-					"200": {
-						"description": "Found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "email",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/users/{userId}": {
-			"get": {
-				"operationId": "GetUserById",
-				"responses": {
-					"200": {
-						"description": "Found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			},
-			"patch": {
-				"operationId": "UpdateUser",
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateUserPackage"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/users": {
-			"get": {
-				"operationId": "GetUsers",
-				"responses": {
-					"200": {
-						"description": "Found",
-						"content": {
-							"application/json": {
-								"schema": {
-									"items": {
-										"$ref": "#/components/schemas/User"
 									},
-									"type": "array"
+									"required": [
+										"name",
+										"email",
+										"username",
+										"id",
+										"uid"
+									],
+									"type": "object"
 								}
 							}
 						}
@@ -890,66 +634,6 @@
 				},
 				"security": [],
 				"parameters": []
-			},
-			"post": {
-				"operationId": "CreateUser",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/User"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserCreationParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/users/by-userId": {
-			"delete": {
-				"operationId": "DeleteUser",
-				"responses": {
-					"200": {
-						"description": "Deleted",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "userToDeleteId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
 			}
 		},
 		"/faq": {
@@ -1787,130 +1471,6 @@
 		"/events/by-eventId": {
 			"delete": {
 				"operationId": "DeleteEvent",
-				"responses": {
-					"200": {
-						"description": "Deleted",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/Event"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "eventId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/admin": {
-			"post": {
-				"operationId": "AdminCreateUser",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/User"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UserCreationParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/by-userId": {
-			"delete": {
-				"operationId": "DeleteUser",
-				"responses": {
-					"200": {
-						"description": "Deleted",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/User"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "query",
-						"name": "userToDeleteId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				]
-			}
-		},
-		"/admin/create-event": {
-			"post": {
-				"operationId": "AdminCreateEvent",
-				"responses": {
-					"201": {
-						"description": "Created",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/Event"
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/EventCreationParams"
-							}
-						}
-					}
-				}
-			}
-		},
-		"/admin/by-eventId": {
-			"delete": {
-				"operationId": "AdminDeleteEvent",
 				"responses": {
 					"200": {
 						"description": "Deleted",
