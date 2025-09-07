@@ -27,10 +27,6 @@ type MessageTypes = {
 }
 
 interface ILogin {
-  loginHandler: ({
-    email,
-    password,
-  }: LoginHandlerArgs) => Promise<HandlerResponse>
   successHandler?: () => void
 }
 
