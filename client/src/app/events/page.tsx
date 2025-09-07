@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { EventCard } from '@/components/event-card/EventCard'
 import type { Event } from '@/types/types'
 

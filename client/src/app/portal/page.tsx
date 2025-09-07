@@ -32,11 +32,7 @@ const Portal = () => {
 
           <div className="relative z-10 mb-8 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <PortalItem1 content="Go to Home Page" link="/" title="Home" />
-            <PortalItem1
-              content="Contact Support"
-              link="/quiz"
-              title="Quiz"
-            />
+            <PortalItem1 content="Contact Support" link="/quiz" title="Quiz" />
             <PortalItem1
               content="Take online quiz"
               link="/contact"
