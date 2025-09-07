@@ -4,6 +4,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type React from 'react'
 import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
+import { LogoutButton } from '@/components/auth/LogOutButton'
 import NavSearch from '@/components/nav-search/NavSearch'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -23,6 +25,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
+  const { user } = useAuth()
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -98,26 +101,30 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
 
             {/* Action Buttons - Adaptive sizing */}
             <div className="hidden sm:flex sm:items-center sm:gap-2">
-              {config.actionButtons?.map((button, index) => (
-                <Button
-                  asChild
-                  className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
-                  key={`action-${button.href}-${index}`}
-                  variant="default"
-                >
-                  <Link
-                    className="flex items-center gap-1 sm:gap-2"
-                    href={button.href}
-                    rel={button.external ? 'noopener noreferrer' : undefined}
-                    target={button.external ? '_blank' : undefined}
+              {!user ? (
+                config.actionButtons?.map((button, index) => (
+                  <Button
+                    asChild
+                    className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
+                    key={`action-${button.href}-${index}`}
+                    variant="default"
                   >
-                    {button.icon && (
-                      <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />
-                    )}
-                    <span className="hidden sm:inline">{button.label}</span>
-                  </Link>
-                </Button>
-              ))}
+                    <Link
+                      className="flex items-center gap-1 sm:gap-2"
+                      href={button.href}
+                      rel={button.external ? 'noopener noreferrer' : undefined}
+                      target={button.external ? '_blank' : undefined}
+                    >
+                      {button.icon && (
+                        <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />
+                      )}
+                      <span className="hidden sm:inline">{button.label}</span>
+                    </Link>
+                  </Button>
+                ))
+              ) : (
+                <LogoutButton />
+              )}
             </div>
 
             {/* Mobile/Tablet Menu Button */}
