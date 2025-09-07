@@ -39,6 +39,7 @@ const Login = () => {
 
   // Redirects to the dashboard page when the state of the router or user changes
   useEffect(() => {
+    console.log("Auth user changed:", user)
     if (user) {
       router.push('/')
     }

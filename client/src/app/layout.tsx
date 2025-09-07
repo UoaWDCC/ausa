@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '@/styles/globals.css'
+import { AuthProvider } from '@/auth/AuthContext'
 import ClientLayout from '@/app/ClientLayout'
 import Footer from '@/components/footer/Footer'
 
@@ -16,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="">
-        <ClientLayout>{children}</ClientLayout>
+        <AuthProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </AuthProvider>
         <footer className="relative z-20 mt-auto">
           <Footer />
         </footer>
