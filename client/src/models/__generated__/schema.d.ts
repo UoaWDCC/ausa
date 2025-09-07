@@ -4,81 +4,17 @@
  */
 
 export interface paths {
-    "/users/by-username": {
+    "/users/self": {
         parameters: {
             query?: never;
             header?: never;
             path?: never;
             cookie?: never;
         };
-        get: operations["GetUserByUsername"];
+        get: operations["GetSelf"];
         put?: never;
         post?: never;
         delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/users/by-email": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["GetUserByEmail"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/users/{userId}": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["GetUserById"];
-        put?: never;
-        post?: never;
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch: operations["UpdateUser"];
-        trace?: never;
-    };
-    "/users": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get: operations["GetUsers"];
-        put?: never;
-        post: operations["CreateUser"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/users/by-userId": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete: operations["DeleteUser"];
         options?: never;
         head?: never;
         patch?: never;
@@ -276,65 +212,10 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/admin": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post: operations["AdminCreateUser"];
-        delete?: never;
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
-    "/admin/by-userId": {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        get?: never;
-        put?: never;
-        post?: never;
-        delete: operations["DeleteUser"];
-        options?: never;
-        head?: never;
-        patch?: never;
-        trace?: never;
-    };
 }
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        User: {
-            id: string;
-            username: string;
-            email: string;
-            name: string;
-            /** @enum {string} */
-            role?: "user" | "admin";
-        };
-        /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_User.id-or-email-or-name-or-username-or-role_": {
-            id: string;
-            email: string;
-            name: string;
-            username: string;
-            /** @enum {string} */
-            role?: "user" | "admin";
-        };
-        UserCreationParams: components["schemas"]["Pick_User.id-or-email-or-name-or-username-or-role_"];
-        UpdateUserPackage: {
-            username?: string;
-            name?: string;
-            email?: string;
-        };
         Faq: {
             id: string;
             question: string;
@@ -461,26 +342,54 @@ export interface components {
         };
         updateExternalResourceCategoryRequest: components["schemas"]["Partial_createExternalResourceCategoryRequest_"];
         Event: {
-            link?: string;
-            date: string;
-            description: string;
+            content: {
+                callToAction?: {
+                    href: string;
+                    text: string;
+                };
+                body: string;
+                subtitle?: string;
+            };
+            heroImage?: {
+                alt: string;
+                src: string;
+            };
             title: string;
             id: string;
         };
         /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_Event.id-or-title-or-description-or-date-or-link_": {
-            id: string;
+        "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
             title: string;
-            description: string;
-            date: string;
-            link?: string;
+            heroImage?: {
+                alt: string;
+                src: string;
+            };
+            content: {
+                callToAction?: {
+                    href: string;
+                    text: string;
+                };
+                body: string;
+                subtitle?: string;
+            };
         };
-        EventCreationParams: components["schemas"]["Pick_Event.id-or-title-or-description-or-date-or-link_"];
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_EventCreationParams.id_": components["schemas"]["Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__"];
         UpdateEventPackage: {
+            id?: string;
             title?: string;
-            description?: string;
-            date?: string;
-            link?: string;
+            heroImage?: {
+                alt?: string;
+                src: string;
+            };
+            content?: {
+                callToAction?: {
+                    href?: string;
+                    text?: string;
+                };
+                body?: string;
+                subtitle?: string;
+            };
         };
     };
     responses: never;
@@ -491,99 +400,7 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    GetUserByUsername: {
-        parameters: {
-            query: {
-                username: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Found */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"] | null;
-                };
-            };
-        };
-    };
-    GetUserByEmail: {
-        parameters: {
-            query: {
-                email: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Found */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"] | null;
-                };
-            };
-        };
-    };
-    GetUserById: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                userId: string;
-            };
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Found */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"] | null;
-                };
-            };
-        };
-    };
-    UpdateUser: {
-        parameters: {
-            query: {
-                userId: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateUserPackage"];
-            };
-        };
-        responses: {
-            /** @description Updated */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"] | null;
-                };
-            };
-        };
-    };
-    GetUsers: {
+    GetSelf: {
         parameters: {
             query?: never;
             header?: never;
@@ -598,53 +415,15 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["User"][];
-                };
-            };
-        };
-    };
-    CreateUser: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UserCreationParams"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"];
-                };
-            };
-        };
-    };
-    DeleteUser: {
-        parameters: {
-            query: {
-                userToDeleteId: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"] | null;
+                    "application/json": {
+                        /** @enum {string} */
+                        role?: "user" | "admin";
+                        name: string;
+                        email: string;
+                        username: string;
+                        id: string;
+                        uid: string;
+                    };
                 };
             };
         };
@@ -1149,7 +928,7 @@ export interface operations {
     GetEventByName: {
         parameters: {
             query: {
-                name: string;
+                title: string;
             };
             header?: never;
             path?: never;
@@ -1245,7 +1024,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["EventCreationParams"];
+                "application/json": components["schemas"]["Omit_EventCreationParams.id_"];
             };
         };
         responses: {
@@ -1278,55 +1057,6 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Event"] | null;
-                };
-            };
-        };
-    };
-    AdminCreateUser: {
-        parameters: {
-            query: {
-                requestingUserId: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UserCreationParams"];
-            };
-        };
-        responses: {
-            /** @description Created */
-            201: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"];
-                };
-            };
-        };
-    };
-    DeleteUser: {
-        parameters: {
-            query: {
-                requestingUserId: string;
-                userToDeleteId: string;
-            };
-            header?: never;
-            path?: never;
-            cookie?: never;
-        };
-        requestBody?: never;
-        responses: {
-            /** @description Deleted */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["User"] | null;
                 };
             };
         };
