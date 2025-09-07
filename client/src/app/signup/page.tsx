@@ -5,7 +5,9 @@ import {
   signInWithPopup,
   updateProfile,
 } from 'firebase/auth'
-import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -20,6 +22,14 @@ const Signup = () => {
     password: '',
   })
   const [loading, setLoading] = useState(false)
+  const { user } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (user) {
+      router.push('/')
+    }
+  }, [user, router])
 
   const convertToUser = (user: any): User => {
     return {
