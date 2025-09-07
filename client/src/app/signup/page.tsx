@@ -46,9 +46,12 @@ const Signup = () => {
         'Sending user to backend:',
         JSON.stringify({ ...newUser, id: user.uid }),
       )
-      const { data: responseBody, response } = await client.POST('/users', {
-        body: { ...newUser, id: user.uid },
-      })
+      const { data: responseBody, response } = await client.POST(
+        '/users' as any,
+        {
+          body: { ...newUser, id: user.uid },
+        },
+      )
       console.log('Response status:', response.status)
       console.log('Response body:', responseBody)
       console.log('User saved successfully')
