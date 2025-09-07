@@ -26,11 +26,7 @@ type MessageTypes = {
   other?: string
 }
 
-interface ILogin {
-  successHandler?: () => void
-}
-
-const Login = ({ successHandler }: ILogin) => {
+const Login = () => {
   const [loading, setLoading] = useState(false)
   const [messages, setMessages] = useState<MessageTypes>({})
 
@@ -57,7 +53,6 @@ const Login = ({ successHandler }: ILogin) => {
       setLoading(false)
       if (success) {
         setMessages({ success: 'Logged In' })
-        if (successHandler !== undefined) successHandler()
       } else {
         // We want the messages to be overwritten
         setMessages({ error: error?.message || 'Unknown Error Occured' })
