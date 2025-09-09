@@ -46,6 +46,7 @@ const Login = () => {
       setLoading(false)
       if (success) {
         setMessages({ success: 'Logged In' })
+        router.push('/')
       } else {
         // We want the messages to be overwritten
         setMessages({ error: error?.message || 'Unknown Error Occured' })
