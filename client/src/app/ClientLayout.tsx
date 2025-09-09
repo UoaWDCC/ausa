@@ -15,7 +15,7 @@ export default function ClientLayout({
   const shouldHideNavbar = hideNavbarOn.includes(pathname)
 
   return (
-    <div className="relative flex min-h-screen flex-col">
+    <body className="relative flex min-h-screen flex-col">
       {!shouldHideNavbar && <NavigationBar />}
       <div className="pointer-events-none fixed inset-0 -z-10 brightness-35">
         <Image
@@ -32,6 +32,6 @@ export default function ClientLayout({
           {children}
         </div>
       </main>
-    </div>
+    </body>
   )
 }

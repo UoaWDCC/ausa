@@ -15,15 +15,13 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <div className="">
       <html lang="en">
         <AuthProvider>
           <ClientLayout>{children}</ClientLayout>
         </AuthProvider>
-      </html>
-      <footer className="relative z-20 mt-auto">
+        <footer className="relative z-20 mt-auto">
         <Footer />
-      </footer>
-    </div>
+        </footer>
+      </html>
   )
 }
