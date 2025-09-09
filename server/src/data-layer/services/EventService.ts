@@ -4,7 +4,7 @@ import { Body } from 'tsoa'
 
 export type EventCreationParams = Pick<
   Event,
-  'id' | 'title' | 'description' | 'date' | 'link'
+  'id' | 'title' | 'heroImage' | 'content'
 >
 
 export class EventService {
@@ -25,18 +25,18 @@ export class EventService {
   }
 
   /**
-   * Retrieves an event by its name.
-   * @param name Using the event name find the event in the database
+   * Retrieves an event by its title.
+   * @param title Using the event title find the event in the database
    * @returns An event of type Event
    */
-  async getEventByName(name: string): Promise<Event | null> {
+  async getEventByTitle(title: string): Promise<Event | null> {
     const snapShot = await FirestoreCollections.events
-      .where('name', '==', name)
+      .where('title', '==', title)
       .limit(1)
       .get()
 
     if (snapShot.empty) {
-      console.log(`Event - ${name} not found`)
+      console.log(`Event - ${title} not found`)
       return null
     }
 
@@ -53,8 +53,8 @@ export class EventService {
     const eventList: Event[] = snapShot.docs.map((doc) => ({
       id: doc.id,
       title: doc.data().title,
-      description: doc.data().description,
-      date: doc.data().date,
+      heroImage: doc.data().heroImage,
+      content: doc.data().content,
     }))
     console.log(
       eventList.map((event) => {
@@ -74,15 +74,12 @@ export class EventService {
     const newEvent: Event = {
       id: params.id,
       title: params.title,
-      description: params.description,
-      date: params.date,
+      content: params.content,
     }
-    await eventRef.set({
-      id: params.id,
-      title: params.title,
-      description: params.description,
-      date: params.date,
-    })
+    if (params.heroImage) {
+      newEvent.heroImage = params.heroImage
+    }
+    await eventRef.set(newEvent)
     console.log(newEvent)
     return newEvent
   }

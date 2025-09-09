@@ -1,15 +1,35 @@
 'use client'
-
-import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { auth } from '@/lib/firebase'
+import { loginHandler } from './utils/Handler'
+
+export type LoginHandlerArgs = {
+  email: string
+  password: string
+}
+
+export type HandlerResponse = {
+  success: boolean
+  successMessage?: string
+  error?: {
+    message: string
+  }
+}
+
+type MessageTypes = {
+  success?: string
+  error?: string
+  other?: string
+}
 
 const Login = () => {
   const [loading, setLoading] = useState(false)
+  const [messages, setMessages] = useState<MessageTypes>({})
+
   const router = useRouter()
   const [form, setForm] = useState({
     email: '',
@@ -21,14 +41,18 @@ const Login = () => {
     e.preventDefault()
 
     try {
-      // firebase authentication
       setLoading(true)
-      await signInWithEmailAndPassword(auth, form.email, form.password)
-      router.push('/')
-    } catch (err: any) {
+      const { success, error } = await loginHandler(form.email, form.password)
       setLoading(false)
-      console.error('Login error:', err.code, err.message)
-      alert('Invalid email or password.')
+      if (success) {
+        setMessages({ success: 'Logged In' })
+      } else {
+        // We want the messages to be overwritten
+        setMessages({ error: error?.message || 'Unknown Error Occured' })
+      }
+    } catch (e) {
+      console.error(e)
+      setLoading(false)
     }
   }
 
@@ -95,6 +119,16 @@ const Login = () => {
                 Forgot your password?
               </a>
             </div>
+            {messages.success && (
+              <div className="mt-4 text-green-400 text-sm text-center">
+                {messages.success}
+              </div>
+            )}
+            {messages.error && (
+              <div className="mt-4 text-red-400 text-sm text-center">
+                {messages.error}
+              </div>
+            )}
           </form>
         </div>
       </div>

@@ -37,11 +37,11 @@ class HomePageContentService {
         'Your voice, your community, your future. AUSA represents and advocates for all University of Auckland students, providing services, support, and opportunities to enhance your university experience.',
       primaryButton: {
         text: 'Get Involved',
-        href: '/get-involved',
+        href: '/signup',
       },
       secondaryButton: {
         text: 'Learn More',
-        href: '/about',
+        href: '/resources',
       },
     }
   }
