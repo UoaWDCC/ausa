@@ -5,6 +5,8 @@ export type Event = {
     src: string
     alt: string
   }
+  startTime?: string
+  endTime?: string
   content: {
     subtitle?: string
     body: string
@@ -13,6 +15,7 @@ export type Event = {
       href: string
     }
   }
+  attendees?: string[]
 }
 
 export interface UpdateEventPackage {
@@ -22,6 +25,8 @@ export interface UpdateEventPackage {
     src: string
     alt?: string
   }
+  startTime?: string
+  endTime?: string
   content?: {
     subtitle?: string
     body?: string
@@ -30,4 +35,5 @@ export interface UpdateEventPackage {
       href?: string
     }
   }
+  attendees?: string[]
 }
