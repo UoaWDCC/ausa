@@ -1,12 +1,26 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import type { Event } from '@/types/types'
+import { useAuth } from '@/auth/AuthContext'
+import { useRouter } from 'next/navigation'
 
 interface EventCardProps {
   event: Event
 }
 
 export const EventCard: React.FC<EventCardProps> = ({ event }) => {
+  const { user } = useAuth()
+  const router = useRouter()
+
+  const handleRegisterClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    e.preventDefault()
+    if (user) {
+      router.push('/event-details')
+    } else {
+      router.push('/login')
+    }
+  }
+
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-xl">
       {event.heroImage && (
@@ -31,12 +45,13 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
           {event.content.body.substring(0, 100)}...
         </p>
         {event.content.callToAction && (
-          <Link
+          <a
             className="mt-auto inline-flex items-center justify-center rounded-md bg-purple-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-purple-700"
             href={event.content.callToAction.href}
+            onClick={handleRegisterClick}
           >
             {event.content.callToAction.text}
-          </Link>
+          </a>
         )}
       </div>
     </div>
