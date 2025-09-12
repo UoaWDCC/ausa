@@ -2,8 +2,10 @@
 import { Menu } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { redirect } from 'next/navigation'
 import type React from 'react'
 import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
 import NavSearch from '@/components/nav-search/NavSearch'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
@@ -23,6 +25,8 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
 }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hasScrolled, setHasScrolled] = useState(false)
+  const user = useAuth()
+  const userName = user?.user?.displayName || 'Guest'
 
   useEffect(() => {
     if (isMobileMenuOpen) {
@@ -97,28 +101,46 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
             )}
 
             {/* Action Buttons - Adaptive sizing */}
-            <div className="hidden sm:flex sm:items-center sm:gap-2">
-              {config.actionButtons?.map((button, index) => (
+            {user.user && (
+              <div className="flex items-center gap-2">
+                {/* Avatar circle with first letter */}
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-700 text-white font-semibold">
+                  {userName.charAt(0).toUpperCase()}
+                </div>
+                <span className="text-white">{userName}</span>
+              </div>
+            )}
+
+            {user.user ? (
+              <div className="hidden sm:flex sm:items-center sm:gap-2">
                 <Button
                   asChild
                   className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
-                  key={`action-${button.href}-${index}`}
+                  onClick={async () => {
+                    await user.logout()
+                    redirect('/')
+                  }}
+                  variant="default"
+                >
+                  <span className="hidden sm:inline">Logout</span>
+                </Button>
+              </div>
+            ) : (
+              <div className="hidden sm:flex sm:items-center sm:gap-2">
+                <Button
+                  asChild
+                  className="shadow-lg hover:shadow-xl text-xs sm:text-sm px-2 sm:px-3"
                   variant="default"
                 >
                   <Link
                     className="flex items-center gap-1 sm:gap-2"
-                    href={button.href}
-                    rel={button.external ? 'noopener noreferrer' : undefined}
-                    target={button.external ? '_blank' : undefined}
+                    href={'/login'}
                   >
-                    {button.icon && (
-                      <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />
-                    )}
-                    <span className="hidden sm:inline">{button.label}</span>
+                    <span className="hidden sm:inline">Login</span>
                   </Link>
                 </Button>
-              ))}
-            </div>
+              </div>
+            )}
 
             {/* Mobile/Tablet Menu Button */}
             <div className="md:hidden">

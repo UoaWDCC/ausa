@@ -7,6 +7,119 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"Event": {
+				"properties": {
+					"content": {
+						"properties": {
+							"callToAction": {
+								"properties": {
+									"href": {
+										"type": "string"
+									},
+									"text": {
+										"type": "string"
+									}
+								},
+								"required": [
+									"href",
+									"text"
+								],
+								"type": "object"
+							},
+							"body": {
+								"type": "string"
+							},
+							"subtitle": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"body"
+						],
+						"type": "object"
+					},
+					"heroImage": {
+						"properties": {
+							"alt": {
+								"type": "string"
+							},
+							"src": {
+								"type": "string"
+							}
+						},
+						"required": [
+							"alt",
+							"src"
+						],
+						"type": "object"
+					},
+					"title": {
+						"type": "string"
+					},
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"content",
+					"title",
+					"id"
+				],
+				"type": "object"
+			},
+			"User": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"events": {
+						"items": {
+							"$ref": "#/components/schemas/Event"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"events"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetUserResponse": {
+				"properties": {
+					"error": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/User"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateUserRequestBody": {
+				"properties": {
+					"id": {
+						"type": "string"
+					},
+					"events": {
+						"items": {
+							"$ref": "#/components/schemas/Event"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"id",
+					"events"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"Faq": {
 				"properties": {
 					"id": {
@@ -402,66 +515,6 @@
 			"updateExternalResourceCategoryRequest": {
 				"$ref": "#/components/schemas/Partial_createExternalResourceCategoryRequest_"
 			},
-			"Event": {
-				"properties": {
-					"content": {
-						"properties": {
-							"callToAction": {
-								"properties": {
-									"href": {
-										"type": "string"
-									},
-									"text": {
-										"type": "string"
-									}
-								},
-								"required": [
-									"href",
-									"text"
-								],
-								"type": "object"
-							},
-							"body": {
-								"type": "string"
-							},
-							"subtitle": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"body"
-						],
-						"type": "object"
-					},
-					"heroImage": {
-						"properties": {
-							"alt": {
-								"type": "string"
-							},
-							"src": {
-								"type": "string"
-							}
-						},
-						"required": [
-							"alt",
-							"src"
-						],
-						"type": "object"
-					},
-					"title": {
-						"type": "string"
-					},
-					"id": {
-						"type": "string"
-					}
-				},
-				"required": [
-					"content",
-					"title",
-					"id"
-				],
-				"type": "object"
-			},
 			"Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
 				"properties": {
 					"title": {
@@ -595,38 +648,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"properties": {
-										"role": {
-											"type": "string",
-											"enum": [
-												"user",
-												"admin"
-											]
-										},
-										"name": {
-											"type": "string"
-										},
-										"email": {
-											"type": "string"
-										},
-										"username": {
-											"type": "string"
-										},
-										"id": {
-											"type": "string"
-										},
-										"uid": {
-											"type": "string"
-										}
-									},
-									"required": [
-										"name",
-										"email",
-										"username",
-										"id",
-										"uid"
-									],
-									"type": "object"
+									"$ref": "#/components/schemas/GetUserResponse"
 								}
 							}
 						}
@@ -634,6 +656,62 @@
 				},
 				"security": [],
 				"parameters": []
+			},
+			"put": {
+				"operationId": "UpdateSelf",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetUserResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateUserRequestBody"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users": {
+			"post": {
+				"operationId": "CreateUser",
+				"responses": {
+					"201": {
+						"description": "Created",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/GetUserResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateUserRequestBody"
+							}
+						}
+					}
+				}
 			}
 		},
 		"/faq": {

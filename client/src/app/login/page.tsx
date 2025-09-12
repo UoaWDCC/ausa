@@ -1,7 +1,6 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
-import { useAuth } from '@/auth/AuthContext'
+import { useState } from 'react'
 import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
@@ -31,17 +30,10 @@ const Login = () => {
   const [messages, setMessages] = useState<MessageTypes>({})
 
   const router = useRouter()
-  const { user } = useAuth()
   const [form, setForm] = useState({
     email: '',
     password: '',
   })
-
-  useEffect(() => {
-    if (user) {
-      router.push('/')
-    }
-  }, [user, router])
 
   const handleLogin = async (e: React.FormEvent) => {
     // Prevent default form submission
@@ -53,6 +45,7 @@ const Login = () => {
       setLoading(false)
       if (success) {
         setMessages({ success: 'Logged In' })
+        router.push('/')
       } else {
         // We want the messages to be overwritten
         setMessages({ error: error?.message || 'Unknown Error Occured' })

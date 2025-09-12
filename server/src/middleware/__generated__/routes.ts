@@ -25,6 +25,39 @@ const expressAuthenticationRecasted = expressAuthentication as (req: ExRequest, 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
+    "Event": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "User": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "events": {"dataType":"array","array":{"dataType":"refAlias","ref":"Event"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "GetUserResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"ref":"User"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CreateUserRequestBody": {
+        "dataType": "refObject",
+        "properties": {
+            "id": {"dataType":"string","required":true},
+            "events": {"dataType":"array","array":{"dataType":"refAlias","ref":"Event"},"required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Faq": {
         "dataType": "refObject",
         "properties": {
@@ -248,11 +281,6 @@ const models: TsoaRoute.Models = {
         "type": {"ref":"Partial_createExternalResourceCategoryRequest_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Event": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
         "dataType": "refAlias",
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true}},"validators":{}},
@@ -310,6 +338,67 @@ export function RegisterRoutes(app: Router) {
 
               await templateService.apiHandler({
                 methodName: 'getSelf',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsUserController_createUser: Record<string, TsoaRoute.ParameterSchema> = {
+                newUser: {"in":"body","name":"newUser","required":true,"ref":"CreateUserRequestBody"},
+        };
+        app.post('/users',
+            ...(fetchMiddlewares<RequestHandler>(UserController)),
+            ...(fetchMiddlewares<RequestHandler>(UserController.prototype.createUser)),
+
+            async function UserController_createUser(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsUserController_createUser, request, response });
+
+                const controller = new UserController();
+
+              await templateService.apiHandler({
+                methodName: 'createUser',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 201,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsUserController_updateSelf: Record<string, TsoaRoute.ParameterSchema> = {
+                request: {"in":"request","name":"request","required":true,"dataType":"object"},
+                updatedUser: {"in":"body","name":"updatedUser","required":true,"ref":"CreateUserRequestBody"},
+        };
+        app.put('/users/self',
+            ...(fetchMiddlewares<RequestHandler>(UserController)),
+            ...(fetchMiddlewares<RequestHandler>(UserController.prototype.updateSelf)),
+
+            async function UserController_updateSelf(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsUserController_updateSelf, request, response });
+
+                const controller = new UserController();
+
+              await templateService.apiHandler({
+                methodName: 'updateSelf',
                 controller,
                 response,
                 next,

@@ -1,7 +1,6 @@
+import type { Event } from './Event'
+
 export interface User {
   id: string
-  username: string
-  email: string
-  name: string
-  role?: 'user' | 'admin'
+  events: Event[]
 }
