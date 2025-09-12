@@ -1,5 +1,9 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import type { DocumentSnapshot } from 'firebase-admin/firestore'
+import type {
+  CreateUserRequestBody,
+  UpdateUserRequestBody,
+} from 'service-layer/request-models/UserRequest'
 
 export class UserService {
   public async getAllUserData(limit = 15, startAfter?: DocumentSnapshot) {
@@ -33,5 +37,13 @@ export class UserService {
    */
   public async deleteUserData(uid: string) {
     await FirestoreCollections.users.doc(uid).delete()
+  }
+
+  public async createUserData(newUser: CreateUserRequestBody) {
+    await FirestoreCollections.users.doc(newUser.id).set(newUser)
+  }
+
+  public async updateUserData(uid: string, updatedUser: UpdateUserRequestBody) {
+    await FirestoreCollections.users.doc(uid).update(updatedUser)
   }
 }
