@@ -1,5 +1,6 @@
 import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 import type { DocumentSnapshot } from 'firebase-admin/firestore'
+
 export class UserService {
   public async getAllUserData(limit = 15, startAfter?: DocumentSnapshot) {
     const res = await FirestoreCollections.users
