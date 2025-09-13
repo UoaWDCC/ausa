@@ -35,7 +35,7 @@ const ProfileAbout = ({
       "Hi! I'm just a desperate compsci student looking for a job... The job market be looking a lil cooked atm.",
     course: 'Bachelor of Science majoring in Computer Science',
     recharge: 'Gymming with the bros',
-    comfortFood: 'Subway with A LOT of jalapeÃ±os',
+    comfortFood: 'Subway with A LOT of jalapenos',
     spot: 'Munchy',
     advice: 'NOT using your bag to reserve study spots on campus',
   })
