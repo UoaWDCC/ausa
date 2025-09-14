@@ -144,3 +144,60 @@ firebase-creds.json
 
 # Turbo files
 .turbo
+
+# TypeScript
+*.tsbuildinfo
+*.d.ts.map
+
+# Build outputs
+build/
+dist/
+out/
+
+# Logs and debug files
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor directories and files
+.vscode/
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+*.tmp
+*.temp
+
+# Development databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Auto-generated files (TSOA)
+**/middleware/__generated__/
+**/models/__generated__/
+
+# Environment files (keep these private!)
+.env
+.env.*
+!.env.example
+
+# Test coverage
+coverage/
+.nyc_output/
+
+# Cache directories
+.cache/
+.parcel-cache/
+.eslintcache
+.stylelintcache

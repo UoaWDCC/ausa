@@ -10,7 +10,10 @@ export class UserService {
     const users = res.docs.map((user) => {
       return { ...user.data(), uid: user.id }
     })
-    return { users, nextCursor: res.docs[res.docs.length - 1]?.id || undefined }
+    return {
+      users,
+      nextCursor: res.docs[res.docs.length - 1]?.id || undefined,
+    }
   }
 
   /**
