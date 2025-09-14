@@ -27,4 +27,3 @@ jobs:
 
       - name: Deploy server to Fly
         run: flyctl deploy --remote-only --config server/fly.server.toml
-
