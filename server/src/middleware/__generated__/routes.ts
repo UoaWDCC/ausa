@@ -250,7 +250,7 @@ const models: TsoaRoute.Models = {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Event": {
         "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"attendees":{"dataType":"array","array":{"dataType":"string"}},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true},"endTime":{"dataType":"double"},"startTime":{"dataType":"double"},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
@@ -269,7 +269,10 @@ const models: TsoaRoute.Models = {
             "id": {"dataType":"string"},
             "title": {"dataType":"string"},
             "heroImage": {"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string"},"src":{"dataType":"string","required":true}}},
+            "startTime": {"dataType":"double"},
+            "endTime": {"dataType":"double"},
             "content": {"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string"},"text":{"dataType":"string"}}},"body":{"dataType":"string"},"subtitle":{"dataType":"string"}}},
+            "attendees": {"dataType":"array","array":{"dataType":"string"}},
         },
         "additionalProperties": false,
     },

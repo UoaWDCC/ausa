@@ -1,4 +1,4 @@
-import type { Event, UpdateEventPackage } from 'data-layer/models/Event'
+import type { Event, UpdateEventPackage } from '../../data-layer/models/Event'
 import {
   Body,
   Controller,
@@ -15,7 +15,7 @@ import {
   type EventCreationParams,
   EventService,
 } from '../../data-layer/services/EventService'
-import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
+import FirestoreCollections from '../../data-layer/adapters/FirestoreCollections'
 
 @Route('events')
 export class EventController extends Controller {

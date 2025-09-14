@@ -404,6 +404,12 @@
 			},
 			"Event": {
 				"properties": {
+					"attendees": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
+					},
 					"content": {
 						"properties": {
 							"callToAction": {
@@ -432,6 +438,14 @@
 							"body"
 						],
 						"type": "object"
+					},
+					"endTime": {
+						"type": "number",
+						"format": "double"
+					},
+					"startTime": {
+						"type": "number",
+						"format": "double"
 					},
 					"heroImage": {
 						"properties": {
@@ -545,6 +559,14 @@
 						],
 						"type": "object"
 					},
+					"startTime": {
+						"type": "number",
+						"format": "double"
+					},
+					"endTime": {
+						"type": "number",
+						"format": "double"
+					},
 					"content": {
 						"properties": {
 							"callToAction": {
@@ -566,6 +588,12 @@
 							}
 						},
 						"type": "object"
+					},
+					"attendees": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					}
 				},
 				"type": "object",
@@ -596,6 +624,12 @@
 							"application/json": {
 								"schema": {
 									"properties": {
+										"eventsSignedUp": {
+											"items": {
+												"type": "string"
+											},
+											"type": "array"
+										},
 										"role": {
 											"type": "string",
 											"enum": [

@@ -342,6 +342,7 @@ export interface components {
         };
         updateExternalResourceCategoryRequest: components["schemas"]["Partial_createExternalResourceCategoryRequest_"];
         Event: {
+            attendees?: string[];
             content: {
                 callToAction?: {
                     href: string;
@@ -350,6 +351,10 @@ export interface components {
                 body: string;
                 subtitle?: string;
             };
+            /** Format: double */
+            endTime?: number;
+            /** Format: double */
+            startTime?: number;
             heroImage?: {
                 alt: string;
                 src: string;
@@ -382,6 +387,10 @@ export interface components {
                 alt?: string;
                 src: string;
             };
+            /** Format: double */
+            startTime?: number;
+            /** Format: double */
+            endTime?: number;
             content?: {
                 callToAction?: {
                     href?: string;
@@ -390,6 +399,7 @@ export interface components {
                 body?: string;
                 subtitle?: string;
             };
+            attendees?: string[];
         };
     };
     responses: never;
@@ -416,6 +426,7 @@ export interface operations {
                 };
                 content: {
                     "application/json": {
+                        eventsSignedUp?: string[];
                         /** @enum {string} */
                         role?: "user" | "admin";
                         name: string;

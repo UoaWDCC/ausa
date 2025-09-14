@@ -16,7 +16,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   ) => {
     e.preventDefault()
     if (user) {
-      router.push('/event-details')
+      router.push(`/event-details?id=${event.id}&mode=view`)
     } else {
       router.push('/login')
     }
