@@ -1,4 +1,4 @@
-import type { Event, UpdateEventPackage } from "data-layer/models/Event";
+import type { Event, UpdateEventPackage } from 'data-layer/models/Event'
 import {
   Body,
   Controller,
@@ -10,59 +10,59 @@ import {
   Query,
   Route,
   SuccessResponse,
-} from "tsoa";
+} from 'tsoa'
 import {
   type EventCreationParams,
   EventService,
-} from "../../data-layer/services/EventService";
-import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
+} from '../../data-layer/services/EventService'
+import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
 
-@Route("events")
+@Route('events')
 export class EventController extends Controller {
-  @SuccessResponse("200", "Found")
-  @Get("by-name")
+  @SuccessResponse('200', 'Found')
+  @Get('by-name')
   public async getEventByName(@Query() title: string): Promise<Event | null> {
-    return new EventService().getEventByTitle(title);
+    return new EventService().getEventByTitle(title)
   }
 
-  @SuccessResponse("200", "Found")
-  @Get("{eventId}")
+  @SuccessResponse('200', 'Found')
+  @Get('{eventId}')
   public async getEventById(@Path() eventId: string): Promise<Event | null> {
-    return new EventService().getEvent(eventId);
+    return new EventService().getEvent(eventId)
   }
 
-  @SuccessResponse("200", "Found")
+  @SuccessResponse('200', 'Found')
   @Get()
   public async getEvents(): Promise<Event[]> {
-    return new EventService().getAllEvents();
+    return new EventService().getAllEvents()
   }
 
-  @SuccessResponse("201", "Created")
+  @SuccessResponse('201', 'Created')
   @Post()
   public async createEvent(
-    @Body() requestBody: Omit<EventCreationParams, "id">,
+    @Body() requestBody: Omit<EventCreationParams, 'id'>,
   ): Promise<Event> {
-    this.setStatus(201);
-    const docRef = FirestoreCollections.events.doc();
+    this.setStatus(201)
+    const docRef = FirestoreCollections.events.doc()
 
     return new EventService().createEvent({
       id: docRef.id,
       ...requestBody,
-    });
+    })
   }
 
-  @SuccessResponse("200", "Deleted")
-  @Delete("by-eventId")
+  @SuccessResponse('200', 'Deleted')
+  @Delete('by-eventId')
   public async deleteEvent(@Query() eventId: string): Promise<Event | null> {
-    return new EventService().deleteEvent(eventId);
+    return new EventService().deleteEvent(eventId)
   }
 
-  @SuccessResponse("200", "Updated")
-  @Patch("{eventId}")
+  @SuccessResponse('200', 'Updated')
+  @Patch('{eventId}')
   public async updateEvent(
     @Path() eventId: string,
     @Body() updates: UpdateEventPackage,
   ): Promise<Event | null> {
-    return new EventService().updateEvent(eventId, updates);
+    return new EventService().updateEvent(eventId, updates)
   }
 }

@@ -1,9 +1,9 @@
-import { HeroSection, HomeCarousel } from "@/components/page-specific/home";
-import { HomePageContentService } from "@/services/content-services/HomePageContentService";
+import { HeroSection, HomeCarousel } from '@/components/page-specific/home'
+import { HomePageContentService } from '@/services/content-services/HomePageContentService'
 
 const Home = () => {
-  const heroData = HomePageContentService.getMockHeroData();
-  const carouselData = HomePageContentService.getMockCarouselData();
+  const heroData = HomePageContentService.getMockHeroData()
+  const carouselData = HomePageContentService.getMockCarouselData()
 
   return (
     <div className="">
@@ -15,6 +15,6 @@ const Home = () => {
       />
       <HomeCarousel items={carouselData} />
     </div>
-  );
-};
-export default Home;
+  )
+}
+export default Home

@@ -1,10 +1,10 @@
-import Image from "next/image";
+import Image from 'next/image'
 
 type FaqBoxProps = {
-  icon: string;
-  content: string;
-  title: string;
-};
+  icon: string
+  content: string
+  title: string
+}
 
 const FaqBox = ({ icon, content, title }: FaqBoxProps) => {
   return (
@@ -17,6 +17,6 @@ const FaqBox = ({ icon, content, title }: FaqBoxProps) => {
         <p className="text-neutral-300">{content}</p>
       </div>
     </div>
-  );
-};
-export default FaqBox;
+  )
+}
+export default FaqBox

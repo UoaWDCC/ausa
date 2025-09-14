@@ -3,13 +3,13 @@
  */
 export interface NavItem {
   /** Display text for the navigation item */
-  label: string;
+  label: string
   /** URL or route path */
-  href: string;
+  href: string
   /** Optional icon component */
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }>
   /** Whether this item should open in a new tab */
-  external?: boolean;
+  external?: boolean
 }
 
 /**
@@ -17,11 +17,11 @@ export interface NavItem {
  */
 export interface NavDropdown {
   /** Display text for the dropdown trigger */
-  label: string;
+  label: string
   /** Array of dropdown menu items */
-  items: NavItem[];
+  items: NavItem[]
   /** Optional icon for the dropdown trigger */
-  icon?: React.ComponentType<{ className?: string }>;
+  icon?: React.ComponentType<{ className?: string }>
 }
 
 /**
@@ -31,23 +31,23 @@ export interface NavConfig {
   /** Logo configuration */
   logo: {
     /** Logo image source */
-    src: string;
+    src: string
     /** Logo alt text */
-    alt: string;
+    alt: string
     /** Logo link destination */
-    href: string;
+    href: string
     /** Logo dimensions */
-    width: number;
-    height: number;
-  };
+    width: number
+    height: number
+  }
   /** Main navigation items */
-  navItems: (NavItem | NavDropdown)[];
+  navItems: (NavItem | NavDropdown)[]
   /** Action buttons (login, signup, etc.) */
-  actionButtons?: NavItem[];
+  actionButtons?: NavItem[]
   /** Whether to show search functionality */
-  showSearch?: boolean;
+  showSearch?: boolean
   /** Mobile menu items (can be different from desktop) */
-  mobileNavItems?: NavItem[];
+  mobileNavItems?: NavItem[]
 }
 
 /**
@@ -56,5 +56,5 @@ export interface NavConfig {
 export const isNavDropdown = (
   item: NavItem | NavDropdown,
 ): item is NavDropdown => {
-  return "items" in item;
-};
+  return 'items' in item
+}

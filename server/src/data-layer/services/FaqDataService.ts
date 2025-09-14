@@ -1,9 +1,9 @@
-import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
-import type { Faq } from "data-layer/models/Faq";
+import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
+import type { Faq } from 'data-layer/models/Faq'
 import type {
   createFaqRequest,
   updateFaqRequest,
-} from "service-layer/request-models/FaqRequests";
+} from 'service-layer/request-models/FaqRequests'
 
 export class FaqDataService {
   /**
@@ -12,8 +12,8 @@ export class FaqDataService {
    * @returns A promise that resolves to an array of Faq objects.
    */
   public static async getAllFaq(): Promise<Faq[]> {
-    const faqSnapshots = await FirestoreCollections.faq.get();
-    return faqSnapshots.docs.map((doc) => doc.data());
+    const faqSnapshots = await FirestoreCollections.faq.get()
+    return faqSnapshots.docs.map((doc) => doc.data())
   }
 
   /**
@@ -23,8 +23,8 @@ export class FaqDataService {
    * @returns A promise that resolves to an Faq object.
    */
   public static async getFaq(id: string): Promise<Faq> {
-    const faqSnapshot = await FirestoreCollections.faq.doc(id).get();
-    return faqSnapshot.data();
+    const faqSnapshot = await FirestoreCollections.faq.doc(id).get()
+    return faqSnapshot.data()
   }
 
   /**
@@ -34,49 +34,49 @@ export class FaqDataService {
    * @returns A promise that resolves when the creation is complete.
    */
   public static async createFaq(faq: createFaqRequest): Promise<Faq> {
-    const docRef = await FirestoreCollections.faq.doc();
-    await docRef.set({ id: docRef.id, ...faq });
-    const createdFaqSnapshot = await docRef.get();
-    return createdFaqSnapshot.data();
+    const docRef = await FirestoreCollections.faq.doc()
+    await docRef.set({ id: docRef.id, ...faq })
+    const createdFaqSnapshot = await docRef.get()
+    return createdFaqSnapshot.data()
   }
 
   public static async updateFaq(
     id: string,
     faq: updateFaqRequest,
   ): Promise<Faq> {
-    const docRef = FirestoreCollections.faq.doc(id);
-    await docRef.update(faq);
-    const updatedResourceSnapshot = await docRef.get();
-    return updatedResourceSnapshot.data();
+    const docRef = FirestoreCollections.faq.doc(id)
+    await docRef.update(faq)
+    const updatedResourceSnapshot = await docRef.get()
+    return updatedResourceSnapshot.data()
   }
 
   public static async deleteFaq(id: string): Promise<void> {
-    const docRef = FirestoreCollections.faq.doc(id);
-    await docRef.delete();
+    const docRef = FirestoreCollections.faq.doc(id)
+    await docRef.delete()
   }
 
   public static async deleteFaqsByCategoryId(
     categoryId: string,
   ): Promise<void> {
     const faqSnapshots = await FirestoreCollections.faq
-      .where("categoryId", "==", categoryId)
-      .get();
+      .where('categoryId', '==', categoryId)
+      .get()
     for (const doc of faqSnapshots.docs) {
-      await doc.ref.delete();
+      await doc.ref.delete()
     }
   }
 
   public static async getFaqsByCategoryId(categoryId: string): Promise<Faq[]> {
     const faqSnapshots = await FirestoreCollections.faq
-      .where("categoryId", "==", categoryId)
-      .get();
-    return faqSnapshots.docs.map((doc) => doc.data());
+      .where('categoryId', '==', categoryId)
+      .get()
+    return faqSnapshots.docs.map((doc) => doc.data())
   }
 
   public static async deleteAllFaqs(): Promise<void> {
-    const faqSnapshots = await FirestoreCollections.faq.get();
+    const faqSnapshots = await FirestoreCollections.faq.get()
     for (const doc of faqSnapshots.docs) {
-      await doc.ref.delete();
+      await doc.ref.delete()
     }
   }
 }

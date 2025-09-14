@@ -1,2 +1,2 @@
-export { HeroSection } from "./HeroSection";
-export { HomeCarousel } from "./HomeCarousel";
+export { HeroSection } from './HeroSection'
+export { HomeCarousel } from './HomeCarousel'

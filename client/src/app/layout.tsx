@@ -1,18 +1,18 @@
-import type { Metadata } from "next";
-import "@/styles/globals.css";
-import { AuthProvider } from "@/auth/AuthContext";
-import ClientLayout from "@/app/ClientLayout";
-import Footer from "@/components/footer/Footer";
+import type { Metadata } from 'next'
+import '@/styles/globals.css'
+import { AuthProvider } from '@/auth/AuthContext'
+import ClientLayout from '@/app/ClientLayout'
+import Footer from '@/components/footer/Footer'
 
 export const metadata: Metadata = {
-  title: "AUSA",
-  description: "",
-};
+  title: 'AUSA',
+  description: '',
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: React.ReactNode
 }>) {
   return (
     <html lang="en">
@@ -25,5 +25,5 @@ export default function RootLayout({
         </footer>
       </body>
     </html>
-  );
+  )
 }

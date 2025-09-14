@@ -1,10 +1,10 @@
-"use client";
+'use client'
 
-import { redirect } from "next/navigation";
-import type React from "react";
-import { useEffect, useState } from "react";
-import { MdOutlineSearch } from "react-icons/md";
-import { Button } from "@/components/ui/button";
+import { redirect } from 'next/navigation'
+import type React from 'react'
+import { useEffect, useState } from 'react'
+import { MdOutlineSearch } from 'react-icons/md'
+import { Button } from '@/components/ui/button'
 import {
   Dialog,
   DialogContent,
@@ -13,82 +13,82 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
-import { navSearchHandler } from "@/lib/navSearchHandler";
-import { NavSearchCard } from "../navSearchCard/navSearchCard";
+} from '@/components/ui/dialog'
+import { Input } from '@/components/ui/input'
+import { navSearchHandler } from '@/lib/navSearchHandler'
+import { NavSearchCard } from '../navSearchCard/navSearchCard'
 
 export interface PageInfo {
-  title: string;
-  description: string;
-  href: string;
-  keywords?: string[];
+  title: string
+  description: string
+  href: string
+  keywords?: string[]
 }
 
 // Constants
 const isMac =
-  typeof window !== "undefined" &&
-  window.navigator.platform.toUpperCase().indexOf("MAC") >= 0;
+  typeof window !== 'undefined' &&
+  window.navigator.platform.toUpperCase().indexOf('MAC') >= 0
 
 const INITIAL_PAGES: PageInfo[] = [
   {
-    title: "Home",
-    description: "Stuff about home",
-    href: "/",
-    keywords: ["home", "index"],
+    title: 'Home',
+    description: 'Stuff about home',
+    href: '/',
+    keywords: ['home', 'index'],
   },
   {
-    title: "FAQ",
-    description: "Stuff about FAQ",
-    href: "/faq/university-support",
-    keywords: ["faq", "questions"],
+    title: 'FAQ',
+    description: 'Stuff about FAQ',
+    href: '/faq/university-support',
+    keywords: ['faq', 'questions'],
   },
   {
-    title: "External Resources",
-    description: "Stuff about External Resources",
-    href: "/resources",
-    keywords: ["external", "resources"],
+    title: 'External Resources',
+    description: 'Stuff about External Resources',
+    href: '/resources',
+    keywords: ['external', 'resources'],
   },
   {
-    title: "Contact",
-    description: "Stuff about Contact",
-    href: "/contact",
-    keywords: ["contact", "get in touch"],
+    title: 'Contact',
+    description: 'Stuff about Contact',
+    href: '/contact',
+    keywords: ['contact', 'get in touch'],
   },
-];
+]
 
-const SEARCH_PLACEHOLDER = "Search";
+const SEARCH_PLACEHOLDER = 'Search'
 
 const NavSearch: React.FC = () => {
-  const [searchValue, setSearchValue] = useState<string>("");
-  const [searchResults, setSearchResults] = useState<PageInfo[]>(INITIAL_PAGES);
-  const [pagesData, setPagesData] = useState<PageInfo[]>(INITIAL_PAGES);
-  const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState<string>('')
+  const [searchResults, setSearchResults] = useState<PageInfo[]>(INITIAL_PAGES)
+  const [pagesData, setPagesData] = useState<PageInfo[]>(INITIAL_PAGES)
+  const [open, setOpen] = useState(false)
 
   // Initialize pages data
   useEffect(() => {
-    navSearchHandler(INITIAL_PAGES).then((data) => setPagesData(data));
-  }, []);
+    navSearchHandler(INITIAL_PAGES).then((data) => setPagesData(data))
+  }, [])
 
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setOpen(false);
+      if (event.key === 'Escape') {
+        setOpen(false)
       }
       // Need to handle mac
-      if ((event.metaKey || event.ctrlKey) && event.key === "k" && !open) {
-        setOpen(true);
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k' && !open) {
+        setOpen(true)
       }
-    };
+    }
 
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [open]);
-  const handleToggle = () => setOpen(!open);
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [open])
+  const handleToggle = () => setOpen(!open)
 
   const filterPages = (value: string): PageInfo[] => {
-    const searchTerm = value.toLowerCase();
+    const searchTerm = value.toLowerCase()
     return pagesData.filter(
       (page) =>
         page.title.toLowerCase().includes(searchTerm) ||
@@ -96,29 +96,29 @@ const NavSearch: React.FC = () => {
         page.keywords?.some((keyword) =>
           keyword.toLowerCase().includes(searchTerm),
         ),
-    );
-  };
+    )
+  }
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    setSearchValue(value);
-    setSearchResults(filterPages(value));
-  };
+    const value = e.target.value
+    setSearchValue(value)
+    setSearchResults(filterPages(value))
+  }
 
   const resetSearchAndClose = () => {
-    setSearchValue("");
-    setSearchResults(INITIAL_PAGES);
-    setOpen(false);
-  };
+    setSearchValue('')
+    setSearchResults(INITIAL_PAGES)
+    setOpen(false)
+  }
 
   const handleResultClick = (href: string) => {
-    resetSearchAndClose();
-    redirect(href);
-  };
+    resetSearchAndClose()
+    redirect(href)
+  }
 
   const renderSearchResults = () => {
     if (searchResults.length === 0) {
-      return <p className="text-sm">No results found</p>;
+      return <p className="text-sm">No results found</p>
     }
 
     return searchResults.map((result) => (
@@ -129,8 +129,8 @@ const NavSearch: React.FC = () => {
       >
         <NavSearchCard description={result.description} title={result.title} />
       </button>
-    ));
-  };
+    ))
+  }
 
   return (
     <Dialog onOpenChange={handleToggle} open={open}>
@@ -144,7 +144,7 @@ const NavSearch: React.FC = () => {
           <div className="pointer-events-none absolute right-3 top-[50%] -translate-y-1/2 select-none items-center gap-1">
             {/**  Keyboard shortcut hint */}
             <kbd className="flex items-center gap-1 rounded border border-slate-700 bg-slate-800 px-1.5 font-mono text-[10px] font-medium text-slate-400 opacity-100">
-              <span className="text-xs">{isMac ? "⌘" : "Ctrl"}</span>
+              <span className="text-xs">{isMac ? '⌘' : 'Ctrl'}</span>
               <span>K</span>
             </kbd>
           </div>
@@ -173,7 +173,7 @@ const NavSearch: React.FC = () => {
         </DialogFooter>
       </DialogContent>
     </Dialog>
-  );
-};
+  )
+}
 
-export default NavSearch;
+export default NavSearch

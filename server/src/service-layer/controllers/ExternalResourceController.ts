@@ -1,14 +1,14 @@
-import { ExternalResourceCategoryDataService } from "data-layer/services/ExternalResourceCategoriesDataService";
-import { ExternalResourceDataService } from "data-layer/services/ExternalResourceDataService";
-import { StatusCodes } from "http-status-codes";
+import { ExternalResourceCategoryDataService } from 'data-layer/services/ExternalResourceCategoriesDataService'
+import { ExternalResourceDataService } from 'data-layer/services/ExternalResourceDataService'
+import { StatusCodes } from 'http-status-codes'
 import type {
   createExternalResourceRequest,
   updateExternalResourceRequest,
-} from "service-layer/request-models/ExternalResourceRequests";
+} from 'service-layer/request-models/ExternalResourceRequests'
 import type {
   GetAllExternalResourceResponse,
   GetExternalResourceResponse,
-} from "service-layer/response-models/ExternalResourceResponses";
+} from 'service-layer/response-models/ExternalResourceResponses'
 import {
   Body,
   Controller,
@@ -21,55 +21,55 @@ import {
   Route,
   Security,
   SuccessResponse,
-} from "tsoa";
+} from 'tsoa'
 
-@Route("external-resources")
+@Route('external-resources')
 export class ExternalResourceController extends Controller {
   @Get()
   public async getAllExternalResources(
-    @Query("category") category?: string,
+    @Query('category') category?: string,
   ): Promise<GetAllExternalResourceResponse> {
     try {
       if (category) {
-        const res = await ExternalResourceDataService.getByCategoryId(category);
+        const res = await ExternalResourceDataService.getByCategoryId(category)
         if (res) {
-          return { data: res };
+          return { data: res }
         }
-        return { data: [] };
+        return { data: [] }
       }
       const externalResources =
-        await ExternalResourceDataService.getAllExternalResources();
-      return { data: externalResources };
+        await ExternalResourceDataService.getAllExternalResources()
+      return { data: externalResources }
     } catch (error) {
-      console.error("Error retrieving external resources:", error);
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR);
-      return { error: "Failed to retrieve external resources" };
+      console.error('Error retrieving external resources:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      return { error: 'Failed to retrieve external resources' }
     }
   }
 
-  @Get("{id}")
+  @Get('{id}')
   public async getExternalResource(
     @Path() id: string,
   ): Promise<GetExternalResourceResponse> {
     try {
-      const res = await ExternalResourceDataService.getExternalResourceById(id);
+      const res = await ExternalResourceDataService.getExternalResourceById(id)
       if (!res) {
-        this.setStatus(StatusCodes.NOT_FOUND);
-        return { error: "External Resource not found" };
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'External Resource not found' }
       }
-      return { data: res };
+      return { data: res }
     } catch (error) {
-      console.error("Error retrieving external resource:", error);
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR);
-      return { error: "Failed to retrieve external resource" };
+      console.error('Error retrieving external resource:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      return { error: 'Failed to retrieve external resource' }
     }
   }
 
-  @Security("jwt", ["admin"])
+  @Security('jwt', ['admin'])
   @Post()
   @SuccessResponse(
     StatusCodes.CREATED,
-    "Successfully created external resource",
+    'Successfully created external resource',
   )
   public async createExternalResource(
     @Body() externalResource: createExternalResourceRequest,
@@ -78,98 +78,98 @@ export class ExternalResourceController extends Controller {
       const existingCategory =
         await ExternalResourceCategoryDataService.getCategoryById(
           externalResource.categoryId,
-        );
+        )
       if (!existingCategory) {
-        this.setStatus(StatusCodes.NOT_FOUND);
-        return { error: "External Resource Category not found" };
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'External Resource Category not found' }
       }
       const createdResource =
         await ExternalResourceDataService.createExternalResource(
           externalResource,
-        );
-      this.setStatus(StatusCodes.CREATED);
-      return { data: createdResource };
+        )
+      this.setStatus(StatusCodes.CREATED)
+      return { data: createdResource }
     } catch (error) {
-      console.error("Error creating external resource:", error);
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR);
-      return { error: "Failed to create external resource" };
+      console.error('Error creating external resource:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      return { error: 'Failed to create external resource' }
     }
   }
 
-  @Security("jwt", ["admin"])
-  @Patch("{id}")
-  @SuccessResponse(StatusCodes.OK, "Successfully updated external resource")
+  @Security('jwt', ['admin'])
+  @Patch('{id}')
+  @SuccessResponse(StatusCodes.OK, 'Successfully updated external resource')
   public async updateExternalResource(
     @Path() id: string,
     @Body() externalResource: updateExternalResourceRequest,
   ): Promise<GetExternalResourceResponse> {
     try {
       const existingResource =
-        await ExternalResourceDataService.getExternalResourceById(id);
+        await ExternalResourceDataService.getExternalResourceById(id)
       if (!existingResource) {
-        this.setStatus(StatusCodes.NOT_FOUND);
-        return { error: "External Resource not found" };
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return { error: 'External Resource not found' }
       }
       const updatedResource =
         await ExternalResourceDataService.updateExternalResource(
           id,
           externalResource,
-        );
-      return { data: updatedResource };
+        )
+      return { data: updatedResource }
     } catch (error) {
-      console.error("Error updating external resource:", error);
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR);
-      return { error: "Failed to update external resource" };
+      console.error('Error updating external resource:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
+      return { error: 'Failed to update external resource' }
     }
   }
 
-  @Security("jwt", ["admin"])
-  @Delete("{id}")
+  @Security('jwt', ['admin'])
+  @Delete('{id}')
   @SuccessResponse(
     StatusCodes.NO_CONTENT,
-    "Successfully deleted External Resource",
+    'Successfully deleted External Resource',
   )
   public async deleteExternalResource(@Path() id: string): Promise<void> {
     try {
       const existingResource =
-        await ExternalResourceDataService.getExternalResourceById(id);
+        await ExternalResourceDataService.getExternalResourceById(id)
       if (!existingResource) {
-        this.setStatus(StatusCodes.NOT_FOUND);
-        return;
+        this.setStatus(StatusCodes.NOT_FOUND)
+        return
       }
-      await ExternalResourceDataService.deleteExternalResource(id);
+      await ExternalResourceDataService.deleteExternalResource(id)
     } catch (error) {
-      console.error("Error deleting external resource:", error);
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+      console.error('Error deleting external resource:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
     }
   }
 
-  @Security("jwt", ["admin"])
+  @Security('jwt', ['admin'])
   @Delete()
   @SuccessResponse(
     StatusCodes.NO_CONTENT,
-    "Successfully deleted all External Resources",
+    'Successfully deleted all External Resources',
   )
   public async deleteAllExternalResources(
-    @Query("categoryId") categoryId?: string,
+    @Query('categoryId') categoryId?: string,
   ): Promise<void> {
     try {
       if (categoryId) {
         const existingCategory =
-          await ExternalResourceCategoryDataService.getCategoryById(categoryId);
+          await ExternalResourceCategoryDataService.getCategoryById(categoryId)
         if (!existingCategory) {
-          this.setStatus(StatusCodes.NOT_FOUND);
-          return;
+          this.setStatus(StatusCodes.NOT_FOUND)
+          return
         }
-        await ExternalResourceDataService.deleteByCategoryId(categoryId);
-        this.setStatus(StatusCodes.NO_CONTENT);
-        return;
+        await ExternalResourceDataService.deleteByCategoryId(categoryId)
+        this.setStatus(StatusCodes.NO_CONTENT)
+        return
       }
-      await ExternalResourceDataService.deleteAllExternalResources();
-      this.setStatus(StatusCodes.NO_CONTENT);
+      await ExternalResourceDataService.deleteAllExternalResources()
+      this.setStatus(StatusCodes.NO_CONTENT)
     } catch (error) {
-      console.error("Error deleting all External Resources:", error);
-      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR);
+      console.error('Error deleting all External Resources:', error)
+      this.setStatus(StatusCodes.INTERNAL_SERVER_ERROR)
     }
   }
 }

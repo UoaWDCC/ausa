@@ -1,4 +1,4 @@
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils'
 
 interface TiledAusaBackgroundProps {
   /**
@@ -6,12 +6,12 @@ interface TiledAusaBackgroundProps {
    *
    * Flips the colors to be more visible.
    */
-  inverted?: boolean;
+  inverted?: boolean
 
   /**
    * Set this to true if you want the background to be flipped horizontally.
    */
-  flipped?: boolean;
+  flipped?: boolean
 }
 
 /**
@@ -31,16 +31,16 @@ export const TiledAusaBackground = ({
   return (
     <div
       className={cn(
-        "absolute inset-0 opacity-5 pointer-events-none cursor-none",
-        inverted ? "invert-100" : "",
-        flipped ? "-rotate-6" : "rotate-6",
+        'absolute inset-0 opacity-5 pointer-events-none cursor-none',
+        inverted ? 'invert-100' : '',
+        flipped ? '-rotate-6' : 'rotate-6',
       )}
       style={{
-        backgroundImage: "url(/static/icons/logo.svg)",
-        backgroundSize: "140px 50px",
-        backgroundRepeat: "space",
-        backgroundPosition: "center",
+        backgroundImage: 'url(/static/icons/logo.svg)',
+        backgroundSize: '140px 50px',
+        backgroundRepeat: 'space',
+        backgroundPosition: 'center',
       }}
     />
-  );
-};
+  )
+}

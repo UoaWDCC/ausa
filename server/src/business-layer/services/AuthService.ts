@@ -1,10 +1,10 @@
-import { auth } from "business-layer/security/Firebase";
-import type { AuthServiceClaims } from "business-layer/utils/AuthServiceClaims";
-import type { ListUsersResult, UserRecord } from "firebase-admin/auth";
+import { auth } from 'business-layer/security/Firebase'
+import type { AuthServiceClaims } from 'business-layer/utils/AuthServiceClaims'
+import type { ListUsersResult, UserRecord } from 'firebase-admin/auth'
 
 type UidArray = {
-  uid: string;
-}[];
+  uid: string
+}[]
 
 export default class AuthService {
   /**
@@ -13,18 +13,18 @@ export default class AuthService {
    * @returns An array of all users.
    */
   public async getAllUsers(maxPagintion = 1000): Promise<UserRecord[]> {
-    const allUsers: UserRecord[] = [];
+    const allUsers: UserRecord[] = []
 
-    let pageToken: string;
-    let response: ListUsersResult;
+    let pageToken: string
+    let response: ListUsersResult
 
     do {
-      response = await auth.listUsers(maxPagintion, pageToken);
-      allUsers.push(...response.users);
-      pageToken = response.pageToken;
-    } while (response.pageToken);
+      response = await auth.listUsers(maxPagintion, pageToken)
+      allUsers.push(...response.users)
+      pageToken = response.pageToken
+    } while (response.pageToken)
 
-    return allUsers;
+    return allUsers
   }
 
   /**
@@ -38,21 +38,21 @@ export default class AuthService {
    */
   public async bulkRetrieveUsersByUids(uids: UidArray) {
     try {
-      const { users } = await auth.getUsers(uids);
-      return users;
+      const { users } = await auth.getUsers(uids)
+      return users
     } catch (e) {
-      console.error("Failed to bulk retrieve the uids from Auth", e);
-      return undefined;
+      console.error('Failed to bulk retrieve the uids from Auth', e)
+      return undefined
     }
   }
 
   public async retrieveUserByUid(uid: string) {
     try {
-      const user = await auth.getUser(uid);
-      return user;
+      const user = await auth.getUser(uid)
+      return user
     } catch (e) {
-      console.error("Failed to bulk retrieve the uids from Auth", e);
-      return undefined;
+      console.error('Failed to bulk retrieve the uids from Auth', e)
+      return undefined
     }
   }
 
@@ -62,10 +62,10 @@ export default class AuthService {
    */
   public async deleteUser(uid: string): Promise<void> {
     try {
-      await auth.deleteUser(uid);
+      await auth.deleteUser(uid)
     } catch (err) {
-      console.error("Error deleting user", err);
-      throw err;
+      console.error('Error deleting user', err)
+      throw err
     }
   }
 
@@ -75,15 +75,15 @@ export default class AuthService {
    */
   public async createUser(email: string): Promise<UserRecord> {
     // get the user record
-    let userRecord: UserRecord;
+    let userRecord: UserRecord
     try {
-      userRecord = await auth.createUser({ email });
+      userRecord = await auth.createUser({ email })
     } catch (err) {
-      console.error("Error creating user", err);
-      throw err;
+      console.error('Error creating user', err)
+      throw err
     }
 
-    return userRecord;
+    return userRecord
   } /**
    * Creates a custom token for a user to sign in with
    * @param uid identifier for the user
@@ -91,14 +91,14 @@ export default class AuthService {
    * @returns the custom token
    */
   public async createCustomToken(uid: string, claims: { [key: string]: any }) {
-    let token: string;
+    let token: string
     try {
-      token = await auth.createCustomToken(uid, claims);
+      token = await auth.createCustomToken(uid, claims)
     } catch (err) {
-      console.error("Error creating custom token", err);
-      throw err;
+      console.error('Error creating custom token', err)
+      throw err
     }
-    return token;
+    return token
   }
 
   /**
@@ -111,14 +111,14 @@ export default class AuthService {
     role: (typeof AuthServiceClaims)[keyof typeof AuthServiceClaims] | null,
   ) {
     try {
-      const userRecord = await auth.getUser(uid);
+      const userRecord = await auth.getUser(uid)
       auth.setCustomUserClaims(
         userRecord.uid,
         role === null ? null : { [role]: true },
-      );
+      )
     } catch (err) {
-      console.error(`Error setting custom claim '${role}' on user '${uid}'`);
-      throw err;
+      console.error(`Error setting custom claim '${role}' on user '${uid}'`)
+      throw err
     }
   }
 
@@ -127,13 +127,13 @@ export default class AuthService {
    * @param uid
    */
   public async getCustomerUserClaim(uid: string) {
-    let userRecord: UserRecord;
+    let userRecord: UserRecord
     try {
-      userRecord = await auth.getUser(uid);
+      userRecord = await auth.getUser(uid)
     } catch (err) {
-      console.error("Error fetching custom claim on user");
-      throw err;
+      console.error('Error fetching custom claim on user')
+      throw err
     }
-    return userRecord.customClaims;
+    return userRecord.customClaims
   }
 }

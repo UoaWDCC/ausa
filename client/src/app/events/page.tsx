@@ -1,8 +1,8 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { EventCard } from "@/components/event-card/EventCard";
-import type { Event } from "@/types/types";
+import { useState } from 'react'
+import { EventCard } from '@/components/event-card/EventCard'
+import type { Event } from '@/types/types'
 
 // export default function EventsPage() {
 //   const [events, setEvents] = useState<Event[]>([])
@@ -64,73 +64,73 @@ import type { Event } from "@/types/types";
 
 const mockEvents: Event[] = [
   {
-    id: "1",
-    title: "Orientation Week",
+    id: '1',
+    title: 'Orientation Week',
     heroImage: {
-      src: "/static/icons/ausa.svg",
-      alt: "Students at orientation",
+      src: '/static/icons/ausa.svg',
+      alt: 'Students at orientation',
     },
     content: {
-      subtitle: "March 1st",
-      body: "Join us for a week of activities, club showcases, and social events to kick off the new semester. Meet fellow students and discover everything AUSA has to offer.",
+      subtitle: 'March 1st',
+      body: 'Join us for a week of activities, club showcases, and social events to kick off the new semester. Meet fellow students and discover everything AUSA has to offer.',
       callToAction: {
-        text: "Register",
-        href: "",
+        text: 'Register',
+        href: '',
       },
     },
   },
   {
-    id: "2",
-    title: "End of Semester Party",
+    id: '2',
+    title: 'End of Semester Party',
     heroImage: {
-      src: "/static/icons/ausa.svg",
-      alt: "End of semester celebration",
+      src: '/static/icons/ausa.svg',
+      alt: 'End of semester celebration',
     },
     content: {
-      subtitle: "June 24th",
-      body: "Youve made it through another semester! Join us at Shadows Bar for music, games, and a chance to unwind before the break.",
+      subtitle: 'June 24th',
+      body: 'Youve made it through another semester! Join us at Shadows Bar for music, games, and a chance to unwind before the break.',
       callToAction: {
-        text: "Register",
-        href: "",
+        text: 'Register',
+        href: '',
       },
     },
   },
   {
-    id: "3",
-    title: "Career Fair",
+    id: '3',
+    title: 'Career Fair',
     heroImage: {
-      src: "/static/icons/ausa.svg",
-      alt: "Career fair booth setup",
+      src: '/static/icons/ausa.svg',
+      alt: 'Career fair booth setup',
     },
     content: {
-      subtitle: "April 15th",
-      body: "Meet representatives from top companies across multiple industries. Bring your CV and your questions - this is your opportunity to explore internships and graduate roles.",
+      subtitle: 'April 15th',
+      body: 'Meet representatives from top companies across multiple industries. Bring your CV and your questions - this is your opportunity to explore internships and graduate roles.',
       callToAction: {
-        text: "Register",
-        href: "",
+        text: 'Register',
+        href: '',
       },
     },
   },
   {
-    id: "4",
-    title: "Graduation Ceremony",
+    id: '4',
+    title: 'Graduation Ceremony',
     heroImage: {
-      src: "/static/icons/ausa.svg",
-      alt: "Graduation Ceremony",
+      src: '/static/icons/ausa.svg',
+      alt: 'Graduation Ceremony',
     },
     content: {
-      subtitle: "November 15th",
-      body: "Show everyone your best self and graduate roles. This is your chance to shine and celebrate your achievements.",
+      subtitle: 'November 15th',
+      body: 'Show everyone your best self and graduate roles. This is your chance to shine and celebrate your achievements.',
       callToAction: {
-        text: "Register",
-        href: "",
+        text: 'Register',
+        href: '',
       },
     },
   },
-];
+]
 
 export default function EventsPage() {
-  const [events] = useState<Event[]>(mockEvents);
+  const [events] = useState<Event[]>(mockEvents)
 
   return (
     <div className="container mx-auto px-4 py-12">
@@ -146,5 +146,5 @@ export default function EventsPage() {
         ))}
       </div>
     </div>
-  );
+  )
 }

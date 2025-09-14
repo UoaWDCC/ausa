@@ -1,45 +1,45 @@
-"use client";
+'use client'
 
-import emailjs from "@emailjs/browser";
-import { useState } from "react";
-import DropdownInput from "../dropdown-input/DropdownInput";
+import emailjs from '@emailjs/browser'
+import { useState } from 'react'
+import DropdownInput from '../dropdown-input/DropdownInput'
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
-    name: "",
-    email_from: "",
-    message: "",
-  });
-  const [clicked, setClicked] = useState(false);
+    name: '',
+    email_from: '',
+    message: '',
+  })
+  const [clicked, setClicked] = useState(false)
   const handleClick = () => {
-    setClicked(true);
-  };
+    setClicked(true)
+  }
   const sendEmail = (e: React.ChangeEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!formData.name || !formData.email_from || !formData.message) {
-      alert("Please fill in all fields before submitting!");
-      setClicked(false);
-      return;
+      alert('Please fill in all fields before submitting!')
+      setClicked(false)
+      return
     }
     emailjs
       .sendForm(
         // service_id
-        "service_vo27jod",
+        'service_vo27jod',
         // template_id
-        "template_q845yhw",
+        'template_q845yhw',
         e.target,
         // public_key
-        "DPs78eLGecvnCMXH1",
+        'DPs78eLGecvnCMXH1',
       )
       .then(() => {
         setFormData({
-          name: "",
-          email_from: "",
-          message: "",
-        });
-        setClicked(false);
-      });
-  };
+          name: '',
+          email_from: '',
+          message: '',
+        })
+        setClicked(false)
+      })
+  }
   return (
     <div className="w-[300px] rounded-[32px] bg-blue-300/30 p-5 text-white shadow-md drop-shadow-sm duration-300 hover:scale-105 md:w-[700px]">
       <form className="flex flex-col gap-4" onSubmit={sendEmail}>
@@ -71,10 +71,10 @@ const ContactForm = () => {
           Type of Enquiry
           <DropdownInput
             options={[
-              "Membership & Recruitment",
-              "Events",
-              "Collaboration & Partnerships",
-              "Wellbeing",
+              'Membership & Recruitment',
+              'Events',
+              'Collaboration & Partnerships',
+              'Wellbeing',
             ]}
             placeholder="Select enquiry type"
           />
@@ -93,7 +93,7 @@ const ContactForm = () => {
           />
         </label>
         <button
-          className={`ml-auto w-35 rounded-full px-4 py-2 text-left text-xl ${clicked ? "cursor-not-allowed bg-gray-500 text-gray-300" : "bg-gray-700 hover:outline-2"} flex justify-center font-bold hover:outline-blue-300 hover:bg-gray-600`}
+          className={`ml-auto w-35 rounded-full px-4 py-2 text-left text-xl ${clicked ? 'cursor-not-allowed bg-gray-500 text-gray-300' : 'bg-gray-700 hover:outline-2'} flex justify-center font-bold hover:outline-blue-300 hover:bg-gray-600`}
           onClick={handleClick}
           type="submit"
         >
@@ -101,7 +101,7 @@ const ContactForm = () => {
         </button>
       </form>
     </div>
-  );
-};
+  )
+}
 
-export default ContactForm;
+export default ContactForm

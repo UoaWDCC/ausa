@@ -1,35 +1,35 @@
-"use client";
+'use client'
 import {
   createUserWithEmailAndPassword,
   GoogleAuthProvider,
   signInWithPopup,
   updateProfile,
-} from "firebase/auth";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useAuth } from "@/auth/AuthContext";
-import { TiledAusaBackground } from "@/components/ausa/TiledAusaBackground";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { auth } from "@/lib/firebase";
-import client from "@/services/fetch-client";
-import type { User } from "@/types/types";
+} from 'firebase/auth'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
+import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { auth } from '@/lib/firebase'
+import client from '@/services/fetch-client'
+import type { User } from '@/types/types'
 
 const Signup = () => {
   const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-  });
-  const [loading, setLoading] = useState(false);
-  const { user } = useAuth();
-  const router = useRouter();
+    name: '',
+    email: '',
+    password: '',
+  })
+  const [loading, setLoading] = useState(false)
+  const { user } = useAuth()
+  const router = useRouter()
 
   useEffect(() => {
     if (user) {
-      router.push("/");
+      router.push('/')
     }
-  }, [user, router]);
+  }, [user, router])
 
   const convertToUser = (user: any): User => {
     return {
@@ -37,12 +37,12 @@ const Signup = () => {
       username: user.displayName,
       email: user.email,
       name: user.displayName,
-    };
-  };
+    }
+  }
 
   const saveUser = async (user: any) => {
     try {
-      const newUser = convertToUser(user);
+      const newUser = convertToUser(user)
       // const userRef = doc(db, 'users', user.uid)
       // const userDoc = await getDoc(userRef)
       // if (!userDoc.exists()) {
@@ -53,75 +53,75 @@ const Signup = () => {
       //     name: user.name,
       //   })
       console.log(
-        "Sending user to backend:",
+        'Sending user to backend:',
         JSON.stringify({ ...newUser, id: user.uid }),
-      );
+      )
       const { data: responseBody, response } = await client.POST(
-        "/users" as any,
+        '/users' as any,
         {
           body: { ...newUser, id: user.uid },
         },
-      );
-      console.log("Response status:", response.status);
-      console.log("Response body:", responseBody);
-      console.log("User saved successfully");
+      )
+      console.log('Response status:', response.status)
+      console.log('Response body:', responseBody)
+      console.log('User saved successfully')
     } catch (error) {
-      console.error("Error saving user:", error);
-      console.log("User already exists");
+      console.error('Error saving user:', error)
+      console.log('User already exists')
     }
-  };
+  }
 
   const handleEmailSignUp = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     if (!form.name || !form.email || !form.password) {
-      alert("Please fill in all required fields!");
-      return;
+      alert('Please fill in all required fields!')
+      return
     }
 
-    setLoading(true);
+    setLoading(true)
     try {
       const userCred = await createUserWithEmailAndPassword(
         auth,
         form.email,
         form.password,
-      );
+      )
       await updateProfile(userCred.user, {
         displayName: form.name,
-      });
-      await saveUser(userCred.user);
-      alert("Account created successfully!");
+      })
+      await saveUser(userCred.user)
+      alert('Account created successfully!')
     } catch (error: any) {
-      console.error("Signup error:", error);
+      console.error('Signup error:', error)
 
-      if (error.code === "auth/email-already-in-use") {
+      if (error.code === 'auth/email-already-in-use') {
         alert(
-          "This email is already registered. Please use a different email or try logging in.",
-        );
-      } else if (error.code === "auth/weak-password") {
-        alert("Password is too weak. Please use at least 6 characters.");
-      } else if (error.code === "auth/invalid-email") {
-        alert("Invalid email address.");
+          'This email is already registered. Please use a different email or try logging in.',
+        )
+      } else if (error.code === 'auth/weak-password') {
+        alert('Password is too weak. Please use at least 6 characters.')
+      } else if (error.code === 'auth/invalid-email') {
+        alert('Invalid email address.')
       } else {
-        alert("Failed to create account. Please try again.");
+        alert('Failed to create account. Please try again.')
       }
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   const handleGoogleSignIn = async () => {
-    const provider = new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider()
     try {
-      const res = await signInWithPopup(auth, provider);
-      const user = res.user;
+      const res = await signInWithPopup(auth, provider)
+      const user = res.user
       // const idToken = await user.getIdToken();
-      await saveUser(user);
+      await saveUser(user)
     } catch (error: any) {
-      const err = error.code;
-      const errmsg = error.message;
-      console.error("Error during sign-in:", err, errmsg);
+      const err = error.code
+      const errmsg = error.message
+      console.error('Error during sign-in:', err, errmsg)
     }
-  };
+  }
 
   return (
     <div className="relative z-10 overflow-hidden py-40 text-center text-white">
@@ -192,7 +192,7 @@ const Signup = () => {
               disabled={loading}
               type="submit"
             >
-              {loading ? "Creating account" : "Create Account"}
+              {loading ? 'Creating account' : 'Create Account'}
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <button
@@ -214,7 +214,7 @@ const Signup = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Signup;
+export default Signup

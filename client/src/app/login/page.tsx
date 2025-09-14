@@ -1,68 +1,68 @@
-"use client";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { useAuth } from "@/auth/AuthContext";
-import { TiledAusaBackground } from "@/components/ausa/TiledAusaBackground";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { loginHandler } from "./utils/Handler";
+'use client'
+import { useRouter } from 'next/navigation'
+import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
+import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { loginHandler } from './utils/Handler'
 
 export type LoginHandlerArgs = {
-  email: string;
-  password: string;
-};
+  email: string
+  password: string
+}
 
 export type HandlerResponse = {
-  success: boolean;
-  successMessage?: string;
+  success: boolean
+  successMessage?: string
   error?: {
-    message: string;
-  };
-};
+    message: string
+  }
+}
 
 type MessageTypes = {
-  success?: string;
-  error?: string;
-  other?: string;
-};
+  success?: string
+  error?: string
+  other?: string
+}
 
 const Login = () => {
-  const [loading, setLoading] = useState(false);
-  const [messages, setMessages] = useState<MessageTypes>({});
+  const [loading, setLoading] = useState(false)
+  const [messages, setMessages] = useState<MessageTypes>({})
 
-  const router = useRouter();
-  const { user } = useAuth();
+  const router = useRouter()
+  const { user } = useAuth()
   const [form, setForm] = useState({
-    email: "",
-    password: "",
-  });
+    email: '',
+    password: '',
+  })
 
   // Redirects to the dashboard page when the state of the router or user changes
   useEffect(() => {
     if (user) {
-      router.push("/");
+      router.push('/')
     }
-  }, [user, router]);
+  }, [user, router])
 
   const handleLogin = async (e: React.FormEvent) => {
     // Prevent default form submission
-    e.preventDefault();
+    e.preventDefault()
 
     try {
-      setLoading(true);
-      const { success, error } = await loginHandler(form.email, form.password);
-      setLoading(false);
+      setLoading(true)
+      const { success, error } = await loginHandler(form.email, form.password)
+      setLoading(false)
       if (success) {
-        setMessages({ success: "Logged In" });
+        setMessages({ success: 'Logged In' })
       } else {
         // We want the messages to be overwritten
-        setMessages({ error: error?.message || "Unknown Error Occured" });
+        setMessages({ error: error?.message || 'Unknown Error Occured' })
       }
     } catch (e) {
-      console.error(e);
-      setLoading(false);
+      console.error(e)
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <div className="relative z-10 overflow-hidden py-40 text-center text-white">
@@ -111,7 +111,7 @@ const Login = () => {
               onClick={handleLogin}
               type="submit"
             >
-              {loading ? "LOGGING IN..." : "LOGIN"}
+              {loading ? 'LOGGING IN...' : 'LOGIN'}
             </Button>
             <div className="flex justify-between text-sm text-white/80">
               <a
@@ -141,7 +141,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Login;
+export default Login

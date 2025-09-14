@@ -1,19 +1,19 @@
-import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
-import type { DocumentSnapshot } from "firebase-admin/firestore";
+import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
+import type { DocumentSnapshot } from 'firebase-admin/firestore'
 export class UserService {
   public async getAllUserData(limit = 15, startAfter?: DocumentSnapshot) {
     const res = await FirestoreCollections.users
-      .orderBy("username")
+      .orderBy('username')
       .startAfter(startAfter || 0)
       .limit(limit)
-      .get();
+      .get()
     const users = res.docs.map((user) => {
-      return { ...user.data(), uid: user.id };
-    });
+      return { ...user.data(), uid: user.id }
+    })
     return {
       users,
       nextCursor: res.docs[res.docs.length - 1]?.id || undefined,
-    };
+    }
   }
 
   /**
@@ -22,11 +22,11 @@ export class UserService {
    * @returns A user of type User
    */
   public async getUser(uid: string) {
-    const userDoc = await FirestoreCollections.users.doc(uid).get();
-    const data = userDoc.data();
+    const userDoc = await FirestoreCollections.users.doc(uid).get()
+    const data = userDoc.data()
 
-    if (data === undefined) return undefined;
-    return { ...userDoc.data(), uid };
+    if (data === undefined) return undefined
+    return { ...userDoc.data(), uid }
   }
 
   /**
@@ -34,6 +34,6 @@ export class UserService {
    * @param uid - using uid to delete a user in db
    */
   public async deleteUserData(uid: string) {
-    await FirestoreCollections.users.doc(uid).delete();
+    await FirestoreCollections.users.doc(uid).delete()
   }
 }
