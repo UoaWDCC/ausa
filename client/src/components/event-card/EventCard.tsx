@@ -1,25 +1,27 @@
-import Image from 'next/image'
-import Link from 'next/link'
-import type { Event } from '@/types/types'
-import { useAuth } from '@/auth/AuthContext'
-import { useRouter } from 'next/navigation'
+import Image from "next/image";
+import Link from "next/link";
+import type { Event } from "@/types/types";
+import { useAuth } from "@/auth/AuthContext";
+import { useRouter } from "next/navigation";
 
 interface EventCardProps {
-  event: Event
+  event: Event;
 }
 
 export const EventCard: React.FC<EventCardProps> = ({ event }) => {
-  const { user } = useAuth()
-  const router = useRouter()
+  const { user } = useAuth();
+  const router = useRouter();
 
-  const handleRegisterClick = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
-    e.preventDefault()
+  const handleRegisterClick = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+  ) => {
+    e.preventDefault();
     if (user) {
-      router.push('/event-details')
+      router.push("/event-details");
     } else {
-      router.push('/login')
+      router.push("/login");
     }
-  }
+  };
 
   return (
     <div className="flex h-full flex-col overflow-hidden rounded-lg bg-white shadow-md transition-all duration-300 hover:shadow-xl">
@@ -55,5 +57,5 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};

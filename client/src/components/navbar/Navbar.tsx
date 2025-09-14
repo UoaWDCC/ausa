@@ -1,63 +1,63 @@
-'use client'
-import { Menu } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import type React from 'react'
-import { useEffect, useState } from 'react'
-import { useAuth } from '@/auth/AuthContext'
-import { LogoutButton } from '@/components/auth/LogOutButton'
-import NavSearch from '@/components/nav-search/NavSearch'
-import { Button } from '@/components/ui/button'
-import { cn } from '@/lib/utils'
-import type { NavConfig } from '@/types/navbar.types'
-import { isNavDropdown } from '@/types/navbar.types'
-import { MobileDrawer } from './MobileDrawer'
-import { NavDropdownMenu, NavLinkItem } from './NavItems'
+"use client";
+import { Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import type React from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "@/auth/AuthContext";
+import { LogoutButton } from "@/components/auth/LogOutButton";
+import NavSearch from "@/components/nav-search/NavSearch";
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import type { NavConfig } from "@/types/navbar.types";
+import { isNavDropdown } from "@/types/navbar.types";
+import { MobileDrawer } from "./MobileDrawer";
+import { NavDropdownMenu, NavLinkItem } from "./NavItems";
 
 interface NavigationBarProps {
-  config: NavConfig
-  className?: string
+  config: NavConfig;
+  className?: string;
 }
 
 export const NavigationBar: React.FC<NavigationBarProps> = ({
   config,
   className,
 }) => {
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [hasScrolled, setHasScrolled] = useState(false)
-  const { user } = useAuth()
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
     if (isMobileMenuOpen) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = "";
     }
 
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [isMobileMenuOpen])
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setHasScrolled(window.scrollY > 0)
-    }
+      setHasScrolled(window.scrollY > 0);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen)
+  const toggleMobileMenu = () => setIsMobileMenuOpen(!isMobileMenuOpen);
 
   return (
     <nav
       className={cn(
-        'fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-out',
+        "fixed top-0 left-0 z-50 w-full transition-all duration-500 ease-out",
         hasScrolled
-          ? 'bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl shadow-slate-900/25'
-          : 'bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none',
-        className,
+          ? "bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl shadow-slate-900/25"
+          : "bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none",
+        className
       )}
     >
       <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-8">
@@ -112,8 +112,8 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
                     <Link
                       className="flex items-center gap-1 sm:gap-2"
                       href={button.href}
-                      rel={button.external ? 'noopener noreferrer' : undefined}
-                      target={button.external ? '_blank' : undefined}
+                      rel={button.external ? "noopener noreferrer" : undefined}
+                      target={button.external ? "_blank" : undefined}
                     >
                       {button.icon && (
                         <button.icon className="h-3 w-3 sm:h-4 sm:w-4" />
@@ -151,49 +151,49 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
         onClose={() => setIsMobileMenuOpen(false)}
       />
     </nav>
-  )
-}
+  );
+};
 
 const defaultNavConfig: NavConfig = {
   logo: {
-    src: '/static/icons/logo.svg',
-    alt: 'AUSA Logo',
-    href: '/',
+    src: "/static/icons/logo.svg",
+    alt: "AUSA Logo",
+    href: "/",
     width: 80,
     height: 80,
   },
   navItems: [
-    { label: 'Home', href: '/' },
-    { label: 'Resources', href: '/resources' },
-    { label: 'Quiz', href: '/quiz' },
-    { label: 'Events', href: '/events' },
+    { label: "Home", href: "/" },
+    { label: "Resources", href: "/resources" },
+    { label: "Quiz", href: "/quiz" },
+    { label: "Events", href: "/events" },
     {
-      label: 'FAQs',
+      label: "FAQs",
       items: [
-        { label: 'University Support', href: '/faq/university-support' },
-        { label: 'External Support', href: '/faq/external-support' },
-        { label: 'Emergency Support', href: '/faq/emergency-support' },
-        { label: 'Quiz', href: '/quiz' },
+        { label: "University Support", href: "/faq/university-support" },
+        { label: "External Support", href: "/faq/external-support" },
+        { label: "Emergency Support", href: "/faq/emergency-support" },
+        { label: "Quiz", href: "/quiz" },
       ],
     },
     {
-      label: 'Contacts',
-      items: [{ label: 'General Enquiries', href: '/contact' }],
+      label: "Contacts",
+      items: [{ label: "General Enquiries", href: "/contact" }],
     },
   ],
   actionButtons: [
-    { label: 'Login', href: '/login' },
-    { label: 'Sign up', href: '/signup' },
+    { label: "Login", href: "/login" },
+    { label: "Sign up", href: "/signup" },
   ],
   showSearch: true,
-}
+};
 
 // Default export with configuration for backwards compatibility
 const NavigationBarWithDefaults: React.FC<Partial<NavigationBarProps>> = ({
   config = defaultNavConfig,
   ...props
 }) => {
-  return <NavigationBar config={config} {...props} />
-}
+  return <NavigationBar config={config} {...props} />;
+};
 
-export default NavigationBarWithDefaults
+export default NavigationBarWithDefaults;
