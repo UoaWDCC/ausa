@@ -4,1061 +4,1061 @@
  */
 
 export interface paths {
-  "/users/self": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/users/self": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetSelf"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["GetSelf"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/faq": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/faq": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetAllFaqs"];
+        put?: never;
+        post: operations["CreateFaq"];
+        delete: operations["DeleteAllFaqs"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["GetAllFaqs"];
-    put?: never;
-    post: operations["CreateFaq"];
-    delete: operations["DeleteAllFaqs"];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/faq/{id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/faq/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetFaqCategory"];
+        put?: never;
+        post?: never;
+        delete: operations["DeleteFaq"];
+        options?: never;
+        head?: never;
+        patch: operations["UpdateFaq"];
+        trace?: never;
     };
-    get: operations["GetFaqCategory"];
-    put?: never;
-    post?: never;
-    delete: operations["DeleteFaq"];
-    options?: never;
-    head?: never;
-    patch: operations["UpdateFaq"];
-    trace?: never;
-  };
-  "/faq-category": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/faq-category": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetAllFaqCategories"];
+        put?: never;
+        post: operations["CreateFaqCategory"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["GetAllFaqCategories"];
-    put?: never;
-    post: operations["CreateFaqCategory"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/faq-category/{id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/faq-category/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetFaqCategory"];
+        put?: never;
+        post?: never;
+        delete: operations["DeleteFaqCategory"];
+        options?: never;
+        head?: never;
+        patch: operations["UpdateFaqCategory"];
+        trace?: never;
     };
-    get: operations["GetFaqCategory"];
-    put?: never;
-    post?: never;
-    delete: operations["DeleteFaqCategory"];
-    options?: never;
-    head?: never;
-    patch: operations["UpdateFaqCategory"];
-    trace?: never;
-  };
-  "/external-resources": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/external-resources": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetAllExternalResources"];
+        put?: never;
+        post: operations["CreateExternalResource"];
+        delete: operations["DeleteAllExternalResources"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["GetAllExternalResources"];
-    put?: never;
-    post: operations["CreateExternalResource"];
-    delete: operations["DeleteAllExternalResources"];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/external-resources/{id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/external-resources/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetExternalResource"];
+        put?: never;
+        post?: never;
+        delete: operations["DeleteExternalResource"];
+        options?: never;
+        head?: never;
+        patch: operations["UpdateExternalResource"];
+        trace?: never;
     };
-    get: operations["GetExternalResource"];
-    put?: never;
-    post?: never;
-    delete: operations["DeleteExternalResource"];
-    options?: never;
-    head?: never;
-    patch: operations["UpdateExternalResource"];
-    trace?: never;
-  };
-  "/external-resource-category": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/external-resource-category": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetAllCategories"];
+        put?: never;
+        post: operations["CreateCategory"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["GetAllCategories"];
-    put?: never;
-    post: operations["CreateCategory"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/external-resource-category/{id}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/external-resource-category/{id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetCategory"];
+        put?: never;
+        post?: never;
+        delete: operations["DeleteCategory"];
+        options?: never;
+        head?: never;
+        patch: operations["UpdateCategory"];
+        trace?: never;
     };
-    get: operations["GetCategory"];
-    put?: never;
-    post?: never;
-    delete: operations["DeleteCategory"];
-    options?: never;
-    head?: never;
-    patch: operations["UpdateCategory"];
-    trace?: never;
-  };
-  "/events/by-name": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/events/by-name": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetEventByName"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["GetEventByName"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/events/{eventId}": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/events/{eventId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetEventById"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch: operations["UpdateEvent"];
+        trace?: never;
     };
-    get: operations["GetEventById"];
-    put?: never;
-    post?: never;
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch: operations["UpdateEvent"];
-    trace?: never;
-  };
-  "/events": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/events": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["GetEvents"];
+        put?: never;
+        post: operations["CreateEvent"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get: operations["GetEvents"];
-    put?: never;
-    post: operations["CreateEvent"];
-    delete?: never;
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
-  "/events/by-eventId": {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
+    "/events/by-eventId": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        delete: operations["DeleteEvent"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
     };
-    get?: never;
-    put?: never;
-    post?: never;
-    delete: operations["DeleteEvent"];
-    options?: never;
-    head?: never;
-    patch?: never;
-    trace?: never;
-  };
 }
 export type webhooks = Record<string, never>;
 export interface components {
-  schemas: {
-    Faq: {
-      id: string;
-      question: string;
-      answer: string;
-      categoryId: string;
-    };
-    GetAllFaqResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["Faq"][];
-    };
-    GetFaqResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["Faq"];
-    };
-    /** @description From T, pick a set of properties whose keys are in the union K */
-    "Pick_Faq.Exclude_keyofFaq.id__": {
-      question: string;
-      answer: string;
-      categoryId: string;
-    };
-    /** @description Construct a type with the properties of T except for those in type K. */
-    "Omit_Faq.id_": components["schemas"]["Pick_Faq.Exclude_keyofFaq.id__"];
-    createFaqRequest: components["schemas"]["Omit_Faq.id_"];
-    /** @description Make all properties in T optional */
-    Partial_createFaqRequest_: {
-      question?: string;
-      answer?: string;
-      categoryId?: string;
-    };
-    updateFaqRequest: components["schemas"]["Partial_createFaqRequest_"];
-    FaqCategory: {
-      id: string;
-      name: string;
-      url: string;
-    };
-    GetAllFaqCategoryResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["FaqCategory"][];
-    };
-    GetFaqCategoryResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["FaqCategory"];
-    };
-    /** @description From T, pick a set of properties whose keys are in the union K */
-    "Pick_FaqCategory.Exclude_keyofFaqCategory.id__": {
-      name: string;
-      url: string;
-    };
-    /** @description Construct a type with the properties of T except for those in type K. */
-    "Omit_FaqCategory.id_": components["schemas"]["Pick_FaqCategory.Exclude_keyofFaqCategory.id__"];
-    createFaqCategoryRequest: components["schemas"]["Omit_FaqCategory.id_"];
-    /** @description Make all properties in T optional */
-    Partial_createFaqCategoryRequest_: {
-      name?: string;
-      url?: string;
-    };
-    updateFaqCategoryRequest: components["schemas"]["Partial_createFaqCategoryRequest_"];
-    ExternalResource: {
-      id: string;
-      title: string;
-      url: string;
-      description?: string;
-      categoryId: string;
-    };
-    GetAllExternalResourceResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["ExternalResource"][];
-    };
-    GetExternalResourceResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["ExternalResource"];
-    };
-    /** @description From T, pick a set of properties whose keys are in the union K */
-    "Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
-      categoryId: string;
-      url: string;
-      title: string;
-      description?: string;
-    };
-    /** @description Construct a type with the properties of T except for those in type K. */
-    "Omit_ExternalResource.id_": components["schemas"]["Pick_ExternalResource.Exclude_keyofExternalResource.id__"];
-    createExternalResourceRequest: components["schemas"]["Omit_ExternalResource.id_"];
-    /** @description Make all properties in T optional */
-    Partial_createExternalResourceRequest_: {
-      categoryId?: string;
-      url?: string;
-      title?: string;
-      description?: string;
-    };
-    updateExternalResourceRequest: components["schemas"]["Partial_createExternalResourceRequest_"];
-    ExternalResourceCategory: {
-      id: string;
-      name: string;
-      description: string;
-    };
-    GetAllExternalResourceCategoryResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["ExternalResourceCategory"][];
-    };
-    GetExternalResourceCategoryResponse: {
-      error?: string;
-      message?: string;
-      data?: components["schemas"]["ExternalResourceCategory"];
-    };
-    /** @description From T, pick a set of properties whose keys are in the union K */
-    "Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__": {
-      name: string;
-      description: string;
-    };
-    /** @description Construct a type with the properties of T except for those in type K. */
-    "Omit_ExternalResourceCategory.id_": components["schemas"]["Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__"];
-    createExternalResourceCategoryRequest: components["schemas"]["Omit_ExternalResourceCategory.id_"];
-    /** @description Make all properties in T optional */
-    Partial_createExternalResourceCategoryRequest_: {
-      name?: string;
-      description?: string;
-    };
-    updateExternalResourceCategoryRequest: components["schemas"]["Partial_createExternalResourceCategoryRequest_"];
-    Event: {
-      content: {
-        callToAction?: {
-          href: string;
-          text: string;
+    schemas: {
+        Faq: {
+            id: string;
+            question: string;
+            answer: string;
+            categoryId: string;
         };
-        body: string;
-        subtitle?: string;
-      };
-      heroImage?: {
-        alt: string;
-        src: string;
-      };
-      title: string;
-      id: string;
-    };
-    /** @description From T, pick a set of properties whose keys are in the union K */
-    "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
-      title: string;
-      heroImage?: {
-        alt: string;
-        src: string;
-      };
-      content: {
-        callToAction?: {
-          href: string;
-          text: string;
+        GetAllFaqResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["Faq"][];
         };
-        body: string;
-        subtitle?: string;
-      };
-    };
-    /** @description Construct a type with the properties of T except for those in type K. */
-    "Omit_EventCreationParams.id_": components["schemas"]["Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__"];
-    UpdateEventPackage: {
-      id?: string;
-      title?: string;
-      heroImage?: {
-        alt?: string;
-        src: string;
-      };
-      content?: {
-        callToAction?: {
-          href?: string;
-          text?: string;
+        GetFaqResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["Faq"];
         };
-        body?: string;
-        subtitle?: string;
-      };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_Faq.Exclude_keyofFaq.id__": {
+            question: string;
+            answer: string;
+            categoryId: string;
+        };
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_Faq.id_": components["schemas"]["Pick_Faq.Exclude_keyofFaq.id__"];
+        createFaqRequest: components["schemas"]["Omit_Faq.id_"];
+        /** @description Make all properties in T optional */
+        Partial_createFaqRequest_: {
+            question?: string;
+            answer?: string;
+            categoryId?: string;
+        };
+        updateFaqRequest: components["schemas"]["Partial_createFaqRequest_"];
+        FaqCategory: {
+            id: string;
+            name: string;
+            url: string;
+        };
+        GetAllFaqCategoryResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["FaqCategory"][];
+        };
+        GetFaqCategoryResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["FaqCategory"];
+        };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_FaqCategory.Exclude_keyofFaqCategory.id__": {
+            name: string;
+            url: string;
+        };
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_FaqCategory.id_": components["schemas"]["Pick_FaqCategory.Exclude_keyofFaqCategory.id__"];
+        createFaqCategoryRequest: components["schemas"]["Omit_FaqCategory.id_"];
+        /** @description Make all properties in T optional */
+        Partial_createFaqCategoryRequest_: {
+            name?: string;
+            url?: string;
+        };
+        updateFaqCategoryRequest: components["schemas"]["Partial_createFaqCategoryRequest_"];
+        ExternalResource: {
+            id: string;
+            title: string;
+            url: string;
+            description?: string;
+            categoryId: string;
+        };
+        GetAllExternalResourceResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["ExternalResource"][];
+        };
+        GetExternalResourceResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["ExternalResource"];
+        };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_ExternalResource.Exclude_keyofExternalResource.id__": {
+            categoryId: string;
+            url: string;
+            title: string;
+            description?: string;
+        };
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_ExternalResource.id_": components["schemas"]["Pick_ExternalResource.Exclude_keyofExternalResource.id__"];
+        createExternalResourceRequest: components["schemas"]["Omit_ExternalResource.id_"];
+        /** @description Make all properties in T optional */
+        Partial_createExternalResourceRequest_: {
+            categoryId?: string;
+            url?: string;
+            title?: string;
+            description?: string;
+        };
+        updateExternalResourceRequest: components["schemas"]["Partial_createExternalResourceRequest_"];
+        ExternalResourceCategory: {
+            id: string;
+            name: string;
+            description: string;
+        };
+        GetAllExternalResourceCategoryResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["ExternalResourceCategory"][];
+        };
+        GetExternalResourceCategoryResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["ExternalResourceCategory"];
+        };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__": {
+            name: string;
+            description: string;
+        };
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_ExternalResourceCategory.id_": components["schemas"]["Pick_ExternalResourceCategory.Exclude_keyofExternalResourceCategory.id__"];
+        createExternalResourceCategoryRequest: components["schemas"]["Omit_ExternalResourceCategory.id_"];
+        /** @description Make all properties in T optional */
+        Partial_createExternalResourceCategoryRequest_: {
+            name?: string;
+            description?: string;
+        };
+        updateExternalResourceCategoryRequest: components["schemas"]["Partial_createExternalResourceCategoryRequest_"];
+        Event: {
+            content: {
+                callToAction?: {
+                    href: string;
+                    text: string;
+                };
+                body: string;
+                subtitle?: string;
+            };
+            heroImage?: {
+                alt: string;
+                src: string;
+            };
+            title: string;
+            id: string;
+        };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
+            title: string;
+            heroImage?: {
+                alt: string;
+                src: string;
+            };
+            content: {
+                callToAction?: {
+                    href: string;
+                    text: string;
+                };
+                body: string;
+                subtitle?: string;
+            };
+        };
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_EventCreationParams.id_": components["schemas"]["Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__"];
+        UpdateEventPackage: {
+            id?: string;
+            title?: string;
+            heroImage?: {
+                alt?: string;
+                src: string;
+            };
+            content?: {
+                callToAction?: {
+                    href?: string;
+                    text?: string;
+                };
+                body?: string;
+                subtitle?: string;
+            };
+        };
     };
-  };
-  responses: never;
-  parameters: never;
-  requestBodies: never;
-  headers: never;
-  pathItems: never;
+    responses: never;
+    parameters: never;
+    requestBodies: never;
+    headers: never;
+    pathItems: never;
 }
 export type $defs = Record<string, never>;
 export interface operations {
-  GetSelf: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Found */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    GetSelf: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": {
-            /** @enum {string} */
-            role?: "user" | "admin";
-            name: string;
-            email: string;
-            username: string;
-            id: string;
-            uid: string;
-          };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": {
+                        /** @enum {string} */
+                        role?: "user" | "admin";
+                        name: string;
+                        email: string;
+                        username: string;
+                        id: string;
+                        uid: string;
+                    };
+                };
+            };
         };
-      };
     };
-  };
-  GetAllFaqs: {
-    parameters: {
-      query?: {
-        category?: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    GetAllFaqs: {
+        parameters: {
+            query?: {
+                category?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetAllFaqResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetAllFaqResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  CreateFaq: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["createFaqRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully created FAQ */
-      201: {
-        headers: {
-          [name: string]: unknown;
+    CreateFaq: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetFaqResponse"];
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["createFaqRequest"];
+            };
         };
-      };
-    };
-  };
-  DeleteAllFaqs: {
-    parameters: {
-      query?: {
-        categoryId?: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successfully deleted all FAQs */
-      204: {
-        headers: {
-          [name: string]: unknown;
+        responses: {
+            /** @description Successfully created FAQ */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetFaqResponse"];
+                };
+            };
         };
-        content?: never;
-      };
     };
-  };
-  GetFaqCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    DeleteAllFaqs: {
+        parameters: {
+            query?: {
+                categoryId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetFaqResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted all FAQs */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  DeleteFaq: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successfully deleted FAQ */
-      204: {
-        headers: {
-          [name: string]: unknown;
+    GetFaqCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-        content?: never;
-      };
-    };
-  };
-  UpdateFaq: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["updateFaqRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully updated FAQ */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetFaqResponse"];
+                };
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetFaqResponse"];
+    };
+    DeleteFaq: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  GetAllFaqCategories: {
-    parameters: {
-      query?: {
-        name?: string;
-        url?: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted FAQ */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetAllFaqCategoryResponse"];
+    };
+    UpdateFaq: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  CreateFaqCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["createFaqCategoryRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully created FAQ Category */
-      201: {
-        headers: {
-          [name: string]: unknown;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["updateFaqRequest"];
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetFaqCategoryResponse"];
+        responses: {
+            /** @description Successfully updated FAQ */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetFaqResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  GetFaqCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    GetAllFaqCategories: {
+        parameters: {
+            query?: {
+                name?: string;
+                url?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetFaqCategoryResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetAllFaqCategoryResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  DeleteFaqCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successfully deleted FAQ category */
-      204: {
-        headers: {
-          [name: string]: unknown;
+    CreateFaqCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content?: never;
-      };
-    };
-  };
-  UpdateFaqCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["updateFaqCategoryRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully updated FAQ category */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["createFaqCategoryRequest"];
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetFaqCategoryResponse"];
+        responses: {
+            /** @description Successfully created FAQ Category */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetFaqCategoryResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  GetAllExternalResources: {
-    parameters: {
-      query?: {
-        category?: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    GetFaqCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetAllExternalResourceResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetFaqCategoryResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  CreateExternalResource: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["createExternalResourceRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully created external resource */
-      201: {
-        headers: {
-          [name: string]: unknown;
+    DeleteFaqCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetExternalResourceResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted FAQ category */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  DeleteAllExternalResources: {
-    parameters: {
-      query?: {
-        categoryId?: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successfully deleted all External Resources */
-      204: {
-        headers: {
-          [name: string]: unknown;
+    UpdateFaqCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-        content?: never;
-      };
-    };
-  };
-  GetExternalResource: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["updateFaqCategoryRequest"];
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetExternalResourceResponse"];
+        responses: {
+            /** @description Successfully updated FAQ category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetFaqCategoryResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  DeleteExternalResource: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successfully deleted External Resource */
-      204: {
-        headers: {
-          [name: string]: unknown;
+    GetAllExternalResources: {
+        parameters: {
+            query?: {
+                category?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content?: never;
-      };
-    };
-  };
-  UpdateExternalResource: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["updateExternalResourceRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully updated external resource */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetAllExternalResourceResponse"];
+                };
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetExternalResourceResponse"];
+    };
+    CreateExternalResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-      };
-    };
-  };
-  GetAllCategories: {
-    parameters: {
-      query?: {
-        name?: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["createExternalResourceRequest"];
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetAllExternalResourceCategoryResponse"];
+        responses: {
+            /** @description Successfully created external resource */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  CreateCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["createExternalResourceCategoryRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully created External Resource Category */
-      201: {
-        headers: {
-          [name: string]: unknown;
+    DeleteAllExternalResources: {
+        parameters: {
+            query?: {
+                categoryId?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted all External Resources */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
-  GetCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Ok */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    GetExternalResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  DeleteCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Successfully deleted FAQ category */
-      204: {
-        headers: {
-          [name: string]: unknown;
+    DeleteExternalResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-        content?: never;
-      };
-    };
-  };
-  UpdateCategory: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        id: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["updateExternalResourceCategoryRequest"];
-      };
-    };
-    responses: {
-      /** @description Successfully updated FAQ category */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted External Resource */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-        content: {
-          "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+    };
+    UpdateExternalResource: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  GetEventByName: {
-    parameters: {
-      query: {
-        title: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Found */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["updateExternalResourceRequest"];
+            };
         };
-        content: {
-          "application/json": components["schemas"]["Event"] | null;
+        responses: {
+            /** @description Successfully updated external resource */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  GetEventById: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        eventId: string;
-      };
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Found */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    GetAllCategories: {
+        parameters: {
+            query?: {
+                name?: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["Event"] | null;
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetAllExternalResourceCategoryResponse"];
+                };
+            };
         };
-      };
     };
-  };
-  UpdateEvent: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path: {
-        eventId: string;
-      };
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["UpdateEventPackage"];
-      };
-    };
-    responses: {
-      /** @description Updated */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    CreateCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["Event"] | null;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["createExternalResourceCategoryRequest"];
+            };
         };
-      };
-    };
-  };
-  GetEvents: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Found */
-      200: {
-        headers: {
-          [name: string]: unknown;
+        responses: {
+            /** @description Successfully created External Resource Category */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                };
+            };
         };
-        content: {
-          "application/json": components["schemas"]["Event"][];
+    };
+    GetCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-      };
-    };
-  };
-  CreateEvent: {
-    parameters: {
-      query?: never;
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody: {
-      content: {
-        "application/json": components["schemas"]["Omit_EventCreationParams.id_"];
-      };
-    };
-    responses: {
-      /** @description Created */
-      201: {
-        headers: {
-          [name: string]: unknown;
+        requestBody?: never;
+        responses: {
+            /** @description Ok */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                };
+            };
         };
-        content: {
-          "application/json": components["schemas"]["Event"];
-        };
-      };
     };
-  };
-  DeleteEvent: {
-    parameters: {
-      query: {
-        eventId: string;
-      };
-      header?: never;
-      path?: never;
-      cookie?: never;
-    };
-    requestBody?: never;
-    responses: {
-      /** @description Deleted */
-      200: {
-        headers: {
-          [name: string]: unknown;
+    DeleteCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
         };
-        content: {
-          "application/json": components["schemas"]["Event"] | null;
+        requestBody?: never;
+        responses: {
+            /** @description Successfully deleted FAQ category */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
         };
-      };
     };
-  };
+    UpdateCategory: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["updateExternalResourceCategoryRequest"];
+            };
+        };
+        responses: {
+            /** @description Successfully updated FAQ category */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["GetExternalResourceCategoryResponse"];
+                };
+            };
+        };
+    };
+    GetEventByName: {
+        parameters: {
+            query: {
+                title: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    GetEventById: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventId: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    UpdateEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                eventId: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateEventPackage"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
+    GetEvents: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Found */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"][];
+                };
+            };
+        };
+    };
+    CreateEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["Omit_EventCreationParams.id_"];
+            };
+        };
+        responses: {
+            /** @description Created */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"];
+                };
+            };
+        };
+    };
+    DeleteEvent: {
+        parameters: {
+            query: {
+                eventId: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Deleted */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
+                };
+            };
+        };
+    };
 }
