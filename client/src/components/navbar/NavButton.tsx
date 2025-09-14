@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import Link from "next/link";
 
 const NavButton = ({ title, link }: { title: string; link: string }) => {
   return (
@@ -9,7 +9,7 @@ const NavButton = ({ title, link }: { title: string; link: string }) => {
     >
       <h1 className="text-2xl font-bold">{title}</h1>
     </Link>
-  )
-}
+  );
+};
 
-export default NavButton
+export default NavButton;

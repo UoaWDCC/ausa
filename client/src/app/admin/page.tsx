@@ -1,4 +1,4 @@
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
+import { TiledAusaBackground } from "@/components/ausa/TiledAusaBackground";
 
 const Login = () => {
   return (
@@ -10,7 +10,7 @@ const Login = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;

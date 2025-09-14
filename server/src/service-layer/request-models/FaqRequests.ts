@@ -1,5 +1,5 @@
-import type { Faq } from 'data-layer/models/Faq'
+import type { Faq } from "data-layer/models/Faq";
 
-export type createFaqRequest = Omit<Faq, 'id'>
+export type createFaqRequest = Omit<Faq, "id">;
 
-export type updateFaqRequest = Partial<createFaqRequest>
+export type updateFaqRequest = Partial<createFaqRequest>;

@@ -3,14 +3,14 @@ import {
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from '@/shadcn_components/ui/accordion'
-import type { Faq, FaqCategory } from '@/types/types'
-import { redirect } from 'next/navigation'
-import FaqBox from '../../../components/faq-box/FaqBox'
-import ausa from '../../assets/icons/ausa.svg'
+} from "@/shadcn_components/ui/accordion";
+import type { Faq, FaqCategory } from "@/types/types";
+import { redirect } from "next/navigation";
+import FaqBox from "../../../components/faq-box/FaqBox";
+import ausa from "../../assets/icons/ausa.svg";
 
 interface FAQProps {
-  params: Promise<{ id: string }>
+  params: Promise<{ id: string }>;
 }
 
 // const Banner = () => {
@@ -40,51 +40,51 @@ interface FAQProps {
 // }
 
 export default async function FAQ({ params }: FAQProps) {
-  const faqCategoryMap: Record<string, Faq[]> = {}
+  const faqCategoryMap: Record<string, Faq[]> = {};
 
-  const { id } = await params
+  const { id } = await params;
   /*if (!title[id]) {
     redirect('/404')
   }*/
-  const url = process.env.BACKEND_URL || 'http://localhost:8000'
+  const url = process.env.BACKEND_URL || "http://localhost:8000";
   const res = await fetch(`${url}/faq-category?url=${id}`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    method: 'GET',
-    mode: 'cors',
-  })
-  const faqCategory = await res.json()
+    method: "GET",
+    mode: "cors",
+  });
+  const faqCategory = await res.json();
 
   if (res.status !== 200 || faqCategory.data.length === 0) {
-    redirect('/404')
+    redirect("/404");
   }
 
   const res2 = await fetch(`${url}/faq-category`, {
     headers: {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     },
-    method: 'GET',
-    mode: 'cors',
-  })
-  const faqCategories = await res2.json()
+    method: "GET",
+    mode: "cors",
+  });
+  const faqCategories = await res2.json();
   if (res2.status !== 200) {
-    redirect('/500') //redirect to error page?
+    redirect("/500"); //redirect to error page?
   }
 
   await Promise.all(
     faqCategories.data.map(async (category: FaqCategory) => {
       const res = await fetch(`${url}/faq?category=${category.id}`, {
-        headers: { 'Content-Type': 'application/json' },
-        method: 'GET',
-        mode: 'cors',
-      })
-      const faqData = await res.json()
+        headers: { "Content-Type": "application/json" },
+        method: "GET",
+        mode: "cors",
+      });
+      const faqData = await res.json();
       faqCategoryMap[category.id] = faqData.data.sort((a: Faq, b: Faq) =>
         a.question.localeCompare(b.question),
-      )
+      );
     }),
-  )
+  );
 
   //console.log("faqCategory", faqCategories)
   //console.log('faqCategoryMap', faqCategoryMap)
@@ -150,5 +150,5 @@ export default async function FAQ({ params }: FAQProps) {
         </div>
       </div>
     </div>
-  )
+  );
 }

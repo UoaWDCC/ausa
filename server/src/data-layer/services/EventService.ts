@@ -1,11 +1,11 @@
-import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
-import type { Event, UpdateEventPackage } from 'data-layer/models/Event'
-import { Body } from 'tsoa'
+import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
+import type { Event, UpdateEventPackage } from "data-layer/models/Event";
+import { Body } from "tsoa";
 
 export type EventCreationParams = Pick<
   Event,
-  'id' | 'title' | 'heroImage' | 'content'
->
+  "id" | "title" | "heroImage" | "content"
+>;
 
 export class EventService {
   /**
@@ -14,14 +14,14 @@ export class EventService {
    * @returns An event of type Event
    */
   async getEvent(id: string): Promise<Event | null> {
-    const eventRef = FirestoreCollections.events.doc(id)
-    const event = await eventRef.get()
+    const eventRef = FirestoreCollections.events.doc(id);
+    const event = await eventRef.get();
     if (!event.exists) {
-      console.log(`Event - ${id} is not found`)
-      return null
+      console.log(`Event - ${id} is not found`);
+      return null;
     }
-    console.log(event.data())
-    return event.data() as Event
+    console.log(event.data());
+    return event.data() as Event;
   }
 
   /**
@@ -31,17 +31,17 @@ export class EventService {
    */
   async getEventByTitle(title: string): Promise<Event | null> {
     const snapShot = await FirestoreCollections.events
-      .where('title', '==', title)
+      .where("title", "==", title)
       .limit(1)
-      .get()
+      .get();
 
     if (snapShot.empty) {
-      console.log(`Event - ${title} not found`)
-      return null
+      console.log(`Event - ${title} not found`);
+      return null;
     }
 
-    const event = snapShot.docs[0]
-    return event.data() as Event
+    const event = snapShot.docs[0];
+    return event.data() as Event;
   }
 
   /**
@@ -49,19 +49,19 @@ export class EventService {
    * @returns A list of events
    */
   async getAllEvents(): Promise<Event[]> {
-    const snapShot = await FirestoreCollections.events.get()
+    const snapShot = await FirestoreCollections.events.get();
     const eventList: Event[] = snapShot.docs.map((doc) => ({
       id: doc.id,
       title: doc.data().title,
       heroImage: doc.data().heroImage,
       content: doc.data().content,
-    }))
+    }));
     console.log(
       eventList.map((event) => {
-        event
+        event;
       }),
-    )
-    return eventList
+    );
+    return eventList;
   }
 
   /**
@@ -70,18 +70,18 @@ export class EventService {
    * @returns A promise that resolves to the created event.
    */
   async createEvent(@Body() params: EventCreationParams): Promise<Event> {
-    const eventRef = await FirestoreCollections.events.doc(params.id)
+    const eventRef = await FirestoreCollections.events.doc(params.id);
     const newEvent: Event = {
       id: params.id,
       title: params.title,
       content: params.content,
-    }
+    };
     if (params.heroImage) {
-      newEvent.heroImage = params.heroImage
+      newEvent.heroImage = params.heroImage;
     }
-    await eventRef.set(newEvent)
-    console.log(newEvent)
-    return newEvent
+    await eventRef.set(newEvent);
+    console.log(newEvent);
+    return newEvent;
   }
 
   /**
@@ -90,16 +90,16 @@ export class EventService {
    * @returns  A promise that resolves to the deleted event or null if not found.
    */
   async deleteEvent(eventId: string): Promise<Event | null> {
-    const eventRef = await FirestoreCollections.events.doc(eventId)
-    const doc = await eventRef.get()
+    const eventRef = await FirestoreCollections.events.doc(eventId);
+    const doc = await eventRef.get();
     if (!doc.exists) {
-      console.log(`Event - ${eventId} is not found`)
-      return null
+      console.log(`Event - ${eventId} is not found`);
+      return null;
     }
-    await eventRef.delete()
-    const event = doc.data()
-    console.log(`Event - ${eventId} deleted`)
-    return event
+    await eventRef.delete();
+    const event = doc.data();
+    console.log(`Event - ${eventId} deleted`);
+    return event;
   }
 
   /**
@@ -112,14 +112,14 @@ export class EventService {
     eventId: string,
     updates: UpdateEventPackage,
   ): Promise<Event | null> {
-    const eventRef = await FirestoreCollections.events.doc(eventId)
-    const doc = await eventRef.get()
+    const eventRef = await FirestoreCollections.events.doc(eventId);
+    const doc = await eventRef.get();
     if (!doc.exists) {
-      console.log(`Event - ${eventId} is not found`)
-      return null
+      console.log(`Event - ${eventId} is not found`);
+      return null;
     }
-    await eventRef.set(updates, { merge: true })
-    const updatedEvent = await eventRef.get()
-    return updatedEvent.data() as Event
+    await eventRef.set(updates, { merge: true });
+    const updatedEvent = await eventRef.get();
+    return updatedEvent.data() as Event;
   }
 }

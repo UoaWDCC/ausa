@@ -1,7 +1,7 @@
 export interface ExternalResource {
-  id: string
-  title: string
-  url: string
-  description?: string
-  categoryId: string
+  id: string;
+  title: string;
+  url: string;
+  description?: string;
+  categoryId: string;
 }

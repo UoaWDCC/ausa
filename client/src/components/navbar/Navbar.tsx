@@ -57,7 +57,7 @@ export const NavigationBar: React.FC<NavigationBarProps> = ({
         hasScrolled
           ? "bg-slate-900/95 backdrop-blur-xl border-b border-slate-700/50 shadow-xl shadow-slate-900/25"
           : "bg-slate-900/50 backdrop-blur-none border-b border-transparent shadow-none",
-        className
+        className,
       )}
     >
       <div className="mx-auto max-w-7xl px-3 sm:px-4 lg:px-8">

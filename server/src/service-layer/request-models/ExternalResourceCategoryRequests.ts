@@ -1,9 +1,9 @@
-import type { ExternalResourceCategory } from 'data-layer/models/ExternalResourceCategories'
+import type { ExternalResourceCategory } from "data-layer/models/ExternalResourceCategories";
 
 export type createExternalResourceCategoryRequest = Omit<
   ExternalResourceCategory,
-  'id'
->
+  "id"
+>;
 
 export type updateExternalResourceCategoryRequest =
-  Partial<createExternalResourceCategoryRequest>
+  Partial<createExternalResourceCategoryRequest>;

@@ -1,11 +1,11 @@
-import Image from 'next/image'
-import Link from 'next/link'
+import Image from "next/image";
+import Link from "next/link";
 // import ausa from '../../app/assets/icons/ausa.svg'
-import facebook from '../../app/assets/icons/facebook.svg'
-import gps from '../../app/assets/icons/gps.svg'
-import instagram from '../../app/assets/icons/instagram.svg'
-import linkedin from '../../app/assets/icons/linkedin.svg'
-import phone from '../../app/assets/icons/phone.svg'
+import facebook from "../../app/assets/icons/facebook.svg";
+import gps from "../../app/assets/icons/gps.svg";
+import instagram from "../../app/assets/icons/instagram.svg";
+import linkedin from "../../app/assets/icons/linkedin.svg";
+import phone from "../../app/assets/icons/phone.svg";
 
 const Footer = () => {
   return (
@@ -128,6 +128,6 @@ const Footer = () => {
         </div>
       </div>
     </div>
-  )
-}
-export default Footer
+  );
+};
+export default Footer;

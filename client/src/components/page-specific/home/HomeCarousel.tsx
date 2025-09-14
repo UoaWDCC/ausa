@@ -1,44 +1,44 @@
-import Image from 'next/image'
+import Image from "next/image";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/carousel/Carousel'
-import { Button } from '@/components/ui/button'
+} from "@/components/carousel/Carousel";
+import { Button } from "@/components/ui/button";
 
 /**
  * Data structure for a single carousel item
  */
 interface CarouselItemData {
   /** Unique identifier for the carousel item */
-  id: string
+  id: string;
   /** The main title of the carousel item */
-  title: string
+  title: string;
   /** Brief description of the carousel item */
-  description: string
+  description: string;
   /** Hero image configuration */
   heroImage: {
     /** Image source URL */
-    src: string
+    src: string;
     /** Alt text for accessibility */
-    alt: string
-  }
+    alt: string;
+  };
   /** Content details for the carousel item */
   content: {
     /** Optional subtitle */
-    subtitle?: string
+    subtitle?: string;
     /** Main body text */
-    body: string
+    body: string;
     /** Optional call-to-action button */
     callToAction?: {
       /** Button text */
-      text: string
+      text: string;
       /** Button link URL */
-      href: string
-    }
-  }
+      href: string;
+    };
+  };
 }
 
 /**
@@ -46,7 +46,7 @@ interface CarouselItemData {
  */
 interface HomeCarouselProps {
   /** Array of carousel items to display */
-  items: CarouselItemData[]
+  items: CarouselItemData[];
 }
 
 /**
@@ -132,7 +132,7 @@ export const HomeCarousel: React.FC<HomeCarouselProps> = ({
         </CarouselContent>
       </Carousel>
     </div>
-  )
-}
+  );
+};
 
-export default HomeCarousel
+export default HomeCarousel;

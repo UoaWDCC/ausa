@@ -1,8 +1,8 @@
-import Link from 'next/link'
-import type { PortalItem } from './portal-items'
+import Link from "next/link";
+import type { PortalItem } from "./portal-items";
 
 interface IPortalItemProps extends PortalItem {
-  link: string
+  link: string;
 }
 
 const PortalItem1 = ({ title, link }: IPortalItemProps) => {
@@ -21,7 +21,7 @@ const PortalItem1 = ({ title, link }: IPortalItemProps) => {
         </h2>
       </div>
     </Link>
-  )
-}
+  );
+};
 
-export default PortalItem1
+export default PortalItem1;

@@ -1,8 +1,8 @@
-import type React from 'react'
+import type React from "react";
 
 interface NavSearchCardProps {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
 export const NavSearchCard: React.FC<NavSearchCardProps> = ({
@@ -14,5 +14,5 @@ export const NavSearchCard: React.FC<NavSearchCardProps> = ({
       <h2 className="text-lg font-semibold">{title}</h2>
       <p className="text-gray-600">{description}</p>
     </div>
-  )
-}
+  );
+};

@@ -1,9 +1,9 @@
-import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
-import type { FaqCategory } from 'data-layer/models/FaqCategories'
+import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
+import type { FaqCategory } from "data-layer/models/FaqCategories";
 import type {
   createFaqCategoryRequest,
   updateFaqCategoryRequest,
-} from 'service-layer/request-models/FaqCategoryRequests'
+} from "service-layer/request-models/FaqCategoryRequests";
 
 export class FaqCategoryDataService {
   /**
@@ -12,8 +12,8 @@ export class FaqCategoryDataService {
    * @returns A promise that resolves to an array of FaqCategory objects.
    */
   public static async getAllFaqCategories(): Promise<FaqCategory[]> {
-    const faqCategorySnapshots = await FirestoreCollections.faqCategories.get()
-    return faqCategorySnapshots.docs.map((doc) => doc.data())
+    const faqCategorySnapshots = await FirestoreCollections.faqCategories.get();
+    return faqCategorySnapshots.docs.map((doc) => doc.data());
   }
 
   /**
@@ -25,22 +25,22 @@ export class FaqCategoryDataService {
   public static async getFaqCategoryById(id: string): Promise<FaqCategory> {
     const faqCategorySnapshot = await FirestoreCollections.faqCategories
       .doc(id)
-      .get()
-    return faqCategorySnapshot.data()
+      .get();
+    return faqCategorySnapshot.data();
   }
 
   public static async getFaqCategoryByName(name: string): Promise<FaqCategory> {
     const faqCategorySnapshot = await FirestoreCollections.faqCategories
-      .where('name', '==', name)
-      .get()
-    return faqCategorySnapshot.docs.map((doc) => doc.data())[0]
+      .where("name", "==", name)
+      .get();
+    return faqCategorySnapshot.docs.map((doc) => doc.data())[0];
   }
 
   public static async getFaqCategoryByURL(url: string): Promise<FaqCategory> {
     const faqCategorySnapshot = await FirestoreCollections.faqCategories
-      .where('url', '==', url)
-      .get()
-    return faqCategorySnapshot.docs.map((doc) => doc.data())[0]
+      .where("url", "==", url)
+      .get();
+    return faqCategorySnapshot.docs.map((doc) => doc.data())[0];
   }
 
   /**
@@ -52,10 +52,10 @@ export class FaqCategoryDataService {
   public static async createFaqCategory(
     faqCategory: createFaqCategoryRequest,
   ): Promise<FaqCategory> {
-    const docRef = await FirestoreCollections.faqCategories.doc()
-    await docRef.set({ id: docRef.id, ...faqCategory })
-    const createdCategorySnapshot = await docRef.get()
-    return createdCategorySnapshot.data()
+    const docRef = await FirestoreCollections.faqCategories.doc();
+    await docRef.set({ id: docRef.id, ...faqCategory });
+    const createdCategorySnapshot = await docRef.get();
+    return createdCategorySnapshot.data();
   }
 
   /**
@@ -69,14 +69,14 @@ export class FaqCategoryDataService {
     id: string,
     faqCategory: updateFaqCategoryRequest,
   ): Promise<FaqCategory> {
-    const docRef = FirestoreCollections.faqCategories.doc(id)
-    await docRef.update(faqCategory)
-    const updatedCategorySnapshot = await docRef.get()
-    return updatedCategorySnapshot.data()
+    const docRef = FirestoreCollections.faqCategories.doc(id);
+    await docRef.update(faqCategory);
+    const updatedCategorySnapshot = await docRef.get();
+    return updatedCategorySnapshot.data();
   }
 
   public static async deleteFaqCategory(id: string): Promise<void> {
-    const docRef = FirestoreCollections.faqCategories.doc(id)
-    await docRef.delete()
+    const docRef = FirestoreCollections.faqCategories.doc(id);
+    await docRef.delete();
   }
 }

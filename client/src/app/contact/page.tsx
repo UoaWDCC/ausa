@@ -1,12 +1,12 @@
-'use client'
+"use client";
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
-import ContactForm from '@/components/contact-form/ContactForm'
-import facebook from '../../app/assets/icons/facebook.svg'
-import instagram from '../../app/assets/icons/instagram.svg'
-import linkedin from '../../app/assets/icons/linkedin.svg'
+import Image from "next/image";
+import Link from "next/link";
+import { TiledAusaBackground } from "@/components/ausa/TiledAusaBackground";
+import ContactForm from "@/components/contact-form/ContactForm";
+import facebook from "../../app/assets/icons/facebook.svg";
+import instagram from "../../app/assets/icons/instagram.svg";
+import linkedin from "../../app/assets/icons/linkedin.svg";
 
 const Contact = () => {
   return (
@@ -64,7 +64,7 @@ const Contact = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+export default Contact;

@@ -1,18 +1,18 @@
-'use client'
+"use client";
 
-import '@/styles/globals.css'
-import Image from 'next/image'
-import { usePathname } from 'next/navigation'
-import NavigationBar from '@/components/navbar/Navbar'
+import "@/styles/globals.css";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import NavigationBar from "@/components/navbar/Navbar";
 
 export default function ClientLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
-  const pathname = usePathname()
-  const hideNavbarOn = ['/portal']
-  const shouldHideNavbar = hideNavbarOn.includes(pathname)
+  const pathname = usePathname();
+  const hideNavbarOn = ["/portal"];
+  const shouldHideNavbar = hideNavbarOn.includes(pathname);
 
   return (
     <div className="relative flex min-h-screen flex-col">
@@ -24,7 +24,7 @@ export default function ClientLayout({
           fill
           priority
           sizes="100vw"
-          src={'/static/backgrounds/uoa-background.jpg'}
+          src={"/static/backgrounds/uoa-background.jpg"}
         />
       </div>
       <main className="relative z-10 w-full max-w-full flex-1 overflow-x-hidden">
@@ -33,5 +33,5 @@ export default function ClientLayout({
         </div>
       </main>
     </div>
-  )
+  );
 }

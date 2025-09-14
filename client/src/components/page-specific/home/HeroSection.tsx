@@ -1,30 +1,30 @@
-import Image from 'next/image'
-import { TiledAusaBackground } from '@/components/ausa/TiledAusaBackground'
-import { Button } from '@/components/ui/button'
-import { Separator } from '@/components/ui/separator'
+import Image from "next/image";
+import { TiledAusaBackground } from "@/components/ausa/TiledAusaBackground";
+import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
 
 /**
  * Props for the HeroSection component
  */
 interface HeroSectionProps {
   /** The main title displayed in the hero section */
-  title: string
+  title: string;
   /** The description text below the title */
-  description: string
+  description: string;
   /** Configuration for the primary call-to-action button */
   primaryButton: {
     /** The text displayed on the button */
-    text: string
+    text: string;
     /** The URL the button links to */
-    href: string
-  }
+    href: string;
+  };
   /** Configuration for the secondary call-to-action button */
   secondaryButton: {
     /** The text displayed on the button */
-    text: string
+    text: string;
     /** The URL the button links to */
-    href: string
-  }
+    href: string;
+  };
 }
 
 /**
@@ -95,7 +95,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
         </div>
       </div>
     </header>
-  )
-}
+  );
+};
 
-export default HeroSection
+export default HeroSection;

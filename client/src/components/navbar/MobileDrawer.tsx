@@ -1,19 +1,19 @@
-import { X } from 'lucide-react'
-import Image from 'next/image'
-import Link from 'next/link'
-import NavSearch from '@/components/nav-search/NavSearch'
-import { cn } from '@/lib/utils'
+import { X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import NavSearch from "@/components/nav-search/NavSearch";
+import { cn } from "@/lib/utils";
 import {
   isNavDropdown,
   type NavConfig,
   type NavItem,
-} from '@/types/navbar.types'
+} from "@/types/navbar.types";
 
 interface MobileDrawerProps {
-  isOpen: boolean
-  onClose: () => void
-  config: NavConfig
-  className?: string
+  isOpen: boolean;
+  onClose: () => void;
+  config: NavConfig;
+  className?: string;
 }
 
 export const MobileDrawer: React.FC<MobileDrawerProps> = ({
@@ -25,18 +25,18 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
   const mobileItems =
     config.mobileNavItems ||
     (() => {
-      const flatItems: NavItem[] = []
+      const flatItems: NavItem[] = [];
       config.navItems.forEach((item) => {
         if (isNavDropdown(item)) {
           // If it's a dropdown, add all its items
-          flatItems.push(...item.items)
+          flatItems.push(...item.items);
         } else {
           // If it's a regular nav item, add it
-          flatItems.push(item)
+          flatItems.push(item);
         }
-      })
-      return flatItems
-    })()
+      });
+      return flatItems;
+    })();
 
   return (
     <>
@@ -51,8 +51,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       {/* Drawer */}
       <div
         className={cn(
-          'fixed top-0 left-0 z-50 h-full w-3/4 max-w-sm transform bg-white/95 backdrop-blur-md border-r border-white/20 shadow-2xl transition-transform duration-300 ease-in-out',
-          isOpen ? 'translate-x-0' : '-translate-x-full',
+          "fixed top-0 left-0 z-50 h-full w-3/4 max-w-sm transform bg-white/95 backdrop-blur-md border-r border-white/20 shadow-2xl transition-transform duration-300 ease-in-out",
+          isOpen ? "translate-x-0" : "-translate-x-full",
           className,
         )}
       >
@@ -92,8 +92,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 href={item.href}
                 key={`mobile-${item.href}-${index}`}
                 onClick={onClose}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                target={item.external ? '_blank' : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                target={item.external ? "_blank" : undefined}
               >
                 {item.icon && (
                   <item.icon className="h-5 w-5 text-gray-500 group-hover:text-purple-600" />
@@ -113,8 +113,8 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                     href={button.href}
                     key={`mobile-action-${button.href}-${index}`}
                     onClick={onClose}
-                    rel={button.external ? 'noopener noreferrer' : undefined}
-                    target={button.external ? '_blank' : undefined}
+                    rel={button.external ? "noopener noreferrer" : undefined}
+                    target={button.external ? "_blank" : undefined}
                   >
                     {button.icon && <button.icon className="h-4 w-4" />}
                     {button.label}
@@ -126,5 +126,5 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
         </div>
       </div>
     </>
-  )
-}
+  );
+};

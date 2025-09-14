@@ -54,13 +54,13 @@ const Signup = () => {
       //   })
       console.log(
         "Sending user to backend:",
-        JSON.stringify({ ...newUser, id: user.uid })
+        JSON.stringify({ ...newUser, id: user.uid }),
       );
       const { data: responseBody, response } = await client.POST(
         "/users" as any,
         {
           body: { ...newUser, id: user.uid },
-        }
+        },
       );
       console.log("Response status:", response.status);
       console.log("Response body:", responseBody);
@@ -83,7 +83,7 @@ const Signup = () => {
       const userCred = await createUserWithEmailAndPassword(
         auth,
         form.email,
-        form.password
+        form.password,
       );
       await updateProfile(userCred.user, {
         displayName: form.name,
@@ -95,7 +95,7 @@ const Signup = () => {
 
       if (error.code === "auth/email-already-in-use") {
         alert(
-          "This email is already registered. Please use a different email or try logging in."
+          "This email is already registered. Please use a different email or try logging in.",
         );
       } else if (error.code === "auth/weak-password") {
         alert("Password is too weak. Please use at least 6 characters.");

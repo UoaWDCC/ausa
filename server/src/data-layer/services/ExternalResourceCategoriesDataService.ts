@@ -1,9 +1,9 @@
-import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
-import type { ExternalResourceCategory } from 'data-layer/models/ExternalResourceCategories'
+import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
+import type { ExternalResourceCategory } from "data-layer/models/ExternalResourceCategories";
 import type {
   createExternalResourceCategoryRequest,
   updateExternalResourceCategoryRequest,
-} from 'service-layer/request-models/ExternalResourceCategoryRequests'
+} from "service-layer/request-models/ExternalResourceCategoryRequests";
 
 export class ExternalResourceCategoryDataService {
   /**
@@ -13,8 +13,8 @@ export class ExternalResourceCategoryDataService {
    */
   public static async getAllCategories(): Promise<ExternalResourceCategory[]> {
     const externalResourceCategorySnapshots =
-      await FirestoreCollections.externalResourceCategories.get()
-    return externalResourceCategorySnapshots.docs.map((doc) => doc.data())
+      await FirestoreCollections.externalResourceCategories.get();
+    return externalResourceCategorySnapshots.docs.map((doc) => doc.data());
   }
 
   /**
@@ -27,8 +27,8 @@ export class ExternalResourceCategoryDataService {
     id: string,
   ): Promise<ExternalResourceCategory> {
     const categorySnapshot =
-      await FirestoreCollections.externalResourceCategories.doc(id).get()
-    return categorySnapshot.data()
+      await FirestoreCollections.externalResourceCategories.doc(id).get();
+    return categorySnapshot.data();
   }
 
   public static async getCategoryByName(
@@ -36,9 +36,9 @@ export class ExternalResourceCategoryDataService {
   ): Promise<ExternalResourceCategory> {
     const categorySnapshot =
       await FirestoreCollections.externalResourceCategories
-        .where('name', '==', name)
-        .get()
-    return categorySnapshot.docs.map((doc) => doc.data())[0]
+        .where("name", "==", name)
+        .get();
+    return categorySnapshot.docs.map((doc) => doc.data())[0];
   }
 
   /**
@@ -50,10 +50,10 @@ export class ExternalResourceCategoryDataService {
   public static async createCategory(
     category: createExternalResourceCategoryRequest,
   ): Promise<ExternalResourceCategory> {
-    const docRef = await FirestoreCollections.externalResourceCategories.doc()
-    await docRef.set({ id: docRef.id, ...category })
-    const createdCategorySnapshot = await docRef.get()
-    return createdCategorySnapshot.data()
+    const docRef = await FirestoreCollections.externalResourceCategories.doc();
+    await docRef.set({ id: docRef.id, ...category });
+    const createdCategorySnapshot = await docRef.get();
+    return createdCategorySnapshot.data();
   }
 
   /**
@@ -67,14 +67,14 @@ export class ExternalResourceCategoryDataService {
     id: string,
     category: updateExternalResourceCategoryRequest,
   ): Promise<ExternalResourceCategory> {
-    const docRef = FirestoreCollections.externalResourceCategories.doc(id)
-    await docRef.update(category)
-    const updatedCategorySnapshot = await docRef.get()
-    return updatedCategorySnapshot.data()
+    const docRef = FirestoreCollections.externalResourceCategories.doc(id);
+    await docRef.update(category);
+    const updatedCategorySnapshot = await docRef.get();
+    return updatedCategorySnapshot.data();
   }
 
   public static async deleteCategory(id: string): Promise<void> {
-    const docRef = FirestoreCollections.externalResourceCategories.doc(id)
-    await docRef.delete()
+    const docRef = FirestoreCollections.externalResourceCategories.doc(id);
+    await docRef.delete();
   }
 }

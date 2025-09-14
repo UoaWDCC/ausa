@@ -1,33 +1,33 @@
 export type Event = {
-  id: string
-  title: string
+  id: string;
+  title: string;
   heroImage?: {
-    src: string
-    alt: string
-  }
+    src: string;
+    alt: string;
+  };
   content: {
-    subtitle?: string
-    body: string
+    subtitle?: string;
+    body: string;
     callToAction?: {
-      text: string
-      href: string
-    }
-  }
-}
+      text: string;
+      href: string;
+    };
+  };
+};
 
 export interface UpdateEventPackage {
-  id?: string
-  title?: string
+  id?: string;
+  title?: string;
   heroImage?: {
-    src: string
-    alt?: string
-  }
+    src: string;
+    alt?: string;
+  };
   content?: {
-    subtitle?: string
-    body?: string
+    subtitle?: string;
+    body?: string;
     callToAction?: {
-      text?: string
-      href?: string
-    }
-  }
+      text?: string;
+      href?: string;
+    };
+  };
 }

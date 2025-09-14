@@ -13,7 +13,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   const router = useRouter();
 
   const handleRegisterClick = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => {
     e.preventDefault();
     if (user) {

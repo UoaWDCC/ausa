@@ -3,12 +3,12 @@ import {
   MenuButton,
   MenuItem,
   MenuItems,
-} from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
-import Link from 'next/link'
-import type React from 'react'
-import { cn } from '@/lib/utils'
-import type { NavDropdown, NavItem } from '@/types/navbar.types'
+} from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import Link from "next/link";
+import type React from "react";
+import { cn } from "@/lib/utils";
+import type { NavDropdown, NavItem } from "@/types/navbar.types";
 
 // Reusable background effects component
 const BackgroundEffects: React.FC<{ className?: string }> = ({ className }) => (
@@ -16,7 +16,7 @@ const BackgroundEffects: React.FC<{ className?: string }> = ({ className }) => (
     {/* Background glow effect */}
     <div
       className={cn(
-        'absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 opacity-0 transition-all duration-300 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 group-hover:opacity-100',
+        "absolute inset-0 rounded-lg bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 opacity-0 transition-all duration-300 group-hover:from-blue-500/10 group-hover:via-purple-500/10 group-hover:to-pink-500/10 group-hover:opacity-100",
         className,
       )}
     />
@@ -24,12 +24,12 @@ const BackgroundEffects: React.FC<{ className?: string }> = ({ className }) => (
     {/* Border highlight */}
     <div className="absolute inset-0 rounded-lg border border-transparent bg-gradient-to-r from-blue-500/0 via-purple-500/0 to-pink-500/0 bg-clip-border transition-all duration-300 group-hover:from-blue-500/30 group-hover:via-purple-500/30 group-hover:to-pink-500/30" />
   </>
-)
+);
 
 // Reusable animated icon component
 interface AnimatedIconProps {
-  icon: React.ComponentType<{ className?: string }>
-  className?: string
+  icon: React.ComponentType<{ className?: string }>;
+  className?: string;
 }
 
 const AnimatedIcon: React.FC<AnimatedIconProps> = ({
@@ -38,17 +38,17 @@ const AnimatedIcon: React.FC<AnimatedIconProps> = ({
 }) => (
   <Icon
     className={cn(
-      'relative z-10 h-4 w-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3',
+      "relative z-10 h-4 w-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-3",
       className,
     )}
   />
-)
+);
 
 // Reusable animated text component
 interface AnimatedTextProps {
-  children: React.ReactNode
-  showUnderline?: boolean
-  className?: string
+  children: React.ReactNode;
+  showUnderline?: boolean;
+  className?: string;
 }
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({
@@ -56,7 +56,7 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
   showUnderline = false,
   className,
 }) => (
-  <span className={cn('relative z-10 overflow-hidden', className)}>
+  <span className={cn("relative z-10 overflow-hidden", className)}>
     <span className="relative inline-block transition-transform duration-300 group-hover:translate-y-[-1px]">
       {children}
     </span>
@@ -64,15 +64,15 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({
       <span className="absolute bottom-0 left-0 h-[2px] w-0 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 transition-all duration-300 ease-out group-hover:w-full" />
     )}
   </span>
-)
+);
 
 // Base nav item styles
 const getBaseNavItemClasses = () =>
-  'group relative inline-flex items-center px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 ease-out font-medium overflow-hidden'
+  "group relative inline-flex items-center px-3 py-2 rounded-lg text-white/90 hover:text-white transition-all duration-300 ease-out font-medium overflow-hidden";
 
 interface NavDropdownMenuProps {
-  dropdown: NavDropdown
-  className?: string
+  dropdown: NavDropdown;
+  className?: string;
 }
 
 export const NavDropdownMenu: React.FC<NavDropdownMenuProps> = ({
@@ -82,9 +82,9 @@ export const NavDropdownMenu: React.FC<NavDropdownMenuProps> = ({
   return (
     <HeadlessMenu
       as="div"
-      className={cn('relative inline-block text-left', className)}
+      className={cn("relative inline-block text-left", className)}
     >
-      <MenuButton className={cn(getBaseNavItemClasses(), 'gap-x-1.5')}>
+      <MenuButton className={cn(getBaseNavItemClasses(), "gap-x-1.5")}>
         <BackgroundEffects />
 
         {dropdown.icon && <AnimatedIcon icon={dropdown.icon} />}
@@ -107,8 +107,8 @@ export const NavDropdownMenu: React.FC<NavDropdownMenuProps> = ({
               <Link
                 className="group relative flex items-center gap-3 px-4 py-3 text-sm text-slate-200 transition-all duration-200 overflow-hidden data-focus:bg-gradient-to-r data-focus:from-blue-500/10 data-focus:via-purple-500/10 data-focus:to-pink-500/10 data-focus:text-white hover:bg-gradient-to-r hover:from-blue-500/10 hover:via-purple-500/10 hover:to-pink-500/10 hover:text-white"
                 href={item.href}
-                rel={item.external ? 'noopener noreferrer' : undefined}
-                target={item.external ? '_blank' : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
+                target={item.external ? "_blank" : undefined}
               >
                 <BackgroundEffects className="transition-opacity duration-200" />
 
@@ -125,12 +125,12 @@ export const NavDropdownMenu: React.FC<NavDropdownMenuProps> = ({
         </div>
       </MenuItems>
     </HeadlessMenu>
-  )
-}
+  );
+};
 
 interface NavLinkItemProps {
-  item: NavItem
-  className?: string
+  item: NavItem;
+  className?: string;
 }
 
 export const NavLinkItem: React.FC<NavLinkItemProps> = ({
@@ -139,10 +139,10 @@ export const NavLinkItem: React.FC<NavLinkItemProps> = ({
 }) => {
   return (
     <Link
-      className={cn(getBaseNavItemClasses(), 'gap-2', className)}
+      className={cn(getBaseNavItemClasses(), "gap-2", className)}
       href={item.href}
-      rel={item.external ? 'noopener noreferrer' : undefined}
-      target={item.external ? '_blank' : undefined}
+      rel={item.external ? "noopener noreferrer" : undefined}
+      target={item.external ? "_blank" : undefined}
     >
       <BackgroundEffects />
 
@@ -150,5 +150,5 @@ export const NavLinkItem: React.FC<NavLinkItemProps> = ({
 
       <AnimatedText showUnderline>{item.label}</AnimatedText>
     </Link>
-  )
-}
+  );
+};

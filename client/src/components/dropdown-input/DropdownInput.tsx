@@ -1,19 +1,19 @@
-import { Check } from 'lucide-react'
-import React from 'react'
+import { Check } from "lucide-react";
+import React from "react";
 
 interface IDropdownInput extends React.HTMLProps<HTMLInputElement> {
-  options: string[]
+  options: string[];
 }
 
 const DropdownInput = ({ options, ...props }: IDropdownInput) => {
-  const [isOpen, setIsOpen] = React.useState(false)
-  const [selectedOption, setSelectedOption] = React.useState('')
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [selectedOption, setSelectedOption] = React.useState("");
 
-  const toggleDropdown = () => setIsOpen(!isOpen)
+  const toggleDropdown = () => setIsOpen(!isOpen);
   const handleOptionClick = (option: string) => {
-    setSelectedOption(option)
-    setIsOpen(false)
-  }
+    setSelectedOption(option);
+    setIsOpen(false);
+  };
 
   return (
     <div className="relative">
@@ -21,7 +21,7 @@ const DropdownInput = ({ options, ...props }: IDropdownInput) => {
         className="mt-1 cursor-pointer rounded-lg text-neutral-600 bg-white p-2 placeholder-[#9D9D9D]"
         onClick={toggleDropdown}
       >
-        <span className={selectedOption ? 'font-bold' : 'font-light'}>
+        <span className={selectedOption ? "font-bold" : "font-light"}>
           {selectedOption || { ...props }.placeholder}
         </span>
       </div>
@@ -42,7 +42,7 @@ const DropdownInput = ({ options, ...props }: IDropdownInput) => {
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default DropdownInput
+export default DropdownInput;

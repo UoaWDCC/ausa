@@ -1,9 +1,9 @@
-import Image from 'next/image'
-import { memo } from 'react'
+import Image from "next/image";
+import { memo } from "react";
 
 interface ResourcesTitleProps {
-  title: string
-  description: string
+  title: string;
+  description: string;
 }
 
 export const ResourcesTitle = memo(
@@ -14,8 +14,8 @@ export const ResourcesTitle = memo(
           <Image
             width={500}
             height={200}
-            src={'/static/backgrounds/uoa-background.jpg'}
-            alt={''}
+            src={"/static/backgrounds/uoa-background.jpg"}
+            alt={""}
             className="h-48 object-cover"
           />
         </div>
@@ -24,7 +24,7 @@ export const ResourcesTitle = memo(
           <p>{description}</p>
         </div>
       </div>
-    )
+    );
   },
-)
-ResourcesTitle.displayName = 'ResourcesTitle'
+);
+ResourcesTitle.displayName = "ResourcesTitle";

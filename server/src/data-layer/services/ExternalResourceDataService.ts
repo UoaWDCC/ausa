@@ -1,9 +1,9 @@
-import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
-import type { ExternalResource } from 'data-layer/models/ExternalResource'
+import FirestoreCollections from "data-layer/adapters/FirestoreCollections";
+import type { ExternalResource } from "data-layer/models/ExternalResource";
 import type {
   createExternalResourceRequest,
   updateExternalResourceRequest,
-} from 'service-layer/request-models/ExternalResourceRequests'
+} from "service-layer/request-models/ExternalResourceRequests";
 
 export class ExternalResourceDataService {
   /**
@@ -13,8 +13,8 @@ export class ExternalResourceDataService {
    */
   public static async getAllExternalResources(): Promise<ExternalResource[]> {
     const externalResourceSnapshots =
-      await FirestoreCollections.externalResources.get()
-    return externalResourceSnapshots.docs.map((doc) => doc.data())
+      await FirestoreCollections.externalResources.get();
+    return externalResourceSnapshots.docs.map((doc) => doc.data());
   }
 
   /**
@@ -27,8 +27,8 @@ export class ExternalResourceDataService {
     id: string,
   ): Promise<ExternalResource> {
     const externalResourceSnapshot =
-      await FirestoreCollections.externalResources.doc(id).get()
-    return externalResourceSnapshot.data()
+      await FirestoreCollections.externalResources.doc(id).get();
+    return externalResourceSnapshot.data();
   }
 
   /**
@@ -40,33 +40,33 @@ export class ExternalResourceDataService {
   public static async createExternalResource(
     externalResource: createExternalResourceRequest,
   ): Promise<ExternalResource> {
-    const docRef = await FirestoreCollections.externalResources.doc()
-    await docRef.set({ id: docRef.id, ...externalResource })
-    const createdResourceSnapshot = await docRef.get()
-    return createdResourceSnapshot.data()
+    const docRef = await FirestoreCollections.externalResources.doc();
+    await docRef.set({ id: docRef.id, ...externalResource });
+    const createdResourceSnapshot = await docRef.get();
+    return createdResourceSnapshot.data();
   }
 
   public static async updateExternalResource(
     id: string,
     externalResource: updateExternalResourceRequest,
   ): Promise<ExternalResource> {
-    const docRef = FirestoreCollections.externalResources.doc(id)
-    await docRef.update(externalResource)
-    const updatedResourceSnapshot = await docRef.get()
-    return updatedResourceSnapshot.data()
+    const docRef = FirestoreCollections.externalResources.doc(id);
+    await docRef.update(externalResource);
+    const updatedResourceSnapshot = await docRef.get();
+    return updatedResourceSnapshot.data();
   }
 
   public static async deleteExternalResource(id: string): Promise<void> {
-    const docRef = FirestoreCollections.externalResources.doc(id)
-    await docRef.delete()
+    const docRef = FirestoreCollections.externalResources.doc(id);
+    await docRef.delete();
   }
 
   public static async deleteByCategoryId(categoryId: string): Promise<void> {
     const faqSnapshots = await FirestoreCollections.externalResources
-      .where('categoryId', '==', categoryId)
-      .get()
+      .where("categoryId", "==", categoryId)
+      .get();
     for (const doc of faqSnapshots.docs) {
-      await doc.ref.delete()
+      await doc.ref.delete();
     }
   }
 
@@ -74,16 +74,16 @@ export class ExternalResourceDataService {
     categoryId: string,
   ): Promise<ExternalResource[]> {
     const faqSnapshots = await FirestoreCollections.externalResources
-      .where('categoryId', '==', categoryId)
-      .get()
-    return faqSnapshots.docs.map((doc) => doc.data())
+      .where("categoryId", "==", categoryId)
+      .get();
+    return faqSnapshots.docs.map((doc) => doc.data());
   }
 
   public static async deleteAllExternalResources(): Promise<void> {
     const faqSnapshots =
-      await FirestoreCollections.externalResourceCategories.get()
+      await FirestoreCollections.externalResourceCategories.get();
     for (const doc of faqSnapshots.docs) {
-      await doc.ref.delete()
+      await doc.ref.delete();
     }
   }
 }
