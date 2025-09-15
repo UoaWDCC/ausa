@@ -1,5 +1,7 @@
-import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
+import FirestoreCollections from '../adapters/FirestoreCollections'
 import type { DocumentSnapshot } from 'firebase-admin/firestore'
+import { FieldValue } from 'firebase-admin/firestore'
+import { User } from '../models/User'
 export class UserService {
   public async getAllUserData(limit = 15, startAfter?: DocumentSnapshot) {
     const res = await FirestoreCollections.users
@@ -15,6 +17,31 @@ export class UserService {
       nextCursor: res.docs[res.docs.length - 1]?.id || undefined,
     }
   }
+
+  public async registerEventToUser(eventId: string, uid: string): Promise<User | undefined> {
+  const userRef = FirestoreCollections.users.doc(uid)
+  const userDoc = await userRef.get()
+  if (!userDoc.exists) {
+    console.log(`User with uid ${uid} does not exist.`)
+    return undefined
+  }
+
+  const eventRef = FirestoreCollections.events.doc(eventId)
+  const eventDoc = await eventRef.get()
+  if (!eventDoc.exists) {
+    console.log(`Event with id ${eventId} does not exist.`)
+    return undefined
+  }
+
+  await userRef.update({
+    eventsSignedUp: FieldValue.arrayUnion(eventId),
+  })
+
+  const updatedUserDoc = await userRef.get()
+  console.log(`User ${uid} registered for event ${eventId}`)
+  return updatedUserDoc.data() as User
+}
+
 
   /**
    *

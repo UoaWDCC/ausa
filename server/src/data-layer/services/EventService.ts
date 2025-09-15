@@ -1,5 +1,6 @@
-import FirestoreCollections from 'data-layer/adapters/FirestoreCollections'
-import type { Event, UpdateEventPackage } from 'data-layer/models/Event'
+import FirestoreCollections from '../adapters/FirestoreCollections'
+import type { Event, UpdateEventPackage } from '../models/Event'
+import { FieldValue } from 'firebase-admin/firestore'
 import { Body } from 'tsoa'
 
 export type EventCreationParams = Pick<
@@ -23,6 +24,33 @@ export class EventService {
     console.log(event.data())
     return event.data() as Event
   }
+
+  async registerUserToEvent(userId: string, eventId: string): Promise<Event | null> {
+  const userRef = FirestoreCollections.users.doc(userId)
+  const userDoc = await userRef.get()
+  if (!userDoc.exists) {
+    console.log(`User with uid ${userId} does not exist.`)
+    return null
+  }
+
+  const eventRef = FirestoreCollections.events.doc(eventId)
+  const eventDoc = await eventRef.get()
+  if (!eventDoc.exists) {
+    console.log(`Event with id ${eventId} does not exist.`)
+    return null
+  }
+
+  // Add the user to the event's attendees array
+  await eventRef.update({
+    attendees: FieldValue.arrayUnion(userId),
+  })
+
+  // Fetch the updated event document
+  const updatedEventDoc = await eventRef.get()
+  console.log(`User ${userId} registered for event ${eventId}`)
+  return updatedEventDoc.data() as Event
+}
+
 
   /**
    * Retrieves an event by its title.
