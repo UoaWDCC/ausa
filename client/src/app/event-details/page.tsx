@@ -1,8 +1,8 @@
+/** biome-ignore-all assist/source/useSortedAttributes: <explanation> */
 'use client'
 
-import { useSearchParams } from 'next/navigation'
-import React, { useState, useEffect } from 'react'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 import AboutInputBox from '@/components/event-details/AboutInputBox'
 import EventAboutSection from '@/components/event-details/EventAboutSection'
 import EventHeroImage from '@/components/event-details/EventHeroImage'
@@ -19,8 +19,11 @@ export default function Page() {
 
   const isAddMode = mode === 'add'
   const isEditMode = mode === 'edit'
+  const isRegisterMode = mode === 'register'
 
-  const eventTitle = isAddMode ? 'New Event' : (searchParams.get('title') || 'Event')
+  const eventTitle = isAddMode
+    ? 'New Event'
+    : searchParams.get('title') || 'Event'
   const eventSubtitle = 'By AUSA'
 
   // About state
@@ -38,12 +41,14 @@ export default function Page() {
   useEffect(() => {
     if (isEditMode && eventId) {
       fetchEventData(eventId)
+    } else if (isRegisterMode && eventId) {
+      fetchEventData(eventId)
     }
-  }, [eventId, isEditMode])
+  }, [eventId, isEditMode, isRegisterMode])
 
   const fetchEventData = async (id: string) => {
     try {
-      const { data, error } = await client.GET(`/events/{eventId}`, {
+      const { data, error } = await client.GET('/events/{eventId}', {
         params: { path: { eventId: id } },
       })
 
@@ -71,7 +76,6 @@ export default function Page() {
 
   const handleSaveEvent = async () => {
     try {
-
       const eventPayload = {
         title: aboutTitle,
         content: {
@@ -79,26 +83,25 @@ export default function Page() {
           body: aboutDescription,
           callToAction: {
             text: 'Register',
-            href: ''
-          }
+            href: '',
+          },
         },
         heroImage: {
           src: '/static/icons/ausa.svg',
-          alt: `${aboutTitle} event image`
-        }
+          alt: `${aboutTitle} event image`,
+        },
       }
 
-      let response;
+      let response
       if (isEditMode && eventId) {
-        response = await client.PATCH(`/events/{eventId}`, {
-          params: { path: { eventId } },
+        response = await client.PATCH('/events', {
           headers: { 'Content-Type': 'application/json' },
-          body: eventPayload
+          body: { ...eventPayload, id: eventId },
         })
       } else {
-          response = await client.POST('/events', {
+        response = await client.POST('/events', {
           headers: { 'Content-Type': 'application/json' },
-          body: eventPayload
+          body: eventPayload,
         })
       }
 
@@ -191,8 +194,9 @@ export default function Page() {
       {aboutSubmitted && infoSubmitted && (
         <div className="text-center py-6">
           <button
-            onClick={handleSaveEvent}
+            type="button"
             className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg text-base cursor-pointer"
+            onClick={handleSaveEvent}
           >
             Create Event
           </button>

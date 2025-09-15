@@ -1,7 +1,7 @@
 import Image from 'next/image'
-import type { Event } from '@/types/types'
-import { useAuth } from '@/auth/AuthContext'
 import { useRouter } from 'next/navigation'
+import { useAuth } from '@/auth/AuthContext'
+import type { Event } from '@/types/types'
 
 interface EventCardProps {
   event: Event
@@ -16,7 +16,7 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
   ) => {
     e.preventDefault()
     if (user) {
-      router.push(`/event-details?id=${event.id}&mode=view`)
+      router.push(`/event-details?id=${event.id}&mode=register`)
     } else {
       router.push('/login')
     }

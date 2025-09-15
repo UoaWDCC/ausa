@@ -1,6 +1,7 @@
+/** biome-ignore-all lint/a11y/useButtonType: <explanation> */
 'use client'
 
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 type EventInfoCardProps = {
   date: string
