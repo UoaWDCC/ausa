@@ -8,3 +8,11 @@ export interface GetAllEventsResponse extends CommonResponse {
 export interface GetEventResponse extends CommonResponse {
   data?: Event
 }
+
+export interface RegisterEventResponse extends CommonResponse {
+  data?: Event
+}
+
+export interface UnregisterEventResponse extends CommonResponse {
+  data?: Event
+}

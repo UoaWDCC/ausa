@@ -164,7 +164,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/events/{eventId}/register/{userId}": {
+    "/events/register": {
         parameters: {
             query?: never;
             header?: never;
@@ -174,6 +174,22 @@ export interface paths {
         get?: never;
         put?: never;
         post: operations["RegisterEventToUser"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/events/{eventId}/unregister/{userId}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post: operations["UnregisterEventFromUser"];
         delete?: never;
         options?: never;
         head?: never;
@@ -193,7 +209,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch: operations["UpdateEvent"];
+        patch?: never;
         trace?: never;
     };
     "/events": {
@@ -209,7 +225,7 @@ export interface paths {
         delete?: never;
         options?: never;
         head?: never;
-        patch?: never;
+        patch: operations["UpdateEvent"];
         trace?: never;
     };
     "/events/by-eventId": {
@@ -378,13 +394,35 @@ export interface components {
             title: string;
             id: string;
         };
+        RegisterEventResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["Event"];
+        };
+        RegisterEventRequest: {
+            userId: string;
+            eventId: string;
+        };
+        UnregisterEventResponse: {
+            error?: string;
+            message?: string;
+            data?: components["schemas"]["Event"];
+        };
+        UnregisterEventRequest: {
+            userId: string;
+            eventId: string;
+        };
         /** @description From T, pick a set of properties whose keys are in the union K */
-        "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
+        "Pick_Event.Exclude_keyofEvent.id__": {
             title: string;
             heroImage?: {
                 alt: string;
                 src: string;
             };
+            /** Format: double */
+            startTime?: number;
+            /** Format: double */
+            endTime?: number;
             content: {
                 callToAction?: {
                     href: string;
@@ -393,9 +431,11 @@ export interface components {
                 body: string;
                 subtitle?: string;
             };
+            attendees?: string[];
         };
         /** @description Construct a type with the properties of T except for those in type K. */
-        "Omit_EventCreationParams.id_": components["schemas"]["Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__"];
+        "Omit_Event.id_": components["schemas"]["Pick_Event.Exclude_keyofEvent.id__"];
+        CreateEventRequest: components["schemas"]["Omit_Event.id_"];
         UpdateEventPackage: {
             id?: string;
             title?: string;
@@ -978,13 +1018,14 @@ export interface operations {
         parameters: {
             query?: never;
             header?: never;
-            path: {
-                eventId: string;
-                userId: string;
-            };
+            path?: never;
             cookie?: never;
         };
-        requestBody?: never;
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["RegisterEventRequest"];
+            };
+        };
         responses: {
             /** @description User Registered */
             200: {
@@ -992,10 +1033,31 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": {
-                        eventId: string;
-                        userId: string;
-                    };
+                    "application/json": components["schemas"]["RegisterEventResponse"];
+                };
+            };
+        };
+    };
+    UnregisterEventFromUser: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UnregisterEventRequest"];
+            };
+        };
+        responses: {
+            /** @description User Unregistered */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UnregisterEventResponse"];
                 };
             };
         };
@@ -1012,32 +1074,6 @@ export interface operations {
         requestBody?: never;
         responses: {
             /** @description Found */
-            200: {
-                headers: {
-                    [name: string]: unknown;
-                };
-                content: {
-                    "application/json": components["schemas"]["Event"] | null;
-                };
-            };
-        };
-    };
-    UpdateEvent: {
-        parameters: {
-            query?: never;
-            header?: never;
-            path: {
-                eventId: string;
-            };
-            cookie?: never;
-        };
-        requestBody: {
-            content: {
-                "application/json": components["schemas"]["UpdateEventPackage"];
-            };
-        };
-        responses: {
-            /** @description Updated */
             200: {
                 headers: {
                     [name: string]: unknown;
@@ -1077,7 +1113,7 @@ export interface operations {
         };
         requestBody: {
             content: {
-                "application/json": components["schemas"]["Omit_EventCreationParams.id_"];
+                "application/json": components["schemas"]["CreateEventRequest"];
             };
         };
         responses: {
@@ -1088,6 +1124,30 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Event"];
+                };
+            };
+        };
+    };
+    UpdateEvent: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UpdateEventPackage"];
+            };
+        };
+        responses: {
+            /** @description Updated */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Event"] | null;
                 };
             };
         };

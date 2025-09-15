@@ -253,14 +253,49 @@ const models: TsoaRoute.Models = {
         "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"attendees":{"dataType":"array","array":{"dataType":"string"}},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true},"endTime":{"dataType":"double"},"startTime":{"dataType":"double"},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"title":{"dataType":"string","required":true},"id":{"dataType":"string","required":true}},"validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
-        "dataType": "refAlias",
-        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true}},"validators":{}},
+    "RegisterEventResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"ref":"Event"},
+        },
+        "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Omit_EventCreationParams.id_": {
+    "RegisterEventRequest": {
         "dataType": "refAlias",
-        "type": {"ref":"Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__","validators":{}},
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"userId":{"dataType":"string","required":true},"eventId":{"dataType":"string","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UnregisterEventResponse": {
+        "dataType": "refObject",
+        "properties": {
+            "error": {"dataType":"string"},
+            "message": {"dataType":"string"},
+            "data": {"ref":"Event"},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "UnregisterEventRequest": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"userId":{"dataType":"string","required":true},"eventId":{"dataType":"string","required":true}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Pick_Event.Exclude_keyofEvent.id__": {
+        "dataType": "refAlias",
+        "type": {"dataType":"nestedObjectLiteral","nestedProperties":{"title":{"dataType":"string","required":true},"heroImage":{"dataType":"nestedObjectLiteral","nestedProperties":{"alt":{"dataType":"string","required":true},"src":{"dataType":"string","required":true}}},"startTime":{"dataType":"double"},"endTime":{"dataType":"double"},"content":{"dataType":"nestedObjectLiteral","nestedProperties":{"callToAction":{"dataType":"nestedObjectLiteral","nestedProperties":{"href":{"dataType":"string","required":true},"text":{"dataType":"string","required":true}}},"body":{"dataType":"string","required":true},"subtitle":{"dataType":"string"}},"required":true},"attendees":{"dataType":"array","array":{"dataType":"string"}}},"validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "Omit_Event.id_": {
+        "dataType": "refAlias",
+        "type": {"ref":"Pick_Event.Exclude_keyofEvent.id__","validators":{}},
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "CreateEventRequest": {
+        "dataType": "refAlias",
+        "type": {"ref":"Omit_Event.id_","validators":{}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "UpdateEventPackage": {
@@ -1033,10 +1068,9 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsEventController_registerEventToUser: Record<string, TsoaRoute.ParameterSchema> = {
-                eventId: {"in":"path","name":"eventId","required":true,"dataType":"string"},
-                userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
+                body: {"in":"body","name":"body","required":true,"ref":"RegisterEventRequest"},
         };
-        app.post('/events/:eventId/register/:userId',
+        app.post('/events/register',
             ...(fetchMiddlewares<RequestHandler>(EventController)),
             ...(fetchMiddlewares<RequestHandler>(EventController.prototype.registerEventToUser)),
 
@@ -1064,10 +1098,9 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsEventController_unregisterEventFromUser: Record<string, TsoaRoute.ParameterSchema> = {
-                eventId: {"in":"path","name":"eventId","required":true,"dataType":"string"},
-                userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
+                body: {"in":"body","name":"body","required":true,"ref":"UnregisterEventRequest"},
         };
-        app.post('/events/:eventId/unregister/:userId',
+        app.post('/events/unregister',
             ...(fetchMiddlewares<RequestHandler>(EventController)),
             ...(fetchMiddlewares<RequestHandler>(EventController.prototype.unregisterEventFromUser)),
 
@@ -1154,7 +1187,7 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsEventController_createEvent: Record<string, TsoaRoute.ParameterSchema> = {
-                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"Omit_EventCreationParams.id_"},
+                requestBody: {"in":"body","name":"requestBody","required":true,"ref":"CreateEventRequest"},
         };
         app.post('/events',
             ...(fetchMiddlewares<RequestHandler>(EventController)),
@@ -1214,10 +1247,9 @@ export function RegisterRoutes(app: Router) {
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsEventController_updateEvent: Record<string, TsoaRoute.ParameterSchema> = {
-                eventId: {"in":"path","name":"eventId","required":true,"dataType":"string"},
-                updates: {"in":"body","name":"updates","required":true,"ref":"UpdateEventPackage"},
+                body: {"in":"body","name":"body","required":true,"ref":"UpdateEventPackage"},
         };
-        app.patch('/events/:eventId',
+        app.patch('/events',
             ...(fetchMiddlewares<RequestHandler>(EventController)),
             ...(fetchMiddlewares<RequestHandler>(EventController.prototype.updateEvent)),
 

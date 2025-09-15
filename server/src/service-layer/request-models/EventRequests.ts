@@ -1,5 +1,15 @@
 import type { Event } from 'data-layer/models/Event'
 
-export type createEventRequest = Omit<Event, 'id'>
+export type CreateEventRequest = Omit<Event, 'id'>
 
-export type updateEventRequest = Partial<createEventRequest>
+export type UpdateEventRequest = Partial<CreateEventRequest>
+
+export type RegisterEventRequest = {
+  eventId: string
+  userId: string
+}
+
+export type UnregisterEventRequest = {
+  eventId: string
+  userId: string
+}

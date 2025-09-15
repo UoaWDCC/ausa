@@ -476,7 +476,67 @@
 				],
 				"type": "object"
 			},
-			"Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__": {
+			"RegisterEventResponse": {
+				"properties": {
+					"error": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/Event"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"RegisterEventRequest": {
+				"properties": {
+					"userId": {
+						"type": "string"
+					},
+					"eventId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"userId",
+					"eventId"
+				],
+				"type": "object"
+			},
+			"UnregisterEventResponse": {
+				"properties": {
+					"error": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					},
+					"data": {
+						"$ref": "#/components/schemas/Event"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UnregisterEventRequest": {
+				"properties": {
+					"userId": {
+						"type": "string"
+					},
+					"eventId": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"userId",
+					"eventId"
+				],
+				"type": "object"
+			},
+			"Pick_Event.Exclude_keyofEvent.id__": {
 				"properties": {
 					"title": {
 						"type": "string"
@@ -495,6 +555,14 @@
 							"src"
 						],
 						"type": "object"
+					},
+					"startTime": {
+						"type": "number",
+						"format": "double"
+					},
+					"endTime": {
+						"type": "number",
+						"format": "double"
 					},
 					"content": {
 						"properties": {
@@ -524,6 +592,12 @@
 							"body"
 						],
 						"type": "object"
+					},
+					"attendees": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array"
 					}
 				},
 				"required": [
@@ -533,9 +607,12 @@
 				"type": "object",
 				"description": "From T, pick a set of properties whose keys are in the union K"
 			},
-			"Omit_EventCreationParams.id_": {
-				"$ref": "#/components/schemas/Pick_EventCreationParams.Exclude_keyofEventCreationParams.id__",
+			"Omit_Event.id_": {
+				"$ref": "#/components/schemas/Pick_Event.Exclude_keyofEvent.id__",
 				"description": "Construct a type with the properties of T except for those in type K."
+			},
+			"CreateEventRequest": {
+				"$ref": "#/components/schemas/Omit_Event.id_"
 			},
 			"UpdateEventPackage": {
 				"properties": {
@@ -1379,7 +1456,7 @@
 				]
 			}
 		},
-		"/events/{eventId}/register/{userId}": {
+		"/events/register": {
 			"post": {
 				"operationId": "RegisterEventToUser",
 				"responses": {
@@ -1388,46 +1465,27 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"properties": {
-										"eventId": {
-											"type": "string"
-										},
-										"userId": {
-											"type": "string"
-										}
-									},
-									"required": [
-										"eventId",
-										"userId"
-									],
-									"type": "object"
+									"$ref": "#/components/schemas/RegisterEventResponse"
 								}
 							}
 						}
 					}
 				},
 				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "eventId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "path",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/RegisterEventRequest"
+							}
 						}
 					}
-				]
+				}
 			}
 		},
-		"/events/{eventId}/unregister/{userId}": {
+		"/events/unregister": {
 			"post": {
 				"operationId": "UnregisterEventFromUser",
 				"responses": {
@@ -1436,43 +1494,24 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"properties": {
-										"eventId": {
-											"type": "string"
-										},
-										"userId": {
-											"type": "string"
-										}
-									},
-									"required": [
-										"eventId",
-										"userId"
-									],
-									"type": "object"
+									"$ref": "#/components/schemas/UnregisterEventResponse"
 								}
 							}
 						}
 					}
 				},
 				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "eventId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					},
-					{
-						"in": "path",
-						"name": "userId",
-						"required": true,
-						"schema": {
-							"type": "string"
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UnregisterEventRequest"
+							}
 						}
 					}
-				]
+				}
 			}
 		},
 		"/events/{eventId}": {
@@ -1506,47 +1545,6 @@
 						}
 					}
 				]
-			},
-			"patch": {
-				"operationId": "UpdateEvent",
-				"responses": {
-					"200": {
-						"description": "Updated",
-						"content": {
-							"application/json": {
-								"schema": {
-									"allOf": [
-										{
-											"$ref": "#/components/schemas/Event"
-										}
-									],
-									"nullable": true
-								}
-							}
-						}
-					}
-				},
-				"security": [],
-				"parameters": [
-					{
-						"in": "path",
-						"name": "eventId",
-						"required": true,
-						"schema": {
-							"type": "string"
-						}
-					}
-				],
-				"requestBody": {
-					"required": true,
-					"content": {
-						"application/json": {
-							"schema": {
-								"$ref": "#/components/schemas/UpdateEventPackage"
-							}
-						}
-					}
-				}
 			}
 		},
 		"/events": {
@@ -1591,7 +1589,39 @@
 					"content": {
 						"application/json": {
 							"schema": {
-								"$ref": "#/components/schemas/Omit_EventCreationParams.id_"
+								"$ref": "#/components/schemas/CreateEventRequest"
+							}
+						}
+					}
+				}
+			},
+			"patch": {
+				"operationId": "UpdateEvent",
+				"responses": {
+					"200": {
+						"description": "Updated",
+						"content": {
+							"application/json": {
+								"schema": {
+									"allOf": [
+										{
+											"$ref": "#/components/schemas/Event"
+										}
+									],
+									"nullable": true
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateEventPackage"
 							}
 						}
 					}
