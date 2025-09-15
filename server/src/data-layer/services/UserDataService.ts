@@ -18,7 +18,7 @@ export class UserService {
     }
   }
 
-  public async registerEventToUser(eventId: string, uid: string): Promise<User | undefined> {
+  public async registerEventToUser(uid: string, eventId: string): Promise<User | undefined> {
   const userRef = FirestoreCollections.users.doc(uid)
   const userDoc = await userRef.get()
   if (!userDoc.exists) {
