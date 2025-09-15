@@ -2,7 +2,31 @@ import FirestoreCollections from '../adapters/FirestoreCollections'
 import type { DocumentSnapshot } from 'firebase-admin/firestore'
 import { FieldValue } from 'firebase-admin/firestore'
 import { User } from '../models/User'
+import { getUserDoc, getEventDoc } from '../utils/FirestoreValidators'
 export class UserService {
+  /**
+   * Helper function - updates the eventsSignedUp array for a user.
+   * @param uid - The ID of the user to update.
+   * @param eventId - The ID of the event to add or remove.
+   * @param action - 'add' to add the event, 'remove' to remove it.
+   * @returns The updated user or undefined if not found.
+   */
+  private async updateUserEventsSignedUp(
+    uid: string,
+    eventId: string,
+    action: 'add' | 'remove'
+  ): Promise<User | undefined> {
+    const userRef = FirestoreCollections.users.doc(uid)
+    await userRef.update({
+      eventsSignedUp:
+        action === 'add'
+          ? FieldValue.arrayUnion(eventId)
+          : FieldValue.arrayRemove(eventId),
+    })
+    const updatedUserDoc = await userRef.get()
+    return updatedUserDoc.data() as User
+  }
+
   public async getAllUserData(limit = 15, startAfter?: DocumentSnapshot) {
     const res = await FirestoreCollections.users
       .orderBy('username')
@@ -18,56 +42,24 @@ export class UserService {
     }
   }
 
-  public async registerEventToUser(uid: string, eventId: string): Promise<User | undefined> {
-  const userRef = FirestoreCollections.users.doc(uid)
-  const userDoc = await userRef.get()
-  if (!userDoc.exists) {
-    console.log(`User with uid ${uid} does not exist.`)
-    return undefined
+  public async registerEventToUser(uid: string, eventId: string): Promise<User | null> {
+    const userDoc = await getUserDoc(uid)
+    const eventDoc = await getEventDoc(eventId)
+    if (!userDoc || !eventDoc) return null
+
+    const updatedUser = await this.updateUserEventsSignedUp(uid, eventId, 'add')
+    console.log(`User ${uid} registered for event ${eventId}`)
+    return updatedUser
   }
 
-  const eventRef = FirestoreCollections.events.doc(eventId)
-  const eventDoc = await eventRef.get()
-  if (!eventDoc.exists) {
-    console.log(`Event with id ${eventId} does not exist.`)
-    return undefined
-  }
+  public async unregisterEventFromUser(uid: string, eventId: string): Promise<User | null> {
+    const userDoc = await getUserDoc(uid)
+    const eventDoc = await getEventDoc(eventId)
+    if (!userDoc || !eventDoc) return null
 
-  await userRef.update({
-    eventsSignedUp: FieldValue.arrayUnion(eventId),
-  })
-
-  const updatedUserDoc = await userRef.get()
-  console.log(`User ${uid} registered for event ${eventId}`)
-  return updatedUserDoc.data() as User
-  }
-
-  public async unregisterEventFromUser(uid: string, eventId: string): Promise<User | undefined> {
-    const userRef = FirestoreCollections.users.doc(uid);
-    const userDoc = await userRef.get();
-
-    if (!userDoc.exists) {
-      console.log(`User with uid ${uid} does not exist.`);
-      return undefined;
-    }
-
-    const eventRef = FirestoreCollections.events.doc(eventId);
-    const eventDoc = await eventRef.get();
-
-    if (!eventDoc.exists) {
-      console.log(`Event with id ${eventId} does not exist.`);
-      return undefined;
-    }
-
-    // Remove the event from the user’s eventsSignedUp array
-    await userRef.update({
-      eventsSignedUp: FieldValue.arrayRemove(eventId),
-    });
-
-    // Fetch the updated user document
-    const updatedUserDoc = await userRef.get();
-    console.log(`User ${uid} unregistered from event ${eventId}`);
-    return updatedUserDoc.data() as User;
+    const updatedUser = await this.updateUserEventsSignedUp(uid, eventId, 'remove')
+    console.log(`User ${uid} unregistered from event ${eventId}`)
+    return updatedUser
   }
 
 
