@@ -40,7 +40,36 @@ export class UserService {
   const updatedUserDoc = await userRef.get()
   console.log(`User ${uid} registered for event ${eventId}`)
   return updatedUserDoc.data() as User
-}
+  }
+
+  public async unregisterEventFromUser(uid: string, eventId: string): Promise<User | undefined> {
+    const userRef = FirestoreCollections.users.doc(uid);
+    const userDoc = await userRef.get();
+
+    if (!userDoc.exists) {
+      console.log(`User with uid ${uid} does not exist.`);
+      return undefined;
+    }
+
+    const eventRef = FirestoreCollections.events.doc(eventId);
+    const eventDoc = await eventRef.get();
+
+    if (!eventDoc.exists) {
+      console.log(`Event with id ${eventId} does not exist.`);
+      return undefined;
+    }
+
+    // Remove the event from the user’s eventsSignedUp array
+    await userRef.update({
+      eventsSignedUp: FieldValue.arrayRemove(eventId),
+    });
+
+    // Fetch the updated user document
+    const updatedUserDoc = await userRef.get();
+    console.log(`User ${uid} unregistered from event ${eventId}`);
+    return updatedUserDoc.data() as User;
+  }
+
 
 
   /**

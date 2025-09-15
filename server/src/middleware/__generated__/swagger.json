@@ -1427,6 +1427,54 @@
 				]
 			}
 		},
+		"/events/{eventId}/unregister/{userId}": {
+			"post": {
+				"operationId": "UnregisterEventFromUser",
+				"responses": {
+					"200": {
+						"description": "User Unregistered",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"eventId": {
+											"type": "string"
+										},
+										"userId": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"eventId",
+										"userId"
+									],
+									"type": "object"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "eventId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/events/{eventId}": {
 			"get": {
 				"operationId": "GetEventById",

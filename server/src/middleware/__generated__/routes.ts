@@ -1063,6 +1063,37 @@ export function RegisterRoutes(app: Router) {
             }
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        const argsEventController_unregisterEventFromUser: Record<string, TsoaRoute.ParameterSchema> = {
+                eventId: {"in":"path","name":"eventId","required":true,"dataType":"string"},
+                userId: {"in":"path","name":"userId","required":true,"dataType":"string"},
+        };
+        app.post('/events/:eventId/unregister/:userId',
+            ...(fetchMiddlewares<RequestHandler>(EventController)),
+            ...(fetchMiddlewares<RequestHandler>(EventController.prototype.unregisterEventFromUser)),
+
+            async function EventController_unregisterEventFromUser(request: ExRequest, response: ExResponse, next: any) {
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = templateService.getValidatedArgs({ args: argsEventController_unregisterEventFromUser, request, response });
+
+                const controller = new EventController();
+
+              await templateService.apiHandler({
+                methodName: 'unregisterEventFromUser',
+                controller,
+                response,
+                next,
+                validatedArgs,
+                successStatus: 200,
+              });
+            } catch (err) {
+                return next(err);
+            }
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         const argsEventController_getEventById: Record<string, TsoaRoute.ParameterSchema> = {
                 eventId: {"in":"path","name":"eventId","required":true,"dataType":"string"},
         };

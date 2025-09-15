@@ -32,7 +32,6 @@ export class EventController extends Controller {
   public async registerEventToUser(
     @Path() eventId: string,
     @Path() userId: string,
-
   ): Promise<{ userId: string; eventId: string }> {
     if (!userId) {
       this.setStatus(StatusCodes.UNAUTHORIZED);
@@ -56,6 +55,36 @@ export class EventController extends Controller {
     this.setStatus(StatusCodes.OK);
     return { userId, eventId };
   }
+
+  @SuccessResponse("200", "User Unregistered")
+  @Post("{eventId}/unregister/{userId}")
+  public async unregisterEventFromUser(
+    @Path() eventId: string,
+    @Path() userId: string,
+  ): Promise<{ userId: string; eventId: string }> {
+    if (!userId) {
+      this.setStatus(StatusCodes.UNAUTHORIZED);
+      return { userId: "", eventId };
+    }
+
+    const userUpdated = await new UserService().unregisterEventFromUser(
+      userId,
+      eventId
+    );
+    const eventUpdated = await new EventService().unregisterUserFromEvent(
+      userId,
+      eventId
+    );
+
+    if (!userUpdated || !eventUpdated) {
+      this.setStatus(StatusCodes.NOT_FOUND);
+      return { userId, eventId };
+    }
+
+    this.setStatus(StatusCodes.OK);
+    return { userId, eventId };
+  }
+
 
 
   @SuccessResponse("200", "Found")
