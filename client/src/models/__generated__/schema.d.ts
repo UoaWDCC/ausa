@@ -20,6 +20,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/signup": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** @description Signs up a user and creates a user record in the database. Also creates a JWT token for the user in AuthService. */
+        post: operations["Signup"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/faq": {
         parameters: {
             query?: never;
@@ -248,6 +265,28 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        UserSignupResponse: {
+            error?: string;
+            message?: string;
+            jwtToken?: string;
+            uid?: string;
+        };
+        /** @description From T, pick a set of properties whose keys are in the union K */
+        "Pick_User.Exclude_keyofUser.stripe_id__": {
+            id: string;
+            username: string;
+            email: string;
+            name: string;
+            /** @enum {string} */
+            role?: "user" | "admin";
+            eventsSignedUp?: string[];
+        };
+        /** @description Construct a type with the properties of T except for those in type K. */
+        "Omit_User.stripe_id_": components["schemas"]["Pick_User.Exclude_keyofUser.stripe_id__"];
+        UserSignupBody: {
+            email: string;
+            user: components["schemas"]["Omit_User.stripe_id_"];
+        };
         Faq: {
             id: string;
             question: string;
@@ -488,6 +527,31 @@ export interface operations {
                         id: string;
                         uid: string;
                     };
+                };
+            };
+        };
+    };
+    Signup: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** @description - The user's email and their user additional info. */
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["UserSignupBody"];
+            };
+        };
+        responses: {
+            /** @description Signup successful */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["UserSignupResponse"];
                 };
             };
         };

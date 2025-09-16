@@ -1,7 +1,7 @@
 import { StatusCodes } from 'http-status-codes'
 import type { SelfRequestModel } from 'service-layer/request-models/UserRequest'
 import { Controller, Get, Request, Route, SuccessResponse } from 'tsoa'
-import { UserService } from '../../data-layer/services/UserDataService'
+import UserService from '../../data-layer/services/UserDataService'
 
 /* This controller still need auth to be integrated to use */
 @Route('users')

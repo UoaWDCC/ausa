@@ -1,8 +1,8 @@
+import type { User } from 'data-layer/models/User'
 import type { DocumentSnapshot } from 'firebase-admin/firestore'
 import FirestoreCollections from '../adapters/FirestoreCollections'
-import { User } from 'data-layer/models/User'
 
-export class UserService {
+export default class UserService {
   /**
    * Helper function - updates the eventsSignedUp array for a user.
    * @param uid - The ID of the user to update.
@@ -39,18 +39,15 @@ export class UserService {
     return { ...userDoc.data(), uid }
   }
 
-    /**
-     * Adds a new user to Firestore.
-     * @param uid - The UID for the user document.
-     * @param userData - The user data to store (object).
-     * @returns The created user document reference.
-     */
-    public async addUser(uid: string, userData: User) {
-      const userRef = FirestoreCollections.users.doc(uid)
-      await userRef.set(userData)
-      return userRef
-    }
-
+  /**
+   * Adds a new user to Firestore.
+   * @param uid - The UID for the user document.
+   * @param userData - The user data to store (object).
+   * @returns The created user document reference.
+   */
+  public async createUserData(uid: string, userInfo: User) {
+    await FirestoreCollections.users.doc(uid).set(userInfo)
+  }
   /**
    *
    * @param uid - using uid to delete a user in db
