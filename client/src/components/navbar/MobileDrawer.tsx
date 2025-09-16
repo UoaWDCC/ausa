@@ -43,7 +43,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       {/* Overlay */}
       {isOpen && (
         <div
-          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-sm"
+          className="fixed inset-0 z-110"
           onClick={onClose}
         />
       )}
@@ -51,7 +51,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
       {/* Drawer */}
       <div
         className={cn(
-          'fixed top-0 left-0 z-50 h-full w-3/4 max-w-sm transform bg-white/95 backdrop-blur-md border-r border-white/20 shadow-2xl transition-transform duration-300 ease-in-out',
+          'fixed top-0 left-0 z-110 h-full w-3/4 max-w-sm transform bg-black/95 backdrop-blur-md border-r border-white/20 shadow-2xl transition-transform duration-300 ease-in-out',
           isOpen ? 'translate-x-0' : '-translate-x-full',
           className,
         )}
@@ -88,7 +88,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
           <nav className="flex flex-col space-y-1 flex-1">
             {mobileItems.map((item, index) => (
               <Link
-                className="group flex items-center gap-3 rounded-md px-3 py-3 text-gray-700 font-medium transition-all duration-200 hover:bg-purple-50 hover:text-purple-900 hover:translate-x-1"
+                className="group flex items-center gap-3 rounded-md px-3 py-3 text-white font-medium transition-all duration-200 hover:bg-purple-50 hover:text-purple-900 hover:translate-x-1"
                 href={item.href}
                 key={`mobile-${item.href}-${index}`}
                 onClick={onClose}
@@ -96,7 +96,7 @@ export const MobileDrawer: React.FC<MobileDrawerProps> = ({
                 target={item.external ? '_blank' : undefined}
               >
                 {item.icon && (
-                  <item.icon className="h-5 w-5 text-gray-500 group-hover:text-purple-600" />
+                  <item.icon className="h-5 w-5 text-white group-hover:text-purple-600" />
                 )}
                 {item.label}
               </Link>
