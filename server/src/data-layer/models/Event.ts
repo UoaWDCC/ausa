@@ -5,8 +5,9 @@ export type Event = {
     src: string
     alt: string
   }
-  startTime?: number
-  endTime?: number
+  startTime?: string
+  endTime?: string
+  location?: string
   content: {
     subtitle?: string
     body: string
@@ -25,8 +26,9 @@ export interface UpdateEventPackage {
     src: string
     alt?: string
   }
-  startTime?: number
-  endTime?: number
+  startTime?: string
+  endTime?: string
+  location?: string
   content?: {
     subtitle?: string
     body?: string

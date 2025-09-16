@@ -39,6 +39,9 @@ export interface Event {
     src: string
     alt: string
   }
+  startTime?: string
+  endTime?: string
+  location?: string
   content: {
     subtitle?: string
     body: string

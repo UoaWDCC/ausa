@@ -180,7 +180,7 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
-    "/events/{eventId}/unregister/{userId}": {
+    "/events/unregister": {
         parameters: {
             query?: never;
             header?: never;
@@ -383,10 +383,9 @@ export interface components {
                 body: string;
                 subtitle?: string;
             };
-            /** Format: double */
-            endTime?: number;
-            /** Format: double */
-            startTime?: number;
+            location?: string;
+            endTime?: string;
+            startTime?: string;
             heroImage?: {
                 alt: string;
                 src: string;
@@ -419,10 +418,9 @@ export interface components {
                 alt: string;
                 src: string;
             };
-            /** Format: double */
-            startTime?: number;
-            /** Format: double */
-            endTime?: number;
+            startTime?: string;
+            endTime?: string;
+            location?: string;
             content: {
                 callToAction?: {
                     href: string;
@@ -443,10 +441,9 @@ export interface components {
                 alt?: string;
                 src: string;
             };
-            /** Format: double */
-            startTime?: number;
-            /** Format: double */
-            endTime?: number;
+            startTime?: string;
+            endTime?: string;
+            location?: string;
             content?: {
                 callToAction?: {
                     href?: string;

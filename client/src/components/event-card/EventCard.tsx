@@ -38,8 +38,19 @@ export const EventCard: React.FC<EventCardProps> = ({ event }) => {
       <div className="flex flex-1 flex-col p-4">
         <h3 className="mb-2 text-xl font-bold text-gray-900">{event.title}</h3>
         {event.content.subtitle && (
-          <p className="mb-3 text-sm font-medium text-purple-600">
+          <p className="mb-1 text-sm font-medium text-purple-600">
             {event.content.subtitle}
+          </p>
+        )}
+        {(event.startTime || event.endTime) && (
+          <p className="mb-1 text-xs text-gray-500">
+            {event.startTime
+              ? `Start: ${new Date(event.startTime).toLocaleString()}`
+              : ''}
+            {event.startTime && event.endTime ? ' | ' : ''}
+            {event.endTime
+              ? `End: ${new Date(event.endTime).toLocaleString()}`
+              : ''}
           </p>
         )}
         <p className="mb-4 flex-1 text-gray-600">

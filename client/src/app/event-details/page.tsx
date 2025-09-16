@@ -62,6 +62,9 @@ export default function Page() {
         setAboutTitle(data.title)
         setAboutDescription(data.content.body)
         setDate(data.content.subtitle ?? '')
+        setEndTime(data.endTime ?? '')
+        setStartTime(data.startTime ?? '')
+        setLocation(data.location ?? '')
 
         setAboutSubmitted(true)
         setInfoSubmitted(true)
