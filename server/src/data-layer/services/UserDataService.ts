@@ -1,5 +1,6 @@
 import type { DocumentSnapshot } from 'firebase-admin/firestore'
 import FirestoreCollections from '../adapters/FirestoreCollections'
+import { User } from 'data-layer/models/User'
 
 export class UserService {
   /**
@@ -37,6 +38,18 @@ export class UserService {
     if (data === undefined) return undefined
     return { ...userDoc.data(), uid }
   }
+
+    /**
+     * Adds a new user to Firestore.
+     * @param uid - The UID for the user document.
+     * @param userData - The user data to store (object).
+     * @returns The created user document reference.
+     */
+    public async addUser(uid: string, userData: User) {
+      const userRef = FirestoreCollections.users.doc(uid)
+      await userRef.set(userData)
+      return userRef
+    }
 
   /**
    *
