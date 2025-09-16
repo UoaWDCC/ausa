@@ -23,7 +23,6 @@ import {
 import FirestoreCollections from '../../data-layer/adapters/FirestoreCollections'
 import type { Event, UpdateEventPackage } from '../../data-layer/models/Event'
 import { EventService } from '../../data-layer/services/EventService'
-import { UserService } from '../../data-layer/services/UserDataService'
 
 @Route('events')
 export class EventController extends Controller {
@@ -44,16 +43,12 @@ export class EventController extends Controller {
       return { error: 'Unauthorized', data: undefined }
     }
 
-    const userUpdated = await new UserService().registerEventToUser(
-      userId,
-      eventId,
-    )
     const eventUpdated = await new EventService().registerUserToEvent(
       userId,
       eventId,
     )
 
-    if (!userUpdated || !eventUpdated) {
+    if (!eventUpdated) {
       this.setStatus(StatusCodes.NOT_FOUND)
       return { error: 'Not Found', data: eventUpdated }
     }
@@ -73,16 +68,12 @@ export class EventController extends Controller {
       return { error: 'Unauthorized', data: undefined }
     }
 
-    const userUpdated = await new UserService().unregisterEventFromUser(
-      userId,
-      eventId,
-    )
     const eventUpdated = await new EventService().unregisterUserFromEvent(
       userId,
       eventId,
     )
 
-    if (!userUpdated || !eventUpdated) {
+    if (!eventUpdated) {
       this.setStatus(StatusCodes.NOT_FOUND)
       return { error: 'Not Found', data: eventUpdated }
     }

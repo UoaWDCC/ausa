@@ -3,6 +3,7 @@
 
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
+import { useAuth } from '@/auth/AuthContext'
 import AboutInputBox from '@/components/event-details/AboutInputBox'
 import EventAboutSection from '@/components/event-details/EventAboutSection'
 import EventHeroImage from '@/components/event-details/EventHeroImage'
@@ -11,6 +12,8 @@ import InfoInputBox from '@/components/event-details/InfoInputBox'
 import client from '@/services/fetch-client'
 
 export default function Page() {
+  const { user } = useAuth()
+
   // Get query params
   const searchParams = useSearchParams()
   const router = useRouter()
@@ -21,10 +24,11 @@ export default function Page() {
   const isEditMode = mode === 'edit'
   const isRegisterMode = mode === 'register'
 
-  const eventTitle = isAddMode
-    ? 'New Event'
-    : searchParams.get('title') || 'Event'
+  const [eventTitle, setEventTitle] = useState(
+    isAddMode ? 'New Event' : searchParams.get('title') || 'Event',
+  )
   const eventSubtitle = 'By AUSA'
+  const [eventLogo, setEventLogo] = useState<string | undefined>(undefined)
 
   // About state
   const [aboutTitle, setAboutTitle] = useState('')
@@ -60,12 +64,15 @@ export default function Page() {
         console.log(data)
 
         setAboutTitle(data.title)
+        setEventTitle(data.title)
         setAboutDescription(data.content.body)
         setDate(data.content.subtitle ?? '')
         setEndTime(data.endTime ?? '')
         setStartTime(data.startTime ?? '')
         setLocation(data.location ?? '')
-
+        if (data.heroImage && data.heroImage.src) {
+          setEventLogo(data.heroImage.src)
+        }
         setAboutSubmitted(true)
         setInfoSubmitted(true)
       } else {
@@ -120,6 +127,31 @@ export default function Page() {
     }
   }
 
+  const handleRegister = async () => {
+    if (!user) {
+      return
+    }
+    if (!eventId) {
+      alert('No event ID found.')
+      return
+    }
+    try {
+      const response = await client.POST('/events/register', {
+        body: { userId: user.uid, eventId },
+        headers: { 'Content-Type': 'application/json' },
+      })
+      if (response.data) {
+        alert('Successfully registered for event!')
+        router.push('/events')
+      } else {
+        alert('Failed to register for event.')
+      }
+    } catch (error) {
+      console.error('Error registering for event:', error)
+      alert('Error registering for event. Please try again.')
+    }
+  }
+
   return (
     <main
       style={{
@@ -138,7 +170,11 @@ export default function Page() {
       </div>
 
       {/* Hero Image */}
-      <EventHeroImage imageUrl="" subtitle={eventSubtitle} title={eventTitle} />
+      <EventHeroImage
+        imageUrl={eventLogo || ''}
+        subtitle={eventSubtitle}
+        title={eventTitle}
+      />
 
       {/* Main content layout */}
       <div
@@ -193,8 +229,8 @@ export default function Page() {
         </div>
       </div>
 
-      {/* Save Button - Only shown after both forms are submitted*/}
-      {aboutSubmitted && infoSubmitted && (
+      {/* Save Button - Only shown after both forms are submitted and not in register mode */}
+      {aboutSubmitted && infoSubmitted && !isRegisterMode && (
         <div className="text-center py-6">
           <button
             type="button"
@@ -202,6 +238,19 @@ export default function Page() {
             onClick={handleSaveEvent}
           >
             Create Event
+          </button>
+        </div>
+      )}
+
+      {/* Register Button - Only in register mode and after both forms are submitted */}
+      {aboutSubmitted && infoSubmitted && isRegisterMode && (
+        <div className="text-center py-6">
+          <button
+            type="button"
+            className="bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg text-base cursor-pointer"
+            onClick={handleRegister}
+          >
+            Register for Event
           </button>
         </div>
       )}

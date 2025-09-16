@@ -51,22 +51,6 @@ export default function EventInfoCard({
         <br />
         <strong>Finish:</strong> {endTime}
       </div>
-
-      <button
-        style={{
-          marginTop: '1.5rem',
-          width: '100%',
-          padding: '0.7rem',
-          background: '#5865f2',
-          border: 'none',
-          borderRadius: '8px',
-          color: 'white',
-          fontWeight: 'bold',
-          cursor: 'pointer',
-        }}
-      >
-        Register
-      </button>
     </aside>
   )
 }

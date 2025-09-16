@@ -1,8 +1,8 @@
-import FirestoreCollections from '../adapters/FirestoreCollections'
-import type { Event, UpdateEventPackage } from '../models/Event'
 import { FieldValue } from 'firebase-admin/firestore'
 import { Body } from 'tsoa'
-import { getUserDoc, getEventDoc } from '../utils/FirestoreValidators'
+import FirestoreCollections from '../adapters/FirestoreCollections'
+import type { Event, UpdateEventPackage } from '../models/Event'
+import { getEventDoc, getUserDoc } from '../utils/FirestoreValidators'
 
 export type EventCreationParams = Pick<
   Event,
@@ -10,23 +10,32 @@ export type EventCreationParams = Pick<
 >
 
 export class EventService {
-  /** Helper function to update event attendees 
+  /** Helper function to update event attendees
    * @param eventId - The ID of the event to update
    * @param userId - The ID of the user to add or remove
    * @param action - 'add' to add user, 'remove' to remove user
    * @return The updated event or null if not found
-  */
+   */
   private async updateEventAttendees(
     eventId: string,
     userId: string,
-    action: 'add' | 'remove'
+    action: 'add' | 'remove',
   ): Promise<Event | null> {
     const eventRef = FirestoreCollections.events.doc(eventId)
+    const userRef = FirestoreCollections.users.doc(userId)
+    // Update event's attendees
     await eventRef.update({
       attendees:
         action === 'add'
           ? FieldValue.arrayUnion(userId)
           : FieldValue.arrayRemove(userId),
+    })
+    // Update user's attendingEvents
+    await userRef.update({
+      attendingEvents:
+        action === 'add'
+          ? FieldValue.arrayUnion(eventId)
+          : FieldValue.arrayRemove(eventId),
     })
     const updatedEventDoc = await eventRef.get()
     return updatedEventDoc.data() as Event
@@ -48,7 +57,10 @@ export class EventService {
     return event.data() as Event
   }
 
-  async registerUserToEvent(userId: string, eventId: string): Promise<Event | null> {
+  async registerUserToEvent(
+    userId: string,
+    eventId: string,
+  ): Promise<Event | null> {
     const userDoc = await getUserDoc(userId)
     const eventDoc = await getEventDoc(eventId)
     if (!userDoc || !eventDoc) return null
@@ -58,17 +70,22 @@ export class EventService {
     return updatedEvent
   }
 
-  async unregisterUserFromEvent(userId: string, eventId: string): Promise<Event | null> {
+  async unregisterUserFromEvent(
+    userId: string,
+    eventId: string,
+  ): Promise<Event | null> {
     const userDoc = await getUserDoc(userId)
     const eventDoc = await getEventDoc(eventId)
     if (!userDoc || !eventDoc) return null
 
-    const updatedEvent = await this.updateEventAttendees(eventId, userId, 'remove')
+    const updatedEvent = await this.updateEventAttendees(
+      eventId,
+      userId,
+      'remove',
+    )
     console.log(`User ${userId} unregistered from event ${eventId}`)
     return updatedEvent
   }
-
-
 
   /**
    * Retrieves an event by its title.

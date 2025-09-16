@@ -1,8 +1,6 @@
-import FirestoreCollections from '../adapters/FirestoreCollections'
 import type { DocumentSnapshot } from 'firebase-admin/firestore'
-import { FieldValue } from 'firebase-admin/firestore'
-import { User } from '../models/User'
-import { getUserDoc, getEventDoc } from '../utils/FirestoreValidators'
+import FirestoreCollections from '../adapters/FirestoreCollections'
+
 export class UserService {
   /**
    * Helper function - updates the eventsSignedUp array for a user.
@@ -11,21 +9,6 @@ export class UserService {
    * @param action - 'add' to add the event, 'remove' to remove it.
    * @returns The updated user or undefined if not found.
    */
-  private async updateUserEventsSignedUp(
-    uid: string,
-    eventId: string,
-    action: 'add' | 'remove'
-  ): Promise<User | undefined> {
-    const userRef = FirestoreCollections.users.doc(uid)
-    await userRef.update({
-      eventsSignedUp:
-        action === 'add'
-          ? FieldValue.arrayUnion(eventId)
-          : FieldValue.arrayRemove(eventId),
-    })
-    const updatedUserDoc = await userRef.get()
-    return updatedUserDoc.data() as User
-  }
 
   public async getAllUserData(limit = 15, startAfter?: DocumentSnapshot) {
     const res = await FirestoreCollections.users
@@ -41,28 +24,6 @@ export class UserService {
       nextCursor: res.docs[res.docs.length - 1]?.id || undefined,
     }
   }
-
-  public async registerEventToUser(uid: string, eventId: string): Promise<User | null> {
-    const userDoc = await getUserDoc(uid)
-    const eventDoc = await getEventDoc(eventId)
-    if (!userDoc || !eventDoc) return null
-
-    const updatedUser = await this.updateUserEventsSignedUp(uid, eventId, 'add')
-    console.log(`User ${uid} registered for event ${eventId}`)
-    return updatedUser
-  }
-
-  public async unregisterEventFromUser(uid: string, eventId: string): Promise<User | null> {
-    const userDoc = await getUserDoc(uid)
-    const eventDoc = await getEventDoc(eventId)
-    if (!userDoc || !eventDoc) return null
-
-    const updatedUser = await this.updateUserEventsSignedUp(uid, eventId, 'remove')
-    console.log(`User ${uid} unregistered from event ${eventId}`)
-    return updatedUser
-  }
-
-
 
   /**
    *
